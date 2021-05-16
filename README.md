@@ -20,7 +20,7 @@ These can be instantiated through the corresponding factory method of [`CoboApiC
 
 #### initialize
 ```java
-CoboApiClientFactory factory = BinanceApiClientFactory.newInstance("API-KEY", ApiSigner，"COBO-PUB");
+CoboApiClientFactory factory = CoboApiClientFactory.newInstance("API-KEY", ApiSigner，"COBO-PUB");
 CoboApiClientFactory client = factory.newRestClient();
 ```
 `ApiSigner` can be instantiated through `new LocalSigner("your private key" )`
