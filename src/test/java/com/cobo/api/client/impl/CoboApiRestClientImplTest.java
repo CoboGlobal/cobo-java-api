@@ -1,6 +1,5 @@
 package com.cobo.api.client.impl;
 
-import com.cobo.api.client.ApiSigner;
 import com.cobo.api.client.CoboApiClientFactory;
 import com.cobo.api.client.CoboApiRestClient;
 import com.cobo.api.client.domain.*;
@@ -14,6 +13,7 @@ public class CoboApiRestClientImplTest extends TestCase {
     private final String apiSecret = "e7e73fabdd9edb8bddf947954c400a63bf93edc57abf170544ec570757df5453";
     private final String coboPub = "032f45930f652d72e0c90f71869dfe9af7d713b1f67dc2f7cb51f9572778b9c876";
     private CoboApiRestClient client;
+
     public void setUp() throws Exception {
         super.setUp();
         client = CoboApiClientFactory.newInstance(
@@ -38,7 +38,7 @@ public class CoboApiRestClientImplTest extends TestCase {
     }
 
     public void testNewAddress() {
-        Response<Address> res = client.newAddress("ETH",false);
+        Response<Address> res = client.newAddress("ETH", false);
         assertTrue(res.isSuccess());
     }
 
@@ -87,8 +87,34 @@ public class CoboApiRestClientImplTest extends TestCase {
     }
 
     public void testGetTransaction() {
-        Response<Transaction> res = client.getTransaction("20210112173820000166329000003582");
-        System.out.println(res);
+        Response<Transaction> res = client.getTransaction("20210422193807000343569000002370");
+        assertTrue(res.isSuccess());
+    }
 
+    public void testGetTransactionsById() {
+        Response<List<Transaction>> res = client.getTransactionsById(null, Side.Any, null, null, null, 50, null);
+        assertTrue(res.isSuccess());
+    }
+
+    public void testGetTransactionsByTime() {
+        Response<List<Transaction>> res = client.getTransactionsByTime(null, Side.Any, null, 1619169027806L, 1619169027806L, 11, null);
+        assertTrue(res.isSuccess());
+    }
+
+    public void testGetPendingTransactions() {
+        Response<List<Transaction>> pendingTransactions = client.getPendingTransactions(null, Side.Any, null, null, 50);
+        assertTrue(pendingTransactions.isSuccess());
+    }
+
+    public void testGetPendingTransaction() {
+        Response<Transaction> res = client.getPendingTransaction("20200604171238000354106000006405");
+        assertTrue(res.isSuccess());
+        System.out.println(res.getResult());
+    }
+
+    public void testGetTransactionHistory() {
+        Response<List<Transaction>> res = client.getTransactionHistory("ETH", Side.Any, null, null, null, 50, 0, System.currentTimeMillis(), null);
+        assertTrue(res.isSuccess());
+        System.out.println(res.getResult().get(0));
     }
 }

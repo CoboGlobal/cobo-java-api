@@ -25,9 +25,10 @@ public class Transaction {
     private String memo;
     private int confirming_threshold;
     private String fee_coin;
-    private long fee_amount;
+    private String fee_amount;
     private int fee_decimal;
     private String type;
+    private boolean waiting_audit;
 
     public String getId() {
         return id;
@@ -213,11 +214,11 @@ public class Transaction {
         this.fee_coin = fee_coin;
     }
 
-    public long getFee_amount() {
+    public String getFee_amount() {
         return fee_amount;
     }
 
-    public void setFee_amount(long fee_amount) {
+    public void setFee_amount(String fee_amount) {
         this.fee_amount = fee_amount;
     }
 
@@ -235,6 +236,14 @@ public class Transaction {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public boolean isWaiting_audit() {
+        return waiting_audit;
+    }
+
+    public void setWaiting_audit(boolean waiting_audit) {
+        this.waiting_audit = waiting_audit;
     }
 
     @Override
@@ -263,9 +272,10 @@ public class Transaction {
                 ", memo='" + memo + '\'' +
                 ", confirming_threshold=" + confirming_threshold +
                 ", fee_coin='" + fee_coin + '\'' +
-                ", fee_amount=" + fee_amount +
+                ", fee_amount='" + fee_amount + '\'' +
                 ", fee_decimal=" + fee_decimal +
                 ", type='" + type + '\'' +
+                ", waiting_audit=" + waiting_audit +
                 '}';
     }
 
@@ -332,6 +342,19 @@ public class Transaction {
 
         public void setHexstr(String hexstr) {
             this.hexstr = hexstr;
+        }
+
+        @Override
+        public String toString() {
+            return "TxDetail{" +
+                    "txid='" + txid + '\'' +
+                    ", blocknum=" + blocknum +
+                    ", blockhash='" + blockhash + '\'' +
+                    ", fee=" + fee +
+                    ", actualgas=" + actualgas +
+                    ", gasprice=" + gasprice +
+                    ", hexstr='" + hexstr + '\'' +
+                    '}';
         }
     }
 }

@@ -25,6 +25,25 @@ public interface CoboApiRestClient {
 
     Response<List<InternalAddressInfo>> getInternalAddressInfoBatch(String coin, String addresses);
 
-    Response<Transaction> getTransaction(String txId);
+    Response<Transaction> getTransaction(String id);
+
+    Response<List<Transaction>> getTransactionsById(String coin, Side side,
+                                                    String address, String maxId,
+                                                    String minId, int limit, String includeFinancial);
+
+    Response<List<Transaction>> getTransactionsByTime(String coin, Side side,
+                                                      String address, long beginTime,
+                                                      long endTime, int limit, String includeFinancial);
+
+    Response<List<Transaction>> getPendingTransactions(String coin, Side side,
+                                                       String max_id,
+                                                       String min_id, int limit);
+
+    Response<Transaction> getPendingTransaction(String id);
+
+    Response<List<Transaction>> getTransactionHistory(String coin, Side side,
+                                                      String address, String maxId,
+                                                      String minId, int limit, long beginTime,
+                                                      long endTime, String includeFinancial);
 
 }
