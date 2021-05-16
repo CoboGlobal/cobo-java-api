@@ -37,6 +37,7 @@ cmake-build-debug/
 # IntelliJ
 /out/
 .idea
+/build
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

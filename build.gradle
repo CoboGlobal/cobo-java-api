@@ -10,7 +10,8 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.bitcoinj', name: 'bitcoinj-core', version: '0.15'
+    implementation group: 'org.bitcoinj', name: 'bitcoinj-core', version: '0.15'
+    implementation "org.slf4j:slf4j-simple:1.7.9"
     implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.9.0'
     implementation group: 'com.squareup.retrofit2', name: 'converter-jackson', version: '2.9.0'
     implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'

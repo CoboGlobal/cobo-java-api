@@ -1,5 +1,6 @@
 package com.cobo.api.client.impl;
 
+import com.cobo.api.client.ApiSigner;
 import com.cobo.api.client.CoboApiError;
 import com.cobo.api.client.config.CoboApiConfig;
 import com.cobo.api.client.exception.CoboApiException;
@@ -26,6 +27,10 @@ public class CoboApiServiceGenerator {
 
     private static final OkHttpClient sharedClient;
     private static final Converter.Factory converterFactory = JacksonConverterFactory.create();
+    @SuppressWarnings("unchecked")
+    private static final Converter<ResponseBody, CoboApiError> errorBodyConverter =
+            (Converter<ResponseBody, CoboApiError>) converterFactory.responseBodyConverter(
+                    CoboApiError.class, new Annotation[0], null);
 
     static {
         Dispatcher dispatcher = new Dispatcher();
@@ -37,25 +42,20 @@ public class CoboApiServiceGenerator {
                 .build();
     }
 
-    @SuppressWarnings("unchecked")
-    private static final Converter<ResponseBody, CoboApiError> errorBodyConverter =
-            (Converter<ResponseBody, CoboApiError>)converterFactory.responseBodyConverter(
-                    CoboApiError.class, new Annotation[0], null);
-
     public static <S> S createService(Class<S> serviceClass) {
         return createService(serviceClass, null, null, null);
     }
 
-    public static <S> S createService(Class<S> serviceClass, String apiKey, String secret, String coboPub) {
+    public static <S> S createService(Class<S> serviceClass, String apiKey, ApiSigner signer, String coboPub) {
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
                 .baseUrl(CoboApiConfig.getApiBaseUrl())
                 .addConverterFactory(converterFactory);
 
-        if (StringUtils.isEmpty(apiKey) || StringUtils.isEmpty(secret)) {
+        if (StringUtils.isEmpty(apiKey) || signer == null || StringUtils.isEmpty(coboPub)) {
             retrofitBuilder.client(sharedClient);
         } else {
             // `adaptedClient` will use its own interceptor, but share thread pool etc with the 'parent' client
-            AuthenticationInterceptor interceptor = new AuthenticationInterceptor(apiKey, secret, coboPub);
+            AuthenticationInterceptor interceptor = new AuthenticationInterceptor(apiKey, signer, coboPub);
             OkHttpClient adaptedClient = sharedClient.newBuilder().addInterceptor(interceptor).build();
             retrofitBuilder.client(adaptedClient);
         }

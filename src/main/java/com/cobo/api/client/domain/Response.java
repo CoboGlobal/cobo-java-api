@@ -1,15 +1,17 @@
 package com.cobo.api.client.domain;
 
 public class Response<T> {
+    T result;
     private boolean success;
     private int error_code;
     private String error_message;
     private String error_id;
     private String error_description;
-    T result;
+
     public boolean isSuccess() {
         return success;
     }
+
     public T getResult() {
         return result;
     }

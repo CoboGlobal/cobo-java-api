@@ -1,10 +1,10 @@
 package com.cobo.api.client.security;
 
-import com.cobo.api.client.config.CoboApiConfig;
+import com.cobo.api.client.ApiSigner;
 import okhttp3.*;
 import okio.Buffer;
-import org.apache.commons.lang3.StringUtils;
 import org.bitcoinj.core.ECKey;
+import org.bitcoinj.core.Sha256Hash;
 import org.bitcoinj.core.SignatureDecodeException;
 import org.bouncycastle.util.encoders.Hex;
 
@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 
-import static com.cobo.api.client.security.EccSigner.doubleSha256;
+import static com.cobo.api.client.constant.CoboApiConstants.*;
 
 /**
  * A request interceptor that injects the API Key Header into requests, and signs messages, whenever required.
@@ -25,29 +25,75 @@ public class AuthenticationInterceptor implements Interceptor {
 
     private final String apiKey;
 
-    private final String secret;
+    private final ApiSigner signer;
 
     private final String coboPubKey;
 
-    public AuthenticationInterceptor(String apiKey, String secret, String coboPubKey) {
+    public AuthenticationInterceptor(String apiKey, ApiSigner signer, String coboPubKey) {
         this.apiKey = apiKey;
-        this.secret = secret;
+        this.signer = signer;
         this.coboPubKey = coboPubKey;
     }
 
+    /**
+     * Extracts the request body into a String.
+     *
+     * @return request body as a string
+     */
+    @SuppressWarnings("unused")
+    private static String bodyToString(RequestBody request) {
+        try (final Buffer buffer = new Buffer()) {
+            final RequestBody copy = request;
+            if (copy != null) {
+                copy.writeTo(buffer);
+            } else {
+                return "";
+            }
+            return buffer.readUtf8();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static String composeParams(TreeMap<String, Object> params) {
+        StringBuffer sb = new StringBuffer();
+        params.forEach((s, o) -> {
+            try {
+                sb.append(s).append("=").append(URLEncoder.encode(String.valueOf(o), "UTF-8")).append("&");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        });
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        return sb.toString();
+    }
+
+    private static boolean verifyResponse(String content, String sig, String pubkey) {
+        ECKey key = ECKey.fromPublicOnly(Hex.decode(pubkey));
+        try {
+            return key.verify(Sha256Hash.hashTwice(content.getBytes()), Hex.decode(sig));
+        } catch (SignatureDecodeException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     @Override
-    public Response intercept(Chain chain) throws IOException {
+    public Response intercept(Interceptor.Chain chain) throws IOException {
         Request original = chain.request();
         Request.Builder newRequestBuilder = original.newBuilder();
 
         Request newRequest = addHeader(original, newRequestBuilder);
         Response response = chain.proceed(newRequest);
 
-        String ts = response.header("BIZ_TIMESTAMP");
-        String respSignature = response.header("BIZ_RESP_SIGNATURE");
+        String ts = response.header(BIZ_TIMESTAMP);
+        String respSignature = response.header(BIZ_RESP_SIGNATURE);
         String responseBody = response.body() == null ? "null" : response.body().string();
         boolean verifyResult = verifyResponse(responseBody + "|" + ts, respSignature, coboPubKey);
 
+        System.out.println("verifyResult:" + verifyResult);
         MediaType mediaType = response.body().contentType();
         return response.newBuilder()
                 .body(ResponseBody.create(mediaType, responseBody))
@@ -75,34 +121,14 @@ public class AuthenticationInterceptor implements Interceptor {
         }
         String nonce = String.valueOf(System.currentTimeMillis());
         String content = method + "|" + path + "|" + nonce + "|" + body;
-        String sig = EccSigner.generateEccSignature(content, secret);
+        String sig = signer.sign(Sha256Hash.hashTwice(content.getBytes()));
 
-        newRequestBuilder.addHeader("Biz-Api-Key", apiKey)
-                .addHeader("Biz-Api-Nonce", nonce)
-                .addHeader("Biz-Api-Signature", sig);
+        newRequestBuilder.addHeader(BIZ_API_KEY, apiKey)
+                .addHeader(BIZ_API_NONCE, nonce)
+                .addHeader(BIZ_API_SIGNATURE, sig);
 
         // Build new request after adding the necessary authentication information
         return newRequestBuilder.build();
-    }
-
-    /**
-     * Extracts the request body into a String.
-     *
-     * @return request body as a string
-     */
-    @SuppressWarnings("unused")
-    private static String bodyToString(RequestBody request) {
-        try (final Buffer buffer = new Buffer()) {
-            final RequestBody copy = request;
-            if (copy != null) {
-                copy.writeTo(buffer);
-            } else {
-                return "";
-            }
-            return buffer.readUtf8();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override
@@ -111,45 +137,20 @@ public class AuthenticationInterceptor implements Interceptor {
         if (o == null || getClass() != o.getClass()) return false;
         final AuthenticationInterceptor that = (AuthenticationInterceptor) o;
         return Objects.equals(apiKey, that.apiKey) &&
-                Objects.equals(secret, that.secret);
+                Objects.equals(signer, that.signer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(apiKey, secret);
+        return Objects.hash(apiKey, signer);
     }
 
     String pathSegmentsToString(List<String> pathSegments) {
         StringBuilder out = new StringBuilder();
-        for (int i = 0, size = pathSegments.size(); i < size; i++) {
+        for (String pathSegment : pathSegments) {
             out.append('/');
-            out.append(pathSegments.get(i));
+            out.append(pathSegment);
         }
         return out.toString();
-    }
-
-    private static String composeParams(TreeMap<String, Object> params) {
-        StringBuffer sb = new StringBuffer();
-        params.forEach((s, o) -> {
-            try {
-                sb.append(s).append("=").append(URLEncoder.encode(String.valueOf(o), "UTF-8")).append("&");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-        });
-        if (sb.length() > 0) {
-            sb.deleteCharAt(sb.length() - 1);
-        }
-        return sb.toString();
-    }
-
-    private static boolean verifyResponse(String content, String sig, String pubkey) {
-        ECKey key = ECKey.fromPublicOnly(Hex.decode(pubkey));
-        try {
-            return key.verify(doubleSha256(content), Hex.decode(sig));
-        } catch (SignatureDecodeException e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 }
