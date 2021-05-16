@@ -10,6 +10,13 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
 ```
 
 
+## Test
+
+```
+ ./gradlew test
+```
+
+
 
 ## Examples
 TODO

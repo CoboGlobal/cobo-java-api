@@ -5,6 +5,7 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CoboApiService {
     @GET("/v1/custody/org_info/")
@@ -58,16 +59,17 @@ public interface CoboApiService {
     Call<Response<List<Transaction>>> getTransactionsById(@Query("coin") String coin, @Query("side") String side,
                                                           @Query("address") String address, @Query("max_id") String max_id,
                                                           @Query("min_id") String min_id, @Query("limit") int limit, @Query("include_financial") String include_financial);
-
     @GET("/v1/custody/transactions_by_time/")
     Call<Response<List<Transaction>>> getTransactionsByTime(@Query("coin") String coin, @Query("side") String side,
-                                                            @Query("address") String address, @Query("begin_time") long beginTime,
-                                                            @Query("end_time") long endTime, @Query("limit") int limit, @Query("include_financial") String include_financial);
-
+                                                            @Query("address") String address, @Query("begin_time") String beginTime,
+                                                            @Query("end_time") String endTime, @Query("limit") String limit,
+                                                            @Query("include_financial") String include_financial);
+    //@GET("/v1/custody/transactions_by_time/")
+    //Call<Response<List<Transaction>>> getTransactionsByTime(@QueryMap Map<String, Object> map);
     @GET("/v1/custody/pending_transactions/")
     Call<Response<List<Transaction>>> getPendingTransactions(@Query("coin") String coin, @Query("side") String side,
                                                              @Query("max_id") String max_id,
-                                                             @Query("min_id") String min_id, @Query("limit") int limit);
+                                                             @Query("min_id") String min_id, @Query("limit") String limit);
 
     @GET("/v1/custody/pending_transaction/")
     Call<Response<Transaction>> getPendingTransaction(@Query("id") String id);
@@ -75,6 +77,6 @@ public interface CoboApiService {
     @GET("/v1/custody/transaction_history/")
     Call<Response<List<Transaction>>> getTransactionHistory(@Query("coin") String coin, @Query("side") String side,
                                                             @Query("address") String address, @Query("max_id") String max_id,
-                                                            @Query("min_id") String min_id, @Query("limit") int limit, @Query("begin_time") long beginTime,
-                                                            @Query("end_time") long endTime, @Query("include_financial") String include_financial);
+                                                            @Query("min_id") String min_id, @Query("limit") String limit, @Query("begin_time") String beginTime,
+                                                            @Query("end_time") String endTime, @Query("include_financial") String include_financial);
 }

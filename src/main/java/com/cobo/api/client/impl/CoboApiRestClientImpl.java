@@ -86,12 +86,17 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
 
     @Override
     public Response<List<Transaction>> getTransactionsByTime(String coin, Side side, String address, long beginTime, long endTime, int limit, String includeFinancial) {
-        return executeSync(coboApiService.getTransactionsByTime(coin, side.getValue(), address, beginTime, endTime, limit, includeFinancial));
+        return executeSync(coboApiService.getTransactionsByTime(coin,
+                side.getValue(), address,
+                longToString(beginTime),
+                longToString(endTime),
+                intToString(limit),
+                includeFinancial));
     }
 
     @Override
     public Response<List<Transaction>> getPendingTransactions(String coin, Side side, String max_id, String min_id, int limit) {
-        return executeSync(coboApiService.getPendingTransactions(coin, side.getValue(), max_id, min_id, limit));
+        return executeSync(coboApiService.getPendingTransactions(coin, side.getValue(), max_id, min_id, limit == 0 ? "50" : String.valueOf(limit)));
     }
 
     @Override
@@ -101,7 +106,17 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
 
     @Override
     public Response<List<Transaction>> getTransactionHistory(String coin, Side side, String address, String maxId, String minId, int limit, long beginTime, long endTime, String includeFinancial) {
-        return executeSync(coboApiService.getTransactionHistory(coin, side.getValue(), address, maxId, minId, limit, beginTime, endTime, includeFinancial));
+        return executeSync(coboApiService.getTransactionHistory(coin, side.getValue(), address, maxId, minId, intToString(limit), longToString(beginTime), longToString(endTime), includeFinancial));
+    }
+
+    private String intToString(int num){
+        if (num == 0) return null;
+        return String.valueOf(num);
+    }
+
+    private String longToString(long num){
+        if (num == 0) return null;
+        return String.valueOf(num);
     }
 
 }

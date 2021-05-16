@@ -94,11 +94,13 @@ public class CoboApiRestClientImplTest extends TestCase {
     public void testGetTransactionsById() {
         Response<List<Transaction>> res = client.getTransactionsById(null, Side.Any, null, null, null, 50, null);
         assertTrue(res.isSuccess());
+        System.out.println(res.getResult().size());
     }
 
     public void testGetTransactionsByTime() {
-        Response<List<Transaction>> res = client.getTransactionsByTime(null, Side.Any, null, 1619169027806L, 1619169027806L, 11, null);
+        Response<List<Transaction>> res = client.getTransactionsByTime(null, Side.Any, null,0 , 0, 50, null);
         assertTrue(res.isSuccess());
+        assertTrue(res.getResult().size() > 0);
     }
 
     public void testGetPendingTransactions() {
@@ -109,7 +111,6 @@ public class CoboApiRestClientImplTest extends TestCase {
     public void testGetPendingTransaction() {
         Response<Transaction> res = client.getPendingTransaction("20200604171238000354106000006405");
         assertTrue(res.isSuccess());
-        System.out.println(res.getResult());
     }
 
     public void testGetTransactionHistory() {
