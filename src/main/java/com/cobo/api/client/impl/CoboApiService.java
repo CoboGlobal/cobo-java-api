@@ -5,78 +5,79 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CoboApiService {
     @GET("/v1/custody/org_info/")
-    Call<Response<OrgInfo>> getOrgInfo();
+    Call<ApiResponse<OrgInfo>> getOrgInfo();
 
     @GET("/v1/custody/coin_info/")
-    Call<Response<CoinInfo>> getCoinInfo(@Query("coin") String coin);
+    Call<ApiResponse<CoinInfo>> getCoinInfo(@Query("coin") String coin);
 
     @FormUrlEncoded
     @POST("/v1/custody/new_address/")
-    Call<Response<Address>> newAddress(@Field("coin") String coin,
-                                       @Field("native_segwit") boolean native_segwit);
+    Call<ApiResponse<Address>> newAddress(@Field("coin") String coin,
+                                          @Field("native_segwit") boolean native_segwit);
 
     @FormUrlEncoded
     @POST("/v1/custody/new_address/")
-    Call<Response<Address>> newAddress(@Field("coin") String coin);
+    Call<ApiResponse<Address>> newAddress(@Field("coin") String coin);
 
     @FormUrlEncoded
     @POST("/v1/custody/new_addresses/")
-    Call<Response<NewAddresses>> newAddresses(@Field("coin") String coin,
-                                              @Field("count") int count,
-                                              @Field("native_segwit") boolean native_segwit);
+    Call<ApiResponse<NewAddresses>> newAddresses(@Field("coin") String coin,
+                                                 @Field("count") int count,
+                                                 @Field("native_segwit") boolean native_segwit);
 
     @FormUrlEncoded
     @POST("/v1/custody/new_addresses/")
-    Call<Response<NewAddresses>> newAddresses(@Field("coin") String coin,
-                                              @Field("count") int count);
+    Call<ApiResponse<NewAddresses>> newAddresses(@Field("coin") String coin,
+                                                 @Field("count") int count);
 
     @GET("/v1/custody/address_info/")
-    Call<Response<Address>> addressInfo(@Query("coin") String coin, @Query("address") String address);
+    Call<ApiResponse<Address>> addressInfo(@Query("coin") String coin, @Query("address") String address);
 
     @GET("/v1/custody/addresses_info/")
-    Call<Response<Addresses>> addressesInfo(@Query("coin") String coin, @Query("address") String addresses);
+    Call<ApiResponse<Addresses>> addressesInfo(@Query("coin") String coin, @Query("address") String addresses);
 
     @GET("/v1/custody/is_valid_address/")
-    Call<Response<Boolean>> isValidAddress(@Query("coin") String coin, @Query("address") String address);
+    Call<ApiResponse<Boolean>> isValidAddress(@Query("coin") String coin, @Query("address") String address);
 
     @GET("/v1/custody/address_history/")
-    Call<Response<List<Address>>> getAddressHistory(@Query("coin") String coin);
+    Call<ApiResponse<List<Address>>> getAddressHistory(@Query("coin") String coin);
 
     @GET("/v1/custody/internal_address_info/")
-    Call<Response<InternalAddressInfo>> getInternalAddressInfo(@Query("coin") String coin, @Query("address") String address);
+    Call<ApiResponse<InternalAddressInfo>> getInternalAddressInfo(@Query("coin") String coin, @Query("address") String address);
 
     @GET("/v1/custody/internal_address_info_batch/")
-    Call<Response<List<InternalAddressInfo>>> getInternalAddressInfoBatch(@Query("coin") String coin, @Query("address") String address);
+    Call<ApiResponse<List<InternalAddressInfo>>> getInternalAddressInfoBatch(@Query("coin") String coin, @Query("address") String address);
 
     @GET("/v1/custody/transaction/")
-    Call<Response<Transaction>> getTransaction(@Query("id") String id);
+    Call<ApiResponse<Transaction>> getTransaction(@Query("id") String id);
 
     @GET("/v1/custody/transactions_by_id/")
-    Call<Response<List<Transaction>>> getTransactionsById(@Query("coin") String coin, @Query("side") String side,
-                                                          @Query("address") String address, @Query("max_id") String max_id,
-                                                          @Query("min_id") String min_id, @Query("limit") int limit, @Query("include_financial") String include_financial);
+    Call<ApiResponse<List<Transaction>>> getTransactionsById(@Query("coin") String coin, @Query("side") String side,
+                                                             @Query("address") String address, @Query("max_id") String max_id,
+                                                             @Query("min_id") String min_id, @Query("limit") int limit, @Query("include_financial") String include_financial);
+
     @GET("/v1/custody/transactions_by_time/")
-    Call<Response<List<Transaction>>> getTransactionsByTime(@Query("coin") String coin, @Query("side") String side,
-                                                            @Query("address") String address, @Query("begin_time") String beginTime,
-                                                            @Query("end_time") String endTime, @Query("limit") String limit,
-                                                            @Query("include_financial") String include_financial);
+    Call<ApiResponse<List<Transaction>>> getTransactionsByTime(@Query("coin") String coin, @Query("side") String side,
+                                                               @Query("address") String address, @Query("begin_time") String beginTime,
+                                                               @Query("end_time") String endTime, @Query("limit") String limit,
+                                                               @Query("include_financial") String include_financial);
+
     //@GET("/v1/custody/transactions_by_time/")
     //Call<Response<List<Transaction>>> getTransactionsByTime(@QueryMap Map<String, Object> map);
     @GET("/v1/custody/pending_transactions/")
-    Call<Response<List<Transaction>>> getPendingTransactions(@Query("coin") String coin, @Query("side") String side,
-                                                             @Query("max_id") String max_id,
-                                                             @Query("min_id") String min_id, @Query("limit") String limit);
+    Call<ApiResponse<List<Transaction>>> getPendingTransactions(@Query("coin") String coin, @Query("side") String side,
+                                                                @Query("max_id") String max_id,
+                                                                @Query("min_id") String min_id, @Query("limit") String limit);
 
     @GET("/v1/custody/pending_transaction/")
-    Call<Response<Transaction>> getPendingTransaction(@Query("id") String id);
+    Call<ApiResponse<Transaction>> getPendingTransaction(@Query("id") String id);
 
     @GET("/v1/custody/transaction_history/")
-    Call<Response<List<Transaction>>> getTransactionHistory(@Query("coin") String coin, @Query("side") String side,
-                                                            @Query("address") String address, @Query("max_id") String max_id,
-                                                            @Query("min_id") String min_id, @Query("limit") String limit, @Query("begin_time") String beginTime,
-                                                            @Query("end_time") String endTime, @Query("include_financial") String include_financial);
+    Call<ApiResponse<List<Transaction>>> getTransactionHistory(@Query("coin") String coin, @Query("side") String side,
+                                                               @Query("address") String address, @Query("max_id") String max_id,
+                                                               @Query("min_id") String min_id, @Query("limit") String limit, @Query("begin_time") String beginTime,
+                                                               @Query("end_time") String endTime, @Query("include_financial") String include_financial);
 }

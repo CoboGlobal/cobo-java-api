@@ -2,7 +2,7 @@ package com.cobo.api.client.domain;
 
 public enum Side {
     Deposit("deposit"),
-    Withdraw("withdrawa"),
+    Withdraw("withdraw"),
     Any(null);
 
     String value;

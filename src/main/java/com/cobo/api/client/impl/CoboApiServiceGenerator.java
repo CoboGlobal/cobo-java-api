@@ -3,6 +3,7 @@ package com.cobo.api.client.impl;
 import com.cobo.api.client.ApiSigner;
 import com.cobo.api.client.CoboApiError;
 import com.cobo.api.client.config.CoboApiConfig;
+import com.cobo.api.client.domain.ApiResponse;
 import com.cobo.api.client.exception.CoboApiException;
 import com.cobo.api.client.security.AuthenticationInterceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -74,7 +75,11 @@ public class CoboApiServiceGenerator {
                 return response.body();
             } else {
                 CoboApiError apiError = getCoboApiError(response);
-                throw new CoboApiException(apiError);
+                return (T) new ApiResponse<>(
+                        null, false, apiError.getError_code(),
+                        apiError.getError_message(), apiError.getError_id(),
+                        apiError.getError_message()
+                );
             }
         } catch (IOException e) {
             throw new CoboApiException(e);
@@ -90,7 +95,6 @@ public class CoboApiServiceGenerator {
         //System.out.println(errorBody.string());
         ObjectMapper mapper = new ObjectMapper();
         String s = errorBody.string();
-        System.out.println(s);
         return mapper.readValue(s, CoboApiError.class);
     }
 
