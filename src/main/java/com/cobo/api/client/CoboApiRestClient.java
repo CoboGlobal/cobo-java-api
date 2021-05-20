@@ -1,6 +1,8 @@
 package com.cobo.api.client;
 
 import com.cobo.api.client.domain.*;
+import retrofit2.Call;
+import retrofit2.http.Query;
 
 import java.util.List;
 
@@ -45,5 +47,18 @@ public interface CoboApiRestClient {
                                                          String address, String maxId,
                                                          String minId, int limit, long beginTime,
                                                          long endTime, String includeFinancial);
+
+    ApiResponse<String> withdraw(String coin, String request_id, String address,String amount, String memo,
+                                 String force_external, String force_internal);
+
+    ApiResponse<Transaction> queryWithdrawInfo(String requestId);
+
+    ApiResponse<List<StakingProduct>> getStakingProducts(String coin, Lang lang);
+    ApiResponse<StakingProduct> getStakingProductById(String product_id, Lang lang);
+    ApiResponse<List<StakingProduct>> getStakings(String coin, Lang lang);
+    ApiResponse<List<Unstaking>> getUnstakings(String coin, Lang lang);
+    ApiResponse<List<StakingHistory>> getStakingHistory(String coin, String type, String maxId, String limit, String productId);
+    ApiResponse<Void> stake(String productId, String amount);
+    ApiResponse<Void> unstake(String productId, String amount);
 
 }

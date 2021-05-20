@@ -1,7 +1,14 @@
+
+
 # Cobo Java API
 
 cobo-java-api is a lightweight Java library for interacting with the [Cobo Custody API](https://doc.custody.cobo.com/?#cobo-custody-waas-api), providing complete API coverage, and supporting synchronous and asynchronous requests.
 
+- [Installation](#installation)
+- [Test](#test)
+- [Examples](#examples)
+- [Account](#account)
+- [Loop Alliance](#loop-alliance)
 
 ## Installation
 
@@ -45,6 +52,7 @@ new ApiSigner() {
 }
 ```
 
+## Account
 
 #### Batch get new addresses
 ```java
@@ -203,20 +211,22 @@ ApiResponse<List<Transaction>> res = client.getTransactionHistory("ETH", Side.An
 ```
 </details>
 
-#### Get transaction by id
+## Loop Alliance
+
+#### Check Loop Address Details 
 ```java
-ApiResponse<List<Transaction>> res = client.getTransactionsById(null, Side.Any, null, null, null, 2, null);
+ApiResponse<InternalAddressInfo> res = client.getInternalAddressInfo("ETH", "0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a");
 ```
 <details>
 <summary>View Response</summary>
 
 
 ```java
-[Transaction{id='3228776326735331328', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x62b3f5f1717e46bec22c52c1607f84a25b4e7f83', source_address='0xa9c7d31bb1879bff8be25ead2f59b310a52b7c5a', side='deposit', amount='100000000000000', abs_amount='0.0001', txid='0xe90e064eb9fbaff12501325875df722484579f451bfe1db3a227495dcc54c568', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1539600528114, last_time=1539600528114, confirmed_num=12, tx_detail=TxDetail{txid='0xe90e064eb9fbaff12501325875df722484579f451bfe1db3a227495dcc54c568', blocknum=6519238, blockhash='0x2abf41e86a9cd37d481d7a3212ca0eab80fa2f4d10e70e94b2623c5318c383c8', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='0xa9c7d31bb1879bff8be25ead2f59b310a52b7c5a', memo='null', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='3228768325479694336', coin='BTC', display_code='BTC', description='Bitcoin', decimal=8, address='1Q1xfp8UkQagCn2pbJFpG89Cd6Ku3yUixE', source_address='185qKpZNnwaX5ebJ4DBQ3rgy85HgRWKgEi', side='deposit', amount='1000', abs_amount='0.00001', txid='dfa0d24c29cf39ddbeab4aad04d8883f2f544dd85d43c9db34fde968e4d9a63b', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1539596712818, last_time=1539596712818, confirmed_num=3, tx_detail=TxDetail{txid='dfa0d24c29cf39ddbeab4aad04d8883f2f544dd85d43c9db34fde968e4d9a63b', blocknum=545845, blockhash='0000000000000000001fb2c338e7aed6560d852a3a0836f8aac7409b99f8d624', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='185qKpZNnwaX5ebJ4DBQ3rgy85HgRWKgEi', memo='null', confirming_threshold=3, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}]
+InternalAddressInfo{coin='ETH', address='0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a', is_internal_address=false, internal_org='', internal_wallet=''}
 ```
 </details>
 
-#### Batch get address info
+#### Verify Loop Address List
 ```java
 List<String> list = new ArrayList<>();
         list.add("0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
@@ -235,16 +245,16 @@ NewAddress{coin='ETH', addresses='0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee,0x6
 ```
 </details>
 
-#### Get internal address info
+#### Get Transaction Details
 ```java
-ApiResponse<InternalAddressInfo> res = client.getInternalAddressInfo("ETH", "0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a");
+ApiResponse<List<Transaction>> res = client.getTransactionsById(null, Side.Any, null, null, null, 2, null);
 ```
 <details>
 <summary>View Response</summary>
 
 
 ```java
-InternalAddressInfo{coin='ETH', address='0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a', is_internal_address=false, internal_org='', internal_wallet=''}
+[Transaction{id='3228776326735331328', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x62b3f5f1717e46bec22c52c1607f84a25b4e7f83', source_address='0xa9c7d31bb1879bff8be25ead2f59b310a52b7c5a', side='deposit', amount='100000000000000', abs_amount='0.0001', txid='0xe90e064eb9fbaff12501325875df722484579f451bfe1db3a227495dcc54c568', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1539600528114, last_time=1539600528114, confirmed_num=12, tx_detail=TxDetail{txid='0xe90e064eb9fbaff12501325875df722484579f451bfe1db3a227495dcc54c568', blocknum=6519238, blockhash='0x2abf41e86a9cd37d481d7a3212ca0eab80fa2f4d10e70e94b2623c5318c383c8', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='0xa9c7d31bb1879bff8be25ead2f59b310a52b7c5a', memo='null', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='3228768325479694336', coin='BTC', display_code='BTC', description='Bitcoin', decimal=8, address='1Q1xfp8UkQagCn2pbJFpG89Cd6Ku3yUixE', source_address='185qKpZNnwaX5ebJ4DBQ3rgy85HgRWKgEi', side='deposit', amount='1000', abs_amount='0.00001', txid='dfa0d24c29cf39ddbeab4aad04d8883f2f544dd85d43c9db34fde968e4d9a63b', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1539596712818, last_time=1539596712818, confirmed_num=3, tx_detail=TxDetail{txid='dfa0d24c29cf39ddbeab4aad04d8883f2f544dd85d43c9db34fde968e4d9a63b', blocknum=545845, blockhash='0000000000000000001fb2c338e7aed6560d852a3a0836f8aac7409b99f8d624', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='185qKpZNnwaX5ebJ4DBQ3rgy85HgRWKgEi', memo='null', confirming_threshold=3, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}]
 ```
 </details>
 

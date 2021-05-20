@@ -109,6 +109,51 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
         return executeSync(coboApiService.getTransactionHistory(coin, side.getValue(), address, maxId, minId, intToString(limit), longToString(beginTime), longToString(endTime), includeFinancial));
     }
 
+    @Override
+    public ApiResponse<String> withdraw(String coin, String request_id, String address, String amount, String memo, String force_external, String force_internal) {
+        return executeSync(coboApiService.withdraw(coin,request_id,address,amount,memo,force_external,force_internal));
+    }
+
+    @Override
+    public ApiResponse<Transaction> queryWithdrawInfo(String requestId) {
+        return executeSync(coboApiService.queryWithdrawInfo(requestId));
+    }
+
+    @Override
+    public ApiResponse<List<StakingProduct>> getStakingProducts(String coin, Lang lang) {
+        return executeSync(coboApiService.getStakingProducts(coin, lang.getValue()));
+    }
+
+    @Override
+    public ApiResponse<StakingProduct> getStakingProductById(String product_id, Lang lang) {
+        return executeSync(coboApiService.getStakingProductById(product_id, lang.getValue()));
+    }
+
+    @Override
+    public ApiResponse<List<StakingProduct>> getStakings(String coin, Lang lang) {
+        return executeSync(coboApiService.getStakings(coin, lang.getValue()));
+    }
+
+    @Override
+    public ApiResponse<List<Unstaking>> getUnstakings(String coin, Lang lang) {
+        return executeSync(coboApiService.getUnstakings(coin, lang.getValue()));
+    }
+
+    @Override
+    public ApiResponse<List<StakingHistory>> getStakingHistory(String coin, String type, String maxId, String limit, String productId) {
+        return executeSync(coboApiService.getStakingHistory(coin,type,maxId,limit,productId));
+    }
+
+    @Override
+    public ApiResponse<Void> stake(String productId, String amount) {
+        return executeSync(coboApiService.stake(productId, amount));
+    }
+
+    @Override
+    public ApiResponse<Void> unstake(String productId, String amount) {
+        return executeSync(coboApiService.unstake(productId,amount));
+    }
+
     private String intToString(int num) {
         if (num == 0) return null;
         return String.valueOf(num);

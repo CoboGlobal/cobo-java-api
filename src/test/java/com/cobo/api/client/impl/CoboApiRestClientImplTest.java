@@ -161,4 +161,61 @@ public class CoboApiRestClientImplTest extends TestCase {
             return o.toString();
         }
     }
+
+    public void testGetTransactionById() {
+        ApiResponse<String> res = client.withdraw("XTN",
+                "api_request20210520",
+                "mumMe9wWeLb26oGKf334CKiRYiWMpmKpUp",
+                "0.00000547", "", null,
+                null);
+        System.out.println(res.toString());
+    }
+
+    public void testWithdraw() {
+    }
+
+    public void testQueryWithdrawInfo() {
+        ApiResponse<Transaction> res = client.queryWithdrawInfo("wr_web_send_by_user_6_1575956443374");
+        System.out.println(res.toString());
+        assertTrue(res.isSuccess());
+    }
+
+    public void testGetStakingProducts() {
+        ApiResponse<List<StakingProduct>> res = client.getStakingProducts(null, Lang.CHINESE);
+        assertTrue(res.isSuccess());
+        printDoc("Get staking products","ApiResponse<List<StakingProduct>> res = client.getStakingProducts(null, Lang.CHINESE);", res.getResult());
+    }
+
+    public void testGetStakingProductById() {
+        ApiResponse<StakingProduct> res = client.getStakingProductById("159145", Lang.CHINESE);
+        assertTrue(res.isSuccess());
+        printDoc("Get staking product by id","ApiResponse<List<StakingProduct>> res = client.getStakingProducts(null, Lang.CHINESE);", res.getResult());
+    }
+
+    public void testGetStakings() {
+        ApiResponse<List<StakingProduct>> res = client.getStakings(null, Lang.CHINESE);
+        assertTrue(res.isSuccess());
+        System.out.println(res.getResult());
+    }
+
+    public void testGetUnstakings() {
+        ApiResponse<List<Unstaking>> res = client.getUnstakings(null, Lang.CHINESE);
+        assertTrue(res.isSuccess());
+        System.out.println(res.getResult());
+    }
+
+    public void testGetStakingHistory() {
+        ApiResponse<List<StakingHistory>> res = client.getStakingHistory(null, null, null, null, null);
+        assertTrue(res.isSuccess());
+        System.out.println(res.getResult());
+        for (StakingHistory stakingHistory : res.getResult()) {
+            System.out.println(stakingHistory.getRaw_type());
+        }
+    }
+
+    public void testStake() {
+    }
+
+    public void testUnstake() {
+    }
 }
