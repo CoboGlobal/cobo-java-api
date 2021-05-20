@@ -25,7 +25,7 @@ public interface CoboApiRestClient {
 
     ApiResponse<List<InternalAddressInfo>> getInternalAddressInfoBatch(String coin, String addresses);
 
-    ApiResponse<Transaction> getTransaction(String id);
+    ApiResponse<Transaction> getTransactionById(String id);
 
     ApiResponse<List<Transaction>> getTransactionsById(String coin, Side side,
                                                        String address, String maxId,

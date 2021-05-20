@@ -52,7 +52,7 @@ public interface CoboApiService {
     Call<ApiResponse<List<InternalAddressInfo>>> getInternalAddressInfoBatch(@Query("coin") String coin, @Query("address") String address);
 
     @GET("/v1/custody/transaction/")
-    Call<ApiResponse<Transaction>> getTransaction(@Query("id") String id);
+    Call<ApiResponse<Transaction>> getTransactionById(@Query("id") String id);
 
     @GET("/v1/custody/transactions_by_id/")
     Call<ApiResponse<List<Transaction>>> getTransactionsById(@Query("coin") String coin, @Query("side") String side,

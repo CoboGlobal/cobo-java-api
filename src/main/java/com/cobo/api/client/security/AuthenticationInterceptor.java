@@ -93,7 +93,7 @@ public class AuthenticationInterceptor implements Interceptor {
         String responseBody = response.body() == null ? "null" : response.body().string();
         boolean verifyResult = verifyResponse(responseBody + "|" + ts, respSignature, coboPubKey);
 
-        System.out.println("verifyResult:" + verifyResult);
+        if (!verifyResult) throw new RuntimeException("response verify failed");
         MediaType mediaType = response.body().contentType();
         return response.newBuilder()
                 .body(ResponseBody.create(mediaType, responseBody))

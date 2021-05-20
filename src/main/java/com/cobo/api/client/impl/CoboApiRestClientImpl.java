@@ -75,8 +75,8 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
-    public ApiResponse<Transaction> getTransaction(String txId) {
-        return executeSync(coboApiService.getTransaction(txId));
+    public ApiResponse<Transaction> getTransactionById(String txId) {
+        return executeSync(coboApiService.getTransactionById(txId));
     }
 
     @Override

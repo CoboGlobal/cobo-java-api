@@ -4,9 +4,9 @@ import com.cobo.api.client.impl.CoboApiRestClientImpl;
 
 public class CoboApiClientFactory {
 
-    private String apiKey;
-    private ApiSigner signer;
-    private String coboPub;
+    private final String apiKey;
+    private final ApiSigner signer;
+    private final String coboPub;
 
     private CoboApiClientFactory(String apiKey, ApiSigner signer, String coboPub) {
         this.apiKey = apiKey;
