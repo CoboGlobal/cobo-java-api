@@ -11,10 +11,7 @@ import org.bouncycastle.util.encoders.Hex;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 import static com.cobo.api.client.constant.CoboApiConstants.*;
 
@@ -40,19 +37,18 @@ public class AuthenticationInterceptor implements Interceptor {
      *
      * @return request body as a string
      */
-    @SuppressWarnings("unused")
-    private static String bodyToString(RequestBody request) {
-        try (final Buffer buffer = new Buffer()) {
-            final RequestBody copy = request;
-            if (copy != null) {
-                copy.writeTo(buffer);
-            } else {
-                return "";
+
+    private static String bodyToSortedString(RequestBody body) {
+        if (body instanceof FormBody) {
+            FormBody newBody = (FormBody) body;
+            TreeMap<String, Object> map = new TreeMap<>();
+            for (int i = 0 ; i < newBody.size(); i++) {
+                map.put(newBody.encodedName(i), newBody.encodedValue(i));
             }
-            return buffer.readUtf8();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            return composeParams(map);
         }
+        throw new IllegalArgumentException("Unsupported request body");
+
     }
 
     private static String composeParams(TreeMap<String, Object> params) {
@@ -115,7 +111,7 @@ public class AuthenticationInterceptor implements Interceptor {
             }
             body = composeParams(params);
         } else if ("POST".equals(method)) {
-            body = bodyToString(original.body());
+            body = bodyToSortedString(original.body());
         } else {
             throw new RuntimeException("not supported http method");
         }

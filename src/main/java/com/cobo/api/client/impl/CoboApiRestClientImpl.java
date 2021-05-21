@@ -130,7 +130,7 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
-    public ApiResponse<List<StakingProduct>> getStakings(String coin, Lang lang) {
+    public ApiResponse<List<StakingData>> getStakings(String coin, Lang lang) {
         return executeSync(coboApiService.getStakings(coin, lang.getValue()));
     }
 

@@ -30,9 +30,16 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
      * [Get Pending Deposit Details](#get-pending-deposit-details)
      * [Get Transaction History](#get-transaction-history)
   * [Withdrawal](#withdrawal)
+     * [Submit Withdraw Request](#submit-withdraw-request)
+     * [Get Withdraw Information](#get-withdraw-information)
   * [Staking](#staking)
      * [Get a Staking Product Details](#get-a-staking-product-details)
      * [Get All Staking Product List](#get-all-staking-product-list)
+     * [Stake](#stake)
+     * [Unstake](#unstake)
+     * [Get Staking Data](#get-staking-data)
+     * [Get Unstaking Data](#get-unstaking-data)
+     * [Get All Staking History](#get-all-staking-history)
   * [Trading](#trading)
   * [Transaction Notification](#transaction-notification)
   * [Withdrawal Confirmation](#withdrawal-confirmation)
@@ -42,7 +49,6 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
   * [Appendix](#appendix)
      * [What do coin, display_code, and description separately mean in the interface?](#what-do-coin-display_code-and-description-separately-mean-in-the-interface)
      * [What do amount and abs_amount mean in the interface?](#what-do-amount-and-abs_amount-mean-in-the-interface)
-
 
 ## Installation
 
@@ -317,6 +323,34 @@ ApiResponse<List<Transaction>> res = client.getTransactionHistory("ETH", Side.An
 
 
 ###  Withdrawal
+#### Submit Withdraw Request
+```java
+ApiResponse<String> res = client.withdraw("TETH",
+                "api_request_id_8888888",
+                "0xb744adc8d75e115eec8e582eb5e8d60eb0972037",
+                "1", null, "true", null);
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+Response{success=true, error_code=0, error_message='null', error_id='null', error_description='null', result=}
+```
+</details>
+
+#### Get Withdraw Information
+```java
+ApiResponse<Transaction> res = client.queryWithdrawInfo("teth29374893624");
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+Transaction{id='20210511151005000324213000009776', coin='TETH', display_code='TETH', description='Ethereum Testnet', decimal=18, address='0xb744adc8d75e115eec8e582eb5e8d60eb0972037', source_address='0x7ca60000afea5a1730e40cf6b51abbf8b594ad91', side='withdraw', amount='1', abs_amount='0.000000000000000001', txid='0xd67169392144c9400224f07a6fe7efcfa4bf7e19445a361359c2c9530bca64d6', vout_n=0, request_id='teth29374893624', status='success', abs_cobo_fee='0', created_time=1620712218490, last_time=1620724457693, confirmed_num=32, tx_detail=TxDetail{txid='0xd67169392144c9400224f07a6fe7efcfa4bf7e19445a361359c2c9530bca64d6', blocknum=10212633, blockhash='0x444fe10d583194687c32223fd884dae82d0f0f2ebeacfb8040b4d83808253b59', fee=0, actualgas=21000000000000, gasprice=1, hexstr=''}, source_address_detail='0x7ca60000afea5a1730e40cf6b51abbf8b594ad91', memo='', confirming_threshold=32, fee_coin='TETH', fee_amount='4000000000000000', fee_decimal=18, type='external', waiting_audit=false}
+```
+</details>
 
 ### Staking
 
@@ -349,11 +383,70 @@ Withdrawal fee per time: 1 IOST', doc_src='https://support.cobo.com/hc/en-us/art
 ```
 </details>
 
+#### Stake
+```java
+todo
+```
+#### Unstake
+```java
+todo
+```
+
+#### Get Staking Data
+```java
+ApiResponse<List<StakingProduct>> res = client.getStakings(null, Lang.ENGLISG);
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+[StakingData{staking_id=9456, coin='DASH', coin_decimal=8, amount=2000000, reward_coin='DASH', reward_coin_decimal=8, reward_amount=0, product=StakingProduct{product_id=159150, name='DASH FP TEST', description='hint: Min. 0.01 DASH, differential return rate, stake more, earn more Rewards start from the next day, will be released every 10 days according to the fixed rate, choose [Stake continuously] to earn continuously! Withdraw available anytime, return to wallet in T+1 Withdrawal fee per time: 0.01 DASH', doc_src='https://support.cobo.com/hc/en-us/articles/360023826033', coin='DASH', coin_decimal=8, reward_coin='DASH', reward_coin_decimal=8, unstake_fee='1000000', min_amount='1000000', rate='0.0002000000', rate_type=1, days=1, stake_type='masternode', lockup=true, start_stake_time=1621519200000, stop_stake_time=1621605600000, start_staking_time=1621612800000, stop_staking_time=1621699200000, liquidate_time=1621699200000, reward_liquidate_time=1621699200000, product_group='DASHFPTEST'}}]
+```
+</details>
+
+#### Get Unstaking Data
+```java
+ApiResponse<List<Unstaking>> res = client.getUnstakings(null, Lang.ENGLISG);
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+[]
+```
+</details>
+
+#### Get All Staking History
+```java
+ApiResponse<List<StakingHistory>> res = client.getStakingHistory(null, null, null, null, null);
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+[StakingHistory{activity_id='20210521155238000315481000001883', coin='DASH', amount='1000000', type='stake', time=1621583558551, product=StakingProduct{product_id=159150, name='DASH FP TEST', description='hint: Min. 0.01 DASH, differential return rate, stake more, earn more Rewards start from the next day, will be released every 10 days according to the fixed rate, choose [Stake continuously] to earn continuously! Withdraw available anytime, return to wallet in T+1 Withdrawal fee per time: 0.01 DASH', doc_src='https://support.cobo.com/hc/en-us/articles/360023826033', coin='DASH', coin_decimal=8, reward_coin='DASH', reward_coin_decimal=8, unstake_fee='1000000', min_amount='1000000', rate='0.0002000000', rate_type=1, days=1, stake_type='masternode', lockup=true, start_stake_time=1621519200000, stop_stake_time=1621605600000, start_staking_time=1621612800000, stop_staking_time=1621699200000, liquidate_time=1621699200000, reward_liquidate_time=1621699200000, product_group='DASHFPTEST'}, raw_type='0'}, StakingHistory{activity_id='20210521153656000323896000002896', coin='DASH', amount='1000000', type='stake', time=1621582616527, product=StakingProduct{product_id=159150, name='DASH FP TEST', description='hint: Min. 0.01 DASH, differential return rate, stake more, earn more Rewards start from the next day, will be released every 10 days according to the fixed rate, choose [Stake continuously] to earn continuously! Withdraw available anytime, return to wallet in T+1 Withdrawal fee per time: 0.01 DASH', doc_src='https://support.cobo.com/hc/en-us/articles/360023826033', coin='DASH', coin_decimal=8, reward_coin='DASH', reward_coin_decimal=8, unstake_fee='1000000', min_amount='1000000', rate='0.0002000000', rate_type=1, days=1, stake_type='masternode', lockup=true, start_stake_time=1621519200000, stop_stake_time=1621605600000, start_staking_time=1621612800000, stop_staking_time=1621699200000, liquidate_time=1621699200000, reward_liquidate_time=1621699200000, product_group='DASHFPTEST'}, raw_type='0'}, StakingHistory{activity_id='20210410000004000309420000008919', coin='IOST', amount='27', type='unstake', time=1617984004959, product=StakingProduct{product_id=158887, name='IOST FP TEST', description='Min. 1 IOST
+Rewards start from the next day, will be released every day according to the dynamic reward, choose [Stake continuously] to earn continuously!
+Withdraw available anytime, return to wallet in T+8 (7 days required by IOST)
+Withdrawal fee per time: 1 IOST', doc_src='https://support.cobo.com/hc/en-us/articles/360023713454', coin='IOST', coin_decimal=8, reward_coin='IOST', reward_coin_decimal=8, unstake_fee='100000000', min_amount='100000000', rate='0.0001000000', rate_type=1, days=1, stake_type='dpos', lockup=false, start_stake_time=1617087600000, stop_stake_time=1617174000000, start_staking_time=1617206400000, stop_staking_time=1617292800000, liquidate_time=1617984000000, reward_liquidate_time=1617984000000, product_group='IOSTFPTEST'}, raw_type='-3'}, StakingHistory{activity_id='20210410000004000309420000008914', coin='IOST', amount='100000000', type='fee', time=1617984004749, product=StakingProduct{product_id=158887, name='IOST FP TEST', description='Min. 1 IOST
+Rewards start from the next day, will be released every day according to the dynamic reward, choose [Stake continuously] to earn continuously!
+Withdraw available anytime, return to wallet in T+8 (7 days required by IOST)
+Withdrawal fee per time: 1 IOST', doc_src='https://support.cobo.com/hc/en-us/articles/360023713454', coin='IOST', coin_decimal=8, reward_coin='IOST', reward_coin_decimal=8, unstake_fee='100000000', min_amount='100000000', rate='0.0001000000', rate_type=1, days=1, stake_type='dpos', lockup=false, start_stake_time=1617087600000, stop_stake_time=1617174000000, start_staking_time=1617206400000, stop_staking_time=1617292800000, liquidate_time=1617984000000, reward_liquidate_time=1617984000000, product_group='IOSTFPTEST'}, raw_type='-5'}, StakingHistory{activity_id='20210410000004000309420000008913', coin='IOST', amount='135', type='unstake', time=1617984004745, product=StakingProduct{product_id=158887, name='IOST FP TEST', description='Min. 1 IOST
+Rewards start from the next day, will be released every day according to the dynamic reward, choose [Stake continuously] to earn continuously!
+Withdraw available anytime, return to wallet in T+8 (7 days required by IOST)
+Withdrawal fee per time: 1 IOST', doc_src='https://support.cobo.com/hc/en-us/articles/360023713454', coin='IOST', coin_decimal=8, reward_coin='IOST', reward_coin_decimal=8, unstake_fee='100000000', min_amount='100000000', rate='0.0001000000', rate_type=1, days=1, stake_type='dpos', lockup=false, start_stake_time=1617087600000, stop_stake_time=1617174000000, start_staking_time=1617206400000, stop_staking_time=1617292800000, liquidate_time=1617984000000, reward_liquidate_time=1617984000000, product_group='IOSTFPTEST'}, raw_type='-2'}]
+```
+</details>
+
 ### Trading
 
 ### Transaction Notification
 
 ### Withdrawal Confirmation
+
+
 
 ### Error Code
 Cobo servers will return the following error data when encountering an error:

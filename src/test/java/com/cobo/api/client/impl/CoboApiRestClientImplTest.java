@@ -133,9 +133,7 @@ public class CoboApiRestClientImplTest extends TestCase {
     public void testGetTransactionHistory() {
         ApiResponse<List<Transaction>> res = client.getTransactionHistory("ETH", Side.Any, null, null, null, 50, 0, System.currentTimeMillis(), null);
         assertTrue(res.isSuccess());
-        res.getResult().forEach(t->{
-            System.out.println(t.getCoin());
-        });
+        res.getResult().forEach(t-> System.out.println(t.getCoin()));
         printDoc("Get transaction history","ApiResponse<List<Transaction>> res = client.getTransactionHistory(\"ETH\", Side.Any, null, null, null, 50, 0, System.currentTimeMillis(), null);", res.getResult());
     }
     void printDoc(String desc, String code, Object o) {
@@ -176,22 +174,22 @@ public class CoboApiRestClientImplTest extends TestCase {
 
     public void testWithdraw() {
         ApiResponse<String> res = client.withdraw("TETH",
-                "api_request_id_8888888",
+                "api_request_id_11111",
                 "0xb744adc8d75e115eec8e582eb5e8d60eb0972037",
-                "1", "cobo", null, "true");
-        //assertTrue(res.isSuccess());
+                "1", "cobo", null, null);
+
         System.out.println(res);
         printDoc("Submit Withdraw Request","ApiResponse<String> res = client.withdraw(\"TETH\",\n" +
                 "                \"api_request_id_8888888\",\n" +
                 "                \"0xb744adc8d75e115eec8e582eb5e8d60eb0972037\",\n" +
-                "                \"1\", null, \"true\", null);",res.getResult());
+                "                \"1\", null, \"true\", null);",res);
     }
 
     public void testQueryWithdrawInfo() {
-        ApiResponse<Transaction> res = client.queryWithdrawInfo("web_send_by_user_819_1621570527307");
+        ApiResponse<Transaction> res = client.queryWithdrawInfo("teth29374893624");
         System.out.println(res.toString());
         assertTrue(res.isSuccess());
-        printDoc("Get Withdraw Infomation","ApiResponse<Transaction> res = client.queryWithdrawInfo(\"wr_web_send_by_user_6_1575956443374\");", res.getResult());
+        printDoc("Get Withdraw Information","ApiResponse<Transaction> res = client.queryWithdrawInfo(\"teth29374893624\");", res.getResult());
     }
 
     public void testGetStakingProducts() {
@@ -207,9 +205,9 @@ public class CoboApiRestClientImplTest extends TestCase {
     }
 
     public void testGetStakings() {
-        ApiResponse<List<StakingProduct>> res = client.getStakings(null, Lang.ENGLISG);
+        ApiResponse<List<StakingData>> res = client.getStakings(null, Lang.ENGLISG);
         assertTrue(res.isSuccess());
-        System.out.println(res.getResult());
+
         printDoc("5. Get Staking Data","ApiResponse<List<StakingProduct>> res = client.getStakings(null, Lang.ENGLISG);", res.getResult());
     }
 
@@ -228,8 +226,14 @@ public class CoboApiRestClientImplTest extends TestCase {
     }
 
     public void testStake() {
+        ApiResponse<Void> res = client.stake("159145", "1000000");
+        System.out.println(res.toString());
+
     }
 
     public void testUnstake() {
+        ApiResponse<Void> res = client.unstake("159145", "1000000");
+        //assertTrue(res.isSuccess());
+        System.out.println(res.toString());
     }
 }

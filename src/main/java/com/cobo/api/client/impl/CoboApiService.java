@@ -65,8 +65,6 @@ public interface CoboApiService {
                                                                @Query("end_time") String endTime, @Query("limit") String limit,
                                                                @Query("include_financial") String include_financial);
 
-    //@GET("/v1/custody/transactions_by_time/")
-    //Call<Response<List<Transaction>>> getTransactionsByTime(@QueryMap Map<String, Object> map);
     @GET("/v1/custody/pending_transactions/")
     Call<ApiResponse<List<Transaction>>> getPendingTransactions(@Query("coin") String coin, @Query("side") String side,
                                                                 @Query("max_id") String max_id,
@@ -80,12 +78,12 @@ public interface CoboApiService {
                                                                @Query("address") String address, @Query("max_id") String max_id,
                                                                @Query("min_id") String min_id, @Query("limit") String limit, @Query("begin_time") String beginTime,
                                                                @Query("end_time") String endTime, @Query("include_financial") String include_financial);
-
+    @FormUrlEncoded
     @POST("/v1/custody/new_withdraw_request/")
-    Call<ApiResponse<String>> withdraw(@Query("coin") String coin,
-                                       @Query("request_id") String requestId, @Query("address") String address,
-                                       @Query("amount") String amount, @Query("memo") String memo,
-                                       @Query("force_external") String force_external, @Query("force_internal") String force_internal);
+    Call<ApiResponse<String>> withdraw(@Field("coin") String coin,
+                                       @Field("request_id") String requestId, @Field("address") String address,
+                                       @Field("amount") String amount, @Field("memo") String memo,
+                                       @Field("force_external") String force_external, @Field("force_internal") String force_internal);
 
     @GET("/v1/custody/withdraw_info_by_request_id/")
     Call<ApiResponse<Transaction>> queryWithdrawInfo(@Query("request_id") String requestId);
@@ -97,7 +95,7 @@ public interface CoboApiService {
     Call<ApiResponse<StakingProduct>> getStakingProductById(@Query("product_id") String coin, @Query("language") String lang);
 
     @GET("/v1/custody/stakings/")
-    Call<ApiResponse<List<StakingProduct>>> getStakings(@Query("coin") String coin, @Query("language") String lang);
+    Call<ApiResponse<List<StakingData>>> getStakings(@Query("coin") String coin, @Query("language") String lang);
     @GET("/v1/custody/unstakings/")
     Call<ApiResponse<List<Unstaking>>> getUnstakings(@Query("coin") String coin, @Query("language") String lang);
 
@@ -105,10 +103,12 @@ public interface CoboApiService {
     Call<ApiResponse<List<StakingHistory>>> getStakingHistory(@Query("coin") String coin, @Query("type") String type,
                                                               @Query("max_id") String maxId, @Query("limit") String limit,
                                                               @Query("product_id") String productId);
+    @FormUrlEncoded
     @POST("/v1/custody/staking_stake/")
     Call<ApiResponse<Void>> stake(@Field("product_id") String productId, @Field("amount") String amount);
 
-    @POST("/v1/custody/staking_stake/")
+    @FormUrlEncoded
+    @POST("/v1/custody/staking_unstake/")
     Call<ApiResponse<Void>> unstake(@Field("product_id") String productId, @Field("amount") String amount);
 
 }
