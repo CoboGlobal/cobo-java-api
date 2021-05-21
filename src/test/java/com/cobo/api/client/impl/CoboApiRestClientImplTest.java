@@ -100,19 +100,22 @@ public class CoboApiRestClientImplTest extends TestCase {
     public void testGetTransaction() {
         ApiResponse<Transaction> res = client.getTransactionById("20210422193807000343569000002370");
         assertTrue(res.isSuccess());
-        printDoc("Get transaction", "ApiResponse<Transaction> res = client.getTransactionById(\"20210422193807000343569000002370\");", res.getResult());
+        printDoc("Get transaction Details", "ApiResponse<Transaction> res = client.getTransactionById(\"20210422193807000343569000002370\");", res.getResult());
     }
 
     public void testGetTransactionsById() {
         ApiResponse<List<Transaction>> res = client.getTransactionsById(null, Side.Any, null, null, null, 2, null);
         assertTrue(res.isSuccess());
-        printDoc("Get transaction by id","ApiResponse<List<Transaction>> res = client.getTransactionsById(null, Side.Any, null, null, null, 2, null);",res.getResult());
+        printDoc("Obtain the list of confirmed transactions through ID query(deposit&withdraw)","ApiResponse<List<Transaction>> res = client.getTransactionsById(null, Side.Any, null, null, null, 2, null);",res.getResult());
     }
 
     public void testGetTransactionsByTime() {
         ApiResponse<List<Transaction>> res = client.getTransactionsByTime(null, Side.Any, null, 0, 0, 2, null);
         assertTrue(res.isSuccess());
         assertTrue(res.getResult().size() > 0);
+        printDoc("Obtain the list of confirmed transactions through time query(deposit&withdraw)",
+                "ApiResponse<List<Transaction>> res = client.getTransactionsByTime(null, Side.Any, null, 0, 0, 2, null);",res.getResult());
+
     }
 
     public void testGetPendingTransactions() {
@@ -172,45 +175,56 @@ public class CoboApiRestClientImplTest extends TestCase {
     }
 
     public void testWithdraw() {
+        ApiResponse<String> res = client.withdraw("TETH",
+                "api_request_id_8888888",
+                "0xb744adc8d75e115eec8e582eb5e8d60eb0972037",
+                "1", "cobo", null, "true");
+        //assertTrue(res.isSuccess());
+        System.out.println(res);
+        printDoc("Submit Withdraw Request","ApiResponse<String> res = client.withdraw(\"TETH\",\n" +
+                "                \"api_request_id_8888888\",\n" +
+                "                \"0xb744adc8d75e115eec8e582eb5e8d60eb0972037\",\n" +
+                "                \"1\", null, \"true\", null);",res.getResult());
     }
 
     public void testQueryWithdrawInfo() {
-        ApiResponse<Transaction> res = client.queryWithdrawInfo("wr_web_send_by_user_6_1575956443374");
+        ApiResponse<Transaction> res = client.queryWithdrawInfo("web_send_by_user_819_1621570527307");
         System.out.println(res.toString());
         assertTrue(res.isSuccess());
+        printDoc("Get Withdraw Infomation","ApiResponse<Transaction> res = client.queryWithdrawInfo(\"wr_web_send_by_user_6_1575956443374\");", res.getResult());
     }
 
     public void testGetStakingProducts() {
-        ApiResponse<List<StakingProduct>> res = client.getStakingProducts(null, Lang.CHINESE);
+        ApiResponse<List<StakingProduct>> res = client.getStakingProducts(null, Lang.ENGLISG);
         assertTrue(res.isSuccess());
-        printDoc("Get staking products","ApiResponse<List<StakingProduct>> res = client.getStakingProducts(null, Lang.CHINESE);", res.getResult());
+        printDoc("2. Get All Staking Product List","ApiResponse<List<StakingProduct>> res = client.getStakingProducts(null, Lang.CHINESE);", res.getResult());
     }
 
     public void testGetStakingProductById() {
-        ApiResponse<StakingProduct> res = client.getStakingProductById("159145", Lang.CHINESE);
+        ApiResponse<StakingProduct> res = client.getStakingProductById("159145", Lang.ENGLISG);
         assertTrue(res.isSuccess());
-        printDoc("Get staking product by id","ApiResponse<List<StakingProduct>> res = client.getStakingProducts(null, Lang.CHINESE);", res.getResult());
+        printDoc("1. Get a Staking Product Details","ApiResponse<List<StakingProduct>> res = client.getStakingProducts(null, Lang.CHINESE);", res.getResult());
     }
 
     public void testGetStakings() {
-        ApiResponse<List<StakingProduct>> res = client.getStakings(null, Lang.CHINESE);
+        ApiResponse<List<StakingProduct>> res = client.getStakings(null, Lang.ENGLISG);
         assertTrue(res.isSuccess());
         System.out.println(res.getResult());
+        printDoc("5. Get Staking Data","ApiResponse<List<StakingProduct>> res = client.getStakings(null, Lang.ENGLISG);", res.getResult());
     }
 
     public void testGetUnstakings() {
-        ApiResponse<List<Unstaking>> res = client.getUnstakings(null, Lang.CHINESE);
+        ApiResponse<List<Unstaking>> res = client.getUnstakings(null, Lang.ENGLISG);
         assertTrue(res.isSuccess());
         System.out.println(res.getResult());
+        printDoc("6. Get Unstaking Data","ApiResponse<List<Unstaking>> res = client.getUnstakings(null, Lang.ENGLISG);", res.getResult());
     }
 
     public void testGetStakingHistory() {
         ApiResponse<List<StakingHistory>> res = client.getStakingHistory(null, null, null, null, null);
         assertTrue(res.isSuccess());
-        System.out.println(res.getResult());
-        for (StakingHistory stakingHistory : res.getResult()) {
-            System.out.println(stakingHistory.getRaw_type());
-        }
+        printDoc("7. Get All Staking History",
+                "ApiResponse<List<StakingHistory>> res = client.getStakingHistory(null, null, null, null, null);", res.getResult());
     }
 
     public void testStake() {

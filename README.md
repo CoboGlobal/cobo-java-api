@@ -1,14 +1,48 @@
-
-
 # Cobo Java API
 
 cobo-java-api is a lightweight Java library for interacting with the [Cobo Custody API](https://doc.custody.cobo.com/?#cobo-custody-waas-api), providing complete API coverage, and supporting synchronous and asynchronous requests.
 
-- [Installation](#installation)
-- [Test](#test)
-- [Examples](#examples)
-- [Account](#account)
-- [Loop Alliance](#loop-alliance)
+* [Installation](#installation)
+* [Test](#test)
+* [Examples](#examples)
+* [Usage](#usage)
+  * [Initialize](#initialize)
+     * [Initialize RestClient](#initialize-restclient)
+     * [Initialize ApiSigner](#initialize-apisigner)
+  * [Account](#account)
+     * [Check Account Details](#check-account-details)
+     * [Get Coin Details](#get-coin-details)
+     * [Get New Deposit Address](#get-new-deposit-address)
+     * [Batch Aet New Deposit Address](#batch-aet-new-deposit-address)
+     * [Verify Deposit Address](#verify-deposit-address)
+     * [Batch Verify Deposit Address](#batch-verify-deposit-address)
+     * [Verify Valid Address](#verify-valid-address)
+     * [Get Address History List](#get-address-history-list)
+  * [Loop Alliance](#loop-alliance)
+     * [Check Loop Address Details](#check-loop-address-details)
+     * [Verify Loop Address List](#verify-loop-address-list)
+     * [Loop Transaction Explorer](#loop-transaction-explorer)
+  * [Transactions](#transactions)
+     * [Get Transaction Details](#get-transaction-details)
+     * [Obtain the list of confirmed transactions through ID query(deposit&amp;withdraw)](#obtain-the-list-of-confirmed-transactions-through-id-querydepositwithdraw)
+     * [Obtain the list of confirmed transactions through time query(deposit&amp;withdraw)](#obtain-the-list-of-confirmed-transactions-through-time-querydepositwithdraw)
+     * [Get Pending Transactions](#get-pending-transactions)
+     * [Get Pending Deposit Details](#get-pending-deposit-details)
+     * [Get Transaction History](#get-transaction-history)
+  * [Withdrawal](#withdrawal)
+  * [Staking](#staking)
+     * [Get a Staking Product Details](#get-a-staking-product-details)
+     * [Get All Staking Product List](#get-all-staking-product-list)
+  * [Trading](#trading)
+  * [Transaction Notification](#transaction-notification)
+  * [Withdrawal Confirmation](#withdrawal-confirmation)
+  * [Error Code](#error-code)
+     * [Http Error](#http-error)
+     * [Cobo Error](#cobo-error)
+  * [Appendix](#appendix)
+     * [What do coin, display_code, and description separately mean in the interface?](#what-do-coin-display_code-and-description-separately-mean-in-the-interface)
+     * [What do amount and abs_amount mean in the interface?](#what-do-amount-and-abs_amount-mean-in-the-interface)
+
 
 ## Installation
 
@@ -23,20 +57,24 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
  ./gradlew test
 ```
 
-
-
 ## Examples
 TODO
-### Getting Started
 
+## Usage
 
+### Initialize
+
+#### Initialize RestClient
 These can be instantiated through the corresponding factory method of [`CoboApiClientFactory`](https://github.com/xxx)
 
-#### initialize
 ```java
 CoboApiClientFactory factory = CoboApiClientFactory.newInstance("API-KEY", ApiSigner，"COBO-PUB");
 CoboApiClientFactory client = factory.newRestClient();
 ```
+
+#### Initialize ApiSigner
+
+
 `ApiSigner` can be instantiated through `new LocalSigner("your private key" )`
 
 In some cases, your private key cannot be exported, for example, your private key is in aws kms, you should pass in your own implementation by implements `ApiSigner` interface:
@@ -52,62 +90,9 @@ new ApiSigner() {
 }
 ```
 
-## Account
+### Account
 
-#### Batch get new addresses
-```java
-ApiResponse<Address> res = client.newAddress("ETH", false);
-```
-<details>
-<summary>View Response</summary>
-
-
-```java
-NewAddresses{coin='ETH', addresses=,0x7568cd7c5b051540eaeff22becbb35d716aa063e,0x17e5bce063d14bdf75e41df8673ce0ee1978c452,0x65e7b319837edab8ce9155b87dfce5ad599ab517,0xd192fb0d43615c7743f6229b1488e1a268b3c402}
-```
-</details>
-
-#### Get address info
-```java
-ApiResponse<Address> res = client.addressInfo("ETH", "0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
-```
-<details>
-<summary>View Response</summary>
-
-
-```java
-Address{coin='ETH', address='0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee'}
-```
-</details>
-
-#### Get new address
-```java
-ApiResponse<Address> res = client.newAddress("ETH", false);
-```
-<details>
-<summary>View Response</summary>
-
-
-```java
-Address{coin='ETH', address='0x6a60f0d7ef6e5d2a4a31d65c8b73ac19a020bb16'}
-```
-</details>
-
-680
-#### Get address history
-```java
-ApiResponse<List<Address>> res = client.getAddressHistory("ETH");
-```
-<details>
-<summary>View Response</summary>
-
-
-```java
-[Address{coin='ETH', address='0x6a60f0d7ef6e5d2a4a31d65c8b73ac19a020bb16'}, Address{coin='ETH', address='0xd192fb0d43615c7743f6229b1488e1a268b3c402'}, Address{coin='ETH', address='0x65e7b319837edab8ce9155b87dfce5ad599ab517'}, Address{coin='ETH', address='0x17e5bce063d14bdf75e41df8673ce0ee1978c452'}, Address{coin='ETH', address='0x7568cd7c5b051540eaeff22becbb35d716aa063e'}]
-```
-</details>
-
-#### Get org info
+#### Check Account Details
 ```java
 ApiResponse<OrgInfo> orgInfo = client.getOrgInfo()
 ```
@@ -120,72 +105,7 @@ OrgInfo{name='cobo_test', assets=[Assets{coin='ADA', display_code='ADA', descrip
 ```
 </details>
 
-#### Batch get internal address info
-```java
-ApiResponse<List<InternalAddressInfo>> res = client.getInternalAddressInfoBatch("ETH", "0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a,0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a");
-```
-<details>
-<summary>View Response</summary>
-
-
-```java
-[InternalAddressInfo{coin='ETH', address='0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a', is_internal_address=false, internal_org='null', internal_wallet='null'}, InternalAddressInfo{coin='ETH', address='0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a', is_internal_address=false, internal_org='null', internal_wallet='null'}]
-```
-</details>
-
-#### Get pending transactions
-```java
-ApiResponse<List<Transaction>> pendingTransactions = client.getPendingTransactions(null, Side.Any, null, null, 50);
-```
-<details>
-<summary>View Response</summary>
-
-
-```java
-[Transaction{id='20200630175208000359964000002754', coin='TOMO', display_code='TOMO', description='TomoChain', decimal=18, address='0xab65bdd2e1fd20878d2cf8b09fe87a34059519fc', source_address='0x1a7d388963fa4ea8bb7a5822802a48ccb0ff08b5', side='withdraw', amount='1000000000000000000', abs_amount='1', txid='0xc19e50b0b15116a146f033ad3f3e1e77ae84a604fca50b77b54b72dfb21cd7e5', vout_n=0, request_id='tool9207389726', status='pending', abs_cobo_fee='null', created_time=1593510728558, last_time=1593510728558, confirmed_num=0, tx_detail=TxDetail{txid='0xc19e50b0b15116a146f033ad3f3e1e77ae84a604fca50b77b54b72dfb21cd7e5', blocknum=0, blockhash='', fee=10000000000000000, actualgas=0, gasprice=1, hexstr=''}, source_address_detail='0x1a7d388963fa4ea8bb7a5822802a48ccb0ff08b5', memo='', confirming_threshold=100, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20200604173207000367545000002794', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x0c1a06710fac5e6ec6681c2a5a7e20b9e90319c0', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='withdraw', amount='100000000000000000', abs_amount='0.1', txid='0xe433dc4cb1ac9c576b4d9c2b4c10fec1e73e92cf97ecfe4d222599a6fd0e5d2a', vout_n=0, request_id='web_send_by_user_194_1591263071240', status='success', abs_cobo_fee='null', created_time=1591263127392, last_time=1591263127392, confirmed_num=12, tx_detail=TxDetail{txid='0xe433dc4cb1ac9c576b4d9c2b4c10fec1e73e92cf97ecfe4d222599a6fd0e5d2a', blocknum=10198480, blockhash='0x81c3da0a9aa3737bf32066a5961b489364284039a5da074fad9a69d2df5d285c', fee=400000000000000, actualgas=1134000045948000, gasprice=1, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='tesing', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20200604171238000354106000006405', coin='ETH_USDT', display_code='USDT', description='Tether', decimal=6, address='0x0c1a06710fac5e6ec6681c2a5a7e20b9e90319c0', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='withdraw', amount='1000000', abs_amount='1', txid='0xe967fb51b1a32dc73c1db51395993a7ccee66645376f524df5ae7960887e2f6a', vout_n=0, request_id='web_send_by_user_194_1591261893993', status='success', abs_cobo_fee='null', created_time=1591261958382, last_time=1591261958382, confirmed_num=12, tx_detail=TxDetail{txid='0xe967fb51b1a32dc73c1db51395993a7ccee66645376f524df5ae7960887e2f6a', blocknum=10198392, blockhash='0x3816eee4d54720ddfd14a0472061bf928bd4d8001da53c2e2ec58b03be81f0a3', fee=600000000000000, actualgas=2973446068854969, gasprice=1, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20200603204256000357500000001342', coin='EOS_EOS', display_code='EOS', description='EOS', decimal=4, address='cobotodamoon', source_address='cobocustodyb', side='withdraw', amount='10', abs_amount='0.001', txid='ac869373555b8f4dac53e1c66f578fb67a4bd6344959262b8ae18265d35a187e', vout_n=0, request_id='web_send_by_user_194_1591187644510', status='success', abs_cobo_fee='null', created_time=1591188176768, last_time=1591188176768, confirmed_num=1, tx_detail=TxDetail{txid='ac869373555b8f4dac53e1c66f578fb67a4bd6344959262b8ae18265d35a187e', blocknum=124092043, blockhash='07657e8bec40ab44c65fae85bc81dc9337a88b8c316b963cfdbe514343252a23', fee=80, actualgas=0, gasprice=1, hexstr=''}, source_address_detail='cobocustodyb', memo='', confirming_threshold=1, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20200602190308000332509000005562', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0xd60290095179F35Cf50C8C4b2c76FD1fc2FD3C08', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='withdraw', amount='100000000000000', abs_amount='0.0001', txid='0xb026be260ce3d64f59274655ff48d5a7065b597b234061936131eb6619e66355', vout_n=0, request_id='web_send_by_user_421_1591095764807', status='success', abs_cobo_fee='null', created_time=1591095788809, last_time=1591095788809, confirmed_num=12, tx_detail=TxDetail{txid='0xb026be260ce3d64f59274655ff48d5a7065b597b234061936131eb6619e66355', blocknum=10186022, blockhash='0x8e7fd9b55ab927e939bd5363f89f65a7b06c5e59d9fd916e35f7957f215d28fa', fee=400000000000000, actualgas=913500000000000, gasprice=1, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}]
-```
-</details>
-
-#### Get transaction
-```java
-ApiResponse<Transaction> res = client.getTransactionById("20210422193807000343569000002370");
-```
-<details>
-<summary>View Response</summary>
-
-
-```java
-Transaction{id='20210422193807000343569000002370', coin='TETH', display_code='TETH', description='Ethereum Testnet', decimal=18, address='0x14ce095a3593db7db1d13a0765eb826e00d4fc91', source_address='0x7ca60000afea5a1730e40cf6b51abbf8b594ad91', side='withdraw', amount='210000000000000000', abs_amount='0.21', txid='0xb40d0ca5a5fadda884a67a46f979741e96be92c69f767fed57ccc000d5c0a14b', vout_n=0, request_id='web_send_by_user_424_1619091344352', status='success', abs_cobo_fee='0', created_time=1619091344501, last_time=1619091838174, confirmed_num=36, tx_detail=TxDetail{txid='0xb40d0ca5a5fadda884a67a46f979741e96be92c69f767fed57ccc000d5c0a14b', blocknum=10088274, blockhash='0x1b9e862f4056cbc55fe70f817fd1b92e32ddfd7eb5092f56ffc36b91ebd69074', fee=0, actualgas=21000000000000, gasprice=1, hexstr=''}, source_address_detail='0x7ca60000afea5a1730e40cf6b51abbf8b594ad91', memo='', confirming_threshold=36, fee_coin='TETH', fee_amount='4000000000000000', fee_decimal=18, type='external', waiting_audit=false}
-```
-</details>
-
-#### Is valid address
-```java
-ApiResponse<Boolean> res = client.isValidAddress("ETH", "0xf3a4a281e92631cb06b53895b6db25c6ffcf7c3d");
-```
-<details>
-<summary>View Response</summary>
-
-
-```java
-true
-```
-</details>
-
-#### Get pending transaction by id
-```java
-ApiResponse<Transaction> res = client.getPendingTransaction("20200604171238000354106000006405");
-```
-<details>
-<summary>View Response</summary>
-
-
-```java
-Transaction{id='20200604171238000354106000006405', coin='ETH_USDT', display_code='USDT', description='Tether', decimal=6, address='0x0c1a06710fac5e6ec6681c2a5a7e20b9e90319c0', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='withdraw', amount='1000000', abs_amount='1', txid='0xe967fb51b1a32dc73c1db51395993a7ccee66645376f524df5ae7960887e2f6a', vout_n=0, request_id='web_send_by_user_194_1591261893993', status='success', abs_cobo_fee='null', created_time=1591261958382, last_time=1591261958382, confirmed_num=12, tx_detail=TxDetail{txid='0xe967fb51b1a32dc73c1db51395993a7ccee66645376f524df5ae7960887e2f6a', blocknum=10198392, blockhash='0x3816eee4d54720ddfd14a0472061bf928bd4d8001da53c2e2ec58b03be81f0a3', fee=600000000000000, actualgas=2973446068854969, gasprice=1, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}
-```
-</details>
-
-#### Get coin info
+#### Get Coin Details
 ```java
 ApiResponse<CoinInfo> coinInfo = client.getCoinInfo("ETH")
 ```
@@ -198,20 +118,85 @@ CoinInfo{coin='ETH', display_code='ETH', description='Ethereum', decimal=18, can
 ```
 </details>
 
-#### Get transaction history
+#### Get New Deposit Address
 ```java
-ApiResponse<List<Transaction>> res = client.getTransactionHistory("ETH", Side.Any, null, null, null, 50, 0, System.currentTimeMillis(), null);
+ApiResponse<Address> res = client.newAddress("ETH", false);
 ```
 <details>
 <summary>View Response</summary>
 
 
 ```java
-[Transaction{id='3228776326735331328', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x62b3f5f1717e46bec22c52c1607f84a25b4e7f83', source_address='0xa9c7d31bb1879bff8be25ead2f59b310a52b7c5a', side='deposit', amount='100000000000000', abs_amount='0.0001', txid='0xe90e064eb9fbaff12501325875df722484579f451bfe1db3a227495dcc54c568', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1539600528114, last_time=1539600528114, confirmed_num=12, tx_detail=TxDetail{txid='0xe90e064eb9fbaff12501325875df722484579f451bfe1db3a227495dcc54c568', blocknum=6519238, blockhash='0x2abf41e86a9cd37d481d7a3212ca0eab80fa2f4d10e70e94b2623c5318c383c8', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='0xa9c7d31bb1879bff8be25ead2f59b310a52b7c5a', memo='null', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20210108144127000380088000002302', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0xfdf2b1f888d09fc7602f700bd214600b51d6f31a', source_address='cobo_test', side='withdraw', amount='1000000000000000000', abs_amount='1', txid='L8b3e42961795285d315adad46262cfc', vout_n=0, request_id='web_send_by_user_427_1610088044313', status='success', abs_cobo_fee='0', created_time=1610088044385, last_time=1610088087145, confirmed_num=12, tx_detail=TxDetail{txid='L8b3e42961795285d315adad46262cfc', blocknum=0, blockhash='', fee=0, actualgas=0, gasprice=1, hexstr=''}, source_address_detail='cobo_test', memo='null', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='internal', waiting_audit=false}, Transaction{id='20210108134603000380088000006360', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x576bd96937027284aa904a4f6a628d8f51d88913', source_address='cobo_test', side='withdraw', amount='1000000000000000000', abs_amount='1', txid='L9a29cb8401bea72fd6b54628007bfb1', vout_n=0, request_id='web_send_by_user_427_1610084709617', status='success', abs_cobo_fee='0', created_time=1610084709710, last_time=1610084763272, confirmed_num=12, tx_detail=TxDetail{txid='L9a29cb8401bea72fd6b54628007bfb1', blocknum=0, blockhash='', fee=0, actualgas=0, gasprice=1, hexstr=''}, source_address_detail='cobo_test', memo='null', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='internal', waiting_audit=false}, Transaction{id='20201218105542000388092000006926', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x3b838adc736b1e9fc86b55ccbb576d8c5d55f9df', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='deposit', amount='10000000000000000', abs_amount='0.01', txid='0x2d7706b7976e5da8ce696dee05f78ffdfd1d544184b33582dbb434504432be8e', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1608260301987, last_time=1608260301987, confirmed_num=12, tx_detail=TxDetail{txid='0x2d7706b7976e5da8ce696dee05f78ffdfd1d544184b33582dbb434504432be8e', blocknum=11474579, blockhash='0x96d003facee421441277d405d1e63fae685ad16eea9aead13a27730117e15f8c', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='null', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20201218105454000388092000008595', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x3b838adc736b1e9fc86b55ccbb576d8c5d55f9df', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='withdraw', amount='10000000000000000', abs_amount='0.01', txid='0x2d7706b7976e5da8ce696dee05f78ffdfd1d544184b33582dbb434504432be8e', vout_n=0, request_id='web_send_by_user_194_1608259983524', status='success', abs_cobo_fee='0', created_time=1608259983761, last_time=1608260300136, confirmed_num=12, tx_detail=TxDetail{txid='0x2d7706b7976e5da8ce696dee05f78ffdfd1d544184b33582dbb434504432be8e', blocknum=11474579, blockhash='0x96d003facee421441277d405d1e63fae685ad16eea9aead13a27730117e15f8c', fee=0, actualgas=1281000000000000, gasprice=1, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='', confirming_threshold=12, fee_coin='ETH', fee_amount='4000000000000000', fee_decimal=18, type='external', waiting_audit=false}]
+Address{coin='ETH', address='0x6a60f0d7ef6e5d2a4a31d65c8b73ac19a020bb16'}
 ```
 </details>
 
-## Loop Alliance
+#### Batch Aet New Deposit Address
+```java
+ApiResponse<Address> res = client.newAddress("ETH", false);
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+NewAddresses{coin='ETH', addresses=,0x7568cd7c5b051540eaeff22becbb35d716aa063e,0x17e5bce063d14bdf75e41df8673ce0ee1978c452,0x65e7b319837edab8ce9155b87dfce5ad599ab517,0xd192fb0d43615c7743f6229b1488e1a268b3c402}
+```
+</details>
+
+#### Verify Deposit Address
+```java
+ApiResponse<Address> res = client.addressInfo("ETH", "0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+Address{coin='ETH', address='0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee'}
+```
+</details>
+
+#### Batch Verify Deposit Address
+```java
+ApiResponse<List<InternalAddressInfo>> res = client.getInternalAddressInfoBatch("ETH", "0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a,0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a");
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+[InternalAddressInfo{coin='ETH', address='0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a', is_internal_address=false, internal_org='null', internal_wallet='null'}, InternalAddressInfo{coin='ETH', address='0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a', is_internal_address=false, internal_org='null', internal_wallet='null'}]
+```
+</details>
+
+#### Verify Valid Address
+```java
+ApiResponse<Boolean> res = client.isValidAddress("ETH", "0xf3a4a281e92631cb06b53895b6db25c6ffcf7c3d");
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+true
+```
+</details>
+
+#### Get Address History List
+```java
+ApiResponse<List<Address>> res = client.getAddressHistory("ETH");
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+[Address{coin='ETH', address='0x6a60f0d7ef6e5d2a4a31d65c8b73ac19a020bb16'}, Address{coin='ETH', address='0xd192fb0d43615c7743f6229b1488e1a268b3c402'}, Address{coin='ETH', address='0x65e7b319837edab8ce9155b87dfce5ad599ab517'}, Address{coin='ETH', address='0x17e5bce063d14bdf75e41df8673ce0ee1978c452'}, Address{coin='ETH', address='0x7568cd7c5b051540eaeff22becbb35d716aa063e'}]
+```
+</details>
+
+### Loop Alliance
 
 #### Check Loop Address Details 
 ```java
@@ -245,7 +230,27 @@ NewAddress{coin='ETH', addresses='0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee,0x6
 ```
 </details>
 
+#### Loop Transaction Explorer
+To help your user to check the Loop transaction, we offer you an explorer, you may insert the following URL in your platform：https://loop.top/tx/[Loop_ID] 
+e.g. https://loop.top/tx/L456e5cb652dcfe557a43fd9d8e48627
+
+
+### Transactions
+
 #### Get Transaction Details
+```java
+ApiResponse<Transaction> res = client.getTransactionById("20210422193807000343569000002370");
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+Transaction{id='20210422193807000343569000002370', coin='TETH', display_code='TETH', description='Ethereum Testnet', decimal=18, address='0x14ce095a3593db7db1d13a0765eb826e00d4fc91', source_address='0x7ca60000afea5a1730e40cf6b51abbf8b594ad91', side='withdraw', amount='210000000000000000', abs_amount='0.21', txid='0xb40d0ca5a5fadda884a67a46f979741e96be92c69f767fed57ccc000d5c0a14b', vout_n=0, request_id='web_send_by_user_424_1619091344352', status='success', abs_cobo_fee='0', created_time=1619091344501, last_time=1619091838174, confirmed_num=36, tx_detail=TxDetail{txid='0xb40d0ca5a5fadda884a67a46f979741e96be92c69f767fed57ccc000d5c0a14b', blocknum=10088274, blockhash='0x1b9e862f4056cbc55fe70f817fd1b92e32ddfd7eb5092f56ffc36b91ebd69074', fee=0, actualgas=21000000000000, gasprice=1, hexstr=''}, source_address_detail='0x7ca60000afea5a1730e40cf6b51abbf8b594ad91', memo='', confirming_threshold=36, fee_coin='TETH', fee_amount='4000000000000000', fee_decimal=18, type='external', waiting_audit=false}
+```
+</details>
+
+#### Obtain the list of confirmed transactions through ID query(deposit&withdraw)
 ```java
 ApiResponse<List<Transaction>> res = client.getTransactionsById(null, Side.Any, null, null, null, 2, null);
 ```
@@ -257,6 +262,150 @@ ApiResponse<List<Transaction>> res = client.getTransactionsById(null, Side.Any, 
 [Transaction{id='3228776326735331328', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x62b3f5f1717e46bec22c52c1607f84a25b4e7f83', source_address='0xa9c7d31bb1879bff8be25ead2f59b310a52b7c5a', side='deposit', amount='100000000000000', abs_amount='0.0001', txid='0xe90e064eb9fbaff12501325875df722484579f451bfe1db3a227495dcc54c568', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1539600528114, last_time=1539600528114, confirmed_num=12, tx_detail=TxDetail{txid='0xe90e064eb9fbaff12501325875df722484579f451bfe1db3a227495dcc54c568', blocknum=6519238, blockhash='0x2abf41e86a9cd37d481d7a3212ca0eab80fa2f4d10e70e94b2623c5318c383c8', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='0xa9c7d31bb1879bff8be25ead2f59b310a52b7c5a', memo='null', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='3228768325479694336', coin='BTC', display_code='BTC', description='Bitcoin', decimal=8, address='1Q1xfp8UkQagCn2pbJFpG89Cd6Ku3yUixE', source_address='185qKpZNnwaX5ebJ4DBQ3rgy85HgRWKgEi', side='deposit', amount='1000', abs_amount='0.00001', txid='dfa0d24c29cf39ddbeab4aad04d8883f2f544dd85d43c9db34fde968e4d9a63b', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1539596712818, last_time=1539596712818, confirmed_num=3, tx_detail=TxDetail{txid='dfa0d24c29cf39ddbeab4aad04d8883f2f544dd85d43c9db34fde968e4d9a63b', blocknum=545845, blockhash='0000000000000000001fb2c338e7aed6560d852a3a0836f8aac7409b99f8d624', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='185qKpZNnwaX5ebJ4DBQ3rgy85HgRWKgEi', memo='null', confirming_threshold=3, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}]
 ```
 </details>
+
+#### Obtain the list of confirmed transactions through time query(deposit&withdraw)
+```java
+ApiResponse<List<Transaction>> res = client.getTransactionsByTime(null, Side.Any, null, 0, 0, 2, null);
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+[Transaction{id='20210520115758000378235000004875', coin='CKB', display_code='CKB', description='Nervos Network', decimal=8, address='ckb1qyq8a5r5hpm4zw5ugpakyc847ml36dntng9qkd76ln', source_address='ckb1qyq2ug0jlynj6n95esm5rgu6zk5l047a964s4qr3ag', side='deposit', amount='6200000000', abs_amount='62', txid='0x8cd86358ff61b17c3d453717306a919a4c2672657175306a2ce7f07f05095c45', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1621483452136, last_time=1621483452136, confirmed_num=30, tx_detail=TxDetail{txid='0x8cd86358ff61b17c3d453717306a919a4c2672657175306a2ce7f07f05095c45', blocknum=4364392, blockhash='0xb40788e7185ad0d845708e0e6757fcf7817c73bb8a5fe1806da626ee5b7c4f6f', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='ckb1qyq2ug0jlynj6n95esm5rgu6zk5l047a964s4qr3ag', memo='null', confirming_threshold=30, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20210520115644000378235000004289', coin='CKB', display_code='CKB', description='Nervos Network', decimal=8, address='ckb1qyq8a5r5hpm4zw5ugpakyc847ml36dntng9qkd76ln', source_address='ckb1qyq2ug0jlynj6n95esm5rgu6zk5l047a964s4qr3ag', side='withdraw', amount='6200000000', abs_amount='62', txid='0x8cd86358ff61b17c3d453717306a919a4c2672657175306a2ce7f07f05095c45', vout_n=0, request_id='ckb29398728476738', status='success', abs_cobo_fee='0', created_time=1621483451938, last_time=1621483451938, confirmed_num=30, tx_detail=TxDetail{txid='0x8cd86358ff61b17c3d453717306a919a4c2672657175306a2ce7f07f05095c45', blocknum=4364392, blockhash='0xb40788e7185ad0d845708e0e6757fcf7817c73bb8a5fe1806da626ee5b7c4f6f', fee=0, actualgas=24800, gasprice=1, hexstr=''}, source_address_detail='ckb1qyq2ug0jlynj6n95esm5rgu6zk5l047a964s4qr3ag', memo='', confirming_threshold=30, fee_coin='CKB', fee_amount='800000000', fee_decimal=8, type='external', waiting_audit=false}]
+```
+</details>
+
+#### Get Pending Transactions
+```java
+ApiResponse<List<Transaction>> pendingTransactions = client.getPendingTransactions(null, Side.Any, null, null, 50);
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+[Transaction{id='20200630175208000359964000002754', coin='TOMO', display_code='TOMO', description='TomoChain', decimal=18, address='0xab65bdd2e1fd20878d2cf8b09fe87a34059519fc', source_address='0x1a7d388963fa4ea8bb7a5822802a48ccb0ff08b5', side='withdraw', amount='1000000000000000000', abs_amount='1', txid='0xc19e50b0b15116a146f033ad3f3e1e77ae84a604fca50b77b54b72dfb21cd7e5', vout_n=0, request_id='tool9207389726', status='pending', abs_cobo_fee='null', created_time=1593510728558, last_time=1593510728558, confirmed_num=0, tx_detail=TxDetail{txid='0xc19e50b0b15116a146f033ad3f3e1e77ae84a604fca50b77b54b72dfb21cd7e5', blocknum=0, blockhash='', fee=10000000000000000, actualgas=0, gasprice=1, hexstr=''}, source_address_detail='0x1a7d388963fa4ea8bb7a5822802a48ccb0ff08b5', memo='', confirming_threshold=100, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20200604173207000367545000002794', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x0c1a06710fac5e6ec6681c2a5a7e20b9e90319c0', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='withdraw', amount='100000000000000000', abs_amount='0.1', txid='0xe433dc4cb1ac9c576b4d9c2b4c10fec1e73e92cf97ecfe4d222599a6fd0e5d2a', vout_n=0, request_id='web_send_by_user_194_1591263071240', status='success', abs_cobo_fee='null', created_time=1591263127392, last_time=1591263127392, confirmed_num=12, tx_detail=TxDetail{txid='0xe433dc4cb1ac9c576b4d9c2b4c10fec1e73e92cf97ecfe4d222599a6fd0e5d2a', blocknum=10198480, blockhash='0x81c3da0a9aa3737bf32066a5961b489364284039a5da074fad9a69d2df5d285c', fee=400000000000000, actualgas=1134000045948000, gasprice=1, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='tesing', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20200604171238000354106000006405', coin='ETH_USDT', display_code='USDT', description='Tether', decimal=6, address='0x0c1a06710fac5e6ec6681c2a5a7e20b9e90319c0', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='withdraw', amount='1000000', abs_amount='1', txid='0xe967fb51b1a32dc73c1db51395993a7ccee66645376f524df5ae7960887e2f6a', vout_n=0, request_id='web_send_by_user_194_1591261893993', status='success', abs_cobo_fee='null', created_time=1591261958382, last_time=1591261958382, confirmed_num=12, tx_detail=TxDetail{txid='0xe967fb51b1a32dc73c1db51395993a7ccee66645376f524df5ae7960887e2f6a', blocknum=10198392, blockhash='0x3816eee4d54720ddfd14a0472061bf928bd4d8001da53c2e2ec58b03be81f0a3', fee=600000000000000, actualgas=2973446068854969, gasprice=1, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20200603204256000357500000001342', coin='EOS_EOS', display_code='EOS', description='EOS', decimal=4, address='cobotodamoon', source_address='cobocustodyb', side='withdraw', amount='10', abs_amount='0.001', txid='ac869373555b8f4dac53e1c66f578fb67a4bd6344959262b8ae18265d35a187e', vout_n=0, request_id='web_send_by_user_194_1591187644510', status='success', abs_cobo_fee='null', created_time=1591188176768, last_time=1591188176768, confirmed_num=1, tx_detail=TxDetail{txid='ac869373555b8f4dac53e1c66f578fb67a4bd6344959262b8ae18265d35a187e', blocknum=124092043, blockhash='07657e8bec40ab44c65fae85bc81dc9337a88b8c316b963cfdbe514343252a23', fee=80, actualgas=0, gasprice=1, hexstr=''}, source_address_detail='cobocustodyb', memo='', confirming_threshold=1, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20200602190308000332509000005562', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0xd60290095179F35Cf50C8C4b2c76FD1fc2FD3C08', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='withdraw', amount='100000000000000', abs_amount='0.0001', txid='0xb026be260ce3d64f59274655ff48d5a7065b597b234061936131eb6619e66355', vout_n=0, request_id='web_send_by_user_421_1591095764807', status='success', abs_cobo_fee='null', created_time=1591095788809, last_time=1591095788809, confirmed_num=12, tx_detail=TxDetail{txid='0xb026be260ce3d64f59274655ff48d5a7065b597b234061936131eb6619e66355', blocknum=10186022, blockhash='0x8e7fd9b55ab927e939bd5363f89f65a7b06c5e59d9fd916e35f7957f215d28fa', fee=400000000000000, actualgas=913500000000000, gasprice=1, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}]
+```
+</details>
+
+#### Get Pending Deposit Details
+```java
+ApiResponse<Transaction> res = client.getPendingTransaction("20200604171238000354106000006405");
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+Transaction{id='20200604171238000354106000006405', coin='ETH_USDT', display_code='USDT', description='Tether', decimal=6, address='0x0c1a06710fac5e6ec6681c2a5a7e20b9e90319c0', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='withdraw', amount='1000000', abs_amount='1', txid='0xe967fb51b1a32dc73c1db51395993a7ccee66645376f524df5ae7960887e2f6a', vout_n=0, request_id='web_send_by_user_194_1591261893993', status='success', abs_cobo_fee='null', created_time=1591261958382, last_time=1591261958382, confirmed_num=12, tx_detail=TxDetail{txid='0xe967fb51b1a32dc73c1db51395993a7ccee66645376f524df5ae7960887e2f6a', blocknum=10198392, blockhash='0x3816eee4d54720ddfd14a0472061bf928bd4d8001da53c2e2ec58b03be81f0a3', fee=600000000000000, actualgas=2973446068854969, gasprice=1, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}
+```
+</details>
+
+#### Get Transaction History
+```java
+ApiResponse<List<Transaction>> res = client.getTransactionHistory("ETH", Side.Any, null, null, null, 50, 0, System.currentTimeMillis(), null);
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+[Transaction{id='3228776326735331328', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x62b3f5f1717e46bec22c52c1607f84a25b4e7f83', source_address='0xa9c7d31bb1879bff8be25ead2f59b310a52b7c5a', side='deposit', amount='100000000000000', abs_amount='0.0001', txid='0xe90e064eb9fbaff12501325875df722484579f451bfe1db3a227495dcc54c568', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1539600528114, last_time=1539600528114, confirmed_num=12, tx_detail=TxDetail{txid='0xe90e064eb9fbaff12501325875df722484579f451bfe1db3a227495dcc54c568', blocknum=6519238, blockhash='0x2abf41e86a9cd37d481d7a3212ca0eab80fa2f4d10e70e94b2623c5318c383c8', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='0xa9c7d31bb1879bff8be25ead2f59b310a52b7c5a', memo='null', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20210108144127000380088000002302', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0xfdf2b1f888d09fc7602f700bd214600b51d6f31a', source_address='cobo_test', side='withdraw', amount='1000000000000000000', abs_amount='1', txid='L8b3e42961795285d315adad46262cfc', vout_n=0, request_id='web_send_by_user_427_1610088044313', status='success', abs_cobo_fee='0', created_time=1610088044385, last_time=1610088087145, confirmed_num=12, tx_detail=TxDetail{txid='L8b3e42961795285d315adad46262cfc', blocknum=0, blockhash='', fee=0, actualgas=0, gasprice=1, hexstr=''}, source_address_detail='cobo_test', memo='null', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='internal', waiting_audit=false}, Transaction{id='20210108134603000380088000006360', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x576bd96937027284aa904a4f6a628d8f51d88913', source_address='cobo_test', side='withdraw', amount='1000000000000000000', abs_amount='1', txid='L9a29cb8401bea72fd6b54628007bfb1', vout_n=0, request_id='web_send_by_user_427_1610084709617', status='success', abs_cobo_fee='0', created_time=1610084709710, last_time=1610084763272, confirmed_num=12, tx_detail=TxDetail{txid='L9a29cb8401bea72fd6b54628007bfb1', blocknum=0, blockhash='', fee=0, actualgas=0, gasprice=1, hexstr=''}, source_address_detail='cobo_test', memo='null', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='internal', waiting_audit=false}, Transaction{id='20201218105542000388092000006926', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x3b838adc736b1e9fc86b55ccbb576d8c5d55f9df', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='deposit', amount='10000000000000000', abs_amount='0.01', txid='0x2d7706b7976e5da8ce696dee05f78ffdfd1d544184b33582dbb434504432be8e', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1608260301987, last_time=1608260301987, confirmed_num=12, tx_detail=TxDetail{txid='0x2d7706b7976e5da8ce696dee05f78ffdfd1d544184b33582dbb434504432be8e', blocknum=11474579, blockhash='0x96d003facee421441277d405d1e63fae685ad16eea9aead13a27730117e15f8c', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='null', confirming_threshold=12, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}, Transaction{id='20201218105454000388092000008595', coin='ETH', display_code='ETH', description='Ethereum', decimal=18, address='0x3b838adc736b1e9fc86b55ccbb576d8c5d55f9df', source_address='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', side='withdraw', amount='10000000000000000', abs_amount='0.01', txid='0x2d7706b7976e5da8ce696dee05f78ffdfd1d544184b33582dbb434504432be8e', vout_n=0, request_id='web_send_by_user_194_1608259983524', status='success', abs_cobo_fee='0', created_time=1608259983761, last_time=1608260300136, confirmed_num=12, tx_detail=TxDetail{txid='0x2d7706b7976e5da8ce696dee05f78ffdfd1d544184b33582dbb434504432be8e', blocknum=11474579, blockhash='0x96d003facee421441277d405d1e63fae685ad16eea9aead13a27730117e15f8c', fee=0, actualgas=1281000000000000, gasprice=1, hexstr=''}, source_address_detail='0x93d8cbb5354d06ddd7bc50ff2c71b5c0b6e1af66', memo='', confirming_threshold=12, fee_coin='ETH', fee_amount='4000000000000000', fee_decimal=18, type='external', waiting_audit=false}]
+```
+</details>
+
+
+###  Withdrawal
+
+### Staking
+
+#### Get a Staking Product Details
+```java
+ApiResponse<List<StakingProduct>> res = client.getStakingProducts(null, Lang.CHINESE);
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+StakingProduct{product_id=159145, name='DASH FP TEST', description='注：0.01 DASH起投，阶梯收益率，质押越多，收益率越高 质押后第二天开始产生收益，每10天根据转入时约定的收益率发放收益，选择【到期后自动续期】，无缝衔接下一期收益 随时可划出，T+1到账，收益周期内取出损失当期收益 每次取出赎回费: 0.01 DASH', doc_src='https://support.cobo.com/hc/zh-cn/articles/360023826033', coin='DASH', coin_decimal=8, reward_coin='DASH', reward_coin_decimal=8, unstake_fee='1000000', min_amount='1000000', rate='0.0002000000', rate_type=1, days=1, stake_type='masternode', lockup=true, start_stake_time=1621432800000, stop_stake_time=1621519200000, start_staking_time=1621526400000, stop_staking_time=1621612800000, liquidate_time=1621612800000, reward_liquidate_time=1621612800000, product_group='DASHFPTEST'}
+```
+</details>
+
+#### Get All Staking Product List
+```java
+ApiResponse<List<StakingProduct>> res = client.getStakingProducts(null, Lang.CHINESE);
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+[StakingProduct{product_id=159150, name='DASH FP TEST', description='hint: Min. 0.01 DASH, differential return rate, stake more, earn more Rewards start from the next day, will be released every 10 days according to the fixed rate, choose [Stake continuously] to earn continuously! Withdraw available anytime, return to wallet in T+1 Withdrawal fee per time: 0.01 DASH', doc_src='https://support.cobo.com/hc/en-us/articles/360023826033', coin='DASH', coin_decimal=8, reward_coin='DASH', reward_coin_decimal=8, unstake_fee='1000000', min_amount='1000000', rate='0.0002000000', rate_type=1, days=1, stake_type='masternode', lockup=true, start_stake_time=1621519200000, stop_stake_time=1621605600000, start_staking_time=1621612800000, stop_staking_time=1621699200000, liquidate_time=1621699200000, reward_liquidate_time=1621699200000, product_group='DASHFPTEST'}, StakingProduct{product_id=159146, name='ZEL FP TEST', description='Min. 30 ZEL, differential return rate, stake more, earn more Rewards start from the next day, will be released every day according to the fixed rate, choose [Stake continuously] to earn continuously! Withdraw available anytime, return to wallet in T+1 Withdrawal fee per time: 10 ZEL', doc_src='https://support.cobo.com/hc/en-us/articles/360025623054', coin='ZEL', coin_decimal=8, reward_coin='ZEL', reward_coin_decimal=8, unstake_fee='1000000000', min_amount='3000000000', rate='0.2000000000', rate_type=1, days=1, stake_type='masternode', lockup=false, start_stake_time=1621494000000, stop_stake_time=1621580400000, start_staking_time=1621612800000, stop_staking_time=1621699200000, liquidate_time=1621785600000, reward_liquidate_time=1621785600000, product_group='ZELFPTEST'}, StakingProduct{product_id=159148, name='ZEL FP TEST 2', description='Min. 30 ZEL, differential return rate, stake more, earn more Rewards start from the next day, will be released every day according to the fixed rate, choose [Stake continuously] to earn continuously! Withdraw available anytime, return to wallet in T+1 Withdrawal fee per time: 10 ZEL', doc_src='https://support.cobo.com/hc/en-us/articles/360025623054', coin='ZEL', coin_decimal=8, reward_coin='ZEL', reward_coin_decimal=8, unstake_fee='1000000000', min_amount='3000000000', rate='0.2000000000', rate_type=1, days=1, stake_type='masternode', lockup=false, start_stake_time=1621494000000, stop_stake_time=1621580400000, start_staking_time=1621612800000, stop_staking_time=1621699200000, liquidate_time=1621785600000, reward_liquidate_time=1621785600000, product_group='ZELFPTEST2'}, StakingProduct{product_id=159149, name='IOST PPS Wallet', description='IOST PPS Wallet', doc_src='https://support.cobo.com/hc/en-us/articles/360025765593', coin='IOST', coin_decimal=8, reward_coin='IOST', reward_coin_decimal=8, unstake_fee='5000000000', min_amount='10000000000', rate='0.1000000000', rate_type=2, days=1, stake_type='dpos', lockup=false, start_stake_time=1621494000000, stop_stake_time=1621580400000, start_staking_time=1621612800000, stop_staking_time=1621699200000, liquidate_time=1622304000000, reward_liquidate_time=1622304000000, product_group='IOSTPPSW'}, StakingProduct{product_id=159147, name='IOST FP TEST', description='Min. 1 IOST
+Rewards start from the next day, will be released every day according to the dynamic reward, choose [Stake continuously] to earn continuously!
+Withdraw available anytime, return to wallet in T+8 (7 days required by IOST)
+Withdrawal fee per time: 1 IOST', doc_src='https://support.cobo.com/hc/en-us/articles/360023713454', coin='IOST', coin_decimal=8, reward_coin='IOST', reward_coin_decimal=8, unstake_fee='100000000', min_amount='100000000', rate='0.0001000000', rate_type=1, days=1, stake_type='dpos', lockup=false, start_stake_time=1621494000000, stop_stake_time=1621580400000, start_staking_time=1621612800000, stop_staking_time=1621699200000, liquidate_time=1622390400000, reward_liquidate_time=1622390400000, product_group='IOSTFPTEST'}]
+```
+</details>
+
+### Trading
+
+### Transaction Notification
+
+### Withdrawal Confirmation
+
+### Error Code
+Cobo servers will return the following error data when encountering an error:
+#### Http Error
+|Code|Description|
+|----|----|
+|400|	Bad request|
+|401|	Unauthorized - API key, signature, or timestamp is incorrect|
+|403|	Forbidden - No access allowed|
+|404|	Not Found - Requested resources not found|
+|405|	Method Not Allowed - HTTP methods used not applicable to the requested resources|
+|406|	Not Acceptable - Requested content format is not JSON|
+|429|	Too Many Requests - Requests are limited, please reduce the request frequency|
+|500|	Internal Server Error - Internal server error, please try again later|
+|503|	Service Unavailable - Service unavailable, please try again later|
+
+#### Cobo Error
+|Code|Description|
+|----|----|
+|1000|	Unknown internal error -- Please contact Cobo|
+|1003|	API params is missing or null|
+|12000|	Signature headers missing -- API signature header is missing|
+|12001|	Signature verification failed -- API signature verification fail|
+|12002|	Coin not supported|
+|12003|	Permission denied|
+|12004|	Transaction does not exist|
+|12005|	Signature permission denied -- API key does not have access|
+|12006|	Permission denied|
+|12007|	Insufficient balance|
+|12008|	Coin is suspended temporarily|
+|12009|	Duplicate withdraw request id|
+|12010|	Account has been frozen|
+|12011|	Amount below coin dust|
+|12012|	Invalid address|
+|12013|	Address not in whitelist|
+|12014|	Transaction fee invalid|
+|12015|	Address does not exist|
+|12200|	staking product not exist|
+|12201|	invalid staking amount|
+|12202|	invalid staking status|
+
+
+### Appendix
+
+#### What do coin, display_code, and description separately mean in the interface?
+coin is Cobo’s internal coin code, which uniquely identifies each coin, while display_code is the ticker symbol of a coin (not unique, changeable, for reference only ). description indicates the full name of a coin (not unique, changeable, for reference only ).For example: Tron was an ERC-20 token before launching its own mainnet and token. The ERC-20 and Tron mainnet tokens would share the same display_code and description, but have different coin values.
+
+#### What do amount and abs_amount mean in the interface?
+In the cryptocurrency world, each coin has a smallest unit. For example, Bitcoin’s smallest unit is Satoshi; 1 BTC = 100,000,000 Satoshi. Cobo expresses amounts in terms of the smallest unit of the coin. This is to avoid problems caused by the misuse of floating numbers. Therefore, when transferring 1 BTC, the amount in the transaction is 100,000,000. In other words, abs_amount is used to indicate the same thing in real numbers. Clients may configure according to their own preferences. The conversion relation between them is: **abs_amount = amount / pow(10, decimal)**
+
+
+
 
 
 
