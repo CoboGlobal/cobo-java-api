@@ -8,6 +8,9 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+test {
+    systemProperty "aaa", "bbb"
+}
 
 dependencies {
     implementation group: 'org.bitcoinj', name: 'bitcoinj-core', version: '0.15'

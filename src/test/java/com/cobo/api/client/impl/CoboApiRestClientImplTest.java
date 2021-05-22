@@ -5,6 +5,7 @@ import com.cobo.api.client.CoboApiRestClient;
 import com.cobo.api.client.domain.*;
 import junit.framework.TestCase;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,7 +98,7 @@ public class CoboApiRestClientImplTest extends TestCase {
         printDoc("Batch get internal address info","ApiResponse<List<InternalAddressInfo>> res = client.getInternalAddressInfoBatch(\"ETH\", \"0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a,0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a\");",res.getResult());
     }
 
-    public void testGetTransaction() {
+    public void testGetTransactionById() {
         ApiResponse<Transaction> res = client.getTransactionById("20210422193807000343569000002370");
         assertTrue(res.isSuccess());
         printDoc("Get transaction Details", "ApiResponse<Transaction> res = client.getTransactionById(\"20210422193807000343569000002370\");", res.getResult());
@@ -163,20 +164,20 @@ public class CoboApiRestClientImplTest extends TestCase {
         }
     }
 
-    public void testGetTransactionById() {
-        ApiResponse<String> res = client.withdraw("XTN",
-                "api_request20210520",
-                "mumMe9wWeLb26oGKf334CKiRYiWMpmKpUp",
-                "0.00000547", "", null,
-                null);
-        System.out.println(res.toString());
-    }
+//    public void testGetTransactionById() {
+//        ApiResponse<String> res = client.withdraw("XTN",
+//                "api_request20210520",
+//                "mumMe9wWeLb26oGKf334CKiRYiWMpmKpUp",
+//                new BigInteger("547"), "", null,
+//                null);
+//        System.out.println(res.toString());
+//    }
 
     public void testWithdraw() {
         ApiResponse<String> res = client.withdraw("TETH",
                 "api_request_id_11111",
                 "0xb744adc8d75e115eec8e582eb5e8d60eb0972037",
-                "1", "cobo", null, null);
+                new BigInteger("1"), "cobo", null, null);
 
         System.out.println(res);
         printDoc("Submit Withdraw Request","ApiResponse<String> res = client.withdraw(\"TETH\",\n" +
@@ -226,14 +227,14 @@ public class CoboApiRestClientImplTest extends TestCase {
     }
 
     public void testStake() {
-        ApiResponse<Void> res = client.stake("159145", "1000000");
+        ApiResponse<Void> res = client.stake("159145", new BigInteger("1000000"));
         System.out.println(res.toString());
 
     }
 
     public void testUnstake() {
-        ApiResponse<Void> res = client.unstake("159145", "1000000");
-        //assertTrue(res.isSuccess());
+        ApiResponse<Void> res = client.unstake("159145", new BigInteger("1000000"));
+        assertTrue(res.isSuccess());
         System.out.println(res.toString());
     }
 }

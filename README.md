@@ -2,6 +2,7 @@
 
 cobo-java-api is a lightweight Java library for interacting with the [Cobo Custody API](https://doc.custody.cobo.com/?#cobo-custody-waas-api), providing complete API coverage, and supporting synchronous and asynchronous requests.
 
+
 * [Installation](#installation)
 * [Test](#test)
 * [Examples](#examples)
@@ -46,9 +47,11 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
   * [Error Code](#error-code)
      * [Http Error](#http-error)
      * [Cobo Error](#cobo-error)
-  * [Appendix](#appendix)
+* [Appendix](#appendix)
+  * [FAQ](#faq)
      * [What do coin, display_code, and description separately mean in the interface?](#what-do-coin-display_code-and-description-separately-mean-in-the-interface)
      * [What do amount and abs_amount mean in the interface?](#what-do-amount-and-abs_amount-mean-in-the-interface)
+
 
 ## Installation
 
@@ -489,13 +492,15 @@ Cobo servers will return the following error data when encountering an error:
 |12202|	invalid staking status|
 
 
-### Appendix
+## Appendix
+
+### FAQ
 
 #### What do coin, display_code, and description separately mean in the interface?
-coin is Cobo’s internal coin code, which uniquely identifies each coin, while display_code is the ticker symbol of a coin (not unique, changeable, for reference only ). description indicates the full name of a coin (not unique, changeable, for reference only ).For example: Tron was an ERC-20 token before launching its own mainnet and token. The ERC-20 and Tron mainnet tokens would share the same display_code and description, but have different coin values.
+coin is Cobo's internal coin code, which uniquely identifies each coin, while display_code is the ticker symbol of a coin (not unique, changeable, for reference only ). description indicates the full name of a coin (not unique, changeable, for reference only ).For example: Tron was an ERC-20 token before launching its own mainnet and token. The ERC-20 and Tron mainnet tokens would share the same display_code and description, but have different coin values.
 
 #### What do amount and abs_amount mean in the interface?
-In the cryptocurrency world, each coin has a smallest unit. For example, Bitcoin’s smallest unit is Satoshi; 1 BTC = 100,000,000 Satoshi. Cobo expresses amounts in terms of the smallest unit of the coin. This is to avoid problems caused by the misuse of floating numbers. Therefore, when transferring 1 BTC, the amount in the transaction is 100,000,000. In other words, abs_amount is used to indicate the same thing in real numbers. Clients may configure according to their own preferences. The conversion relation between them is: **abs_amount = amount / pow(10, decimal)**
+In the cryptocurrency world, each coin has a smallest unit. For example, Bitcoin's smallest unit is Satoshi; 1 BTC = 100,000,000 Satoshi. Cobo expresses amounts in terms of the smallest unit of the coin. This is to avoid problems caused by the misuse of floating numbers. Therefore, when transferring 1 BTC, the amount in the transaction is 100,000,000. In other words, abs_amount is used to indicate the same thing in real numbers. Clients may configure according to their own preferences. The conversion relation between them is: **abs_amount = amount / pow(10, decimal)**
 
 
 

@@ -2,11 +2,21 @@ package com.cobo.api.client;
 
 import com.cobo.api.client.domain.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public interface CoboApiRestClient {
+    /***
+     * Check account details
+     * @return account details
+     */
     ApiResponse<OrgInfo> getOrgInfo();
 
+    /***
+     * get Coin details
+     * @param coin coin code
+     * @return
+     */
     ApiResponse<CoinInfo> getCoinInfo(String coin);
 
     ApiResponse<Address> newAddress(String coin, boolean native_segwit);
@@ -46,7 +56,7 @@ public interface CoboApiRestClient {
                                                          String minId, int limit, long beginTime,
                                                          long endTime, String includeFinancial);
 
-    ApiResponse<String> withdraw(String coin, String request_id, String address, String amount, String memo,
+    ApiResponse<String> withdraw(String coin, String request_id, String address, BigInteger amount, String memo,
                                  String force_external, String force_internal);
 
     ApiResponse<Transaction> queryWithdrawInfo(String requestId);
@@ -61,8 +71,10 @@ public interface CoboApiRestClient {
 
     ApiResponse<List<StakingHistory>> getStakingHistory(String coin, String type, String maxId, String limit, String productId);
 
-    ApiResponse<Void> stake(String productId, String amount);
+    ApiResponse<Void> stake(String productId, BigInteger amount);
 
-    ApiResponse<Void> unstake(String productId, String amount);
+    ApiResponse<Void> unstake(String productId, BigInteger amount);
+
+
 
 }

@@ -4,6 +4,7 @@ import com.cobo.api.client.ApiSigner;
 import com.cobo.api.client.CoboApiRestClient;
 import com.cobo.api.client.domain.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import static com.cobo.api.client.impl.CoboApiServiceGenerator.createService;
@@ -110,8 +111,8 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
-    public ApiResponse<String> withdraw(String coin, String request_id, String address, String amount, String memo, String force_external, String force_internal) {
-        return executeSync(coboApiService.withdraw(coin,request_id,address,amount,memo,force_external,force_internal));
+    public ApiResponse<String> withdraw(String coin, String request_id, String address, BigInteger amount, String memo, String force_external, String force_internal) {
+        return executeSync(coboApiService.withdraw(coin,request_id,address,amount.toString(),memo,force_external,force_internal));
     }
 
     @Override
@@ -145,13 +146,13 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
-    public ApiResponse<Void> stake(String productId, String amount) {
-        return executeSync(coboApiService.stake(productId, amount));
+    public ApiResponse<Void> stake(String productId, BigInteger amount) {
+        return executeSync(coboApiService.stake(productId, amount.toString()));
     }
 
     @Override
-    public ApiResponse<Void> unstake(String productId, String amount) {
-        return executeSync(coboApiService.unstake(productId,amount));
+    public ApiResponse<Void> unstake(String productId, BigInteger amount) {
+        return executeSync(coboApiService.unstake(productId, amount.toString()));
     }
 
     private String intToString(int num) {
