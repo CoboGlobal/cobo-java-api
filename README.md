@@ -1,6 +1,6 @@
 # Cobo Java API
 
-cobo-java-api is a lightweight Java library for interacting with the [Cobo Custody API](https://doc.custody.cobo.com/?#cobo-custody-waas-api), providing complete API coverage, and supporting synchronous and asynchronous requests.
+cobo-java-api is a lightweight Java library for interacting with the [Cobo Custody API](https://doc.custody.cobo.com/?#cobo-custody-waas-api), providing complete API coverage.
 
 
 * [Installation](#installation)
@@ -388,12 +388,29 @@ Withdrawal fee per time: 1 IOST', doc_src='https://support.cobo.com/hc/en-us/art
 
 #### Stake
 ```java
-todo
+ApiResponse<Void> res = client.stake("159165", new BigInteger("1000000"));
 ```
+<details>
+<summary>View Response</summary>
+
+
+```java
+Response{success=true, error_code=0, error_message='null', error_id='null', error_description='null', result=null}
+```
+</details>
+
 #### Unstake
 ```java
-todo
+ApiResponse<Void> res = client.unstake("159165", new BigInteger("1000000"));
 ```
+<details>
+<summary>View Response</summary>
+
+
+```java
+Response{success=true, error_code=0, error_message='null', error_id='null', error_description='null', result=null}
+```
+</details>
 
 #### Get Staking Data
 ```java
@@ -448,60 +465,6 @@ Withdrawal fee per time: 1 IOST', doc_src='https://support.cobo.com/hc/en-us/art
 ### Transaction Notification
 
 ### Withdrawal Confirmation
-
-
-
-### Error Code
-Cobo servers will return the following error data when encountering an error:
-#### Http Error
-|Code|Description|
-|----|----|
-|400|	Bad request|
-|401|	Unauthorized - API key, signature, or timestamp is incorrect|
-|403|	Forbidden - No access allowed|
-|404|	Not Found - Requested resources not found|
-|405|	Method Not Allowed - HTTP methods used not applicable to the requested resources|
-|406|	Not Acceptable - Requested content format is not JSON|
-|429|	Too Many Requests - Requests are limited, please reduce the request frequency|
-|500|	Internal Server Error - Internal server error, please try again later|
-|503|	Service Unavailable - Service unavailable, please try again later|
-
-#### Cobo Error
-|Code|Description|
-|----|----|
-|1000|	Unknown internal error -- Please contact Cobo|
-|1003|	API params is missing or null|
-|12000|	Signature headers missing -- API signature header is missing|
-|12001|	Signature verification failed -- API signature verification fail|
-|12002|	Coin not supported|
-|12003|	Permission denied|
-|12004|	Transaction does not exist|
-|12005|	Signature permission denied -- API key does not have access|
-|12006|	Permission denied|
-|12007|	Insufficient balance|
-|12008|	Coin is suspended temporarily|
-|12009|	Duplicate withdraw request id|
-|12010|	Account has been frozen|
-|12011|	Amount below coin dust|
-|12012|	Invalid address|
-|12013|	Address not in whitelist|
-|12014|	Transaction fee invalid|
-|12015|	Address does not exist|
-|12200|	staking product not exist|
-|12201|	invalid staking amount|
-|12202|	invalid staking status|
-
-
-## Appendix
-
-### FAQ
-
-#### What do coin, display_code, and description separately mean in the interface?
-coin is Cobo's internal coin code, which uniquely identifies each coin, while display_code is the ticker symbol of a coin (not unique, changeable, for reference only ). description indicates the full name of a coin (not unique, changeable, for reference only ).For example: Tron was an ERC-20 token before launching its own mainnet and token. The ERC-20 and Tron mainnet tokens would share the same display_code and description, but have different coin values.
-
-#### What do amount and abs_amount mean in the interface?
-In the cryptocurrency world, each coin has a smallest unit. For example, Bitcoin's smallest unit is Satoshi; 1 BTC = 100,000,000 Satoshi. Cobo expresses amounts in terms of the smallest unit of the coin. This is to avoid problems caused by the misuse of floating numbers. Therefore, when transferring 1 BTC, the amount in the transaction is 100,000,000. In other words, abs_amount is used to indicate the same thing in real numbers. Clients may configure according to their own preferences. The conversion relation between them is: **abs_amount = amount / pow(10, decimal)**
-
 
 
 

@@ -3,6 +3,13 @@ package com.cobo.api.client.impl;
 import com.cobo.api.client.ApiSigner;
 import com.cobo.api.client.CoboApiRestClient;
 import com.cobo.api.client.domain.*;
+import com.cobo.api.client.domain.account.*;
+import com.cobo.api.client.domain.staking.*;
+import com.cobo.api.client.domain.trading.TradingDeposit;
+import com.cobo.api.client.domain.trading.TradingTransfer;
+import com.cobo.api.client.domain.trading.TradingWithdraw;
+import com.cobo.api.client.domain.transaction.Side;
+import com.cobo.api.client.domain.transaction.Transaction;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -153,6 +160,36 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     @Override
     public ApiResponse<Void> unstake(String productId, BigInteger amount) {
         return executeSync(coboApiService.unstake(productId, amount.toString()));
+    }
+
+    @Override
+    public ApiResponse<TradingWithdraw> tradingWithdraw(String exchangeAccountToken, String coin, BigInteger amount, String requestId) {
+        return executeSync(coboApiService.tradingWithdraw(exchangeAccountToken,coin,amount.toString(),requestId));
+    }
+
+    @Override
+    public ApiResponse<TradingWithdraw> getTradingWithdrawInfo(String requestId) {
+        return executeSync(coboApiService.getTradingWithdraw(requestId));
+    }
+
+    @Override
+    public ApiResponse<TradingDeposit> tradingDeposit(String exchangeAccountToken, String coin, BigInteger amount, String requestId) {
+        return executeSync(coboApiService.tradingDeposit(exchangeAccountToken,coin,amount.toString(),requestId));
+    }
+
+    @Override
+    public ApiResponse<TradingDeposit> getTradingDepositInfo(String requestId) {
+        return executeSync(coboApiService.getTradingDeposit(requestId));
+    }
+
+    @Override
+    public ApiResponse<TradingTransfer> tradingTransfer(String fromExchangeAccountToken, String toExchangeAccountToken, String coin, BigInteger amount, String requestId) {
+        return executeSync(coboApiService.tradingTransfer(fromExchangeAccountToken,toExchangeAccountToken,coin,amount.toString(),requestId));
+    }
+
+    @Override
+    public ApiResponse<TradingTransfer> getTradingTransferInfo(String requestId) {
+        return executeSync(coboApiService.getTradingTransfer(requestId));
     }
 
     private String intToString(int num) {

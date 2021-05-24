@@ -1,4 +1,4 @@
-package com.cobo.api.client.domain;
+package com.cobo.api.client.domain.transaction;
 
 public enum Side {
     Deposit("deposit"),

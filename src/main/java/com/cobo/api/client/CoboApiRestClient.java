@@ -1,6 +1,13 @@
 package com.cobo.api.client;
 
 import com.cobo.api.client.domain.*;
+import com.cobo.api.client.domain.account.*;
+import com.cobo.api.client.domain.staking.*;
+import com.cobo.api.client.domain.trading.TradingDeposit;
+import com.cobo.api.client.domain.trading.TradingTransfer;
+import com.cobo.api.client.domain.trading.TradingWithdraw;
+import com.cobo.api.client.domain.transaction.Side;
+import com.cobo.api.client.domain.transaction.Transaction;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -75,6 +82,27 @@ public interface CoboApiRestClient {
 
     ApiResponse<Void> unstake(String productId, BigInteger amount);
 
+    ApiResponse<TradingWithdraw> tradingWithdraw(String exchangeAccountToken,
+                                                 String coin,
+                                                 BigInteger amount,
+                                                 String requestId);
+
+    ApiResponse<TradingWithdraw> getTradingWithdrawInfo(String requestId);
+
+    ApiResponse<TradingDeposit> tradingDeposit(String exchangeAccountToken,
+                                               String coin,
+                                               BigInteger amount,
+                                               String requestId);
+
+    ApiResponse<TradingDeposit> getTradingDepositInfo(String requestId);
+
+    ApiResponse<TradingTransfer> tradingTransfer(String fromExchangeAccountToken,
+                                                 String toExchangeAccountToken,
+                                                 String coin,
+                                                 BigInteger amount,
+                                                 String requestId);
+
+    ApiResponse<TradingTransfer> getTradingTransferInfo(String requestId);
 
 
 }

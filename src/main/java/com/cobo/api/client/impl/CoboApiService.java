@@ -1,6 +1,15 @@
 package com.cobo.api.client.impl;
 
 import com.cobo.api.client.domain.*;
+import com.cobo.api.client.domain.account.*;
+import com.cobo.api.client.domain.staking.StakingData;
+import com.cobo.api.client.domain.staking.StakingHistory;
+import com.cobo.api.client.domain.staking.StakingProduct;
+import com.cobo.api.client.domain.staking.Unstaking;
+import com.cobo.api.client.domain.trading.TradingDeposit;
+import com.cobo.api.client.domain.trading.TradingTransfer;
+import com.cobo.api.client.domain.trading.TradingWithdraw;
+import com.cobo.api.client.domain.transaction.Transaction;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -78,6 +87,7 @@ public interface CoboApiService {
                                                                @Query("address") String address, @Query("max_id") String max_id,
                                                                @Query("min_id") String min_id, @Query("limit") String limit, @Query("begin_time") String beginTime,
                                                                @Query("end_time") String endTime, @Query("include_financial") String include_financial);
+
     @FormUrlEncoded
     @POST("/v1/custody/new_withdraw_request/")
     Call<ApiResponse<String>> withdraw(@Field("coin") String coin,
@@ -96,6 +106,7 @@ public interface CoboApiService {
 
     @GET("/v1/custody/stakings/")
     Call<ApiResponse<List<StakingData>>> getStakings(@Query("coin") String coin, @Query("language") String lang);
+
     @GET("/v1/custody/unstakings/")
     Call<ApiResponse<List<Unstaking>>> getUnstakings(@Query("coin") String coin, @Query("language") String lang);
 
@@ -103,6 +114,7 @@ public interface CoboApiService {
     Call<ApiResponse<List<StakingHistory>>> getStakingHistory(@Query("coin") String coin, @Query("type") String type,
                                                               @Query("max_id") String maxId, @Query("limit") String limit,
                                                               @Query("product_id") String productId);
+
     @FormUrlEncoded
     @POST("/v1/custody/staking_stake/")
     Call<ApiResponse<Void>> stake(@Field("product_id") String productId, @Field("amount") String amount);
@@ -110,5 +122,36 @@ public interface CoboApiService {
     @FormUrlEncoded
     @POST("/v1/custody/staking_unstake/")
     Call<ApiResponse<Void>> unstake(@Field("product_id") String productId, @Field("amount") String amount);
+
+    @FormUrlEncoded
+    @POST("/v1/custody/trading_withdraw/")
+    Call<ApiResponse<TradingWithdraw>> tradingWithdraw(@Field("exchange_account_token") String exchangeAccountToken,
+                                                       @Field("coin") String coin,
+                                                       @Field("account") String account,
+                                                       @Field("request_id") String requeustId);
+
+    @GET("/v1/custody/trading_withdraw_info/")
+    Call<ApiResponse<TradingWithdraw>> getTradingWithdraw(@Query("request_id") String requestId);
+
+    @FormUrlEncoded
+    @POST("/v1/custody/trading_deposit/")
+    Call<ApiResponse<TradingDeposit>> tradingDeposit(@Field("exchange_account_token") String exchangeAccountToken,
+                                                     @Field("coin") String coin,
+                                                     @Field("account") String account,
+                                                     @Field("request_id") String requestId);
+
+    @GET("/v1/custody/trading_deposit_info/")
+    Call<ApiResponse<TradingDeposit>> getTradingDeposit(@Query("request_id") String requestId);
+
+    @FormUrlEncoded
+    @POST("/v1/custody/trading_transfer/")
+    Call<ApiResponse<TradingTransfer>> tradingTransfer(@Field("from_exchange_account_token") String fromExchangeAccountToken,
+                                                       @Field("to_exchange_account_token") String toExchangeAccountToken,
+                                                       @Field("coin") String coin,
+                                                       @Field("account") String account,
+                                                       @Field("request_id") String requestId);
+
+    @GET("/v1/custody/trading_transfer_info/")
+    Call<ApiResponse<TradingTransfer>> getTradingTransfer(@Query("request_id") String requestId);
 
 }

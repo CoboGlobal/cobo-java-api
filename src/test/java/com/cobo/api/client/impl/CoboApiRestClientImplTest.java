@@ -3,6 +3,10 @@ package com.cobo.api.client.impl;
 import com.cobo.api.client.CoboApiClientFactory;
 import com.cobo.api.client.CoboApiRestClient;
 import com.cobo.api.client.domain.*;
+import com.cobo.api.client.domain.account.*;
+import com.cobo.api.client.domain.staking.*;
+import com.cobo.api.client.domain.transaction.Side;
+import com.cobo.api.client.domain.transaction.Transaction;
 import junit.framework.TestCase;
 
 import java.math.BigInteger;
@@ -164,15 +168,6 @@ public class CoboApiRestClientImplTest extends TestCase {
         }
     }
 
-//    public void testGetTransactionById() {
-//        ApiResponse<String> res = client.withdraw("XTN",
-//                "api_request20210520",
-//                "mumMe9wWeLb26oGKf334CKiRYiWMpmKpUp",
-//                new BigInteger("547"), "", null,
-//                null);
-//        System.out.println(res.toString());
-//    }
-
     public void testWithdraw() {
         ApiResponse<String> res = client.withdraw("TETH",
                 "api_request_id_11111",
@@ -216,25 +211,45 @@ public class CoboApiRestClientImplTest extends TestCase {
         ApiResponse<List<Unstaking>> res = client.getUnstakings(null, Lang.ENGLISG);
         assertTrue(res.isSuccess());
         System.out.println(res.getResult());
-        printDoc("6. Get Unstaking Data","ApiResponse<List<Unstaking>> res = client.getUnstakings(null, Lang.ENGLISG);", res.getResult());
+        printDoc("Get Unstaking Data","ApiResponse<List<Unstaking>> res = client.getUnstakings(null, Lang.ENGLISG);", res.getResult());
     }
 
     public void testGetStakingHistory() {
         ApiResponse<List<StakingHistory>> res = client.getStakingHistory(null, null, null, null, null);
         assertTrue(res.isSuccess());
-        printDoc("7. Get All Staking History",
+        printDoc("Get All Staking History",
                 "ApiResponse<List<StakingHistory>> res = client.getStakingHistory(null, null, null, null, null);", res.getResult());
     }
 
     public void testStake() {
-        ApiResponse<Void> res = client.stake("159145", new BigInteger("1000000"));
+        ApiResponse<Void> res = client.stake("159165", new BigInteger("1000000"));
         System.out.println(res.toString());
+        printDoc("Stake","ApiResponse<Void> res = client.stake(\"159165\", new BigInteger(\"1000000\"));",res);
 
     }
 
     public void testUnstake() {
-        ApiResponse<Void> res = client.unstake("159145", new BigInteger("1000000"));
+        ApiResponse<Void> res = client.unstake("159165", new BigInteger("1000000"));
         assertTrue(res.isSuccess());
-        System.out.println(res.toString());
+        printDoc("Unstake","ApiResponse<Void> res = client.unstake(\"159165\", new BigInteger(\"1000000\"));",
+                res);
+    }
+
+    public void testTradingWithdraw() {
+    }
+
+    public void testGetTradingWithdrawInfo() {
+    }
+
+    public void testTradingDeposit() {
+    }
+
+    public void testGetTradingDepositInfo() {
+    }
+
+    public void testTradingTransfer() {
+    }
+
+    public void testGetTradingTransferInfo() {
     }
 }

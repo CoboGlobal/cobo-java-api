@@ -1,4 +1,4 @@
-package com.cobo.api.client.domain;
+package com.cobo.api.client.domain.account;
 
 public class Addresses {
     private String coin;

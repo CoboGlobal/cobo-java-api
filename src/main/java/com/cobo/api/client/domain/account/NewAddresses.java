@@ -1,4 +1,4 @@
-package com.cobo.api.client.domain;
+package com.cobo.api.client.domain.account;
 
 import java.util.List;
 
