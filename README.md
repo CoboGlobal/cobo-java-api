@@ -5,7 +5,6 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
 
 * [Installation](#installation)
 * [Test](#test)
-* [Examples](#examples)
 * [Usage](#usage)
   * [Initialize](#initialize)
      * [Initialize RestClient](#initialize-restclient)
@@ -65,9 +64,6 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
 ```
  ./gradlew test
 ```
-
-## Examples
-TODO
 
 ## Usage
 
