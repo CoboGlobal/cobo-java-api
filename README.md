@@ -463,8 +463,15 @@ Withdrawal fee per time: 1 IOST', doc_src='https://support.cobo.com/hc/en-us/art
 ### Trading
 
 ### Transaction Notification
+Doc: https://doc.custody.cobo.com/en.html#transaction-notification
+
+Demo: src/main/com/cobo/api/client/callback/Demo.java
+
 
 ### Withdrawal Confirmation
+Doc: https://doc.custody.cobo.com/en.html#withdrawal-confirmation
+
+Demo: src/main/com/cobo/api/client/callback/Demo.java
 
 
 

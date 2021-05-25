@@ -66,7 +66,7 @@ public class AuthenticationInterceptor implements Interceptor {
         return sb.toString();
     }
 
-    private static boolean verifyResponse(String content, String sig, String pubkey) {
+    public static boolean verifyResponse(String content, String sig, String pubkey) {
         ECKey key = ECKey.fromPublicOnly(Hex.decode(pubkey));
         try {
             return key.verify(Sha256Hash.hashTwice(content.getBytes()), Hex.decode(sig));
