@@ -20,8 +20,8 @@ import static com.cobo.api.client.impl.CoboApiServiceGenerator.executeSync;
 public class CoboApiRestClientImpl implements CoboApiRestClient {
     private final CoboApiService coboApiService;
 
-    public CoboApiRestClientImpl(String apiKey, ApiSigner signer, String coboPub) {
-        coboApiService = createService(CoboApiService.class, apiKey, signer, coboPub);
+    public CoboApiRestClientImpl(String apiKey, ApiSigner signer, String coboPub, String host) {
+        coboApiService = createService(CoboApiService.class, apiKey, signer, coboPub, host);
     }
 
     @Override

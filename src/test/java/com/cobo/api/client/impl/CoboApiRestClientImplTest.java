@@ -2,6 +2,8 @@ package com.cobo.api.client.impl;
 
 import com.cobo.api.client.CoboApiClientFactory;
 import com.cobo.api.client.CoboApiRestClient;
+import com.cobo.api.client.config.CoboApiConfig;
+import com.cobo.api.client.config.Env;
 import com.cobo.api.client.domain.*;
 import com.cobo.api.client.domain.account.*;
 import com.cobo.api.client.domain.staking.*;
@@ -25,7 +27,8 @@ public class CoboApiRestClientImplTest extends TestCase {
         client = CoboApiClientFactory.newInstance(
                 apiKey,
                 new LocalSigner(apiSecret),
-                coboPub).newRestClient();
+                coboPub,
+                CoboApiConfig.getApiBaseUrl(Env.SANDBOX)).newRestClient();
     }
 
     public void tearDown() throws Exception {
@@ -117,7 +120,6 @@ public class CoboApiRestClientImplTest extends TestCase {
     public void testGetTransactionHistory() {
         ApiResponse<List<Transaction>> res = client.getTransactionHistory("ETH", Side.Any, null, null, null, 50, 0, System.currentTimeMillis(), null);
         assertTrue(res.isSuccess());
-        res.getResult().forEach(t-> System.out.println(t.getCoin()));
     }
     void printDoc(String desc, String code, Object o) {
         System.out.println(String.format("#### %s", desc));

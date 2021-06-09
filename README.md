@@ -73,7 +73,7 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
 These can be instantiated through the corresponding factory method of `CoboApiClientFactory`
 
 ```java
-CoboApiClientFactory factory = CoboApiClientFactory.newInstance("API-KEY", ApiSigner，"COBO-PUB");
+CoboApiClientFactory factory = CoboApiClientFactory.newInstance("API-KEY", ApiSigner，"COBO-PUB", "hostUrl");
 CoboApiClientFactory client = factory.newRestClient();
 ```
 

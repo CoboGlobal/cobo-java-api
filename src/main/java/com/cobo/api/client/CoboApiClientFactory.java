@@ -7,18 +7,20 @@ public class CoboApiClientFactory {
     private final String apiKey;
     private final ApiSigner signer;
     private final String coboPub;
+    private final String host;
 
-    private CoboApiClientFactory(String apiKey, ApiSigner signer, String coboPub) {
+    private CoboApiClientFactory(String apiKey, ApiSigner signer, String coboPub, String host) {
         this.apiKey = apiKey;
         this.signer = signer;
         this.coboPub = coboPub;
+        this.host = host;
     }
 
-    public static CoboApiClientFactory newInstance(String apiKey, ApiSigner signer, String coboPub) {
-        return new CoboApiClientFactory(apiKey, signer, coboPub);
+    public static CoboApiClientFactory newInstance(String apiKey, ApiSigner signer, String coboPub, String host) {
+        return new CoboApiClientFactory(apiKey, signer, coboPub, host);
     }
 
     public CoboApiRestClient newRestClient() {
-        return new CoboApiRestClientImpl(apiKey, signer, coboPub);
+        return new CoboApiRestClientImpl(apiKey, signer, coboPub, host);
     }
 }

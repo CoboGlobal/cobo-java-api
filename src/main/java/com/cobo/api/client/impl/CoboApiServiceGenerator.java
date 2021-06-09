@@ -44,12 +44,12 @@ public class CoboApiServiceGenerator {
     }
 
     public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, null, null, null);
+        return createService(serviceClass, null, null, null, null);
     }
 
-    public static <S> S createService(Class<S> serviceClass, String apiKey, ApiSigner signer, String coboPub) {
+    public static <S> S createService(Class<S> serviceClass, String apiKey, ApiSigner signer, String coboPub, String host) {
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
-                .baseUrl(CoboApiConfig.getApiBaseUrl())
+                .baseUrl(host)
                 .addConverterFactory(converterFactory);
 
         if (StringUtils.isEmpty(apiKey) || signer == null || StringUtils.isEmpty(coboPub)) {
