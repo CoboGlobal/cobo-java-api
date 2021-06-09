@@ -13,7 +13,7 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
      * [Check Account Details](#check-account-details)
      * [Get Coin Details](#get-coin-details)
      * [Get New Deposit Address](#get-new-deposit-address)
-     * [Batch Aet New Deposit Address](#batch-aet-new-deposit-address)
+     * [Batch New Deposit Address](#batch-new-deposit-address)
      * [Verify Deposit Address](#verify-deposit-address)
      * [Batch Verify Deposit Address](#batch-verify-deposit-address)
      * [Verify Valid Address](#verify-valid-address)
@@ -70,7 +70,7 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
 ### Initialize
 
 #### Initialize RestClient
-These can be instantiated through the corresponding factory method of [`CoboApiClientFactory`](https://github.com/xxx)
+These can be instantiated through the corresponding factory method of `CoboApiClientFactory`
 
 ```java
 CoboApiClientFactory factory = CoboApiClientFactory.newInstance("API-KEY", ApiSigner，"COBO-PUB");
@@ -136,7 +136,7 @@ Address{coin='ETH', address='0x6a60f0d7ef6e5d2a4a31d65c8b73ac19a020bb16'}
 ```
 </details>
 
-#### Batch Aet New Deposit Address
+#### Batch New Deposit Address
 ```java
 ApiResponse<Address> res = client.newAddress("ETH", false);
 ```
