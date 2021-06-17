@@ -1,25 +1,31 @@
 package com.cobo.api.client.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class ApiResponse<T> {
     T result;
     private boolean success;
-    private int error_code;
-    private String error_message;
-    private String error_id;
-    private String error_description;
+    @JsonProperty(value = "error_code")
+    private int errorCode;
+    @JsonProperty(value = "error_message")
+    private String errorMessage;
+    @JsonProperty(value = "error_id")
+    private String errorId;
+    @JsonProperty(value = "error_description")
+    private String errorDescription;
 
     public ApiResponse() {
     }
 
-    public ApiResponse(T result, boolean success, int error_code,
-                       String error_message, String error_id,
-                       String error_description) {
+    public ApiResponse(T result, boolean success, int errorCode,
+                       String errorMessage, String errorId,
+                       String errorDescription) {
         this.result = result;
         this.success = success;
-        this.error_code = error_code;
-        this.error_message = error_message;
-        this.error_id = error_id;
-        this.error_description = error_description;
+        this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
+        this.errorId = errorId;
+        this.errorDescription = errorDescription;
     }
 
     public boolean isSuccess() {
@@ -30,30 +36,30 @@ public class ApiResponse<T> {
         return result;
     }
 
-    public int getError_code() {
-        return error_code;
+    public int getErrorCode() {
+        return errorCode;
     }
 
-    public String getError_message() {
-        return error_message;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
-    public String getError_id() {
-        return error_id;
+    public String getErrorId() {
+        return errorId;
     }
 
-    public String getError_description() {
-        return error_description;
+    public String getErrorDescription() {
+        return errorDescription;
     }
 
     @Override
     public String toString() {
         return "Response{" +
                 "success=" + success +
-                ", error_code=" + error_code +
-                ", error_message='" + error_message + '\'' +
-                ", error_id='" + error_id + '\'' +
-                ", error_description='" + error_description + '\'' +
+                ", errorCode=" + errorCode +
+                ", errorMessage='" + errorMessage + '\'' +
+                ", errorId='" + errorId + '\'' +
+                ", errorDescription='" + errorDescription + '\'' +
                 ", result=" + result +
                 '}';
     }

@@ -1,20 +1,32 @@
 package com.cobo.api.client.domain.account;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CoinInfo {
     private String coin;
-    private String display_code;
+    @JsonProperty(value = "display_code")
+    private String displayCode;
     private String description;
     private int decimal;
-    private boolean can_deposit;
-    private boolean can_withdraw;
-    private boolean require_memo;
+    @JsonProperty(value = "can_deposit")
+    private boolean canDeposit;
+    @JsonProperty(value = "can_withdraw")
+    private boolean canWithdraw;
+    @JsonProperty(value = "require_memo")
+    private boolean requireMemo;
     private String balance;
-    private String abs_balance;
-    private String fee_coin;
-    private String abs_estimate_fee;
-    private long confirming_threshold;
-    private long dust_threshold;
-    private String token_address;
+    @JsonProperty(value = "abs_balance")
+    private String absBalance;
+    @JsonProperty(value = "fee_coin")
+    private String feeCoin;
+    @JsonProperty(value = "abs_estimate_fee")
+    private String absEstimateFee;
+    @JsonProperty(value = "confirming_threshold")
+    private long confirmingThreshold;
+    @JsonProperty(value = "dust_threshold")
+    private long dustThreshold;
+    @JsonProperty(value = "token_address")
+    private String tokenAddress;
 
     public String getCoin() {
         return coin;
@@ -24,12 +36,12 @@ public class CoinInfo {
         this.coin = coin;
     }
 
-    public String getDisplay_code() {
-        return display_code;
+    public String getDisplayCode() {
+        return displayCode;
     }
 
-    public void setDisplay_code(String display_code) {
-        this.display_code = display_code;
+    public void setDisplayCode(String displayCode) {
+        this.displayCode = displayCode;
     }
 
     public String getDescription() {
@@ -48,28 +60,28 @@ public class CoinInfo {
         this.decimal = decimal;
     }
 
-    public boolean isCan_deposit() {
-        return can_deposit;
+    public boolean isCanDeposit() {
+        return canDeposit;
     }
 
-    public void setCan_deposit(boolean can_deposit) {
-        this.can_deposit = can_deposit;
+    public void setCanDeposit(boolean canDeposit) {
+        this.canDeposit = canDeposit;
     }
 
-    public boolean isCan_withdraw() {
-        return can_withdraw;
+    public boolean isCanWithdraw() {
+        return canWithdraw;
     }
 
-    public void setCan_withdraw(boolean can_withdraw) {
-        this.can_withdraw = can_withdraw;
+    public void setCanWithdraw(boolean canWithdraw) {
+        this.canWithdraw = canWithdraw;
     }
 
-    public boolean isRequire_memo() {
-        return require_memo;
+    public boolean isRequireMemo() {
+        return requireMemo;
     }
 
-    public void setRequire_memo(boolean require_memo) {
-        this.require_memo = require_memo;
+    public void setRequireMemo(boolean requireMemo) {
+        this.requireMemo = requireMemo;
     }
 
     public String getBalance() {
@@ -80,71 +92,71 @@ public class CoinInfo {
         this.balance = balance;
     }
 
-    public String getAbs_balance() {
-        return abs_balance;
+    public String getAbsBalance() {
+        return absBalance;
     }
 
-    public void setAbs_balance(String abs_balance) {
-        this.abs_balance = abs_balance;
+    public void setAbsBalance(String absBalance) {
+        this.absBalance = absBalance;
     }
 
-    public String getFee_coin() {
-        return fee_coin;
+    public String getFeeCoin() {
+        return feeCoin;
     }
 
-    public void setFee_coin(String fee_coin) {
-        this.fee_coin = fee_coin;
+    public void setFeeCoin(String feeCoin) {
+        this.feeCoin = feeCoin;
     }
 
-    public String getAbs_estimate_fee() {
-        return abs_estimate_fee;
+    public String getAbsEstimateFee() {
+        return absEstimateFee;
     }
 
-    public void setAbs_estimate_fee(String abs_estimate_fee) {
-        this.abs_estimate_fee = abs_estimate_fee;
+    public void setAbsEstimateFee(String absEstimateFee) {
+        this.absEstimateFee = absEstimateFee;
     }
 
-    public long getConfirming_threshold() {
-        return confirming_threshold;
+    public long getConfirmingThreshold() {
+        return confirmingThreshold;
     }
 
-    public void setConfirming_threshold(long confirming_threshold) {
-        this.confirming_threshold = confirming_threshold;
+    public void setConfirmingThreshold(long confirmingThreshold) {
+        this.confirmingThreshold = confirmingThreshold;
     }
 
-    public long getDust_threshold() {
-        return dust_threshold;
+    public long getDustThreshold() {
+        return dustThreshold;
     }
 
-    public void setDust_threshold(int dust_threshold) {
-        this.dust_threshold = dust_threshold;
+    public void setDustThreshold(int dustThreshold) {
+        this.dustThreshold = dustThreshold;
     }
 
-    public String getToken_address() {
-        return token_address;
+    public String getTokenAddress() {
+        return tokenAddress;
     }
 
-    public void setToken_address(String token_address) {
-        this.token_address = token_address;
+    public void setTokenAddress(String tokenAddress) {
+        this.tokenAddress = tokenAddress;
     }
 
     @Override
     public String toString() {
         return "CoinInfo{" +
                 "coin='" + coin + '\'' +
-                ", display_code='" + display_code + '\'' +
+                ", displayCode='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
                 ", decimal=" + decimal +
-                ", can_deposit=" + can_deposit +
-                ", can_withdraw=" + can_withdraw +
-                ", require_memo=" + require_memo +
+                ", canDeposit=" + canDeposit +
+                ", canWithdraw=" + canWithdraw +
+                ", requireMemo=" + requireMemo +
                 ", balance='" + balance + '\'' +
-                ", abs_balance='" + abs_balance + '\'' +
-                ", fee_coin='" + fee_coin + '\'' +
-                ", abs_estimate_fee='" + abs_estimate_fee + '\'' +
-                ", confirming_threshold=" + confirming_threshold +
-                ", dust_threshold=" + dust_threshold +
-                ", token_address='" + token_address + '\'' +
+                ", absBalance='" + absBalance + '\'' +
+                ", feeCoin='" + feeCoin + '\'' +
+                ", absEstimateFee='" + absEstimateFee + '\'' +
+                ", confirmingThreshold=" + confirmingThreshold +
+                ", dustThreshold=" + dustThreshold +
+                ", tokenAddress='" + tokenAddress + '\'' +
                 '}';
     }
 }

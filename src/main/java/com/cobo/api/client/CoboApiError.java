@@ -1,24 +1,28 @@
 package com.cobo.api.client;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CoboApiError {
 
 
     private boolean success;
-    private int error_code;
-    private String error_message;
-    private String error_id;
+    @JsonProperty(value = "error_code")
+    private int errorCode;
+    @JsonProperty(value = "error_message")
+    private String errorMessage;
+    @JsonProperty(value = "error_id")
+    private String errorId;
 
     public CoboApiError() {
     }
 
-    public CoboApiError(boolean success, int error_code, String error_message, String error_id) {
+    public CoboApiError(boolean success, int error_code, String errorMessage, String errorId) {
         this.success = success;
-        this.error_code = error_code;
-        this.error_message = error_message;
-        this.error_id = error_id;
+        this.errorCode = error_code;
+        this.errorMessage = errorMessage;
+        this.errorId = errorId;
     }
 
     public boolean isSuccess() {
@@ -29,37 +33,37 @@ public class CoboApiError {
         this.success = success;
     }
 
-    public int getError_code() {
-        return error_code;
+    public int getErrorCode() {
+        return errorCode;
     }
 
-    public void setError_code(int error_code) {
-        this.error_code = error_code;
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
     }
 
-    public String getError_message() {
-        return error_message;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
-    public void setError_message(String error_message) {
-        this.error_message = error_message;
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
-    public String getError_id() {
-        return error_id;
+    public String getErrorId() {
+        return errorId;
     }
 
-    public void setError_id(String error_id) {
-        this.error_id = error_id;
+    public void setErrorId(String errorId) {
+        this.errorId = errorId;
     }
 
     @Override
     public String toString() {
         return "CoboApiError{" +
                 "success=" + success +
-                ", error_code=" + error_code +
-                ", error_message='" + error_message + '\'' +
-                ", error_id='" + error_id + '\'' +
+                ", errorCode=" + errorCode +
+                ", errorMessage='" + errorMessage + '\'' +
+                ", errorId='" + errorId + '\'' +
                 '}';
     }
 }

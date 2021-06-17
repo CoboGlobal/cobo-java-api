@@ -1,12 +1,17 @@
 package com.cobo.api.client.domain.staking;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Unstaking {
 
     private String coin;
-    private int coin_decimal;
+    @JsonProperty(value = "coin_decimal")
+    private int coinDecimal;
     private long amount;
-    private long unstake_time;
-    private long liquidate_time;
+    @JsonProperty(value = "unstake_time")
+    private long unstakeTime;
+    @JsonProperty(value = "liquidate_time")
+    private long liquidateTime;
 
     public String getCoin() {
         return coin;
@@ -16,12 +21,12 @@ public class Unstaking {
         this.coin = coin;
     }
 
-    public int getCoin_decimal() {
-        return coin_decimal;
+    public int getCoinDecimal() {
+        return coinDecimal;
     }
 
-    public void setCoin_decimal(int coin_decimal) {
-        this.coin_decimal = coin_decimal;
+    public void setCoinDecimal(int coinDecimal) {
+        this.coinDecimal = coinDecimal;
     }
 
     public long getAmount() {
@@ -32,30 +37,30 @@ public class Unstaking {
         this.amount = amount;
     }
 
-    public long getUnstake_time() {
-        return unstake_time;
+    public long getUnstakeTime() {
+        return unstakeTime;
     }
 
-    public void setUnstake_time(long unstake_time) {
-        this.unstake_time = unstake_time;
+    public void setUnstakeTime(long unstakeTime) {
+        this.unstakeTime = unstakeTime;
     }
 
-    public long getLiquidate_time() {
-        return liquidate_time;
+    public long getLiquidateTime() {
+        return liquidateTime;
     }
 
-    public void setLiquidate_time(long liquidate_time) {
-        this.liquidate_time = liquidate_time;
+    public void setLiquidateTime(long liquidateTime) {
+        this.liquidateTime = liquidateTime;
     }
 
     @Override
     public String toString() {
         return "Unstaking{" +
                 "coin='" + coin + '\'' +
-                ", coin_decimal=" + coin_decimal +
+                ", coinDecimal=" + coinDecimal +
                 ", amount=" + amount +
-                ", unstake_time=" + unstake_time +
-                ", liquidate_time=" + liquidate_time +
+                ", unstakeTime=" + unstakeTime +
+                ", liquidateTime=" + liquidateTime +
                 '}';
     }
 }

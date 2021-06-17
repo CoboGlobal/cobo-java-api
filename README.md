@@ -7,6 +7,7 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
 * [Test](#test)
 * [Usage](#usage)
   * [Initialize](#initialize)
+     * [Generate Key Pair](#generate-key-pair)
      * [Initialize RestClient](#initialize-restclient)
      * [Initialize ApiSigner](#initialize-apisigner)
   * [Account](#account)
@@ -43,14 +44,6 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
   * [Trading](#trading)
   * [Transaction Notification](#transaction-notification)
   * [Withdrawal Confirmation](#withdrawal-confirmation)
-  * [Error Code](#error-code)
-     * [Http Error](#http-error)
-     * [Cobo Error](#cobo-error)
-* [Appendix](#appendix)
-  * [FAQ](#faq)
-     * [What do coin, display_code, and description separately mean in the interface?](#what-do-coin-display_code-and-description-separately-mean-in-the-interface)
-     * [What do amount and abs_amount mean in the interface?](#what-do-amount-and-abs_amount-mean-in-the-interface)
-
 
 ## Installation
 
@@ -69,6 +62,14 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
 
 ### Initialize
 
+#### Generate Key Pair
+```java
+String[] key = LocalSigner.generateKeyPair();
+Stirng secretKey = key[0];
+Stirng apiKey = key[1];
+```
+Please refer to the link [link](https://doc.custody.cobo.com/en.html#api-authentication) for how to use apiKey
+
 #### Initialize RestClient
 These can be instantiated through the corresponding factory method of `CoboApiClientFactory`
 
@@ -80,7 +81,7 @@ CoboApiClientFactory client = factory.newRestClient();
 #### Initialize ApiSigner
 
 
-`ApiSigner` can be instantiated through `new LocalSigner("your private key" )`
+`ApiSigner` can be instantiated through `new LocalSigner("secretkey" )`
 
 In some cases, your private key cannot be exported, for example, your private key is in aws kms, you should pass in your own implementation by implements `ApiSigner` interface:
 

@@ -35,8 +35,8 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
-    public ApiResponse<Address> newAddress(String coin, boolean native_segwit) {
-        return native_segwit ?
+    public ApiResponse<Address> newAddress(String coin, boolean nativeSegwit) {
+        return nativeSegwit ?
                 executeSync(coboApiService.newAddress(coin, true))
                 :
                 executeSync(coboApiService.newAddress(coin));
@@ -44,8 +44,8 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
-    public ApiResponse<NewAddresses> newAddresses(String coin, int count, boolean native_segwit) {
-        return native_segwit ?
+    public ApiResponse<NewAddresses> newAddresses(String coin, int count, boolean nativeSegwit) {
+        return nativeSegwit ?
                 executeSync(coboApiService.newAddresses(coin, count, true))
                 :
                 executeSync(coboApiService.newAddresses(coin, count));
@@ -103,8 +103,8 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
-    public ApiResponse<List<Transaction>> getPendingTransactions(String coin, Side side, String max_id, String min_id, int limit) {
-        return executeSync(coboApiService.getPendingTransactions(coin, side.getValue(), max_id, min_id, limit == 0 ? "50" : String.valueOf(limit)));
+    public ApiResponse<List<Transaction>> getPendingTransactions(String coin, Side side, String maxId, String minId, int limit) {
+        return executeSync(coboApiService.getPendingTransactions(coin, side.getValue(), maxId, minId, limit == 0 ? "50" : String.valueOf(limit)));
     }
 
     @Override
@@ -118,8 +118,8 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
-    public ApiResponse<String> withdraw(String coin, String request_id, String address, BigInteger amount, String memo, String force_external, String force_internal) {
-        return executeSync(coboApiService.withdraw(coin,request_id,address,amount.toString(),memo,force_external,force_internal));
+    public ApiResponse<String> withdraw(String coin, String requestId, String address, BigInteger amount, String memo, String forceExternal, String forceInternal) {
+        return executeSync(coboApiService.withdraw(coin, requestId,address,amount.toString(),memo, forceExternal, forceInternal));
     }
 
     @Override
@@ -133,8 +133,8 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
-    public ApiResponse<StakingProduct> getStakingProductById(String product_id, Lang lang) {
-        return executeSync(coboApiService.getStakingProductById(product_id, lang.getValue()));
+    public ApiResponse<StakingProduct> getStakingProductById(String productId, Lang lang) {
+        return executeSync(coboApiService.getStakingProductById(productId, lang.getValue()));
     }
 
     @Override

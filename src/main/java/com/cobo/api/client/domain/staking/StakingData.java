@@ -1,22 +1,29 @@
 package com.cobo.api.client.domain.staking;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class StakingData {
 
-    private int staking_id;
+    @JsonProperty(value = "staking_id")
+    private int stakingId;
     private String coin;
-    private int coin_decimal;
+    @JsonProperty(value = "coin_decimal")
+    private int coinDecimal;
     private long amount;
-    private String reward_coin;
-    private int reward_coin_decimal;
-    private int reward_amount;
+    @JsonProperty(value = "reward_coin")
+    private String rewardCoin;
+    @JsonProperty(value = "reward_coin_decimal")
+    private int rewardCoinDecimal;
+    @JsonProperty(value = "reward_amount")
+    private int rewardAmount;
     private StakingProduct product;
 
-    public int getStaking_id() {
-        return staking_id;
+    public int getStakingId() {
+        return stakingId;
     }
 
-    public void setStaking_id(int staking_id) {
-        this.staking_id = staking_id;
+    public void setStakingId(int stakingId) {
+        this.stakingId = stakingId;
     }
 
     public String getCoin() {
@@ -27,12 +34,12 @@ public class StakingData {
         this.coin = coin;
     }
 
-    public int getCoin_decimal() {
-        return coin_decimal;
+    public int getCoinDecimal() {
+        return coinDecimal;
     }
 
-    public void setCoin_decimal(int coin_decimal) {
-        this.coin_decimal = coin_decimal;
+    public void setCoinDecimal(int coinDecimal) {
+        this.coinDecimal = coinDecimal;
     }
 
     public long getAmount() {
@@ -43,28 +50,28 @@ public class StakingData {
         this.amount = amount;
     }
 
-    public String getReward_coin() {
-        return reward_coin;
+    public String getRewardCoin() {
+        return rewardCoin;
     }
 
-    public void setReward_coin(String reward_coin) {
-        this.reward_coin = reward_coin;
+    public void setRewardCoin(String rewardCoin) {
+        this.rewardCoin = rewardCoin;
     }
 
-    public int getReward_coin_decimal() {
-        return reward_coin_decimal;
+    public int getRewardCoinDecimal() {
+        return rewardCoinDecimal;
     }
 
-    public void setReward_coin_decimal(int reward_coin_decimal) {
-        this.reward_coin_decimal = reward_coin_decimal;
+    public void setRewardCoinDecimal(int rewardCoinDecimal) {
+        this.rewardCoinDecimal = rewardCoinDecimal;
     }
 
-    public int getReward_amount() {
-        return reward_amount;
+    public int getRewardAmount() {
+        return rewardAmount;
     }
 
-    public void setReward_amount(int reward_amount) {
-        this.reward_amount = reward_amount;
+    public void setRewardAmount(int rewardAmount) {
+        this.rewardAmount = rewardAmount;
     }
 
     public StakingProduct getProduct() {
@@ -78,13 +85,13 @@ public class StakingData {
     @Override
     public String toString() {
         return "StakingData{" +
-                "staking_id=" + staking_id +
+                "stakingId=" + stakingId +
                 ", coin='" + coin + '\'' +
-                ", coin_decimal=" + coin_decimal +
+                ", coinDecimal=" + coinDecimal +
                 ", amount=" + amount +
-                ", reward_coin='" + reward_coin + '\'' +
-                ", reward_coin_decimal=" + reward_coin_decimal +
-                ", reward_amount=" + reward_amount +
+                ", rewardCoin='" + rewardCoin + '\'' +
+                ", rewardCoinDecimal=" + rewardCoinDecimal +
+                ", rewardAmount=" + rewardAmount +
                 ", product=" + product +
                 '}';
     }

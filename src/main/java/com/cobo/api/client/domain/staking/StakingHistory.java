@@ -1,21 +1,25 @@
 package com.cobo.api.client.domain.staking;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class StakingHistory {
 
-    private String activity_id;
+    @JsonProperty(value = "activity_id")
+    private String activityId;
     private String coin;
     private String amount;
     private String type;
     private long time;
     private StakingProduct product;
-    private String raw_type;
+    @JsonProperty(value = "raw_type")
+    private String rawType;
 
-    public String getActivity_id() {
-        return activity_id;
+    public String getActivityId() {
+        return activityId;
     }
 
-    public void setActivity_id(String activity_id) {
-        this.activity_id = activity_id;
+    public void setActivityId(String activityId) {
+        this.activityId = activityId;
     }
 
     public String getCoin() {
@@ -58,24 +62,24 @@ public class StakingHistory {
         this.product = product;
     }
 
-    public String getRaw_type() {
-        return raw_type;
+    public String getRawType() {
+        return rawType;
     }
 
-    public void setRaw_type(String raw_type) {
-        this.raw_type = raw_type;
+    public void setRawType(String rawType) {
+        this.rawType = rawType;
     }
 
     @Override
     public String toString() {
         return "StakingHistory{" +
-                "activity_id='" + activity_id + '\'' +
+                "activityId='" + activityId + '\'' +
                 ", coin='" + coin + '\'' +
                 ", amount='" + amount + '\'' +
                 ", type='" + type + '\'' +
                 ", time=" + time +
                 ", product=" + product +
-                ", raw_type='" + raw_type + '\'' +
+                ", rawType='" + rawType + '\'' +
                 '}';
     }
 }

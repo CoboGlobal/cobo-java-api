@@ -1,26 +1,38 @@
 package com.cobo.api.client.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class WithdrawConfirmation {
 
     private String id;
     private String coin;
-    private String display_code;
+    @JsonProperty(value = "display_code")
+    private String displayCode;
     private String description;
     private String address;
-    private String source_address;
+    @JsonProperty(value = "source_address")
+    private String sourceAddress;
     private String side;
     private String amount;
     private int decimal;
-    private String abs_amount;
-    private String txid;
-    private int vout_n;
-    private String request_id;
+    @JsonProperty(value = "abs_amount")
+    private String absAmount;
+    @JsonProperty(value = "txid")
+    private String txId;
+    @JsonProperty(value = "vout_n")
+    private int voutN;
+    @JsonProperty(value = "request_id")
+    private String requestId;
     private String status;
-    private long created_time;
-    private long last_time;
+    @JsonProperty(value = "created_time")
+    private long createdTime;
+    @JsonProperty(value = "last_time")
+    private long lastTime;
     private String memo;
-    private int confirming_threshold;
-    private int confirmed_num;
+    @JsonProperty(value = "confirming_threshold")
+    private int confirmingThreshold;
+    @JsonProperty(value = "confirmed_num")
+    private int confirmedNum;
     private String type;
 
     public String getId() {
@@ -39,12 +51,12 @@ public class WithdrawConfirmation {
         this.coin = coin;
     }
 
-    public String getDisplay_code() {
-        return display_code;
+    public String getDisplayCode() {
+        return displayCode;
     }
 
-    public void setDisplay_code(String display_code) {
-        this.display_code = display_code;
+    public void setDisplayCode(String displayCode) {
+        this.displayCode = displayCode;
     }
 
     public String getDescription() {
@@ -63,12 +75,12 @@ public class WithdrawConfirmation {
         this.address = address;
     }
 
-    public String getSource_address() {
-        return source_address;
+    public String getSourceAddress() {
+        return sourceAddress;
     }
 
-    public void setSource_address(String source_address) {
-        this.source_address = source_address;
+    public void setSourceAddress(String sourceAddress) {
+        this.sourceAddress = sourceAddress;
     }
 
     public String getSide() {
@@ -95,36 +107,36 @@ public class WithdrawConfirmation {
         this.decimal = decimal;
     }
 
-    public String getAbs_amount() {
-        return abs_amount;
+    public String getAbsAmount() {
+        return absAmount;
     }
 
-    public void setAbs_amount(String abs_amount) {
-        this.abs_amount = abs_amount;
+    public void setAbsAmount(String absAmount) {
+        this.absAmount = absAmount;
     }
 
-    public String getTxid() {
-        return txid;
+    public String getTxId() {
+        return txId;
     }
 
-    public void setTxid(String txid) {
-        this.txid = txid;
+    public void setTxId(String txId) {
+        this.txId = txId;
     }
 
-    public int getVout_n() {
-        return vout_n;
+    public int getVoutN() {
+        return voutN;
     }
 
-    public void setVout_n(int vout_n) {
-        this.vout_n = vout_n;
+    public void setVoutN(int voutN) {
+        this.voutN = voutN;
     }
 
-    public String getRequest_id() {
-        return request_id;
+    public String getRequestId() {
+        return requestId;
     }
 
-    public void setRequest_id(String request_id) {
-        this.request_id = request_id;
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
     public String getStatus() {
@@ -135,20 +147,20 @@ public class WithdrawConfirmation {
         this.status = status;
     }
 
-    public long getCreated_time() {
-        return created_time;
+    public long getCreatedTime() {
+        return createdTime;
     }
 
-    public void setCreated_time(long created_time) {
-        this.created_time = created_time;
+    public void setCreatedTime(long createdTime) {
+        this.createdTime = createdTime;
     }
 
-    public long getLast_time() {
-        return last_time;
+    public long getLastTime() {
+        return lastTime;
     }
 
-    public void setLast_time(long last_time) {
-        this.last_time = last_time;
+    public void setLastTime(long lastTime) {
+        this.lastTime = lastTime;
     }
 
     public String getMemo() {
@@ -159,20 +171,20 @@ public class WithdrawConfirmation {
         this.memo = memo;
     }
 
-    public int getConfirming_threshold() {
-        return confirming_threshold;
+    public int getConfirmingThreshold() {
+        return confirmingThreshold;
     }
 
-    public void setConfirming_threshold(int confirming_threshold) {
-        this.confirming_threshold = confirming_threshold;
+    public void setConfirmingThreshold(int confirmingThreshold) {
+        this.confirmingThreshold = confirmingThreshold;
     }
 
-    public int getConfirmed_num() {
-        return confirmed_num;
+    public int getConfirmedNum() {
+        return confirmedNum;
     }
 
-    public void setConfirmed_num(int confirmed_num) {
-        this.confirmed_num = confirmed_num;
+    public void setConfirmedNum(int confirmedNum) {
+        this.confirmedNum = confirmedNum;
     }
 
     public String getType() {

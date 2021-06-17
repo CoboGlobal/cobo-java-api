@@ -17,9 +17,11 @@ import java.util.List;
 import java.util.UUID;
 
 public class CoboApiRestClientImplTest extends TestCase {
-    private final String apiKey = "0397ef0d81938bcf9587466ee33ab93caa77677416ada3297e70e92aa42245d99e";
-    private final String apiSecret = "e7e73fabdd9edb8bddf947954c400a63bf93edc57abf170544ec570757df5453";
-    private final String coboPub = "032f45930f652d72e0c90f71869dfe9af7d713b1f67dc2f7cb51f9572778b9c876";
+    //refer README "Generate Key Pair"
+    private final String apiKey = "apiKey";
+    private final String apiSecret = "apiSecret";
+    // you can find it on cobo custody web, refer the link https://doc.custody.cobo.com/en.html#transaction-notification
+    private final String coboPub = "coboPub";
     private CoboApiRestClient client;
 
     public void setUp() throws Exception {
@@ -34,6 +36,11 @@ public class CoboApiRestClientImplTest extends TestCase {
     public void tearDown() throws Exception {
     }
 
+    public void testGenerateKeyPair() {
+        String[] key = LocalSigner.generateKeyPair();
+        System.out.println(key[0]);
+        System.out.println(key[1]);
+    }
     public void testGetOrgInfo() {
         ApiResponse<OrgInfo> res = client.getOrgInfo();
         assertTrue(res.isSuccess());

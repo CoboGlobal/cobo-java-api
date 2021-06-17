@@ -1,36 +1,54 @@
 package com.cobo.api.client.domain.staking;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class StakingProduct {
 
-    private int product_id;
+    @JsonProperty(value = "product_id")
+    private int productId;
     private String name;
     private String description;
-    private String doc_src;
+    @JsonProperty(value = "doc_src")
+    private String docSrc;
     private String coin;
-    private int coin_decimal;
-    private String reward_coin;
-    private int reward_coin_decimal;
-    private String unstake_fee;
-    private String min_amount;
+    @JsonProperty(value = "coin_decimal")
+    private int coinDecimal;
+    @JsonProperty(value = "reward_coin")
+    private String rewardCoin;
+    @JsonProperty(value = "reward_coin_decimal")
+    private int rewardCoinDecimal;
+    @JsonProperty(value = "unstake_fee")
+    private String unstakeFee;
+    @JsonProperty(value = "min_amount")
+    private String minAmount;
     private String rate;
-    private int rate_type;
+    @JsonProperty(value = "rate_type")
+    private int rateType;
     private int days;
-    private String stake_type;
+    @JsonProperty(value = "stake_type")
+    private String stakeType;
     private boolean lockup;
-    private long start_stake_time;
-    private long stop_stake_time;
-    private long start_staking_time;
-    private long stop_staking_time;
-    private long liquidate_time;
-    private long reward_liquidate_time;
-    private String product_group;
+    @JsonProperty(value = "start_stake_time")
+    private long startStakeTime;
+    @JsonProperty(value = "stop_stake_time")
+    private long stopStakeTime;
+    @JsonProperty(value = "start_staking_time")
+    private long startStakingTime;
+    @JsonProperty(value = "stop_staking_time")
+    private long stopStakingTime;
+    @JsonProperty(value = "liquidate_time")
+    private long liquidateTime;
+    @JsonProperty(value = "reward_liquidate_time")
+    private long rewardLiquidateTime;
+    @JsonProperty(value = "product_group")
+    private String productGroup;
 
-    public int getProduct_id() {
-        return product_id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getName() {
@@ -49,12 +67,12 @@ public class StakingProduct {
         this.description = description;
     }
 
-    public String getDoc_src() {
-        return doc_src;
+    public String getDocSrc() {
+        return docSrc;
     }
 
-    public void setDoc_src(String doc_src) {
-        this.doc_src = doc_src;
+    public void setDocSrc(String docSrc) {
+        this.docSrc = docSrc;
     }
 
     public String getCoin() {
@@ -65,44 +83,44 @@ public class StakingProduct {
         this.coin = coin;
     }
 
-    public int getCoin_decimal() {
-        return coin_decimal;
+    public int getCoinDecimal() {
+        return coinDecimal;
     }
 
-    public void setCoin_decimal(int coin_decimal) {
-        this.coin_decimal = coin_decimal;
+    public void setCoinDecimal(int coinDecimal) {
+        this.coinDecimal = coinDecimal;
     }
 
-    public String getReward_coin() {
-        return reward_coin;
+    public String getRewardCoin() {
+        return rewardCoin;
     }
 
-    public void setReward_coin(String reward_coin) {
-        this.reward_coin = reward_coin;
+    public void setRewardCoin(String rewardCoin) {
+        this.rewardCoin = rewardCoin;
     }
 
-    public int getReward_coin_decimal() {
-        return reward_coin_decimal;
+    public int getRewardCoinDecimal() {
+        return rewardCoinDecimal;
     }
 
-    public void setReward_coin_decimal(int reward_coin_decimal) {
-        this.reward_coin_decimal = reward_coin_decimal;
+    public void setRewardCoinDecimal(int rewardCoinDecimal) {
+        this.rewardCoinDecimal = rewardCoinDecimal;
     }
 
-    public String getUnstake_fee() {
-        return unstake_fee;
+    public String getUnstakeFee() {
+        return unstakeFee;
     }
 
-    public void setUnstake_fee(String unstake_fee) {
-        this.unstake_fee = unstake_fee;
+    public void setUnstakeFee(String unstakeFee) {
+        this.unstakeFee = unstakeFee;
     }
 
-    public String getMin_amount() {
-        return min_amount;
+    public String getMinAmount() {
+        return minAmount;
     }
 
-    public void setMin_amount(String min_amount) {
-        this.min_amount = min_amount;
+    public void setMinAmount(String minAmount) {
+        this.minAmount = minAmount;
     }
 
     public String getRate() {
@@ -113,12 +131,12 @@ public class StakingProduct {
         this.rate = rate;
     }
 
-    public int getRate_type() {
-        return rate_type;
+    public int getRateType() {
+        return rateType;
     }
 
-    public void setRate_type(int rate_type) {
-        this.rate_type = rate_type;
+    public void setRateType(int rateType) {
+        this.rateType = rateType;
     }
 
     public int getDays() {
@@ -129,12 +147,12 @@ public class StakingProduct {
         this.days = days;
     }
 
-    public String getStake_type() {
-        return stake_type;
+    public String getStakeType() {
+        return stakeType;
     }
 
-    public void setStake_type(String stake_type) {
-        this.stake_type = stake_type;
+    public void setStakeType(String stakeType) {
+        this.stakeType = stakeType;
     }
 
     public boolean isLockup() {
@@ -145,87 +163,87 @@ public class StakingProduct {
         this.lockup = lockup;
     }
 
-    public long getStart_stake_time() {
-        return start_stake_time;
+    public long getStartStakeTime() {
+        return startStakeTime;
     }
 
-    public void setStart_stake_time(long start_stake_time) {
-        this.start_stake_time = start_stake_time;
+    public void setStartStakeTime(long startStakeTime) {
+        this.startStakeTime = startStakeTime;
     }
 
-    public long getStop_stake_time() {
-        return stop_stake_time;
+    public long getStopStakeTime() {
+        return stopStakeTime;
     }
 
-    public void setStop_stake_time(long stop_stake_time) {
-        this.stop_stake_time = stop_stake_time;
+    public void setStopStakeTime(long stopStakeTime) {
+        this.stopStakeTime = stopStakeTime;
     }
 
-    public long getStart_staking_time() {
-        return start_staking_time;
+    public long getStartStakingTime() {
+        return startStakingTime;
     }
 
-    public void setStart_staking_time(long start_staking_time) {
-        this.start_staking_time = start_staking_time;
+    public void setStartStakingTime(long startStakingTime) {
+        this.startStakingTime = startStakingTime;
     }
 
-    public long getStop_staking_time() {
-        return stop_staking_time;
+    public long getStopStakingTime() {
+        return stopStakingTime;
     }
 
-    public void setStop_staking_time(long stop_staking_time) {
-        this.stop_staking_time = stop_staking_time;
+    public void setStopStakingTime(long stopStakingTime) {
+        this.stopStakingTime = stopStakingTime;
     }
 
-    public long getLiquidate_time() {
-        return liquidate_time;
+    public long getLiquidateTime() {
+        return liquidateTime;
     }
 
-    public void setLiquidate_time(long liquidate_time) {
-        this.liquidate_time = liquidate_time;
+    public void setLiquidateTime(long liquidateTime) {
+        this.liquidateTime = liquidateTime;
     }
 
-    public long getReward_liquidate_time() {
-        return reward_liquidate_time;
+    public long getRewardLiquidateTime() {
+        return rewardLiquidateTime;
     }
 
-    public void setReward_liquidate_time(long reward_liquidate_time) {
-        this.reward_liquidate_time = reward_liquidate_time;
+    public void setRewardLiquidateTime(long rewardLiquidateTime) {
+        this.rewardLiquidateTime = rewardLiquidateTime;
     }
 
-    public String getProduct_group() {
-        return product_group;
+    public String getProductGroup() {
+        return productGroup;
     }
 
-    public void setProduct_group(String product_group) {
-        this.product_group = product_group;
+    public void setProductGroup(String productGroup) {
+        this.productGroup = productGroup;
     }
 
     @Override
     public String toString() {
         return "StakingProduct{" +
-                "product_id=" + product_id +
+                "productId=" + productId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", doc_src='" + doc_src + '\'' +
+                ", docSrc='" + docSrc + '\'' +
                 ", coin='" + coin + '\'' +
-                ", coin_decimal=" + coin_decimal +
-                ", reward_coin='" + reward_coin + '\'' +
-                ", reward_coin_decimal=" + reward_coin_decimal +
-                ", unstake_fee='" + unstake_fee + '\'' +
-                ", min_amount='" + min_amount + '\'' +
+                ", coinDecimal=" + coinDecimal +
+                ", rewardCoin='" + rewardCoin + '\'' +
+                ", rewardCoinDecimal=" + rewardCoinDecimal +
+                ", unstakeDee='" + unstakeFee + '\'' +
+                ", minAmount='" + minAmount + '\'' +
                 ", rate='" + rate + '\'' +
-                ", rate_type=" + rate_type +
+                ", rateType=" + rateType +
                 ", days=" + days +
-                ", stake_type='" + stake_type + '\'' +
+                ", stakeType='" + stakeType + '\'' +
                 ", lockup=" + lockup +
-                ", start_stake_time=" + start_stake_time +
-                ", stop_stake_time=" + stop_stake_time +
-                ", start_staking_time=" + start_staking_time +
-                ", stop_staking_time=" + stop_staking_time +
-                ", liquidate_time=" + liquidate_time +
-                ", reward_liquidate_time=" + reward_liquidate_time +
-                ", product_group='" + product_group + '\'' +
+                ", startStakeTime=" + startStakeTime +
+                ", stopStakeTime=" + stopStakeTime +
+                ", startStakingTime=" + startStakingTime +
+                ", stopStakingTime=" + stopStakingTime +
+                ", liquidateTime=" + liquidateTime +
+                ", rewardLiquidateTime=" + rewardLiquidateTime +
+                ", productGroup='" + productGroup + '\'' +
                 '}';
     }
 }

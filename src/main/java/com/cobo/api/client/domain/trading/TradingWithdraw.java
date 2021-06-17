@@ -1,22 +1,28 @@
 package com.cobo.api.client.domain.trading;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class TradingWithdraw {
 
-    private String request_id;
+    @JsonProperty(value = "request_id")
+    private String requestId;
     private String coin;
     private String amount;
-    private String abs_amount;
+    @JsonProperty(value = "abs_amount")
+    private String absAmount;
     private String status;
     private String fee;
-    private String abs_fee;
-    private String estimated_amount_received;
+    @JsonProperty(value = "abs_fee")
+    private String absFee;
+    @JsonProperty(value = "estimated_amount_received")
+    private String estimatedAmountReceived;
 
-    public String getRequest_id() {
-        return request_id;
+    public String getRequestId() {
+        return requestId;
     }
 
-    public void setRequest_id(String request_id) {
-        this.request_id = request_id;
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
     public String getCoin() {
@@ -35,12 +41,12 @@ public class TradingWithdraw {
         this.amount = amount;
     }
 
-    public String getAbs_amount() {
-        return abs_amount;
+    public String getAbsAmount() {
+        return absAmount;
     }
 
-    public void setAbs_amount(String abs_amount) {
-        this.abs_amount = abs_amount;
+    public void setAbsAmount(String absAmount) {
+        this.absAmount = absAmount;
     }
 
     public String getStatus() {
@@ -59,19 +65,19 @@ public class TradingWithdraw {
         this.fee = fee;
     }
 
-    public String getAbs_fee() {
-        return abs_fee;
+    public String getAbsFee() {
+        return absFee;
     }
 
-    public void setAbs_fee(String abs_fee) {
-        this.abs_fee = abs_fee;
+    public void setAbsFee(String absFee) {
+        this.absFee = absFee;
     }
 
-    public String getEstimated_amount_received() {
-        return estimated_amount_received;
+    public String getEstimatedAmountReceived() {
+        return estimatedAmountReceived;
     }
 
-    public void setEstimated_amount_received(String estimated_amount_received) {
-        this.estimated_amount_received = estimated_amount_received;
+    public void setEstimatedAmountReceived(String estimatedAmountReceived) {
+        this.estimatedAmountReceived = estimatedAmountReceived;
     }
 }

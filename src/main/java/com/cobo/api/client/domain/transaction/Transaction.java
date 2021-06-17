@@ -1,5 +1,7 @@
 package com.cobo.api.client.domain.transaction;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Transaction {
 
     private String id;
@@ -8,27 +10,43 @@ public class Transaction {
     private String description;
     private int decimal;
     private String address;
-    private String source_address;
+    @JsonProperty(value = "source_address")
+    private String sourceAddress;
     private String side;
     private String amount;
-    private String abs_amount;
-    private String txid;
-    private int vout_n;
-    private String request_id;
+    @JsonProperty(value = "abs_amount")
+    private String absAmount;
+    @JsonProperty(value = "txid")
+    private String txId;
+    @JsonProperty(value = "vout_n")
+    private int voutN;
+    @JsonProperty(value = "request_id")
+    private String requestId;
     private String status;
-    private String abs_cobo_fee;
-    private long created_time;
-    private long last_time;
-    private int confirmed_num;
-    private TxDetail tx_detail;
-    private String source_address_detail;
+    @JsonProperty(value = "abs_cobo_fee")
+    private String absCoboFee;
+    @JsonProperty(value = "created_time")
+    private long createdTime;
+    @JsonProperty(value = "last_time")
+    private long lastTime;
+    @JsonProperty(value = "confirmed_num")
+    private int confirmedNum;
+    @JsonProperty(value = "tx_detail")
+    private TxDetail txDetail;
+    @JsonProperty(value = "source_address_detail")
+    private String sourceAddressDetail;
     private String memo;
-    private int confirming_threshold;
-    private String fee_coin;
-    private String fee_amount;
-    private int fee_decimal;
+    @JsonProperty(value = "confirming_threshold")
+    private int confirmingThreshold;
+    @JsonProperty(value = "fee_coin")
+    private String feeCoin;
+    @JsonProperty(value = "fee_amount")
+    private String feeAmount;
+    @JsonProperty(value = "fee_decimal")
+    private int feeDecimal;
     private String type;
-    private boolean waiting_audit;
+    @JsonProperty(value = "waiting_audit")
+    private boolean waitingAudit;
 
     public String getId() {
         return id;
@@ -78,12 +96,12 @@ public class Transaction {
         this.address = address;
     }
 
-    public String getSource_address() {
-        return source_address;
+    public String getSourceAddress() {
+        return sourceAddress;
     }
 
-    public void setSource_address(String source_address) {
-        this.source_address = source_address;
+    public void setSourceAddress(String sourceAddress) {
+        this.sourceAddress = sourceAddress;
     }
 
     public String getSide() {
@@ -102,36 +120,36 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public String getAbs_amount() {
-        return abs_amount;
+    public String getAbsAmount() {
+        return absAmount;
     }
 
-    public void setAbs_amount(String abs_amount) {
-        this.abs_amount = abs_amount;
+    public void setAbsAmount(String absAmount) {
+        this.absAmount = absAmount;
     }
 
-    public String getTxid() {
-        return txid;
+    public String getTxId() {
+        return txId;
     }
 
-    public void setTxid(String txid) {
-        this.txid = txid;
+    public void setTxId(String txId) {
+        this.txId = txId;
     }
 
-    public int getVout_n() {
-        return vout_n;
+    public int getVoutN() {
+        return voutN;
     }
 
-    public void setVout_n(int vout_n) {
-        this.vout_n = vout_n;
+    public void setVoutN(int voutN) {
+        this.voutN = voutN;
     }
 
-    public String getRequest_id() {
-        return request_id;
+    public String getRequestId() {
+        return requestId;
     }
 
-    public void setRequest_id(String request_id) {
-        this.request_id = request_id;
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
     }
 
     public String getStatus() {
@@ -142,52 +160,52 @@ public class Transaction {
         this.status = status;
     }
 
-    public String getAbs_cobo_fee() {
-        return abs_cobo_fee;
+    public String getAbsCoboFee() {
+        return absCoboFee;
     }
 
-    public void setAbs_cobo_fee(String abs_cobo_fee) {
-        this.abs_cobo_fee = abs_cobo_fee;
+    public void setAbsCoboFee(String absCoboFee) {
+        this.absCoboFee = absCoboFee;
     }
 
-    public long getCreated_time() {
-        return created_time;
+    public long getCreatedTime() {
+        return createdTime;
     }
 
-    public void setCreated_time(long created_time) {
-        this.created_time = created_time;
+    public void setCreatedTime(long createdTime) {
+        this.createdTime = createdTime;
     }
 
-    public long getLast_time() {
-        return last_time;
+    public long getLastTime() {
+        return lastTime;
     }
 
-    public void setLast_time(long last_time) {
-        this.last_time = last_time;
+    public void setLastTime(long lastTime) {
+        this.lastTime = lastTime;
     }
 
-    public int getConfirmed_num() {
-        return confirmed_num;
+    public int getConfirmedNum() {
+        return confirmedNum;
     }
 
-    public void setConfirmed_num(int confirmed_num) {
-        this.confirmed_num = confirmed_num;
+    public void setConfirmedNum(int confirmedNum) {
+        this.confirmedNum = confirmedNum;
     }
 
-    public TxDetail getTx_detail() {
-        return tx_detail;
+    public TxDetail getTxDetail() {
+        return txDetail;
     }
 
-    public void setTx_detail(TxDetail tx_detail) {
-        this.tx_detail = tx_detail;
+    public void setTxDetail(TxDetail txDetail) {
+        this.txDetail = txDetail;
     }
 
-    public String getSource_address_detail() {
-        return source_address_detail;
+    public String getSourceAddressDetail() {
+        return sourceAddressDetail;
     }
 
-    public void setSource_address_detail(String source_address_detail) {
-        this.source_address_detail = source_address_detail;
+    public void setSourceAddressDetail(String sourceAddressDetail) {
+        this.sourceAddressDetail = sourceAddressDetail;
     }
 
     public String getMemo() {
@@ -198,36 +216,36 @@ public class Transaction {
         this.memo = memo;
     }
 
-    public int getConfirming_threshold() {
-        return confirming_threshold;
+    public int getConfirmingThreshold() {
+        return confirmingThreshold;
     }
 
-    public void setConfirming_threshold(int confirming_threshold) {
-        this.confirming_threshold = confirming_threshold;
+    public void setConfirmingThreshold(int confirmingThreshold) {
+        this.confirmingThreshold = confirmingThreshold;
     }
 
-    public String getFee_coin() {
-        return fee_coin;
+    public String getFeeCoin() {
+        return feeCoin;
     }
 
-    public void setFee_coin(String fee_coin) {
-        this.fee_coin = fee_coin;
+    public void setFeeCoin(String feeCoin) {
+        this.feeCoin = feeCoin;
     }
 
-    public String getFee_amount() {
-        return fee_amount;
+    public String getFeeAmount() {
+        return feeAmount;
     }
 
-    public void setFee_amount(String fee_amount) {
-        this.fee_amount = fee_amount;
+    public void setFeeAmount(String feeAmount) {
+        this.feeAmount = feeAmount;
     }
 
-    public int getFee_decimal() {
-        return fee_decimal;
+    public int getFeeDecimal() {
+        return feeDecimal;
     }
 
-    public void setFee_decimal(int fee_decimal) {
-        this.fee_decimal = fee_decimal;
+    public void setFeeDecimal(int feeDecimal) {
+        this.feeDecimal = feeDecimal;
     }
 
     public String getType() {
@@ -238,12 +256,12 @@ public class Transaction {
         this.type = type;
     }
 
-    public boolean isWaiting_audit() {
-        return waiting_audit;
+    public boolean isWaitingAudit() {
+        return waitingAudit;
     }
 
-    public void setWaiting_audit(boolean waiting_audit) {
-        this.waiting_audit = waiting_audit;
+    public void setWaitingAudit(boolean waitingAudit) {
+        this.waitingAudit = waitingAudit;
     }
 
     @Override
@@ -255,32 +273,33 @@ public class Transaction {
                 ", description='" + description + '\'' +
                 ", decimal=" + decimal +
                 ", address='" + address + '\'' +
-                ", source_address='" + source_address + '\'' +
+                ", source_address='" + sourceAddress + '\'' +
                 ", side='" + side + '\'' +
                 ", amount='" + amount + '\'' +
-                ", abs_amount='" + abs_amount + '\'' +
-                ", txid='" + txid + '\'' +
-                ", vout_n=" + vout_n +
-                ", request_id='" + request_id + '\'' +
+                ", abs_amount='" + absAmount + '\'' +
+                ", txid='" + txId + '\'' +
+                ", vout_n=" + voutN +
+                ", request_id='" + requestId + '\'' +
                 ", status='" + status + '\'' +
-                ", abs_cobo_fee='" + abs_cobo_fee + '\'' +
-                ", created_time=" + created_time +
-                ", last_time=" + last_time +
-                ", confirmed_num=" + confirmed_num +
-                ", tx_detail=" + tx_detail +
-                ", source_address_detail='" + source_address_detail + '\'' +
+                ", abs_cobo_fee='" + absCoboFee + '\'' +
+                ", created_time=" + createdTime +
+                ", last_time=" + lastTime +
+                ", confirmed_num=" + confirmedNum +
+                ", tx_detail=" + txDetail +
+                ", source_address_detail='" + sourceAddressDetail + '\'' +
                 ", memo='" + memo + '\'' +
-                ", confirming_threshold=" + confirming_threshold +
-                ", fee_coin='" + fee_coin + '\'' +
-                ", fee_amount='" + fee_amount + '\'' +
-                ", fee_decimal=" + fee_decimal +
+                ", confirming_threshold=" + confirmingThreshold +
+                ", fee_coin='" + feeCoin + '\'' +
+                ", fee_amount='" + feeAmount + '\'' +
+                ", fee_decimal=" + feeDecimal +
                 ", type='" + type + '\'' +
-                ", waiting_audit=" + waiting_audit +
+                ", waiting_audit=" + waitingAudit +
                 '}';
     }
 
     public static class TxDetail {
-        private String txid;
+        @JsonProperty(value = "txid")
+        private String txId;
         private int blocknum;
         private String blockhash;
         private long fee;
@@ -288,12 +307,12 @@ public class Transaction {
         private long gasprice;
         private String hexstr;
 
-        public String getTxid() {
-            return txid;
+        public String getTxId() {
+            return txId;
         }
 
-        public void setTxid(String txid) {
-            this.txid = txid;
+        public void setTxId(String txId) {
+            this.txId = txId;
         }
 
         public int getBlocknum() {
@@ -347,7 +366,7 @@ public class Transaction {
         @Override
         public String toString() {
             return "TxDetail{" +
-                    "txid='" + txid + '\'' +
+                    "txid='" + txId + '\'' +
                     ", blocknum=" + blocknum +
                     ", blockhash='" + blockhash + '\'' +
                     ", fee=" + fee +

@@ -25,7 +25,7 @@ public interface CoboApiService {
     @FormUrlEncoded
     @POST("/v1/custody/new_address/")
     Call<ApiResponse<Address>> newAddress(@Field("coin") String coin,
-                                          @Field("native_segwit") boolean native_segwit);
+                                          @Field("native_segwit") boolean nativeSegwit);
 
     @FormUrlEncoded
     @POST("/v1/custody/new_address/")
@@ -35,7 +35,7 @@ public interface CoboApiService {
     @POST("/v1/custody/new_addresses/")
     Call<ApiResponse<NewAddresses>> newAddresses(@Field("coin") String coin,
                                                  @Field("count") int count,
-                                                 @Field("native_segwit") boolean native_segwit);
+                                                 @Field("native_segwit") boolean nativeSegwit);
 
     @FormUrlEncoded
     @POST("/v1/custody/new_addresses/")
@@ -65,35 +65,35 @@ public interface CoboApiService {
 
     @GET("/v1/custody/transactions_by_id/")
     Call<ApiResponse<List<Transaction>>> getTransactionsById(@Query("coin") String coin, @Query("side") String side,
-                                                             @Query("address") String address, @Query("max_id") String max_id,
-                                                             @Query("min_id") String min_id, @Query("limit") int limit, @Query("include_financial") String include_financial);
+                                                             @Query("address") String address, @Query("max_id") String maxId,
+                                                             @Query("min_id") String minId, @Query("limit") int limit, @Query("include_financial") String includeFinancial);
 
     @GET("/v1/custody/transactions_by_time/")
     Call<ApiResponse<List<Transaction>>> getTransactionsByTime(@Query("coin") String coin, @Query("side") String side,
                                                                @Query("address") String address, @Query("begin_time") String beginTime,
                                                                @Query("end_time") String endTime, @Query("limit") String limit,
-                                                               @Query("include_financial") String include_financial);
+                                                               @Query("include_financial") String includeFinancial);
 
     @GET("/v1/custody/pending_transactions/")
     Call<ApiResponse<List<Transaction>>> getPendingTransactions(@Query("coin") String coin, @Query("side") String side,
-                                                                @Query("max_id") String max_id,
-                                                                @Query("min_id") String min_id, @Query("limit") String limit);
+                                                                @Query("max_id") String maxId,
+                                                                @Query("min_id") String minId, @Query("limit") String limit);
 
     @GET("/v1/custody/pending_transaction/")
     Call<ApiResponse<Transaction>> getPendingTransaction(@Query("id") String id);
 
     @GET("/v1/custody/transaction_history/")
     Call<ApiResponse<List<Transaction>>> getTransactionHistory(@Query("coin") String coin, @Query("side") String side,
-                                                               @Query("address") String address, @Query("max_id") String max_id,
-                                                               @Query("min_id") String min_id, @Query("limit") String limit, @Query("begin_time") String beginTime,
-                                                               @Query("end_time") String endTime, @Query("include_financial") String include_financial);
+                                                               @Query("address") String address, @Query("max_id") String maxId,
+                                                               @Query("min_id") String minId, @Query("limit") String limit, @Query("begin_time") String beginTime,
+                                                               @Query("end_time") String endTime, @Query("include_financial") String includeFinancial);
 
     @FormUrlEncoded
     @POST("/v1/custody/new_withdraw_request/")
     Call<ApiResponse<String>> withdraw(@Field("coin") String coin,
                                        @Field("request_id") String requestId, @Field("address") String address,
                                        @Field("amount") String amount, @Field("memo") String memo,
-                                       @Field("force_external") String force_external, @Field("force_internal") String force_internal);
+                                       @Field("force_external") String forceExternal, @Field("force_internal") String forceInternal);
 
     @GET("/v1/custody/withdraw_info_by_request_id/")
     Call<ApiResponse<Transaction>> queryWithdrawInfo(@Query("request_id") String requestId);

@@ -29,18 +29,18 @@ public interface CoboApiRestClient {
     /***
      * Get new deposit address
      * @param coin coinCode
-     * @param native_segwit use native_segwit address(btc only)
+     * @param nativeSegwit use nativeSegwit address(btc only)
      * @return address info
      */
-    ApiResponse<Address> newAddress(String coin, boolean native_segwit);
+    ApiResponse<Address> newAddress(String coin, boolean nativeSegwit);
     /***
      * batch get new deposit address
      * @param coin coinCode
-     * @param native_segwit use native_segwit address(btc only)
+     * @param nativeSegwit use nativeSegwit address(btc only)
      * @param count count
      * @return
      */
-    ApiResponse<NewAddresses> newAddresses(String coin, int count, boolean native_segwit);
+    ApiResponse<NewAddresses> newAddresses(String coin, int count, boolean nativeSegwit);
 
     /***
      * verify deposit address
@@ -129,17 +129,17 @@ public interface CoboApiRestClient {
                                                          long endTime, int limit, String includeFinancial);
 
     /***
-     * Get pending transaction list (before confirming_threshold reached)
+     * Get pending transaction list (before confirmingThreshold reached)
      * @param coin Coin code (Does not return all currencies)
      * @param side 	Deposit/withdrawal
-     * @param max_id The transaction history ID limit is optional. If not included, will by default return the most recent records.
-     * @param min_id Optional. If included, the sequence will be changed to time ASC. If not included, will by default return the most recent records, time DESC.
+     * @param maxId The transaction history ID limit is optional. If not included, will by default return the most recent records.
+     * @param minId Optional. If included, the sequence will be changed to time ASC. If not included, will by default return the most recent records, time DESC.
      * @param limit Page size is optional. If not included, the default size will be 50, and the maximum size will also be 50.
      * @return
      */
     ApiResponse<List<Transaction>> getPendingTransactions(String coin, Side side,
-                                                          String max_id,
-                                                          String min_id, int limit);
+                                                          String maxId,
+                                                          String minId, int limit);
 
     /***
      * Get Pending Deposit Details
@@ -169,16 +169,16 @@ public interface CoboApiRestClient {
     /***
      * Submit Withdrawal Request
      * @param coin coin code
-     * @param request_id Withdrawal request ID (Universally unique ID for each user's withdraw request)
+     * @param requestId Withdrawal request ID (Universally unique ID for each user's withdraw request)
      * @param address Withdrawal address
      * @param amount Please note that the withdrawal amount should be expressed in terms of the respective coin's smallest unit. For example, if 1 BTC is to be withdrawn, the amount should be multiplied by 100,000,000 (Satoshis)
      * @param memo Needed when you withdraw EOS, XRP, IOST
-     * @param force_external Non-empty means: force the transaction on-chain even if it's a Loop Tx
-     * @param force_internal Non-empty means: force the transaction off-chain even if it's not a Loop Tx, if it cannot be handled as a Loop tx, it will be rejected
+     * @param forceExternal Non-empty means: force the transaction on-chain even if it's a Loop Tx
+     * @param forceInternal Non-empty means: force the transaction off-chain even if it's not a Loop Tx, if it cannot be handled as a Loop tx, it will be rejected
      * @return ""
      */
-    ApiResponse<String> withdraw(String coin, String request_id, String address, BigInteger amount, String memo,
-                                 String force_external, String force_internal);
+    ApiResponse<String> withdraw(String coin, String requestId, String address, BigInteger amount, String memo,
+                                 String forceExternal, String forceInternal);
 
     /***
      * Get Withdrawal Information
@@ -197,11 +197,11 @@ public interface CoboApiRestClient {
 
     /***
      * Get a Staking Product Details
-     * @param product_id Unique ID for staking product
+     * @param productId Unique ID for staking product
      * @param lang Language of product description(zh,en(default))
      * @return staking product details
      */
-    ApiResponse<StakingProduct> getStakingProductById(String product_id, Lang lang);
+    ApiResponse<StakingProduct> getStakingProductById(String productId, Lang lang);
 
     /***
      * Get Staking Data
