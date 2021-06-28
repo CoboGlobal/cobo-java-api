@@ -33,7 +33,7 @@ public class CoboApiRestClientImplTest extends TestCase {
                 CoboApiConfig.getApiBaseUrl(Env.SANDBOX)).newRestClient();
     }
 
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
     public void testGenerateKeyPair() {
@@ -43,6 +43,7 @@ public class CoboApiRestClientImplTest extends TestCase {
     }
     public void testGetOrgInfo() {
         ApiResponse<OrgInfo> res = client.getOrgInfo();
+        System.out.println(res);
         assertTrue(res.isSuccess());
     }
 

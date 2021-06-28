@@ -5,7 +5,7 @@ import com.blade.mvc.RouteContext;
 import com.blade.mvc.handler.RouteHandler;
 import org.apache.commons.lang3.StringUtils;
 
-import static com.cobo.api.client.security.AuthenticationInterceptor.verifyResponse;
+import static com.cobo.api.client.impl.LocalSigner.verifyEcdsaSignature;
 
 public class Demo {
     private static final String coboPubKey = "032f45930f652d72e0c90f71869dfe9af7d713b1f67dc2f7cb51f9572778b9c876";
@@ -24,7 +24,7 @@ public class Demo {
             if (!StringUtils.isEmpty(timestamp) && !StringUtils.isEmpty(signature)) {
                 String body = ctx.bodyToString();
                 String content = body + "|" + timestamp;
-                verifyResult = verifyResponse(content, signature, coboPubKey);
+                verifyResult = verifyEcdsaSignature(content, signature, coboPubKey);
             }
         } catch (Exception e) {
             e.fillInStackTrace();
