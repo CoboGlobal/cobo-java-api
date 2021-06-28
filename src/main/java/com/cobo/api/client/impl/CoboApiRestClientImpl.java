@@ -10,6 +10,7 @@ import com.cobo.api.client.domain.trading.TradingTransfer;
 import com.cobo.api.client.domain.trading.TradingWithdraw;
 import com.cobo.api.client.domain.transaction.Side;
 import com.cobo.api.client.domain.transaction.Transaction;
+import org.bouncycastle.util.encoders.Hex;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -119,6 +120,11 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
 
     @Override
     public ApiResponse<String> withdraw(String coin, String requestId, String address, BigInteger amount, String memo, String forceExternal, String forceInternal) {
+        if (requestId == null || requestId.length() == 0) {
+            requestId = String.format("sdk_request_id_%s_%s", Hex.toHexString(Utils.sha256(address.getBytes())).substring(0,8), System.currentTimeMillis());
+        }
+
+        System.out.println(requestId);
         return executeSync(coboApiService.withdraw(coin, requestId,address,amount.toString(),memo, forceExternal, forceInternal));
     }
 

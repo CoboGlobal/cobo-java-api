@@ -47,9 +47,50 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
 
 ## Installation
 
+Step 1. Add the JitPack repository to your build file
+
+gradle:
+
 ```
- TODO
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
+
+maven:
+
+```
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+Step 2. Add the dependency
+
+gradle:
+
+```
+dependencies {
+    implementation 'com.github.CoboCustody:cobo-java-api:v0.25'
+}
+```
+
+maven:
+
+```
+<dependency>
+    <groupId>com.github.CoboCustody</groupId>
+    <artifactId>cobo-java-api</artifactId>
+    <version>v0.25</version>
+</dependency>
+```
+
 
 
 ## Test
@@ -64,6 +105,8 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
 
 #### Generate Key Pair
 ```java
+import com.cobo.api.client.impl.LocalSigner;
+
 String[] key = LocalSigner.generateKeyPair();
 Stirng secretKey = key[0];
 Stirng apiKey = key[1];
@@ -74,8 +117,15 @@ Please refer to the link [link](https://doc.custody.cobo.com/en.html#api-authent
 These can be instantiated through the corresponding factory method of `CoboApiClientFactory`
 
 ```java
+import com.cobo.api.client.CoboApiClientFactory;
+import com.cobo.api.client.CoboApiRestClient;
+import com.cobo.api.client.config.CoboApiConfig;
+import com.cobo.api.client.config.Env;
+import com.cobo.api.client.domain.staking.Lang;
+import com.cobo.api.client.impl.LocalSigner;
+
 CoboApiClientFactory factory = CoboApiClientFactory.newInstance("API-KEY", ApiSigner，"COBO-PUB", "hostUrl");
-CoboApiClientFactory client = factory.newRestClient();
+CoboApiRestClient client = factory.newRestClient();
 ```
 
 #### Initialize ApiSigner
