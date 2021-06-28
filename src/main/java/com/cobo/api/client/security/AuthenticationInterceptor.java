@@ -2,18 +2,15 @@ package com.cobo.api.client.security;
 
 import com.cobo.api.client.ApiSigner;
 import okhttp3.*;
-import okio.Buffer;
-import org.bitcoinj.core.ECKey;
-import org.bitcoinj.core.Sha256Hash;
-import org.bitcoinj.core.SignatureDecodeException;
-import org.bouncycastle.util.encoders.Hex;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 import static com.cobo.api.client.constant.CoboApiConstants.*;
+import static com.cobo.api.client.impl.LocalSigner.verifyEcdsaSignature;
 
 /**
  * A request interceptor that injects the API Key Header into requests, and signs messages, whenever required.
@@ -66,16 +63,6 @@ public class AuthenticationInterceptor implements Interceptor {
         return sb.toString();
     }
 
-    public static boolean verifyResponse(String content, String sig, String pubkey) {
-        ECKey key = ECKey.fromPublicOnly(Hex.decode(pubkey));
-        try {
-            return key.verify(Sha256Hash.hashTwice(content.getBytes()), Hex.decode(sig));
-        } catch (SignatureDecodeException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     @Override
     public Response intercept(Interceptor.Chain chain) throws IOException {
         Request original = chain.request();
@@ -87,8 +74,7 @@ public class AuthenticationInterceptor implements Interceptor {
         String ts = response.header(BIZ_TIMESTAMP);
         String respSignature = response.header(BIZ_RESP_SIGNATURE);
         String responseBody = response.body() == null ? "null" : response.body().string();
-        boolean verifyResult = verifyResponse(responseBody + "|" + ts, respSignature, coboPubKey);
-
+        boolean verifyResult = verifyEcdsaSignature(responseBody + "|" + ts, respSignature, coboPubKey);
         if (!verifyResult) throw new RuntimeException("response verify failed");
         MediaType mediaType = response.body().contentType();
         return response.newBuilder()
@@ -117,7 +103,7 @@ public class AuthenticationInterceptor implements Interceptor {
         }
         String nonce = String.valueOf(System.currentTimeMillis());
         String content = method + "|" + path + "|" + nonce + "|" + body;
-        String sig = signer.sign(Sha256Hash.hashTwice(content.getBytes()));
+        String sig = signer.sign(content.getBytes());
 
         newRequestBuilder.addHeader(BIZ_API_KEY, apiKey)
                 .addHeader(BIZ_API_NONCE, nonce)
