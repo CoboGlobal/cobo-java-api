@@ -47,9 +47,50 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
 
 ## Installation
 
+Step 1. Add the JitPack repository to your build file
+
+gradle:
+
 ```
- TODO
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
+
+maven:
+
+```
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+Step 2. Add the dependency
+
+gradle:
+
+```
+dependencies {
+    implementation 'com.github.CoboCustody:cobo-java-api:0.25'
+}
+```
+
+maven:
+
+```
+<dependency>
+    <groupId>com.github.CoboCustody</groupId>
+    <artifactId>cobo-java-api</artifactId>
+    <version>0.25</version>
+</dependency>
+```
+
 
 
 ## Test
