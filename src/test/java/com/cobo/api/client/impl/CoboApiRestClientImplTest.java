@@ -2,7 +2,6 @@ package com.cobo.api.client.impl;
 
 import com.cobo.api.client.CoboApiClientFactory;
 import com.cobo.api.client.CoboApiRestClient;
-import com.cobo.api.client.config.CoboApiConfig;
 import com.cobo.api.client.config.Env;
 import com.cobo.api.client.domain.*;
 import com.cobo.api.client.domain.account.*;
@@ -18,19 +17,15 @@ import java.util.UUID;
 
 public class CoboApiRestClientImplTest extends TestCase {
     //refer README "Generate Key Pair"
-    private final String apiKey = "apiKey";
     private final String apiSecret = "apiSecret";
-    // you can find it on cobo custody web, refer the link https://doc.custody.cobo.com/en.html#transaction-notification
-    private final String coboPub = "coboPub";
     private CoboApiRestClient client;
 
     public void setUp() throws Exception {
         super.setUp();
         client = CoboApiClientFactory.newInstance(
-                apiKey,
                 new LocalSigner(apiSecret),
-                coboPub,
-                CoboApiConfig.getApiBaseUrl(Env.SANDBOX)).newRestClient();
+                Env.SANDBOX,
+                true).newRestClient();
     }
 
     public void tearDown() {
@@ -128,32 +123,6 @@ public class CoboApiRestClientImplTest extends TestCase {
     public void testGetTransactionHistory() {
         ApiResponse<List<Transaction>> res = client.getTransactionHistory("ETH", Side.Any, null, null, null, 50, 0, System.currentTimeMillis(), null);
         assertTrue(res.isSuccess());
-    }
-    void printDoc(String desc, String code, Object o) {
-        System.out.println(String.format("#### %s", desc));
-        System.out.println("```java");
-        System.out.println(String.format("%s", code));
-        System.out.println("```");
-        System.out.println("<details>");
-        System.out.println("<summary>View Response</summary>");
-        System.out.println("\n");
-        System.out.println("```java");
-        System.out.println(String.format("%s",printObject(o)));
-        System.out.println("```");
-        System.out.println("</details>\n");
-    }
-    String printObject(Object o) {
-        if (o instanceof List) {
-            List<Object> list = (List<Object>) o;
-            if (list.size() > 5) {
-                return list.subList(0,5).toString();
-            } else {
-                return o.toString();
-            }
-
-        } else {
-            return o.toString();
-        }
     }
 
     public void testWithdraw() {

@@ -1,26 +1,26 @@
 package com.cobo.api.client;
 
+import com.cobo.api.client.config.Env;
 import com.cobo.api.client.impl.CoboApiRestClientImpl;
 
 public class CoboApiClientFactory {
 
-    private final String apiKey;
+    private final Env env;
     private final ApiSigner signer;
-    private final String coboPub;
-    private final String host;
+    private final boolean debug;
 
-    private CoboApiClientFactory(String apiKey, ApiSigner signer, String coboPub, String host) {
-        this.apiKey = apiKey;
+    private CoboApiClientFactory(ApiSigner signer, Env env, boolean debug) {
         this.signer = signer;
-        this.coboPub = coboPub;
-        this.host = host;
+        this.env = env;
+        this.debug = debug;
+
     }
 
-    public static CoboApiClientFactory newInstance(String apiKey, ApiSigner signer, String coboPub, String host) {
-        return new CoboApiClientFactory(apiKey, signer, coboPub, host);
+    public static CoboApiClientFactory newInstance(ApiSigner signer, Env env, boolean debug) {
+        return new CoboApiClientFactory(signer, env, debug);
     }
 
     public CoboApiRestClient newRestClient() {
-        return new CoboApiRestClientImpl(apiKey, signer, coboPub, host);
+        return new CoboApiRestClientImpl(signer, env, debug);
     }
 }

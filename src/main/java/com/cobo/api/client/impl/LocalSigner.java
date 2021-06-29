@@ -33,6 +33,7 @@ import static com.cobo.api.client.impl.Utils.*;
 
 public class LocalSigner implements ApiSigner {
     private final ECPrivateKey eckey;
+    private final String secret;
 
     private static final X9ECParameters CURVE_PARAMS = CustomNamedCurves.getByName("secp256k1");
 
@@ -42,12 +43,11 @@ public class LocalSigner implements ApiSigner {
     public LocalSigner(String privKey) {
         try {
             eckey = generatePrivateKey(hexToBytes(privKey));
+            secret = privKey;
         } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
-
     }
 
     public ECPrivateKey generatePrivateKey(byte[] keyBin) throws InvalidKeySpecException, NoSuchAlgorithmException {
@@ -70,6 +70,15 @@ public class LocalSigner implements ApiSigner {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public String getPublicKey() {
+        ECNamedCurveParameterSpec spec = ECNamedCurveTable.getParameterSpec("secp256k1");
+        org.bouncycastle.math.ec.ECPoint pointQ = spec.getG().multiply(new BigInteger(secret,16));
+        byte[] publickKeyByte = pointQ.getEncoded(true);
+        return bytesToHex(publickKeyByte);
+    }
+
 
     /***
      * generate key pair

@@ -2,6 +2,7 @@ package com.cobo.api.client.impl;
 
 import com.cobo.api.client.ApiSigner;
 import com.cobo.api.client.CoboApiError;
+import com.cobo.api.client.config.Env;
 import com.cobo.api.client.domain.ApiResponse;
 import com.cobo.api.client.exception.CoboApiException;
 import com.cobo.api.client.security.AuthenticationInterceptor;
@@ -43,22 +44,17 @@ public class CoboApiServiceGenerator {
     }
 
     public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, null, null, null, null);
+        return createService(serviceClass, null, null, false);
     }
 
-    public static <S> S createService(Class<S> serviceClass, String apiKey, ApiSigner signer, String coboPub, String host) {
+    public static <S> S createService(Class<S> serviceClass, ApiSigner signer, Env env, boolean debug) {
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
-                .baseUrl(host)
+                .baseUrl(env.host)
                 .addConverterFactory(converterFactory);
 
-        if (StringUtils.isEmpty(apiKey) || signer == null || StringUtils.isEmpty(coboPub)) {
-            retrofitBuilder.client(sharedClient);
-        } else {
-            // `adaptedClient` will use its own interceptor, but share thread pool etc with the 'parent' client
-            AuthenticationInterceptor interceptor = new AuthenticationInterceptor(apiKey, signer, coboPub);
-            OkHttpClient adaptedClient = sharedClient.newBuilder().addInterceptor(interceptor).build();
-            retrofitBuilder.client(adaptedClient);
-        }
+        AuthenticationInterceptor interceptor = new AuthenticationInterceptor(signer, env.coboPub, debug);
+        OkHttpClient adaptedClient = sharedClient.newBuilder().addInterceptor(interceptor).build();
+        retrofitBuilder.client(adaptedClient);
 
         Retrofit retrofit = retrofitBuilder.build();
         return retrofit.create(serviceClass);

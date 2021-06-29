@@ -77,7 +77,7 @@ gradle:
 
 ```
 dependencies {
-    implementation 'com.github.CoboCustody:cobo-java-api:v0.26'
+    implementation 'com.github.CoboCustody:cobo-java-api:v0.27'
 }
 ```
 
@@ -87,7 +87,7 @@ maven:
 <dependency>
     <groupId>com.github.CoboCustody</groupId>
     <artifactId>cobo-java-api</artifactId>
-    <version>v0.26</version>
+    <version>v0.27</version>
 </dependency>
 ```
 
@@ -119,13 +119,13 @@ These can be instantiated through the corresponding factory method of `CoboApiCl
 ```java
 import com.cobo.api.client.CoboApiClientFactory;
 import com.cobo.api.client.CoboApiRestClient;
-import com.cobo.api.client.config.CoboApiConfig;
 import com.cobo.api.client.config.Env;
-import com.cobo.api.client.domain.staking.Lang;
 import com.cobo.api.client.impl.LocalSigner;
 
-CoboApiClientFactory factory = CoboApiClientFactory.newInstance("API-KEY", ApiSigner，"COBO-PUB", "hostUrl");
-CoboApiRestClient client = factory.newRestClient();
+CoboApiRestClient client = CoboApiClientFactory.newInstance(
+                new LocalSigner(apiSecret),
+                Env.SANDBOX,
+                false).newRestClient();
 ```
 
 #### Initialize ApiSigner
@@ -140,8 +140,12 @@ In some cases, your private key cannot be exported, for example, your private ke
 new ApiSigner() {
     @Override
     public String sign(byte[] message) {
-        signature = yourAWSSignMethod(message);
-        return signature;
+        return null;
+    }
+
+    @Override
+    public String getPublicKey() {
+        return null;
     }
 }
 ```

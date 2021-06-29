@@ -6,7 +6,6 @@ import okhttp3.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 import static com.cobo.api.client.constant.CoboApiConstants.*;
@@ -23,10 +22,13 @@ public class AuthenticationInterceptor implements Interceptor {
 
     private final String coboPubKey;
 
-    public AuthenticationInterceptor(String apiKey, ApiSigner signer, String coboPubKey) {
-        this.apiKey = apiKey;
+    private final boolean debug;
+
+    public AuthenticationInterceptor(ApiSigner signer, String coboPubKey, boolean debug) {
+        this.apiKey = signer.getPublicKey();
         this.signer = signer;
         this.coboPubKey = coboPubKey;
+        this.debug = debug;
     }
 
     /**
@@ -70,10 +72,15 @@ public class AuthenticationInterceptor implements Interceptor {
 
         Request newRequest = addHeader(original, newRequestBuilder);
         Response response = chain.proceed(newRequest);
-
         String ts = response.header(BIZ_TIMESTAMP);
         String respSignature = response.header(BIZ_RESP_SIGNATURE);
         String responseBody = response.body() == null ? "null" : response.body().string();
+
+        if (debug){
+            System.out.println("response <<<<<<<<");
+            System.out.println("responseBody:"+ responseBody
+                    + "\nrespSignature:" + respSignature+ "\nts:"+ts);
+        }
         boolean verifyResult = verifyEcdsaSignature(responseBody + "|" + ts, respSignature, coboPubKey);
         if (!verifyResult) throw new RuntimeException("response verify failed");
         MediaType mediaType = response.body().contentType();
@@ -110,7 +117,12 @@ public class AuthenticationInterceptor implements Interceptor {
                 .addHeader(BIZ_API_SIGNATURE, sig);
 
         // Build new request after adding the necessary authentication information
-        return newRequestBuilder.build();
+        Request request = newRequestBuilder.build();
+        if (debug){
+            System.out.println("request >>>>>>>>");
+            System.out.println(request.method()+ "\n" + request.url()+"\n" + "content:"+content + "\nsig:"+sig+"\nnonce:"+nonce);
+        }
+        return request;
     }
 
     @Override
