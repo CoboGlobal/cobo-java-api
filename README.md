@@ -77,7 +77,7 @@ gradle:
 
 ```
 dependencies {
-    implementation 'com.github.CoboCustody:cobo-java-api:v0.27'
+    implementation 'com.github.CoboCustody:cobo-java-api:v0.28'
 }
 ```
 
@@ -87,7 +87,7 @@ maven:
 <dependency>
     <groupId>com.github.CoboCustody</groupId>
     <artifactId>cobo-java-api</artifactId>
-    <version>v0.27</version>
+    <version>v0.28</version>
 </dependency>
 ```
 
@@ -105,7 +105,7 @@ maven:
 
 #### Generate Key Pair
 ```java
-import com.cobo.api.client.impl.LocalSigner;
+import com.cobo.custody.api.client.impl.LocalSigner;
 
 String[] key = LocalSigner.generateKeyPair();
 Stirng secretKey = key[0];
@@ -117,10 +117,11 @@ Please refer to the link [link](https://doc.custody.cobo.com/en.html#api-authent
 These can be instantiated through the corresponding factory method of `CoboApiClientFactory`
 
 ```java
-import com.cobo.api.client.CoboApiClientFactory;
-import com.cobo.api.client.CoboApiRestClient;
-import com.cobo.api.client.config.Env;
-import com.cobo.api.client.impl.LocalSigner;
+import com.cobo.custody.api.client.CoboApiClientFactory;
+import com.cobo.custody.api.client.CoboApiRestClient;
+import com.cobo.custody.api.client.config.CoboApiConfig;
+import com.cobo.custody.api.client.config.Env;
+import com.cobo.custody.api.client.impl.LocalSigner;
 
 CoboApiRestClient client = CoboApiClientFactory.newInstance(
                 new LocalSigner(apiSecret),
@@ -137,6 +138,8 @@ In some cases, your private key cannot be exported, for example, your private ke
 
 
 ```java
+
+import com.cobo.custody.api.client.ApiSigner;
 new ApiSigner() {
     @Override
     public String sign(byte[] message) {

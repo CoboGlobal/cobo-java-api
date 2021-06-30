@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Main-Class: com.cobo.api.client.callback.Demo
+Main-Class: com.cobo.custody.api.client.callback.Demo
 Class-Path: netty-codec-4.1.28.Final.jar scrypt-1.4.0.jar listenablefutu
  re-9999.0-empty-to-avoid-conflict-with-guava.jar slf4j-simple-1.7.9.jar
   error_prone_annotations-2.2.0.jar retrofit-2.9.0.jar okio-1.17.2.jar o
