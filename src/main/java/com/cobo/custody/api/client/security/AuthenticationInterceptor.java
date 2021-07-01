@@ -8,7 +8,10 @@ import okhttp3.*;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * A request interceptor that injects the API Key Header into requests, and signs messages, whenever required.
@@ -40,7 +43,7 @@ public class AuthenticationInterceptor implements Interceptor {
         if (body instanceof FormBody) {
             FormBody newBody = (FormBody) body;
             TreeMap<String, Object> map = new TreeMap<>();
-            for (int i = 0 ; i < newBody.size(); i++) {
+            for (int i = 0; i < newBody.size(); i++) {
                 map.put(newBody.encodedName(i), newBody.encodedValue(i));
             }
             return composeParams(map);
@@ -75,10 +78,10 @@ public class AuthenticationInterceptor implements Interceptor {
         String respSignature = response.header(CoboApiConstants.BIZ_RESP_SIGNATURE);
         String responseBody = response.body() == null ? "null" : response.body().string();
 
-        if (debug){
+        if (debug) {
             System.out.println("response <<<<<<<<");
-            System.out.println("responseBody:"+ responseBody
-                    + "\nrespSignature:" + respSignature+ "\nts:"+ts);
+            System.out.println("responseBody:" + responseBody
+                    + "\nrespSignature:" + respSignature + "\nts:" + ts);
         }
         boolean verifyResult = LocalSigner.verifyEcdsaSignature(responseBody + "|" + ts, respSignature, coboPubKey);
         if (!verifyResult) throw new RuntimeException("response verify failed");
@@ -117,9 +120,9 @@ public class AuthenticationInterceptor implements Interceptor {
 
         // Build new request after adding the necessary authentication information
         Request request = newRequestBuilder.build();
-        if (debug){
+        if (debug) {
             System.out.println("request >>>>>>>>");
-            System.out.println(request.method()+ "\n" + request.url()+"\n" + "content:"+content + "\nsig:"+sig+"\nnonce:"+nonce);
+            System.out.println(request.method() + "\n" + request.url() + "\n" + "content:" + content + "\nsig:" + sig + "\nnonce:" + nonce);
         }
         return request;
     }

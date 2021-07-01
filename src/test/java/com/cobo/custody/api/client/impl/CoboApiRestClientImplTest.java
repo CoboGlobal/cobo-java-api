@@ -3,11 +3,11 @@ package com.cobo.custody.api.client.impl;
 import com.cobo.custody.api.client.CoboApiClientFactory;
 import com.cobo.custody.api.client.CoboApiRestClient;
 import com.cobo.custody.api.client.config.Env;
+import com.cobo.custody.api.client.domain.ApiResponse;
+import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.staking.*;
 import com.cobo.custody.api.client.domain.transaction.Side;
 import com.cobo.custody.api.client.domain.transaction.Transaction;
-import com.cobo.custody.api.client.domain.ApiResponse;
-import com.cobo.custody.api.client.domain.account.*;
 import junit.framework.TestCase;
 
 import java.math.BigInteger;
@@ -36,6 +36,7 @@ public class CoboApiRestClientImplTest extends TestCase {
         System.out.println(key[0]);
         System.out.println(key[1]);
     }
+
     public void testGetOrgInfo() {
         ApiResponse<OrgInfo> res = client.getOrgInfo();
         System.out.println(res);

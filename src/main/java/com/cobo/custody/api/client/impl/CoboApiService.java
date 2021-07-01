@@ -1,5 +1,6 @@
 package com.cobo.custody.api.client.impl;
 
+import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.staking.StakingData;
 import com.cobo.custody.api.client.domain.staking.StakingHistory;
@@ -9,7 +10,6 @@ import com.cobo.custody.api.client.domain.trading.TradingDeposit;
 import com.cobo.custody.api.client.domain.trading.TradingTransfer;
 import com.cobo.custody.api.client.domain.trading.TradingWithdraw;
 import com.cobo.custody.api.client.domain.transaction.Transaction;
-import com.cobo.custody.api.client.domain.ApiResponse;
 import retrofit2.Call;
 import retrofit2.http.*;
 

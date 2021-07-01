@@ -32,13 +32,11 @@ import static com.cobo.custody.api.client.impl.Utils.*;
 
 
 public class LocalSigner implements ApiSigner {
-    private final ECPrivateKey eckey;
-    private final String secret;
-
     private static final X9ECParameters CURVE_PARAMS = CustomNamedCurves.getByName("secp256k1");
-
     public static final ECDomainParameters CURVE = new ECDomainParameters(CURVE_PARAMS.getCurve(),
             CURVE_PARAMS.getG(), CURVE_PARAMS.getN(), CURVE_PARAMS.getH());
+    private final ECPrivateKey eckey;
+    private final String secret;
 
     public LocalSigner(String privKey) {
         try {
@@ -49,36 +47,6 @@ public class LocalSigner implements ApiSigner {
             throw new RuntimeException(e);
         }
     }
-
-    public ECPrivateKey generatePrivateKey(byte[] keyBin) throws InvalidKeySpecException, NoSuchAlgorithmException {
-        ECNamedCurveParameterSpec spec = ECNamedCurveTable.getParameterSpec("secp256k1");
-        KeyFactory kf = KeyFactory.getInstance("EC", new BouncyCastleProvider());
-        ECNamedCurveSpec params = new ECNamedCurveSpec("secp256k1", spec.getCurve(), spec.getG(), spec.getN());
-        ECPrivateKeySpec privKeySpec = new ECPrivateKeySpec(new BigInteger(keyBin), params);
-        return (ECPrivateKey) kf.generatePrivate(privKeySpec);
-    }
-
-    @Override
-    public String sign(byte[] message) {
-        try {
-            Signature dsa = Signature.getInstance("SHA256withECDSA");
-            dsa.initSign(eckey);
-            dsa.update(Utils.sha256(message));
-            return bytesToHex(dsa.sign());
-        } catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public String getPublicKey() {
-        ECNamedCurveParameterSpec spec = ECNamedCurveTable.getParameterSpec("secp256k1");
-        org.bouncycastle.math.ec.ECPoint pointQ = spec.getG().multiply(new BigInteger(secret,16));
-        byte[] publickKeyByte = pointQ.getEncoded(true);
-        return bytesToHex(publickKeyByte);
-    }
-
 
     /***
      * generate key pair
@@ -128,9 +96,41 @@ public class LocalSigner implements ApiSigner {
             throw new RuntimeException(e);
         } finally {
             if (decoder != null)
-                try { decoder.close(); } catch (IOException ignored) {}
+                try {
+                    decoder.close();
+                } catch (IOException ignored) {
+                }
             Properties.removeThreadOverride("org.bouncycastle.asn1.allow_unsafe_integer");
         }
+    }
+
+    public ECPrivateKey generatePrivateKey(byte[] keyBin) throws InvalidKeySpecException, NoSuchAlgorithmException {
+        ECNamedCurveParameterSpec spec = ECNamedCurveTable.getParameterSpec("secp256k1");
+        KeyFactory kf = KeyFactory.getInstance("EC", new BouncyCastleProvider());
+        ECNamedCurveSpec params = new ECNamedCurveSpec("secp256k1", spec.getCurve(), spec.getG(), spec.getN());
+        ECPrivateKeySpec privKeySpec = new ECPrivateKeySpec(new BigInteger(keyBin), params);
+        return (ECPrivateKey) kf.generatePrivate(privKeySpec);
+    }
+
+    @Override
+    public String sign(byte[] message) {
+        try {
+            Signature dsa = Signature.getInstance("SHA256withECDSA");
+            dsa.initSign(eckey);
+            dsa.update(Utils.sha256(message));
+            return bytesToHex(dsa.sign());
+        } catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public String getPublicKey() {
+        ECNamedCurveParameterSpec spec = ECNamedCurveTable.getParameterSpec("secp256k1");
+        org.bouncycastle.math.ec.ECPoint pointQ = spec.getG().multiply(new BigInteger(secret, 16));
+        byte[] publickKeyByte = pointQ.getEncoded(true);
+        return bytesToHex(publickKeyByte);
     }
 
 }

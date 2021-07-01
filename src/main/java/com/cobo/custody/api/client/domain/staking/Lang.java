@@ -5,6 +5,7 @@ public enum Lang {
     ENGLISG("en");
 
     String value;
+
     Lang(String value) {
         this.value = value;
     }

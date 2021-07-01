@@ -1,5 +1,6 @@
 package com.cobo.custody.api.client;
 
+import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.staking.*;
 import com.cobo.custody.api.client.domain.trading.TradingDeposit;
@@ -7,7 +8,6 @@ import com.cobo.custody.api.client.domain.trading.TradingTransfer;
 import com.cobo.custody.api.client.domain.trading.TradingWithdraw;
 import com.cobo.custody.api.client.domain.transaction.Side;
 import com.cobo.custody.api.client.domain.transaction.Transaction;
-import com.cobo.custody.api.client.domain.ApiResponse;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -33,6 +33,7 @@ public interface CoboApiRestClient {
      * @return address info
      */
     ApiResponse<Address> newAddress(String coin, boolean nativeSegwit);
+
     /***
      * batch get new deposit address
      * @param coin coinCode
@@ -121,7 +122,7 @@ public interface CoboApiRestClient {
      * @param beginTime Begin timestamp(milliseconds). If set, transactions whose transaction confirmation time is less than or equal to this will not be returned.
      * @param endTime End time stamp (milliseconds). If it is passed in, the transactions whose transaction confirmation time is greater than or equal to this will not be returned.
      * @param limit Page size is optional. If not included, the default size will be 50, and the maximum size will also be 50.
-     * @param includeFinancial 	Request all transactions. If it is passed in, return all transactions(Including stacking, trading)
+     * @param includeFinancial    Request all transactions. If it is passed in, return all transactions(Including stacking, trading)
      * @return
      */
     ApiResponse<List<Transaction>> getTransactionsByTime(String coin, Side side,
@@ -131,7 +132,7 @@ public interface CoboApiRestClient {
     /***
      * Get pending transaction list (before confirmingThreshold reached)
      * @param coin Coin code (Does not return all currencies)
-     * @param side 	Deposit/withdrawal
+     * @param side    Deposit/withdrawal
      * @param maxId The transaction history ID limit is optional. If not included, will by default return the most recent records.
      * @param minId Optional. If included, the sequence will be changed to time ASC. If not included, will by default return the most recent records, time DESC.
      * @param limit Page size is optional. If not included, the default size will be 50, and the maximum size will also be 50.
@@ -232,16 +233,18 @@ public interface CoboApiRestClient {
 
     /**
      * Stake
+     *
      * @param productId product id
-     * @param amount stake amount
+     * @param amount    stake amount
      * @return
      */
     ApiResponse<Void> stake(String productId, BigInteger amount);
 
     /**
      * Unstake
+     *
      * @param productId product id
-     * @param amount unstake amount
+     * @param amount    unstake amount
      * @return
      */
     ApiResponse<Void> unstake(String productId, BigInteger amount);

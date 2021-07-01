@@ -3,6 +3,7 @@ package com.cobo.custody.api.client.impl;
 import com.cobo.custody.api.client.ApiSigner;
 import com.cobo.custody.api.client.CoboApiRestClient;
 import com.cobo.custody.api.client.config.Env;
+import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.staking.*;
 import com.cobo.custody.api.client.domain.trading.TradingDeposit;
@@ -10,7 +11,6 @@ import com.cobo.custody.api.client.domain.trading.TradingTransfer;
 import com.cobo.custody.api.client.domain.trading.TradingWithdraw;
 import com.cobo.custody.api.client.domain.transaction.Side;
 import com.cobo.custody.api.client.domain.transaction.Transaction;
-import com.cobo.custody.api.client.domain.ApiResponse;
 import org.bouncycastle.util.encoders.Hex;
 
 import java.math.BigInteger;
@@ -122,11 +122,11 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     @Override
     public ApiResponse<String> withdraw(String coin, String requestId, String address, BigInteger amount, String memo, String forceExternal, String forceInternal) {
         if (requestId == null || requestId.length() == 0) {
-            requestId = String.format("sdk_request_id_%s_%s", Hex.toHexString(Utils.sha256(address.getBytes())).substring(0,8), System.currentTimeMillis());
+            requestId = String.format("sdk_request_id_%s_%s", Hex.toHexString(Utils.sha256(address.getBytes())).substring(0, 8), System.currentTimeMillis());
         }
 
         System.out.println(requestId);
-        return executeSync(coboApiService.withdraw(coin, requestId,address,amount.toString(),memo, forceExternal, forceInternal));
+        return executeSync(coboApiService.withdraw(coin, requestId, address, amount.toString(), memo, forceExternal, forceInternal));
     }
 
     @Override
@@ -156,7 +156,7 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
 
     @Override
     public ApiResponse<List<StakingHistory>> getStakingHistory(String coin, String type, String maxId, String limit, String productId) {
-        return executeSync(coboApiService.getStakingHistory(coin,type,maxId,limit,productId));
+        return executeSync(coboApiService.getStakingHistory(coin, type, maxId, limit, productId));
     }
 
     @Override
@@ -171,7 +171,7 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
 
     @Override
     public ApiResponse<TradingWithdraw> tradingWithdraw(String exchangeAccountToken, String coin, BigInteger amount, String requestId) {
-        return executeSync(coboApiService.tradingWithdraw(exchangeAccountToken,coin,amount.toString(),requestId));
+        return executeSync(coboApiService.tradingWithdraw(exchangeAccountToken, coin, amount.toString(), requestId));
     }
 
     @Override
@@ -181,7 +181,7 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
 
     @Override
     public ApiResponse<TradingDeposit> tradingDeposit(String exchangeAccountToken, String coin, BigInteger amount, String requestId) {
-        return executeSync(coboApiService.tradingDeposit(exchangeAccountToken,coin,amount.toString(),requestId));
+        return executeSync(coboApiService.tradingDeposit(exchangeAccountToken, coin, amount.toString(), requestId));
     }
 
     @Override
@@ -191,7 +191,7 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
 
     @Override
     public ApiResponse<TradingTransfer> tradingTransfer(String fromExchangeAccountToken, String toExchangeAccountToken, String coin, BigInteger amount, String requestId) {
-        return executeSync(coboApiService.tradingTransfer(fromExchangeAccountToken,toExchangeAccountToken,coin,amount.toString(),requestId));
+        return executeSync(coboApiService.tradingTransfer(fromExchangeAccountToken, toExchangeAccountToken, coin, amount.toString(), requestId));
     }
 
     @Override
