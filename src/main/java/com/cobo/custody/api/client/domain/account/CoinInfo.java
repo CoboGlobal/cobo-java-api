@@ -27,6 +27,9 @@ public class CoinInfo {
     private long dustThreshold;
     @JsonProperty(value = "token_address")
     private String tokenAddress;
+    @JsonProperty("minimum_deposit_threshold")
+    private String minimumDepositThreshold;
+
 
     public String getCoin() {
         return coin;
@@ -140,6 +143,10 @@ public class CoinInfo {
         this.tokenAddress = tokenAddress;
     }
 
+    public String getMinimumDepositThreshold() {
+        return minimumDepositThreshold;
+    }
+
     @Override
     public String toString() {
         return "CoinInfo{" +
@@ -157,6 +164,7 @@ public class CoinInfo {
                 ", confirmingThreshold=" + confirmingThreshold +
                 ", dustThreshold=" + dustThreshold +
                 ", tokenAddress='" + tokenAddress + '\'' +
+                ", minimumDepositThreshold='" + minimumDepositThreshold + '\'' +
                 '}';
     }
 }
