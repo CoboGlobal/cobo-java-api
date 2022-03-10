@@ -190,7 +190,7 @@ public class OrgInfo {
                     ", decimal=" + decimal +
                     ", canDeposit=" + canDeposit +
                     ", canWithdraw=" + canWithdraw +
-                    ", minimumDepositThreshold=" + minimumDepositThreshold +
+                    ", minimumDepositThreshold='" + minimumDepositThreshold + '\'' +
                     ", balance='" + balance + '\'' +
                     ", absBalance='" + absBalance + '\'' +
                     ", feeCoin='" + feeCoin + '\'' +

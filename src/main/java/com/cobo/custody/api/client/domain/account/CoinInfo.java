@@ -160,7 +160,7 @@ public class CoinInfo {
                 ", canDeposit=" + canDeposit +
                 ", canWithdraw=" + canWithdraw +
                 ", requireMemo=" + requireMemo +
-                ", minimumDepositThreshold=" + minimumDepositThreshold +
+                ", minimumDepositThreshold='" + minimumDepositThreshold + '\'' +
                 ", balance='" + balance + '\'' +
                 ", absBalance='" + absBalance + '\'' +
                 ", feeCoin='" + feeCoin + '\'' +
