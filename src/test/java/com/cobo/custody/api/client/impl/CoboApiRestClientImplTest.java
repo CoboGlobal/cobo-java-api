@@ -45,7 +45,6 @@ public class CoboApiRestClientImplTest extends TestCase {
 
     public void testGetCoinInfo() {
         ApiResponse<CoinInfo> res = client.getCoinInfo("ETH");
-        System.out.println(res);
         assertTrue(res.isSuccess());
     }
 
