@@ -43,6 +43,8 @@ public class OrgInfo {
         private boolean canDeposit;
         @JsonProperty(value = "can_withdraw")
         private boolean canWithdraw;
+        @JsonProperty(value = "minimum_deposit_threshold")
+        private String minimumDepositThreshold;
         private String balance;
         @JsonProperty(value = "abs_balance")
         private String absBalance;
@@ -105,6 +107,14 @@ public class OrgInfo {
 
         public void setCanWithdraw(boolean canWithdraw) {
             this.canWithdraw = canWithdraw;
+        }
+
+        public String getMinimumDepositThreshold() {
+            return minimumDepositThreshold;
+        }
+
+        public void setMinimumDepositThreshold(String minimumDepositThreshold) {
+            this.minimumDepositThreshold = minimumDepositThreshold;
         }
 
         public String getBalance() {
@@ -180,6 +190,7 @@ public class OrgInfo {
                     ", decimal=" + decimal +
                     ", canDeposit=" + canDeposit +
                     ", canWithdraw=" + canWithdraw +
+                    ", minimumDepositThreshold=" + minimumDepositThreshold +
                     ", balance='" + balance + '\'' +
                     ", absBalance='" + absBalance + '\'' +
                     ", feeCoin='" + feeCoin + '\'' +

@@ -3,6 +3,7 @@ package com.cobo.custody.api.client.impl;
 import com.cobo.custody.api.client.ApiSigner;
 import com.cobo.custody.api.client.CoboApiError;
 import com.cobo.custody.api.client.config.Env;
+import com.cobo.custody.api.client.converter.jackson.JacksonConverterFactory;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.exception.CoboApiException;
 import com.cobo.custody.api.client.security.AuthenticationInterceptor;
@@ -14,7 +15,6 @@ import retrofit2.Call;
 import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;

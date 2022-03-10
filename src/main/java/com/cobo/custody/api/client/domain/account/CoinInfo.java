@@ -14,6 +14,8 @@ public class CoinInfo {
     private boolean canWithdraw;
     @JsonProperty(value = "require_memo")
     private boolean requireMemo;
+    @JsonProperty(value = "minimum_deposit_threshold")
+    private String minimumDepositThreshold;
     private String balance;
     @JsonProperty(value = "abs_balance")
     private String absBalance;
@@ -84,6 +86,14 @@ public class CoinInfo {
         this.requireMemo = requireMemo;
     }
 
+    public String getMinimumDepositThreshold() {
+        return minimumDepositThreshold;
+    }
+
+    public void setMinimumDepositThreshold(String minimumDepositThreshold) {
+        this.minimumDepositThreshold = minimumDepositThreshold;
+    }
+
     public String getBalance() {
         return balance;
     }
@@ -150,6 +160,7 @@ public class CoinInfo {
                 ", canDeposit=" + canDeposit +
                 ", canWithdraw=" + canWithdraw +
                 ", requireMemo=" + requireMemo +
+                ", minimumDepositThreshold=" + minimumDepositThreshold +
                 ", balance='" + balance + '\'' +
                 ", absBalance='" + absBalance + '\'' +
                 ", feeCoin='" + feeCoin + '\'' +
