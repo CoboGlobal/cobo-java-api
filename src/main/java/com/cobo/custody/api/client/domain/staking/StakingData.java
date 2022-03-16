@@ -15,7 +15,7 @@ public class StakingData {
     @JsonProperty(value = "reward_coin_decimal")
     private int rewardCoinDecimal;
     @JsonProperty(value = "reward_amount")
-    private int rewardAmount;
+    private long rewardAmount;
     private StakingProduct product;
 
     public int getStakingId() {
@@ -66,11 +66,11 @@ public class StakingData {
         this.rewardCoinDecimal = rewardCoinDecimal;
     }
 
-    public int getRewardAmount() {
+    public long getRewardAmount() {
         return rewardAmount;
     }
 
-    public void setRewardAmount(int rewardAmount) {
+    public void setRewardAmount(long rewardAmount) {
         this.rewardAmount = rewardAmount;
     }
 
