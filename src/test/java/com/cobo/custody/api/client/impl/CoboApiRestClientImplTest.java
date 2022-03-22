@@ -311,7 +311,8 @@ public class CoboApiRestClientImplTest{
         ApiResponse<List<StakingProduct>> productsRes = client.getStakingProducts("TETH", Lang.ENGLISG);
         String Id = String.valueOf(productsRes.getResult().get(0).getProductId());
         ApiResponse<Void> res = client.stake(Id, new BigInteger("1000000"));
-        System.out.println(res.toString());
+        assertTrue(res.isSuccess());
+        assertEquals(res.getResult(),null);
     }
 
     @Test
@@ -319,7 +320,9 @@ public class CoboApiRestClientImplTest{
         ApiResponse<List<StakingProduct>> productsRes = client.getStakingProducts("TETH", Lang.ENGLISG);
         String Id = String.valueOf(productsRes.getResult().get(0).getProductId());
         ApiResponse<Void> res = client.unstake(Id, new BigInteger("1000000"));
-        System.out.println(res.toString());
+        assertTrue(res.isSuccess());
+        assertEquals(res.getResult(), null);
+
     }
 
     public void testTradingWithdraw() {
