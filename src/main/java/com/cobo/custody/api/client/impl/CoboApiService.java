@@ -60,6 +60,9 @@ public interface CoboApiService {
     @GET("/v1/custody/internal_address_info_batch/")
     Call<ApiResponse<List<InternalAddressInfo>>> getInternalAddressInfoBatch(@Query("coin") String coin, @Query("address") String address);
 
+    @GET("/v1/custody/transaction_by_txid/")
+    Call<ApiResponse<List<Transaction>>> getTransactionByTxId(@Query("txid") String txid);
+
     @GET("/v1/custody/transaction/")
     Call<ApiResponse<Transaction>> getTransactionById(@Query("id") String id);
 

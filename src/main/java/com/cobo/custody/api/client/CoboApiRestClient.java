@@ -91,7 +91,12 @@ public interface CoboApiRestClient {
      * @return address list
      */
     ApiResponse<List<InternalAddressInfo>> getInternalAddressInfoBatch(String coin, String addresses);
-
+    /***
+     * get transaction list
+     * @param txId - Cobo Transaction ID
+     * @return transaction list
+     */
+    ApiResponse<List<Transaction>> getTransactionByTxId(String txId);
     /***
      * get transaction details
      * @param id - Cobo Unique Transaction ID
