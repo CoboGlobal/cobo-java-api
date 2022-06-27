@@ -215,8 +215,15 @@ public class CoboApiRestClientImplTest{
 
     @Test
     public void testGetTransactionById() {
-        ApiResponse<Transaction> res = client.getTransactionById(TestData.txId);
+        ApiResponse<Transaction> res = client.getTransactionById(TestData.coboId);
         assertTrue(res.isSuccess());
+    }
+
+    public void testGetTransactionByTxId() {
+        ApiResponse<List<Transaction>> res = client.getTransactionByTxId(TestData.txId);
+        assertTrue(res.isSuccess());
+        System.out.println(res.getResult());
+        assertTrue(res.getResult().size() > 0);
     }
 
     @Test

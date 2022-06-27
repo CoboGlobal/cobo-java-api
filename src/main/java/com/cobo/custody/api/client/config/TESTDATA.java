@@ -35,6 +35,7 @@ public class TESTDATA {
 
     public static TESTDATA PROD_TESTDATA = new TESTDATA(
             "20220311154108000184408000002833",
+            "4041A888C9966BE8916FE65F2FEE7AE9A9DC3F49D0F1643A768C842CA95FA736",
             "sdk_request_id_fe80cc5f_1647068483396",
             prodDepositAddress,
             prodDepositAddresses,
@@ -69,12 +70,14 @@ public class TESTDATA {
 
     public static TESTDATA SANDBOX_TESTDATA = new TESTDATA(
             "20220314181458000331767000003732",
+            "0x1c4d137bc2a2ee8f22cbdf9e90405974e72e65d922f42eb81d9f7a05d0f64fc6",
             "web_send_by_user_915_1647252768642",
             sandbox_depositAddress,
             sandbox_depositAddresses,
             sandbox_loopAddress,
             sandbox_loopAddresses);
 
+    public String coboId;
     public String txId;
     public String withdrawId;
     public Map<String, String> depositAddress;
@@ -84,11 +87,12 @@ public class TESTDATA {
 
 
 
-    public TESTDATA(String txId, String withdrawId,
+    public TESTDATA(String coboId, String txId, String withdrawId,
                     Map<String, String> depositAddress,
                     Map<String, List> depositAddresses,
                     Map<String, String> loopAddress,
                     Map<String, String> loopAddresses){
+        this.coboId = coboId;
         this.txId = txId;
         this.withdrawId = withdrawId;
         this.depositAddress = depositAddress;

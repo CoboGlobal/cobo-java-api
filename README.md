@@ -25,6 +25,7 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
      * [Loop Transaction Explorer](#loop-transaction-explorer)
   * [Transactions](#transactions)
      * [Get Transaction Details](#get-transaction-details)
+     * [Get Transactions By Txid](#get-transactions-by-txid)
      * [Obtain the list of confirmed transactions through ID query(deposit&amp;withdraw)](#obtain-the-list-of-confirmed-transactions-through-id-querydepositwithdraw)
      * [Obtain the list of confirmed transactions through time query(deposit&amp;withdraw)](#obtain-the-list-of-confirmed-transactions-through-time-querydepositwithdraw)
      * [Get Pending Transactions](#get-pending-transactions)
@@ -310,6 +311,20 @@ ApiResponse<Transaction> res = client.getTransactionById("2021042219380700034356
 
 ```java
 Transaction{id='20210422193807000343569000002370', coin='TETH', display_code='TETH', description='Ethereum Testnet', decimal=18, address='0x14ce095a3593db7db1d13a0765eb826e00d4fc91', source_address='0x7ca60000afea5a1730e40cf6b51abbf8b594ad91', side='withdraw', amount='210000000000000000', abs_amount='0.21', txid='0xb40d0ca5a5fadda884a67a46f979741e96be92c69f767fed57ccc000d5c0a14b', vout_n=0, request_id='web_send_by_user_424_1619091344352', status='success', abs_cobo_fee='0', created_time=1619091344501, last_time=1619091838174, confirmed_num=36, tx_detail=TxDetail{txid='0xb40d0ca5a5fadda884a67a46f979741e96be92c69f767fed57ccc000d5c0a14b', blocknum=10088274, blockhash='0x1b9e862f4056cbc55fe70f817fd1b92e32ddfd7eb5092f56ffc36b91ebd69074', fee=0, actualgas=21000000000000, gasprice=1, hexstr=''}, source_address_detail='0x7ca60000afea5a1730e40cf6b51abbf8b594ad91', memo='', confirming_threshold=36, fee_coin='TETH', fee_amount='4000000000000000', fee_decimal=18, type='external', waiting_audit=false}
+```
+</details>
+
+#### Get Transactions By txId
+```java
+ApiResponse<List<Transaction>> res = client.getTransactionByTxId("0x5d5396c3992ed524bf68a22a7ab6ae503f0349354ad69bc5204d5214085d4e9f");
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+[Transaction{id='20220620112255000399219000004796', coin='COBO_ETH', display_code='COBO_ETH', description='Cobo Ethereum Testnet', decimal=18, address='0x9e6d2c7a9561ae9c7651768038c7d40da78920c9', source_address='0x929590a1428dffa67df664482cf2cad3c230ec6d', side='withdraw', amount='100000000000000', abs_amount='0.0001', txid='0x5d5396c3992ed524bf68a22a7ab6ae503f0349354ad69bc5204d5214085d4e9f', vout_n=0, request_id='web_send_by_user_1272_1655694295628', status='success', abs_cobo_fee='0', created_time=1655695375730, last_time=1655695375730, confirmed_num=13, tx_detail=TxDetail{txid='0x5d5396c3992ed524bf68a22a7ab6ae503f0349354ad69bc5204d5214085d4e9f', blocknum=8025087, blockhash='0xfef9d77a7d1e473c88272cef449fea7d5ef7eefe29f43f56ee27b8f7f1f1d8cf', fee=0, actualgas=21000000000000, gasprice=1, hexstr=''}, source_address_detail='0x929590a1428dffa67df664482cf2cad3c230ec6d', memo='for test', confirming_threshold=13, fee_coin='COBO_ETH', fee_amount='21000000000000', fee_decimal=18, type='external', waiting_audit=false}, Transaction{id='20220620112258000399219000009986', coin='COBO_ETH', display_code='COBO_ETH', description='Cobo Ethereum Testnet', decimal=18, address='0x9e6d2c7a9561ae9c7651768038c7d40da78920c9', source_address='0x929590a1428dffa67df664482cf2cad3c230ec6d', side='deposit', amount='100000000000000', abs_amount='0.0001', txid='0x5d5396c3992ed524bf68a22a7ab6ae503f0349354ad69bc5204d5214085d4e9f', vout_n=0, request_id='null', status='success', abs_cobo_fee='0', created_time=1655695378377, last_time=1655695378377, confirmed_num=15, tx_detail=TxDetail{txid='0x5d5396c3992ed524bf68a22a7ab6ae503f0349354ad69bc5204d5214085d4e9f', blocknum=8025087, blockhash='0xfef9d77a7d1e473c88272cef449fea7d5ef7eefe29f43f56ee27b8f7f1f1d8cf', fee=0, actualgas=0, gasprice=0, hexstr=''}, source_address_detail='0x929590a1428dffa67df664482cf2cad3c230ec6d', memo='null', confirming_threshold=15, fee_coin='null', fee_amount='null', fee_decimal=0, type='external', waiting_audit=false}]
+
 ```
 </details>
 
