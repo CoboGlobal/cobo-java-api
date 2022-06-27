@@ -219,6 +219,7 @@ public class CoboApiRestClientImplTest{
         assertTrue(res.isSuccess());
     }
 
+    @Test
     public void testGetTransactionByTxId() {
         ApiResponse<List<Transaction>> res = client.getTransactionByTxId(TestData.txId);
         assertTrue(res.isSuccess());
