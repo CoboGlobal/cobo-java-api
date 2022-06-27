@@ -35,7 +35,8 @@ jobs:
 
       - name: run testcase
         env:
+          ENV: "${{ github.event.inputs.environment == 'prod' && 'prod' || 'sandbox'}}"
           SECRET: "${{ github.event.inputs.environment == 'prod' && secrets.PRODSECRET || secrets.SANDBOXSECRET}}"
-        run: ./gradlew cleanTest test -DEnv=${{ github.event.inputs.environment }} -DApiSecret=$SECRET
+        run: ./gradlew cleanTest test -DEnv=$ENV -DApiSecret=$SECRET
 
 
