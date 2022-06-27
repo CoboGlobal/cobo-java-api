@@ -257,7 +257,7 @@ public class CoboApiRestClientImplTest{
 
     @ParameterizedTest(name="testGetTransactionHistory({0})_{index}")
     @CsvSource({"BTC","ETH","ETH_USDT","XRP"})
-    public void testGetTransactionHistory(string coin) {
+    public void testGetTransactionHistory(String coin) {
         ApiResponse<List<Transaction>> res = client.getTransactionHistory(coin, Side.Any, null, null, null, 50, 0, System.currentTimeMillis(), null);
         assertTrue(res.isSuccess());
     }
