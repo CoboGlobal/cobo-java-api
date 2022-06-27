@@ -97,7 +97,7 @@ maven:
 ## Test
 
 ```
- ./gradlew test
+ ./gradlew test -DEnv=sandbox/prod -DApiSecret=<yourApiSecret>
 ```
 
 ## Usage
