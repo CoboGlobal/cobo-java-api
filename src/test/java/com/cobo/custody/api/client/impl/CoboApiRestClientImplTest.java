@@ -257,8 +257,7 @@ public class CoboApiRestClientImplTest{
 
     @ParameterizedTest(name="testWithdraw({0})_{index}")
     @CsvSource({"COBO_ETH,0xE410157345be56688F43FF0D9e4B2B38Ea8F7828,,1",
-                "XRP,rndm7RphBZG6CpZvKcG9AjoFbSvcKhwLCx,,1",
-                "XRP,rndm7RphBZG6CpZvKcG9AjoFbSvcKhwLCx,2200701580,1"})
+                "XRP,GBJDU6TPWHKGV7HRLNTIBA46MG3MB5DUG6BISHX3BF7I75H2HLPV6RJX,4e73f03b,1"})
     public void testWithdraw(String coin, String recriveAddress, String memo, String amount) {
         ApiResponse<String> res = client.withdraw(coin,
                 UUID.randomUUID().toString(),
