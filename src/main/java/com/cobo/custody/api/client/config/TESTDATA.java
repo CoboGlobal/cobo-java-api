@@ -11,11 +11,11 @@ public class TESTDATA {
             put("XRP", "rBWpYJhuJWBPAkzJ4kYQqHShSkkF3rgeD|3992922539");
         }};
 
-    static List<String> prodBTCDepositAddresse = new ArrayList<>(){{
+    static List<String> prodBTCDepositAddresse = new ArrayList<String>(){{
             add("36xYx7vf7DUKpJDixpY3EoV2jchFwYSNCb");
             add("bc1q0l24tf5sjdu9t7l6hrlhxz9aq9yeej9h2sc7tk");
         }};
-    static List<String> prodXRPDepositAddresse = new ArrayList<>(){{
+    static List<String> prodXRPDepositAddresse = new ArrayList<String>(){{
             add("rBWpYJhuJWBPAkzJ4kYQqHShSkkF3rgeD|3992922539");
             add("rBWpYJhuJWBPAkzJ4kYQqHShSkkF3rgeD|1492154866");
         }};
@@ -45,12 +45,12 @@ public class TESTDATA {
             put("BTC", "3JBYNrbB4bHtGWHTEa3ZPuRK9kwTiEUo4D");
             put("XRP", "rfKyCMyoV6Ln2GZ7YDbrBrnXCbAyBbxRqB|2047482901");
         }};
-    static List<String> sandboxBTCDepositAddresse = new ArrayList<>(){{
+    static List<String> sandboxBTCDepositAddresse = new ArrayList<String>(){{
             add("3JBYNrbB4bHtGWHTEa3ZPuRK9kwTiEUo4D");
             add("bc1qf22hpu33u2tkyy528mdvpnre45n8lu5s3ycatu");
         }};
 
-    static List<String> sandboxXRPDepositAddresse = new ArrayList<>(){{
+    static List<String> sandboxXRPDepositAddresse = new ArrayList<String>(){{
             add("rfKyCMyoV6Ln2GZ7YDbrBrnXCbAyBbxRqB|20474829019");
             add("rfKyCMyoV6Ln2GZ7YDbrBrnXCbAyBbxRqB|3752417374");
         }};

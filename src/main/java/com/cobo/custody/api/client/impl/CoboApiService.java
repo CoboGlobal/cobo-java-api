@@ -54,6 +54,9 @@ public interface CoboApiService {
     @GET("/v1/custody/address_history/")
     Call<ApiResponse<List<Address>>> getAddressHistory(@Query("coin") String coin);
 
+    @GET("/v1/custody/address_history/")
+    Call<ApiResponse<List<Address>>> getAddressHistory(@Query("coin") String coin, @Query("page_index")int pageIndex, @Query("page_length")int pageLength);
+
     @GET("/v1/custody/internal_address_info/")
     Call<ApiResponse<InternalAddressInfo>> getInternalAddressInfo(@Query("coin") String coin, @Query("address") String address);
 

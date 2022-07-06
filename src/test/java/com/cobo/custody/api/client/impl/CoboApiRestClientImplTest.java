@@ -177,6 +177,12 @@ public class CoboApiRestClientImplTest{
         ApiResponse<List<Address>> res = client.getAddressHistory(coin);
         assertTrue(res.isSuccess());
     }
+    @ParameterizedTest(name="testGetValidAddressHistoryWithPage({0})_{index}")
+    @CsvSource({"BTC,1,2"})
+    public void testGetValidAddressHistoryWithPage(String coin, int pageIndex, int pageLength) {
+        ApiResponse<List<Address>> res = client.getAddressHistory(coin, pageIndex, pageLength);
+        assertTrue(res.isSuccess());
+    }
 
     @ParameterizedTest(name="testGetInvalidAddressHistory({0})_{index}")
     @CsvSource({"BTT"})

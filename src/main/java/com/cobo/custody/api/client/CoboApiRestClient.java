@@ -77,6 +77,15 @@ public interface CoboApiRestClient {
     ApiResponse<List<Address>> getAddressHistory(String coin);
 
     /***
+     * get address history list
+     * @param coin coin code
+     * @param pageIndex which page, start from 0
+     * @param pageLength page size
+     * @return
+     */
+    ApiResponse<List<Address>> getAddressHistory(String coin, int pageIndex, int pageLength);
+
+    /***
      * Check Loop address detail
      * @param coin coin code
      * @param address address
