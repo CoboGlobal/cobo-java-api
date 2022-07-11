@@ -75,6 +75,11 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
+    public ApiResponse<List<Address>> getAddressHistory(String coin, int pageIndex, int pageLength) {
+        return executeSync(coboApiService.getAddressHistory(coin, pageIndex, pageLength));
+    }
+
+    @Override
     public ApiResponse<InternalAddressInfo> getInternalAddressInfo(String coin, String address) {
         return executeSync(coboApiService.getInternalAddressInfo(coin, address));
     }
