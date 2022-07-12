@@ -79,7 +79,7 @@ gradle:
 
 ```
 dependencies {
-    implementation 'com.github.CoboCustody:cobo-java-api:v0.30'
+    implementation 'com.github.CoboCustody:cobo-java-api:v0.31'
 }
 ```
 
@@ -89,7 +89,7 @@ maven:
 <dependency>
     <groupId>com.github.CoboCustody</groupId>
     <artifactId>cobo-java-api</artifactId>
-    <version>v0.30</version>
+    <version>v0.31</version>
 </dependency>
 ```
 
