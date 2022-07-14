@@ -2,6 +2,7 @@ package com.cobo.custody.api.client;
 
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
+import com.cobo.custody.api.client.domain.enums.SortFlagEnum;
 import com.cobo.custody.api.client.domain.staking.*;
 import com.cobo.custody.api.client.domain.trading.TradingDeposit;
 import com.cobo.custody.api.client.domain.trading.TradingTransfer;
@@ -90,10 +91,10 @@ public interface CoboApiRestClient {
      * @param coin coin code
      * @param pageIndex which page, start from 0
      * @param pageLength page size, max size <= 50
-     * @param sortFlag 1: ascending order 0：Descending
+     * @param sortFlagEnum 1: ascending order 0：Descending
      * @return
      */
-    ApiResponse<List<Address>> getAddressHistory(String coin, int pageIndex, int pageLength, int sortFlag);
+    ApiResponse<List<Address>> getAddressHistory(String coin, int pageIndex, int pageLength, SortFlagEnum sortFlagEnum);
 
     /***
      * Check Loop address detail
