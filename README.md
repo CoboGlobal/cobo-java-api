@@ -20,7 +20,7 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
      * [Verify Valid Address](#verify-valid-address)
      * [Get Address History List](#get-address-history-list)
      * [Get Address History List With Page](#get-address-history-list-with-page)
-     * * [Get Address History List With Page Sort](#get-address-history-list-with-page-sort)
+     * [Get Address History List With Page Sort](#get-address-history-list-with-page-sort)
   * [Loop Alliance](#loop-alliance)
      * [Check Loop Address Details](#check-loop-address-details)
      * [Verify Loop Address List](#verify-loop-address-list)
