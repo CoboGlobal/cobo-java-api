@@ -45,7 +45,6 @@ public class CoboApiRestClientImplTest{
             TestEnv = Env.SANDBOX;
             TestData = TESTDATA.SANDBOX_TESTDATA;
         }
-
         client = CoboApiClientFactory.newInstance(
                 new LocalSigner(APISecret),
                 TestEnv,
@@ -195,16 +194,16 @@ public class CoboApiRestClientImplTest{
         assertEquals(res.getErrorCode(),1011);
     }
 
-    @ParameterizedTest(name="testGetValidAddressHistoryWithValidPage({0})_{index}")
+    @ParameterizedTest(name="testGetValidAddressHistoryWithValidPagePositiveOrder({0})_{index}")
     @CsvSource({"BTC,1,2,1"})
-    public void testGetValidAddressHistoryWithValidPage(String coin, int pageIndex, int pageLength, int sortFlag) {
+    public void testGetValidAddressHistoryWithValidPagePositiveOrder(String coin, int pageIndex, int pageLength, int sortFlag) {
         ApiResponse<List<Address>> res = client.getAddressHistory(coin, pageIndex, pageLength, SortFlagEnum.of(sortFlag));
         assertTrue(res.isSuccess());
     }
 
-    @ParameterizedTest(name="testGetAddressHistoryWithInvalidPage({0})_{index}")
-    @CsvSource({"BTC,1,51,1", "BTC,0,0,0"})
-    public void testGetAddressHistoryWithInvalidPage(String coin, int pageIndex, int pageLength, int sortFlag) {
+    @ParameterizedTest(name="testGetAddressHistoryWithInvalidPagePositiveOrder({0})_{index}")
+    @CsvSource({"BTC,1,51,1", "BTC,0,0,1"})
+    public void testGetAddressHistoryWithInvalidPagePositiveOrder(String coin, int pageIndex, int pageLength, int sortFlag) {
         ApiResponse<List<Address>> res = client.getAddressHistory(coin, pageIndex, pageLength, SortFlagEnum.of(sortFlag));
         assertFalse(res.isSuccess());
         assertEquals(res.getErrorCode(),1011);
