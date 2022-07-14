@@ -20,6 +20,7 @@ cobo-java-api is a lightweight Java library for interacting with the [Cobo Custo
      * [Verify Valid Address](#verify-valid-address)
      * [Get Address History List](#get-address-history-list)
      * [Get Address History List With Page](#get-address-history-list-with-page)
+     * * [Get Address History List With Page Sort](#get-address-history-list-with-page-sort)
   * [Loop Alliance](#loop-alliance)
      * [Check Loop Address Details](#check-loop-address-details)
      * [Verify Loop Address List](#verify-loop-address-list)
@@ -264,6 +265,19 @@ ApiResponse<List<Address>> res = client.getAddressHistory("ETH");
 #### Get Address History List With Page
 ```java
 ApiResponse<List<Address>> res = client.getAddressHistory("ETH" ,0, 50);
+```
+<details>
+<summary>View Response</summary>
+
+
+```java
+[Address{coin='ETH', address='0x6a60f0d7ef6e5d2a4a31d65c8b73ac19a020bb16'}, Address{coin='ETH', address='0xd192fb0d43615c7743f6229b1488e1a268b3c402'}, Address{coin='ETH', address='0x65e7b319837edab8ce9155b87dfce5ad599ab517'}, Address{coin='ETH', address='0x17e5bce063d14bdf75e41df8673ce0ee1978c452'}, Address{coin='ETH', address='0x7568cd7c5b051540eaeff22becbb35d716aa063e'}]
+```
+</details>
+
+#### Get Address History List With Page Sort
+```java
+ApiResponse<List<Address>> res = client.getAddressHistory("ETH" ,0, 50, 0);
 ```
 <details>
 <summary>View Response</summary>

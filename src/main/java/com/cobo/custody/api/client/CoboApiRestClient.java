@@ -70,20 +70,30 @@ public interface CoboApiRestClient {
 
 
     /***
-     * get address history list
+     * get address history list, just support Descending result
      * @param coin coin code
      * @return address list
      */
     ApiResponse<List<Address>> getAddressHistory(String coin);
 
     /***
-     * get address history list
+     * get address history list, just support Descending result
      * @param coin coin code
      * @param pageIndex which page, start from 0
-     * @param pageLength page size
+     * @param pageLength page size, max size <= 50
      * @return
      */
     ApiResponse<List<Address>> getAddressHistory(String coin, int pageIndex, int pageLength);
+
+    /**
+     * get address history list
+     * @param coin coin code
+     * @param pageIndex which page, start from 0
+     * @param pageLength page size, max size <= 50
+     * @param sortFlag 1: ascending order 0：Descending
+     * @return
+     */
+    ApiResponse<List<Address>> getAddressHistory(String coin, int pageIndex, int pageLength, int sortFlag);
 
     /***
      * Check Loop address detail
