@@ -5,6 +5,7 @@ import com.cobo.custody.api.client.CoboApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
+import com.cobo.custody.api.client.domain.enums.SortFlagEnum;
 import com.cobo.custody.api.client.domain.staking.*;
 import com.cobo.custody.api.client.domain.trading.TradingDeposit;
 import com.cobo.custody.api.client.domain.trading.TradingTransfer;
@@ -80,8 +81,8 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
-    public ApiResponse<List<Address>> getAddressHistory(String coin, int pageIndex, int pageLength, int sortFlag) {
-        return executeSync(coboApiService.getAddressHistory(coin, pageIndex, pageLength, sortFlag));
+    public ApiResponse<List<Address>> getAddressHistory(String coin, int pageIndex, int pageLength, SortFlagEnum sortFlagEnum) {
+        return executeSync(coboApiService.getAddressHistory(coin, pageIndex, pageLength, sortFlagEnum.getFlag()));
     }
 
     @Override

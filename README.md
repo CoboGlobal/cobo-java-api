@@ -277,7 +277,7 @@ ApiResponse<List<Address>> res = client.getAddressHistory("ETH" ,0, 50);
 
 #### Get Address History List With Page Sort
 ```java
-ApiResponse<List<Address>> res = client.getAddressHistory("ETH" ,0, 50, 0);
+ApiResponse<List<Address>> res = client.getAddressHistory("ETH" ,0, 50, SortFlagEnum.DESCENDING);
 ```
 <details>
 <summary>View Response</summary>

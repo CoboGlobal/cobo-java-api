@@ -6,6 +6,7 @@ import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.config.TESTDATA;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
+import com.cobo.custody.api.client.domain.enums.SortFlagEnum;
 import com.cobo.custody.api.client.domain.staking.*;
 import com.cobo.custody.api.client.domain.transaction.Side;
 import com.cobo.custody.api.client.domain.transaction.Transaction;
@@ -197,14 +198,14 @@ public class CoboApiRestClientImplTest{
     @ParameterizedTest(name="testGetValidAddressHistoryWithValidPage({0})_{index}")
     @CsvSource({"BTC,1,2,1"})
     public void testGetValidAddressHistoryWithValidPage(String coin, int pageIndex, int pageLength, int sortFlag) {
-        ApiResponse<List<Address>> res = client.getAddressHistory(coin, pageIndex, pageLength, sortFlag);
+        ApiResponse<List<Address>> res = client.getAddressHistory(coin, pageIndex, pageLength, SortFlagEnum.of(sortFlag));
         assertTrue(res.isSuccess());
     }
 
     @ParameterizedTest(name="testGetAddressHistoryWithInvalidPage({0})_{index}")
     @CsvSource({"BTC,1,51,1", "BTC,0,0,0"})
     public void testGetAddressHistoryWithInvalidPage(String coin, int pageIndex, int pageLength, int sortFlag) {
-        ApiResponse<List<Address>> res = client.getAddressHistory(coin, pageIndex, pageLength, sortFlag);
+        ApiResponse<List<Address>> res = client.getAddressHistory(coin, pageIndex, pageLength, SortFlagEnum.of(sortFlag));
         assertFalse(res.isSuccess());
         assertEquals(res.getErrorCode(),1011);
     }
