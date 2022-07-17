@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [v0.32]: https://github.com/CoboCustody/cobo-java-api/compare/v0.31...v0.32
 
 ### Added
-- The receiving address is able to support ascending order or descending order queries.  https://github.com/CoboCustody/cobo-java-api/pull/9,https://github.com/CoboCustody/cobo-java-api/pull/8
+- The receiving address is able to support ascending order or descending order queries.  https://github.com/CoboCustody/cobo-java-api/pull/9, https://github.com/CoboCustody/cobo-java-api/pull/8
 
 
 ## [v0.31] (2022-07-11)
