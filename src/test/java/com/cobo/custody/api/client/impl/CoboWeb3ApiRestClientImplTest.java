@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoboWeb3ApiRestClientImplTest {
     // refer README "Generate Key Pair"
-    // this secret is only for unit test and show saas demo
     private String Web3APISecret = "";
     private CoboWeb3ApiRestClient web3Client;
     private Env TestEnv= Env.SANDBOX;
