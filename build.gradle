@@ -25,6 +25,7 @@ dependencies {
 test {
     systemProperty "Env", "sandbox"
     systemProperty "ApiSecret", ""
+    systemProperty "Web3ApiSecret", ""
     systemProperties(System.getProperties())
     useJUnitPlatform()
     testLogging {
