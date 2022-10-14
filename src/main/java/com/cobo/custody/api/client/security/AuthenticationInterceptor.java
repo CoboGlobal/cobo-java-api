@@ -7,6 +7,7 @@ import okhttp3.*;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.Objects;
@@ -39,13 +40,14 @@ public class AuthenticationInterceptor implements Interceptor {
      * @return request body as a string
      */
 
-    private static String bodyToSortedString(RequestBody body) {
+    private static String bodyToSortedString(RequestBody body) throws UnsupportedEncodingException {
         if (body instanceof FormBody) {
             FormBody newBody = (FormBody) body;
             TreeMap<String, Object> map = new TreeMap<>();
             for (int i = 0; i < newBody.size(); i++) {
-                map.put(newBody.encodedName(i), newBody.encodedValue(i));
+                map.put(newBody.encodedName(i), URLDecoder.decode(newBody.encodedValue(i), "UTF-8"));
             }
+
             return composeParams(map);
         }
         throw new IllegalArgumentException("Unsupported request body");
@@ -91,7 +93,7 @@ public class AuthenticationInterceptor implements Interceptor {
                 .build();
     }
 
-    private Request addHeader(Request original, Request.Builder newRequestBuilder) {
+    private Request addHeader(Request original, Request.Builder newRequestBuilder) throws UnsupportedEncodingException {
         //HTTP_METHOD + | + HTTP_REQUEST_PATH + | + TIMESTAMP + | + PARAMS
         //POST|/v1/custody/test/|1537498830736|amount=100.0&price=100.0&side=buy&symbol=btcusdt&type=limit
         String method = original.method();
