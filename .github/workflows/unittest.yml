@@ -37,7 +37,7 @@ jobs:
         env:
           ENV: "${{ github.event.inputs.environment == 'prod' && 'prod' || 'sandbox'}}"
           SECRET: "${{ github.event.inputs.environment == 'prod' && secrets.PRODSECRET || secrets.SANDBOXSECRET}}"
-          Web3SECRET: "${{secrets.SANDBOXSECRET}}"
+          Web3SECRET: "${{secrets.SANDBOXWEB3SECRET}}"
         run: ./gradlew cleanTest test -DEnv=$ENV -DApiSecret=$SECRET -DWeb3ApiSecret=$Web3SECRET
 
 
