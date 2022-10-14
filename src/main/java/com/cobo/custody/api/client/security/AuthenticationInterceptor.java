@@ -47,6 +47,7 @@ public class AuthenticationInterceptor implements Interceptor {
             for (int i = 0; i < newBody.size(); i++) {
                 map.put(newBody.encodedName(i), URLDecoder.decode(newBody.encodedValue(i), "UTF-8"));
             }
+
             return composeParams(map);
         }
         throw new IllegalArgumentException("Unsupported request body");

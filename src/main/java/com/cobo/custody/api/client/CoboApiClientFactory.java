@@ -2,6 +2,7 @@ package com.cobo.custody.api.client;
 
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.impl.CoboApiRestClientImpl;
+import com.cobo.custody.api.client.impl.CoboWeb3ApiRestClientImpl;
 
 public class CoboApiClientFactory {
 
@@ -22,5 +23,9 @@ public class CoboApiClientFactory {
 
     public CoboApiRestClient newRestClient() {
         return new CoboApiRestClientImpl(signer, env, debug);
+    }
+
+    public CoboWeb3ApiRestClient newWeb3RestClient() {
+        return new CoboWeb3ApiRestClientImpl(signer, env, debug);
     }
 }
