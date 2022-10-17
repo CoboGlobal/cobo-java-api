@@ -26,15 +26,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoboWeb3ApiRestClientImplTest {
     // refer README "Generate Key Pair"
-    // this secret is only for unit test and show saas demo
-    private String APISecret = "b32cc457c5bb5ce4eb4fd5b815e13abf4f4f9f924ab19fbbc643435bdf442388";
+    private String Web3APISecret = "";
     private CoboWeb3ApiRestClient web3Client;
     private Env TestEnv= Env.SANDBOX;
 
     @BeforeEach
     public void setUp() throws Exception {
+        Web3APISecret = System.getProperty("Web3ApiSecret");
         web3Client = CoboApiClientFactory.newInstance(
-                new LocalSigner(APISecret),
+                new LocalSigner(Web3APISecret),
                 TestEnv,
                 true).newWeb3RestClient();
     }
