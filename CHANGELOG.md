@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.33] (2022-10-17)
+[v0.33]: https://github.com/CoboCustody/cobo-java-api/compare/v0.32...v0.33
+
+### Added
+- release saas api sdk.  https://github.com/CoboCustody/cobo-java-api/pull/10, https://github.com/CoboCustody/cobo-java-api/pull/11
+
 ## [v0.32] (2022-07-15)
 [v0.32]: https://github.com/CoboCustody/cobo-java-api/compare/v0.31...v0.32
 
