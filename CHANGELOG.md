@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.34] (2022-10-21)
+[v0.34]: https://github.com/CoboCustody/cobo-java-api/compare/v0.33...v0.34
+
+### Fixed
+- Optimizate Web3 Wallet saas api variable naming.  https://github.com/CoboCustody/cobo-java-api/pull/12
+
+
 ## [v0.33] (2022-10-17)
 [v0.33]: https://github.com/CoboCustody/cobo-java-api/compare/v0.32...v0.33
 
