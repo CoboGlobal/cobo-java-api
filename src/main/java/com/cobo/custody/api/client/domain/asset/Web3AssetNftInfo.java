@@ -10,7 +10,7 @@ public class Web3AssetNftInfo {
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private Double amount;
+    private Long amount;
     @JsonProperty(value = "token_type")
     private String tokenType;
     @JsonProperty(value = "token_address")
@@ -48,11 +48,11 @@ public class Web3AssetNftInfo {
         this.description = description;
     }
 
-    public Double getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 
