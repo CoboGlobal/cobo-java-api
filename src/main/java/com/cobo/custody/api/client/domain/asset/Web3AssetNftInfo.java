@@ -10,7 +10,7 @@ public class Web3AssetNftInfo {
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private Double balance;
+    private Double amount;
     @JsonProperty(value = "token_type")
     private String tokenType;
     @JsonProperty(value = "token_address")
@@ -48,12 +48,12 @@ public class Web3AssetNftInfo {
         this.description = description;
     }
 
-    public Double getBalance() {
-        return balance;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
     public String getTokenType() {
@@ -79,7 +79,7 @@ public class Web3AssetNftInfo {
                 ", chain_coin='" + chainCoin + '\'' +
                 ", display_code='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
-                ", balance='" + balance + '\'' +
+                ", amount='" + amount + '\'' +
                 ", token_type='" + tokenType + '\'' +
                 ", token_address='" + tokenAddress + '\'' +
                 '}';

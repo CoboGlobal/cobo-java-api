@@ -32,13 +32,13 @@ public interface CoboWeb3ApiRestClient {
 
     ApiResponse<Web3WalletNftDetail> getWalletNftDetail(String nftCode, String tokenId);
 
-    ApiResponse<Void> withdraw(String coin, String requestId, String fromAddr, String toAddr, int amount);
+    ApiResponse<Void> withdraw(String coin, String requestId, String fromAddr, String toAddr, long amount);
 
     ApiResponse<Web3TransactionInfo> getWithdrawTransaction(String requestId);
 
     ApiResponse<Void> contract(String chainCode, String requestId, String walletAddr,
                                String contractAddr, String methodId, String methodName,
-                               String args, Integer amount);
+                               String args, Long amount);
 
     ApiResponse<Web3TransactionInfo> getContractTransaction(String requestId);
 
