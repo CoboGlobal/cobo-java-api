@@ -9,7 +9,7 @@ public class Web3AssetCoinInfo {
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private Double balance;
+    private Double amount;
 
     public String getCoin() {
         return coin;
@@ -43,12 +43,12 @@ public class Web3AssetCoinInfo {
         this.description = description;
     }
 
-    public Double getBalance() {
-        return balance;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Web3AssetCoinInfo {
                 ", chain_coin='" + chainCoin + '\'' +
                 ", display_code='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
-                ", balance='" + balance + '\'' +
+                ", amount='" + amount + '\'' +
                 '}';
     }
 }

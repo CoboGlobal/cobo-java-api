@@ -59,7 +59,7 @@ public interface CoboWeb3ApiService {
                                      @Field("request_id") String requestId,
                                      @Field("from_addr") String fromAddr,
                                      @Field("to_addr") String toAddr,
-                                     @Field("amount") int amount);
+                                     @Field("amount") long amount);
 
     @GET("/v1/custody/web3_get_withdraw_transaction/")
     Call<ApiResponse<Web3TransactionInfo>> getWeb3WithdrawTransaction(@Query("request_id") String requestId);
@@ -73,7 +73,7 @@ public interface CoboWeb3ApiService {
                                      @Field("method_id") String methodId,
                                      @Field("method_name") String methodName,
                                      @Field("args") String args,
-                                     @Field("amount") Integer amount);
+                                     @Field("amount") Long amount);
 
     @GET("/v1/custody/web3_get_contract_transaction/")
     Call<ApiResponse<Web3TransactionInfo>> getWeb3ContractTransaction(@Query("request_id") String requestId);
