@@ -9,7 +9,7 @@ public class Web3AssetCoinInfo {
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private Double amount;
+    private Long amount;
 
     public String getCoin() {
         return coin;
@@ -43,11 +43,11 @@ public class Web3AssetCoinInfo {
         this.description = description;
     }
 
-    public Double getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 
