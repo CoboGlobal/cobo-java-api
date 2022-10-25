@@ -14,6 +14,8 @@ import com.cobo.custody.api.client.domain.contract.Web3Contracts;
 import com.cobo.custody.api.client.domain.transaction.Web3TransactionInfo;
 import com.cobo.custody.api.client.domain.transaction.Web3Transactions;
 
+import java.math.BigInteger;
+
 import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.createService;
 import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.executeSync;
 
@@ -75,7 +77,7 @@ public class CoboWeb3ApiRestClientImpl implements CoboWeb3ApiRestClient {
     }
 
     @Override
-    public ApiResponse<Void> withdraw(String coin, String requestId, String fromAddr, String toAddr, long amount) {
+    public ApiResponse<Void> withdraw(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount) {
         return executeSync(coboWeb3ApiService.web3Withdraw(coin, requestId, fromAddr, toAddr, amount));
     }
 
@@ -87,7 +89,7 @@ public class CoboWeb3ApiRestClientImpl implements CoboWeb3ApiRestClient {
     @Override
     public ApiResponse<Void> contract(String chainCode, String requestId, String walletAddr,
                                       String contractAddr, String methodId, String methodName,
-                                      String args, Long amount) {
+                                      String args, BigInteger amount) {
         return executeSync(coboWeb3ApiService.web3Contract(chainCode, requestId, walletAddr, contractAddr,
                 methodId, methodName, args, amount));
     }

@@ -18,6 +18,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigInteger;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoboWeb3ApiRestClientImplTest {
@@ -131,7 +133,7 @@ public class CoboWeb3ApiRestClientImplTest {
         String requestId = String.valueOf(System.currentTimeMillis());
         String fromAddr = "0xd2176409a1ac767824921e45b7ee300745cb1e3f";
         String toAddr = "0xD2176409a1Ac767824921e45B7Ee300745cB1e3f";
-        long amount = 101;
+        BigInteger amount = new BigInteger("101");
         ApiResponse<Void> res = web3Client.withdraw(coin, requestId, fromAddr, toAddr, amount);
         System.out.println(res);
         assertTrue(res.isSuccess());
@@ -154,7 +156,7 @@ public class CoboWeb3ApiRestClientImplTest {
         String methodId = "0xa9059cbb";
         String methodName = "transfer";
         String args = "[\"0x040149e133077aebcfe4594e00638135eb4bc77f\", 1]";
-        long amount = 1;
+        BigInteger amount = new BigInteger("1");
         ApiResponse<Void> res = web3Client.contract(chainCode, requestId, walletAddr,
                 contractAddr, methodId, methodName, args, amount);
         System.out.println(res);

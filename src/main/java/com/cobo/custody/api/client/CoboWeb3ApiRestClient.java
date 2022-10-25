@@ -11,6 +11,8 @@ import com.cobo.custody.api.client.domain.contract.Web3Contracts;
 import com.cobo.custody.api.client.domain.transaction.Web3TransactionInfo;
 import com.cobo.custody.api.client.domain.transaction.Web3Transactions;
 
+import java.math.BigInteger;
+
 public interface CoboWeb3ApiRestClient {
     ApiResponse<Web3Chains> getSupportedChains();
 
@@ -32,13 +34,13 @@ public interface CoboWeb3ApiRestClient {
 
     ApiResponse<Web3WalletNftDetail> getWalletNftDetail(String nftCode, String tokenId);
 
-    ApiResponse<Void> withdraw(String coin, String requestId, String fromAddr, String toAddr, long amount);
+    ApiResponse<Void> withdraw(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount);
 
     ApiResponse<Web3TransactionInfo> getWithdrawTransaction(String requestId);
 
     ApiResponse<Void> contract(String chainCode, String requestId, String walletAddr,
                                String contractAddr, String methodId, String methodName,
-                               String args, Long amount);
+                               String args, BigInteger amount);
 
     ApiResponse<Web3TransactionInfo> getContractTransaction(String requestId);
 
