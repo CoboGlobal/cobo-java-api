@@ -13,6 +13,8 @@ import com.cobo.custody.api.client.domain.transaction.Web3Transactions;
 import retrofit2.Call;
 import retrofit2.http.*;
 
+import java.math.BigInteger;
+
 public interface CoboWeb3ApiService {
     @GET("/v1/custody/web3_supported_chains/")
     Call<ApiResponse<Web3Chains>> getWeb3SupportedChains();
@@ -59,7 +61,7 @@ public interface CoboWeb3ApiService {
                                      @Field("request_id") String requestId,
                                      @Field("from_addr") String fromAddr,
                                      @Field("to_addr") String toAddr,
-                                     @Field("amount") long amount);
+                                     @Field("amount") BigInteger amount);
 
     @GET("/v1/custody/web3_get_withdraw_transaction/")
     Call<ApiResponse<Web3TransactionInfo>> getWeb3WithdrawTransaction(@Query("request_id") String requestId);
@@ -73,7 +75,7 @@ public interface CoboWeb3ApiService {
                                      @Field("method_id") String methodId,
                                      @Field("method_name") String methodName,
                                      @Field("args") String args,
-                                     @Field("amount") Long amount);
+                                     @Field("amount") BigInteger amount);
 
     @GET("/v1/custody/web3_get_contract_transaction/")
     Call<ApiResponse<Web3TransactionInfo>> getWeb3ContractTransaction(@Query("request_id") String requestId);
