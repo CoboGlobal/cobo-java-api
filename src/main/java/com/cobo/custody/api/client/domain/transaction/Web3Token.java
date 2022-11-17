@@ -24,7 +24,7 @@ public class Web3Token {
     public String toString() {
         return "{" +
                 "name='" + name + '\'' +
-                "amount='" + amount + '\'' +
+                ", amount='" + amount + '\'' +
                 '}';
     }
 }

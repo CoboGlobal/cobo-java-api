@@ -40,7 +40,7 @@ public class CoboMPCApiRestClientImplTest {
     @Test
     public void testGetSupportedChains() {
         ApiResponse<MPCChains> res = mpcClient.getSupportedChains();
-        System.out.println(res);
+        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
@@ -48,16 +48,16 @@ public class CoboMPCApiRestClientImplTest {
     public void testgetSupportedCoins() {
         String chainCode = "GETH";
         ApiResponse<MPCCoins> res = mpcClient.getSupportedCoins(chainCode);
-        System.out.println(res);
+        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
     @Test
     public void testBatchNewAddress() {
         String chainCode = "GETH";
-        int count = 10;
+        int count = 2;
         ApiResponse<MPCAddresses> res = mpcClient.batchNewAddress(chainCode, count);
-        System.out.println(res);
+        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
@@ -68,7 +68,7 @@ public class CoboMPCApiRestClientImplTest {
         int pageLength = 10;
         Integer sortFlag = 0;
         ApiResponse<MPCAddresses> res = mpcClient.getAddressList(chainCode, pageIndex, pageLength, sortFlag);
-        System.out.println(res);
+        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
@@ -77,7 +77,7 @@ public class CoboMPCApiRestClientImplTest {
         String address = "0x4897e732734a7b4265cf48201b0ad2adb06657ba";
         String chainCode = "GETH";
         ApiResponse<MPCWalletAsset> res = mpcClient.getWalletAssetList(address, chainCode);
-        System.out.println(res);
+        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
@@ -89,14 +89,15 @@ public class CoboMPCApiRestClientImplTest {
         String toAddr = "0xEEACb7a5e53600c144C0b9839A834bb4b39E540c";
         BigInteger amount = new BigInteger("10");
         ApiResponse<Void> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount);
+        System.out.println(requestId);
         assertTrue(res.isSuccess());
     }
 
     @Test
     public void testGetTransaction() {
-        String requestId = "1668492939032";
-        ApiResponse<MPCTransactionInfo> res = mpcClient.getTransaction(requestId, null);
-        System.out.println(res);
+        String requestId = "1668678820274";
+        ApiResponse<MPCTransactionInfo> res = mpcClient.getTransaction(requestId);
+        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
@@ -109,7 +110,7 @@ public class CoboMPCApiRestClientImplTest {
         int limit = 10;
 
         ApiResponse<MPCTransactions> res = mpcClient.listWalletTransactions(address, coin, maxId, minId, limit);
-        System.out.println(res);
+        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 }
