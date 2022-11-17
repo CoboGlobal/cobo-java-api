@@ -87,14 +87,15 @@ public class CoboMPCApiRestClientImplTest {
         String fromAddr = "0x4897e732734a7b4265cf48201b0ad2adb06657ba";
         String toAddr = "0xEEACb7a5e53600c144C0b9839A834bb4b39E540c";
         BigInteger amount = new BigInteger("10");
-        ApiResponse<Void> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount);
+        ApiResponse<String> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount);
+        System.out.println(res);
         assertTrue(res.isSuccess());
     }
 
     @Test
     public void testGetTransaction() {
         String requestId = "1668492939032";
-        ApiResponse<MPCTransactionInfo> res = mpcClient.getTransaction(requestId);
+        ApiResponse<MPCTransactionInfo> res = mpcClient.getTransaction(null, requestId, null);
         System.out.println(res);
         assertTrue(res.isSuccess());
     }
@@ -103,11 +104,11 @@ public class CoboMPCApiRestClientImplTest {
     public void testListWalletTransactions() {
         String address = "0x4897e732734a7b4265cf48201b0ad2adb06657ba";
         String coin = "GETH";
-        String max_id = null;
-        String min_id = null;
+        String maxId = null;
+        String minId = null;
         int limit = 10;
 
-        ApiResponse<MPCTransactions> res = mpcClient.listWalletTransactions(address, coin, max_id, min_id, limit);
+        ApiResponse<MPCTransactions> res = mpcClient.listWalletTransactions(address, coin, maxId, minId, limit);
         System.out.println(res);
         assertTrue(res.isSuccess());
     }

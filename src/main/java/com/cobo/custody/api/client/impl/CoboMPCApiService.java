@@ -36,20 +36,22 @@ public interface CoboMPCApiService {
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/create_transaction/")
-    Call<ApiResponse<Void>> createTransaction(@Field("coin") String coin,
-                                              @Field("request_id") String request_id,
+    Call<ApiResponse<String>> createTransaction(@Field("coin") String coin,
+                                              @Field("request_id") String requestId,
                                               @Field("from_address") String fromAddr,
                                               @Field("to_address") String toAddr,
                                               @Field("amount") BigInteger amount);
 
     @GET("/v1/custody/mpc/transaction_info/")
-    Call<ApiResponse<MPCTransactionInfo>> getTransaction(@Query("request_id") String requestId);
+    Call<ApiResponse<MPCTransactionInfo>> getTransaction(@Query("id") String id,
+                                                         @Query("request_id") String requestId,
+                                                         @Query("tx_id") String txId);
 
     @GET("/v1/custody/mpc/list_transactions/")
     Call<ApiResponse<MPCTransactions>> listWalletTransactions(@Query("address") String address,
                                                               @Query("coin") String coin,
-                                                              @Query("max_id") String max_id,
-                                                              @Query("min_id") String min_id,
+                                                              @Query("max_id") String maxId,
+                                                              @Query("min_id") String minId,
                                                               @Query("limit") int limit);
 
 }
