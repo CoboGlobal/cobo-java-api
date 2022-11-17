@@ -34,8 +34,8 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCAddresses> batchNewAddress(String chainCode, int count) {
-        return executeSync(coboMPCApiService.batchNewAddress(chainCode, count));
+    public ApiResponse<MPCAddresses> batchGenerateNewAddresses(String chainCode, int count) {
+        return executeSync(coboMPCApiService.batchGenerateNewAddresses(chainCode, count));
     }
 
     @Override
@@ -54,8 +54,13 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCTransactionInfo> getTransaction(String requestId, String txId) {
-        return executeSync(coboMPCApiService.getTransaction(requestId, txId));
+    public ApiResponse<MPCTransactionInfo> getTransaction(String requestId) {
+        return executeSync(coboMPCApiService.getTransaction(requestId));
+    }
+
+    @Override
+    public ApiResponse<MPCTransactionInfo> getTransactionByTxId(String txId) {
+        return executeSync(coboMPCApiService.getTransactionByTxId(txId));
     }
 
     @Override
