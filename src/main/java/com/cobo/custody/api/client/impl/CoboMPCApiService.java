@@ -5,6 +5,7 @@ import com.cobo.custody.api.client.domain.account.MPCAddresses;
 import com.cobo.custody.api.client.domain.account.MPCChains;
 import com.cobo.custody.api.client.domain.account.MPCCoins;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
+import com.cobo.custody.api.client.domain.transaction.MPCTransaction;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfo;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 import retrofit2.Call;
@@ -36,20 +37,22 @@ public interface CoboMPCApiService {
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/create_transaction/")
-    Call<ApiResponse<Void>> createTransaction(@Field("coin") String coin,
-                                              @Field("request_id") String request_id,
-                                              @Field("from_address") String fromAddr,
-                                              @Field("to_address") String toAddr,
-                                              @Field("amount") BigInteger amount);
+    Call<ApiResponse<MPCTransaction>> createTransaction(@Field("coin") String coin,
+                                                        @Field("request_id") String requestId,
+                                                        @Field("from_address") String fromAddr,
+                                                        @Field("to_address") String toAddr,
+                                                        @Field("amount") BigInteger amount);
 
     @GET("/v1/custody/mpc/transaction_info/")
-    Call<ApiResponse<MPCTransactionInfo>> getTransaction(@Query("request_id") String requestId);
+    Call<ApiResponse<MPCTransactionInfo>> getTransaction(@Query("id") String id,
+                                                         @Query("request_id") String requestId,
+                                                         @Query("tx_id") String txId);
 
     @GET("/v1/custody/mpc/list_transactions/")
     Call<ApiResponse<MPCTransactions>> listWalletTransactions(@Query("address") String address,
                                                               @Query("coin") String coin,
-                                                              @Query("max_id") String max_id,
-                                                              @Query("min_id") String min_id,
+                                                              @Query("max_id") String maxId,
+                                                              @Query("min_id") String minId,
                                                               @Query("limit") int limit);
 
 }
