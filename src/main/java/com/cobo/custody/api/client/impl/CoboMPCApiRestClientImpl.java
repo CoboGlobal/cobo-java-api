@@ -8,6 +8,7 @@ import com.cobo.custody.api.client.domain.account.MPCAddresses;
 import com.cobo.custody.api.client.domain.account.MPCChains;
 import com.cobo.custody.api.client.domain.account.MPCCoins;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
+import com.cobo.custody.api.client.domain.transaction.MPCTransaction;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfo;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 
@@ -48,17 +49,17 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<Void> createTransaction(String coin, String request_id, String fromAddr, String toAddr, BigInteger amount) {
-        return executeSync(coboMPCApiService.createTransaction(coin, request_id, fromAddr, toAddr, amount));
+    public ApiResponse<Void> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount) {
+        return executeSync(coboMPCApiService.createTransaction(coin, requestId, fromAddr, toAddr, amount));
     }
 
     @Override
-    public ApiResponse<MPCTransactionInfo> getTransaction(String request_id) {
-        return executeSync(coboMPCApiService.getTransaction(request_id));
+    public ApiResponse<MPCTransactionInfo> getTransaction(String requestId, String txId) {
+        return executeSync(coboMPCApiService.getTransaction(requestId, txId));
     }
 
     @Override
-    public ApiResponse<MPCTransactions> listWalletTransactions(String address, String coin, String max_id, String min_id, Integer limit) {
-        return executeSync(coboMPCApiService.listWalletTransactions(address, coin, max_id, min_id, limit));
+    public ApiResponse<MPCTransactions> listWalletTransactions(String address, String coin, String maxId, String minId, Integer limit) {
+        return executeSync(coboMPCApiService.listWalletTransactions(address, coin, maxId, minId, limit));
     }
 }
