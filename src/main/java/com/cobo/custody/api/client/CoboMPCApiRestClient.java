@@ -14,11 +14,12 @@ import java.math.BigInteger;
 public interface CoboMPCApiRestClient {
     ApiResponse<MPCChains> getSupportedChains();
     ApiResponse<MPCCoins> getSupportedCoins(String chainCode);
-    ApiResponse<MPCAddresses> batchNewAddress(String chainCode, int count);
+    ApiResponse<MPCAddresses> batchGenerateNewAddresses(String chainCode, int count);
     ApiResponse<MPCAddresses> getAddressList(String chainCode, int pageIndex, int pageLength, Integer sortFlag);
     ApiResponse<MPCWalletAsset> getWalletAssetList(String address, String chainCode);
     ApiResponse<Void> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount);
     ApiResponse<MPCTransactionInfo> getTransaction(String requestId);
+    ApiResponse<MPCTransactionInfo> getTransactionByTxId(String txId);
     ApiResponse<MPCTransactions> listWalletTransactions(String address, String coin,
                                                         String maxId, String minId,
                                                         Integer limit);
