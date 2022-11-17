@@ -88,15 +88,14 @@ public class CoboMPCApiRestClientImplTest {
         String fromAddr = "0x4897e732734a7b4265cf48201b0ad2adb06657ba";
         String toAddr = "0xEEACb7a5e53600c144C0b9839A834bb4b39E540c";
         BigInteger amount = new BigInteger("10");
-        ApiResponse<MPCTransaction> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount);
-        System.out.println(res);
+        ApiResponse<Void> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount);
         assertTrue(res.isSuccess());
     }
 
     @Test
     public void testGetTransaction() {
         String requestId = "1668492939032";
-        ApiResponse<MPCTransactionInfo> res = mpcClient.getTransaction(null, requestId, null);
+        ApiResponse<MPCTransactionInfo> res = mpcClient.getTransaction(requestId, null);
         System.out.println(res);
         assertTrue(res.isSuccess());
     }
