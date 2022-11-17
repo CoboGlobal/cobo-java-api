@@ -54,8 +54,8 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCTransactionInfo> getTransaction(String requestId, String txId) {
-        return executeSync(coboMPCApiService.getTransaction(requestId, txId));
+    public ApiResponse<MPCTransactionInfo> getTransaction(String requestId) {
+        return executeSync(coboMPCApiService.getTransaction(requestId));
     }
 
     @Override

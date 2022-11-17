@@ -18,7 +18,7 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCAddresses> getAddressList(String chainCode, int pageIndex, int pageLength, Integer sortFlag);
     ApiResponse<MPCWalletAsset> getWalletAssetList(String address, String chainCode);
     ApiResponse<Void> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount);
-    ApiResponse<MPCTransactionInfo> getTransaction(String requestId, String txId);
+    ApiResponse<MPCTransactionInfo> getTransaction(String requestId);
     ApiResponse<MPCTransactions> listWalletTransactions(String address, String coin,
                                                         String maxId, String minId,
                                                         Integer limit);

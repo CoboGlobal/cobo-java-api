@@ -44,8 +44,7 @@ public interface CoboMPCApiService {
                                                         @Field("amount") BigInteger amount);
 
     @GET("/v1/custody/mpc/transaction_info/")
-    Call<ApiResponse<MPCTransactionInfo>> getTransaction(@Query("request_id") String requestId,
-                                                         @Query("tx_id") String txId);
+    Call<ApiResponse<MPCTransactionInfo>> getTransaction(@Query("request_id") String requestId);
 
     @GET("/v1/custody/mpc/list_transactions/")
     Call<ApiResponse<MPCTransactions>> listWalletTransactions(@Query("address") String address,
