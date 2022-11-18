@@ -8,7 +8,6 @@ import com.cobo.custody.api.client.domain.account.MPCAddresses;
 import com.cobo.custody.api.client.domain.account.MPCChains;
 import com.cobo.custody.api.client.domain.account.MPCCoins;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
-import com.cobo.custody.api.client.domain.transaction.MPCTransaction;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfo;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 import org.junit.jupiter.api.AfterEach;
@@ -55,9 +54,9 @@ public class CoboMPCApiRestClientImplTest {
     @Test
     public void testBatchNewAddress() {
         String chainCode = "GETH";
-        int count = 2;
-        ApiResponse<MPCAddresses> res = mpcClient.batchNewAddress(chainCode, count);
-        System.out.println(res.getResult());
+        int count = 10;
+        ApiResponse<MPCAddresses> res = mpcClient.batchGenerateNewAddresses(chainCode, count);
+        System.out.println(res);
         assertTrue(res.isSuccess());
     }
 
@@ -95,9 +94,17 @@ public class CoboMPCApiRestClientImplTest {
 
     @Test
     public void testGetTransaction() {
-        String requestId = "1668678820274";
+        String requestId = "1668492939032";
         ApiResponse<MPCTransactionInfo> res = mpcClient.getTransaction(requestId);
-        System.out.println(res.getResult());
+        System.out.println(res);
+        assertTrue(res.isSuccess());
+    }
+
+    @Test
+    public void testGetTransactionByTxId() {
+        String txId = "0x1e14311142db1f5b02e587f0e00643f7fd460c81e73dffff65cf501123fb99dd";
+        ApiResponse<MPCTransactionInfo> res = mpcClient.getTransactionByTxId(txId);
+        System.out.println(res);
         assertTrue(res.isSuccess());
     }
 

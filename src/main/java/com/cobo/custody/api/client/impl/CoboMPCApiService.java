@@ -21,8 +21,8 @@ public interface CoboMPCApiService {
     Call<ApiResponse<MPCCoins>> getSupportedCoins(@Query("chain_code") String chainCode);
 
     @FormUrlEncoded
-    @POST("/v1/custody/mpc/add_addresses/")
-    Call<ApiResponse<MPCAddresses>> batchNewAddress(@Field("chain_code") String chainCode,
+    @POST("/v1/custody/mpc/generate_new_addresses/")
+    Call<ApiResponse<MPCAddresses>> batchGenerateNewAddresses(@Field("chain_code") String chainCode,
                                                     @Field("count") int count);
 
     @GET("/v1/custody/mpc/list_addresses/")
@@ -45,6 +45,9 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/transaction_info/")
     Call<ApiResponse<MPCTransactionInfo>> getTransaction(@Query("request_id") String requestId);
+
+    @GET("/v1/custody/mpc/transaction_info_by_tx_id/")
+    Call<ApiResponse<MPCTransactionInfo>> getTransactionByTxId(@Query("tx_id") String txId);
 
     @GET("/v1/custody/mpc/list_transactions/")
     Call<ApiResponse<MPCTransactions>> listWalletTransactions(@Query("address") String address,
