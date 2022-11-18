@@ -54,9 +54,9 @@ public class CoboMPCApiRestClientImplTest {
     @Test
     public void testBatchNewAddress() {
         String chainCode = "GETH";
-        int count = 10;
+        int count = 2;
         ApiResponse<MPCAddresses> res = mpcClient.batchGenerateNewAddresses(chainCode, count);
-        System.out.println(res);
+        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
@@ -94,9 +94,9 @@ public class CoboMPCApiRestClientImplTest {
 
     @Test
     public void testGetTransaction() {
-        String requestId = "1668492939032";
+        String requestId = "1668678820274";
         ApiResponse<MPCTransactionInfo> res = mpcClient.getTransaction(requestId);
-        System.out.println(res);
+        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
@@ -104,7 +104,7 @@ public class CoboMPCApiRestClientImplTest {
     public void testGetTransactionByTxId() {
         String txId = "0x1e14311142db1f5b02e587f0e00643f7fd460c81e73dffff65cf501123fb99dd";
         ApiResponse<MPCTransactionInfo> res = mpcClient.getTransactionByTxId(txId);
-        System.out.println(res);
+        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
