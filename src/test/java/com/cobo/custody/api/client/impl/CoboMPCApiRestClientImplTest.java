@@ -122,7 +122,7 @@ public class CoboMPCApiRestClientImplTest {
         String coin = "GETH";
         String maxId = null;
         String minId = null;
-        int limit = 10;
+        Integer limit = null;
 
         ApiResponse<MPCTransactions> res = mpcClient.listWalletTransactions(address, coin, maxId, minId, limit);
         System.out.println(res.getResult());

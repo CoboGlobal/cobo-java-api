@@ -57,6 +57,6 @@ public interface CoboMPCApiService {
                                                               @Query("coin") String coin,
                                                               @Query("max_id") String maxId,
                                                               @Query("min_id") String minId,
-                                                              @Query("limit") int limit);
+                                                              @Query("limit") Integer limit);
 
 }
