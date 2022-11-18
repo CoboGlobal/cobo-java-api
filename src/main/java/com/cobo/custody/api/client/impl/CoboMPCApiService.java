@@ -32,7 +32,7 @@ public interface CoboMPCApiService {
     Call<ApiResponse<MPCAddresses>> getAddressList(@Query("chain_code") String chainCode,
                                                    @Query("page_index") int pageIndex,
                                                    @Query("page_length") int pageLength,
-                                                   @Query("sort_flag") int sortFlag);
+                                                   @Query("sort_flag") Integer sortFlag);
 
     @GET("/v1/custody/mpc/list_assets/")
     Call<ApiResponse<MPCWalletAsset>> getWalletAssetList(@Query("address") String address,
