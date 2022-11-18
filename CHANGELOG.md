@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.39] (2022-11-18)
+[v0.39]: https://github.com/CoboCustody/cobo-java-api/compare/v0.38...v0.39
+
+### Changed
+- Update MPC wallet generate addresses Saas api. https://github.com/CoboCustody/cobo-java-api/pull/18
+
+
+## [v0.38] (2022-11-17)
+[v0.38]: https://github.com/CoboCustody/cobo-java-api/compare/v0.37...v0.38
+
+### Added
+- Support MPC wallet Saas api. https://github.com/CoboCustody/cobo-java-api/pull/15, https://github.com/CoboCustody/cobo-java-api/pull/16, https://github.com/CoboCustody/cobo-java-api/pull/17
+
 ## [v0.37] (2022-10-25)
 [v0.37]: https://github.com/CoboCustody/cobo-java-api/compare/v0.36...v0.37
 
