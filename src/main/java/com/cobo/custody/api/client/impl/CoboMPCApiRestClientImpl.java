@@ -7,6 +7,7 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.MPCAddresses;
 import com.cobo.custody.api.client.domain.account.MPCChains;
 import com.cobo.custody.api.client.domain.account.MPCCoins;
+import com.cobo.custody.api.client.domain.account.OrgInfo;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.MPCTransaction;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfo;
@@ -23,6 +24,11 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public CoboMPCApiRestClientImpl(ApiSigner signer, Env env, boolean debug) {
         this.coboMPCApiService = createService(CoboMPCApiService.class, signer, env, debug);
     }
+    @Override
+    public ApiResponse<OrgInfo> getOrgInfo() {
+        return executeSync(coboMPCApiService.getOrgInfo());
+    }
+
     @Override
     public ApiResponse<MPCChains> getSupportedChains() {
         return executeSync(coboMPCApiService.getSupportedChains());

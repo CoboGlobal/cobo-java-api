@@ -7,6 +7,7 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.MPCAddresses;
 import com.cobo.custody.api.client.domain.account.MPCChains;
 import com.cobo.custody.api.client.domain.account.MPCCoins;
+import com.cobo.custody.api.client.domain.account.OrgInfo;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfo;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
@@ -34,6 +35,13 @@ public class CoboMPCApiRestClientImplTest {
 
     @AfterEach
     public void tearDown() {
+    }
+
+    @Test
+    public void testGetOrgInfo() {
+        ApiResponse<OrgInfo> res = mpcClient.getOrgInfo();
+        System.out.println(res.getResult());
+        assertTrue(res.isSuccess());
     }
 
     @Test
@@ -114,7 +122,7 @@ public class CoboMPCApiRestClientImplTest {
         String coin = "GETH";
         String maxId = null;
         String minId = null;
-        int limit = 10;
+        Integer limit = null;
 
         ApiResponse<MPCTransactions> res = mpcClient.listWalletTransactions(address, coin, maxId, minId, limit);
         System.out.println(res.getResult());
