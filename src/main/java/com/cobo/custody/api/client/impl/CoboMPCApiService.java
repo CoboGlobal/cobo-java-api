@@ -4,6 +4,7 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.MPCAddresses;
 import com.cobo.custody.api.client.domain.account.MPCChains;
 import com.cobo.custody.api.client.domain.account.MPCCoins;
+import com.cobo.custody.api.client.domain.account.OrgInfo;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.MPCTransaction;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfo;
@@ -14,6 +15,8 @@ import retrofit2.http.*;
 import java.math.BigInteger;
 
 public interface CoboMPCApiService {
+    @GET("/v1/custody/mpc/org_info/")
+    Call<ApiResponse<OrgInfo>> getOrgInfo();
     @GET("/v1/custody/mpc/get_supported_chains/")
     Call<ApiResponse<MPCChains>> getSupportedChains();
 
