@@ -2,8 +2,6 @@ package com.cobo.custody.api.client.domain.asset;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.math.BigDecimal;
-
 public class Web3WalletNftInfo {
     @JsonProperty(value = "nft_code")
     private String nftCode;
@@ -12,7 +10,7 @@ public class Web3WalletNftInfo {
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private BigDecimal amount;
+    private String amount;
     private String standard;
     @JsonProperty(value = "contract_address")
     private String contractAddress;
@@ -51,11 +49,11 @@ public class Web3WalletNftInfo {
         this.description = description;
     }
 
-    public BigDecimal getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

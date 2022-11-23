@@ -2,7 +2,6 @@ package com.cobo.custody.api.client.domain.asset;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.math.BigDecimal;
 
 public class Web3WalletNftDetail {
     @JsonProperty(value = "nft_code")

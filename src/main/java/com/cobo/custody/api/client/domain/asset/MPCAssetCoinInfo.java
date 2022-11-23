@@ -2,7 +2,6 @@ package com.cobo.custody.api.client.domain.asset;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.math.BigDecimal;
 
 public class MPCAssetCoinInfo {
     private String coin;
@@ -11,7 +10,7 @@ public class MPCAssetCoinInfo {
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private BigDecimal amount;
+    private String amount;
 
     public String getCoin() {
         return coin;
@@ -45,11 +44,11 @@ public class MPCAssetCoinInfo {
         this.description = description;
     }
 
-    public BigDecimal getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

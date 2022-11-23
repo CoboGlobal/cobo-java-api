@@ -1,10 +1,9 @@
 package com.cobo.custody.api.client.domain.transaction;
 
-import java.math.BigDecimal;
 
 public class Web3Token {
     private String name;
-    private BigDecimal amount;
+    private String amount;
 
     public String getName() {
         return name;
@@ -14,11 +13,11 @@ public class Web3Token {
         this.name = name;
     }
 
-    public BigDecimal getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
