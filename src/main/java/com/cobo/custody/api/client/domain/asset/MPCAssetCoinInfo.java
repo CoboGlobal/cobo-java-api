@@ -11,7 +11,6 @@ public class MPCAssetCoinInfo {
     private String displayCode;
     private String description;
     private String amount;
-    private String address;
 
     public String getCoin() {
         return coin;
@@ -53,14 +52,6 @@ public class MPCAssetCoinInfo {
         this.amount = amount;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     @Override
     public String toString() {
         return "{" +
@@ -69,7 +60,6 @@ public class MPCAssetCoinInfo {
                 ", display_code='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
                 ", amount='" + amount + '\'' +
-                ", address='" + address + '\'' +
                 '}';
     }
 }
