@@ -9,7 +9,7 @@ public class MPCAssetCoinInfo {
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private Long amount;
+    private Double amount;
 
     public String getCoin() {
         return coin;
@@ -43,11 +43,11 @@ public class MPCAssetCoinInfo {
         this.description = description;
     }
 
-    public Long getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
