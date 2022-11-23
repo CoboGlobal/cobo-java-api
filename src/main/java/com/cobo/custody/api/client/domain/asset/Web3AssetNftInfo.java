@@ -3,8 +3,8 @@ package com.cobo.custody.api.client.domain.asset;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Web3AssetNftInfo {
-    @JsonProperty(value = "asset_code")
-    private String assetCode;
+    @JsonProperty(value = "nft_code")
+    private String nftCode;
     @JsonProperty(value = "chain_code")
     private String chainCode;
     @JsonProperty(value = "display_code")
@@ -15,12 +15,12 @@ public class Web3AssetNftInfo {
     @JsonProperty(value = "contract_address")
     private String contractAddress;
 
-    public String getAssetCode() {
-        return assetCode;
+    public String getNftCode() {
+        return nftCode;
     }
 
-    public void setAssetCode(String assetCode) {
-        this.assetCode = assetCode;
+    public void setNftCode(String nftCode) {
+        this.nftCode = nftCode;
     }
 
     public String getChainCode() {
@@ -74,7 +74,7 @@ public class Web3AssetNftInfo {
     @Override
     public String toString() {
         return "{" +
-                "asset_code='" + assetCode + '\'' +
+                "nft_code='" + nftCode + '\'' +
                 ", chain_code='" + chainCode + '\'' +
                 ", display_code='" + displayCode + '\'' +
                 ", description='" + description + '\'' +

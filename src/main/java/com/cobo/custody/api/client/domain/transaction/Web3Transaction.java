@@ -6,9 +6,10 @@ import java.util.List;
 
 public class Web3Transaction {
     private String id;
-    private Long time;
+    @JsonProperty(value = "create_time")
+    private Long createTime;
     private Integer status;
-    @JsonProperty(value = "chain_coin")
+    @JsonProperty(value = "chain_code")
     private String chainCode;
     private String coin;
     private List<Web3Token> tokens;
@@ -21,12 +22,12 @@ public class Web3Transaction {
         this.id = id;
     }
 
-    public Long getTime() {
-        return time;
+    public Long getCreateTime() {
+        return createTime;
     }
 
-    public void setTime(Long time) {
-        this.time = time;
+    public void setCreateTime(Long createTime) {
+        this.createTime = createTime;
     }
 
     public Integer getStatus() {
@@ -65,7 +66,7 @@ public class Web3Transaction {
     public String toString() {
         return "{" +
                 "id='" + id + '\'' +
-                "time='" + time + '\'' +
+                "create_time='" + createTime + '\'' +
                 "status='" + status + '\'' +
                 "chain_code='" + chainCode + '\'' +
                 "coin='" + coin + '\'' +
