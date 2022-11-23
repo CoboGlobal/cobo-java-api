@@ -2,7 +2,7 @@ package com.cobo.custody.api.client.domain.transaction;
 
 import java.math.BigDecimal;
 
-public class Web3Token {
+public class MPCToken {
     private String name;
     private BigDecimal amount;
 
