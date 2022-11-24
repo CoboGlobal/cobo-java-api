@@ -1,7 +1,6 @@
 package com.cobo.custody.api.client.domain.transaction;
 
-
-public class Web3Token {
+public class MPCToken {
     private String name;
     private String amount;
 

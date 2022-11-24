@@ -3,33 +3,32 @@ package com.cobo.custody.api.client.domain.asset;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Web3AssetNftInfo {
-    @JsonProperty(value = "asset_code")
-    private String assetCode;
-    @JsonProperty(value = "chain_coin")
-    private String chainCoin;
+    @JsonProperty(value = "nft_code")
+    private String nftCode;
+    @JsonProperty(value = "chain_code")
+    private String chainCode;
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private Long amount;
-    @JsonProperty(value = "token_type")
-    private String tokenType;
-    @JsonProperty(value = "token_address")
-    private String tokenAddress;
+    private String amount;
+    private String standard;
+    @JsonProperty(value = "contract_address")
+    private String contractAddress;
 
-    public String getAssetCode() {
-        return assetCode;
+    public String getNftCode() {
+        return nftCode;
     }
 
-    public void setAssetCode(String assetCode) {
-        this.assetCode = assetCode;
+    public void setNftCode(String nftCode) {
+        this.nftCode = nftCode;
     }
 
-    public String getChainCoin() {
-        return chainCoin;
+    public String getChainCode() {
+        return chainCode;
     }
 
-    public void setChainCoin(String chainCoin) {
-        this.chainCoin = chainCoin;
+    public void setChainCode(String chainCode) {
+        this.chainCode = chainCode;
     }
 
     public String getDisplayCode() {
@@ -48,40 +47,40 @@ public class Web3AssetNftInfo {
         this.description = description;
     }
 
-    public Long getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
-    public String getTokenType() {
-        return tokenType;
+    public String getStandard() {
+        return standard;
     }
 
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
+    public void setStandard(String standard) {
+        this.standard = standard;
     }
 
-    public String getTokenAddress() {
-        return tokenAddress;
+    public String getContractAddress() {
+        return contractAddress;
     }
 
-    public void setTokenAddress(String tokenAddress) {
-        this.tokenAddress = tokenAddress;
+    public void setContractAddress(String contractAddress) {
+        this.contractAddress = contractAddress;
     }
 
     @Override
     public String toString() {
         return "{" +
-                "asset_code='" + assetCode + '\'' +
-                ", chain_coin='" + chainCoin + '\'' +
+                "nft_code='" + nftCode + '\'' +
+                ", chain_code='" + chainCode + '\'' +
                 ", display_code='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
                 ", amount='" + amount + '\'' +
-                ", token_type='" + tokenType + '\'' +
-                ", token_address='" + tokenAddress + '\'' +
+                ", standard='" + standard + '\'' +
+                ", contract_address='" + contractAddress + '\'' +
                 '}';
     }
 }

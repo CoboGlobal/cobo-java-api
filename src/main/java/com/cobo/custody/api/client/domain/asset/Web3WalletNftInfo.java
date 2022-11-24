@@ -5,16 +5,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Web3WalletNftInfo {
     @JsonProperty(value = "nft_code")
     private String nftCode;
-    @JsonProperty(value = "chain_coin")
-    private String chainCoin;
+    @JsonProperty(value = "chain_code")
+    private String chainCode;
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private Double balance;
-    @JsonProperty(value = "token_type")
-    private String tokenType;
-    @JsonProperty(value = "token_address")
-    private String tokenAddress;
+    private String amount;
+    private String standard;
+    @JsonProperty(value = "contract_address")
+    private String contractAddress;
     @JsonProperty(value = "token_id")
     private String tokenId;
 
@@ -26,12 +25,12 @@ public class Web3WalletNftInfo {
         this.nftCode = nftCode;
     }
 
-    public String getChainCoin() {
-        return chainCoin;
+    public String getChainCode() {
+        return chainCode;
     }
 
-    public void setChainCoin(String chainCoin) {
-        this.chainCoin = chainCoin;
+    public void setChainCode(String chainCode) {
+        this.chainCode = chainCode;
     }
 
     public String getDisplayCode() {
@@ -50,28 +49,28 @@ public class Web3WalletNftInfo {
         this.description = description;
     }
 
-    public Double getBalance() {
-        return balance;
+    public String getAmount() {
+        return amount;
     }
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
-    public String getTokenType() {
-        return tokenType;
+    public String getStandard() {
+        return standard;
     }
 
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
+    public void setStandard(String standard) {
+        this.standard = standard;
     }
 
-    public String getTokenAddress() {
-        return tokenAddress;
+    public String getContractAddress() {
+        return contractAddress;
     }
 
-    public void setTokenAddress(String tokenAddress) {
-        this.tokenAddress = tokenAddress;
+    public void setContractAddress(String contractAddress) {
+        this.contractAddress = contractAddress;
     }
 
     public String getTokenId() {
@@ -86,12 +85,12 @@ public class Web3WalletNftInfo {
     public String toString() {
         return "{" +
                 "nft_code='" + nftCode + '\'' +
-                ", chain_coin='" + chainCoin + '\'' +
+                ", chain_code='" + chainCode + '\'' +
                 ", display_code='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
-                ", balance='" + balance + '\'' +
-                ", token_type='" + tokenType + '\'' +
-                ", token_address='" + tokenAddress + '\'' +
+                ", amount='" + amount + '\'' +
+                ", standard='" + standard + '\'' +
+                ", contract_address='" + contractAddress + '\'' +
                 ", token_id='" + tokenId + '\'' +
                 '}';
     }

@@ -12,7 +12,7 @@ public class MPCTransaction {
     @JsonProperty(value = "chain_code")
     private String chainCode;
     private String coin;
-    private List<Web3Token> tokens;
+    private List<MPCToken> tokens;
 
     public String getId() {
         return id;
@@ -54,11 +54,11 @@ public class MPCTransaction {
         this.coin = coin;
     }
 
-    public List<Web3Token> getTokens() {
+    public List<MPCToken> getTokens() {
         return tokens;
     }
 
-    public void setTokens(List<Web3Token> tokens) {
+    public void setTokens(List<MPCToken> tokens) {
         this.tokens = tokens;
     }
 

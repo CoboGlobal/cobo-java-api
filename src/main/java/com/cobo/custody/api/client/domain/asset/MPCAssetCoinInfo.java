@@ -2,6 +2,7 @@ package com.cobo.custody.api.client.domain.asset;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+
 public class MPCAssetCoinInfo {
     private String coin;
     @JsonProperty(value = "chain_code")
@@ -9,7 +10,7 @@ public class MPCAssetCoinInfo {
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private Long amount;
+    private String amount;
 
     public String getCoin() {
         return coin;
@@ -43,11 +44,11 @@ public class MPCAssetCoinInfo {
         this.description = description;
     }
 
-    public Long getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

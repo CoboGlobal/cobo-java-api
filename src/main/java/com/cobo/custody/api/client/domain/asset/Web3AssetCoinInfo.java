@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Web3AssetCoinInfo {
     private String coin;
-    @JsonProperty(value = "chain_coin")
-    private String chainCoin;
+    @JsonProperty(value = "chain_code")
+    private String chainCode;
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private Long amount;
+    private String amount;
 
     public String getCoin() {
         return coin;
@@ -19,12 +19,12 @@ public class Web3AssetCoinInfo {
         this.coin = coin;
     }
 
-    public String getChainCoin() {
-        return chainCoin;
+    public String getChainCode() {
+        return chainCode;
     }
 
-    public void setChainCoin(String chainCoin) {
-        this.chainCoin = chainCoin;
+    public void setChainCode(String chainCode) {
+        this.chainCode = chainCode;
     }
 
     public String getDisplayCode() {
@@ -43,11 +43,11 @@ public class Web3AssetCoinInfo {
         this.description = description;
     }
 
-    public Long getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -55,7 +55,7 @@ public class Web3AssetCoinInfo {
     public String toString() {
         return "{" +
                 "coin='" + coin + '\'' +
-                ", chain_coin='" + chainCoin + '\'' +
+                ", chain_code='" + chainCode + '\'' +
                 ", display_code='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
                 ", amount='" + amount + '\'' +
