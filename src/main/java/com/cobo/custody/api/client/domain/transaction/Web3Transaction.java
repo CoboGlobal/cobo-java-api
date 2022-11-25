@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Web3Transaction {
     private String id;
+
+    private String txid;
     @JsonProperty(value = "create_time")
     private Long createTime;
     private Integer status;
@@ -20,6 +22,14 @@ public class Web3Transaction {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTxid() {
+        return txid;
+    }
+
+    public void setTxid(String txid) {
+        this.txid = txid;
     }
 
     public Long getCreateTime() {
@@ -66,6 +76,7 @@ public class Web3Transaction {
     public String toString() {
         return "{" +
                 "id='" + id + '\'' +
+                "txid='" + txid + '\'' +
                 "create_time='" + createTime + '\'' +
                 "status='" + status + '\'' +
                 "chain_code='" + chainCode + '\'' +
