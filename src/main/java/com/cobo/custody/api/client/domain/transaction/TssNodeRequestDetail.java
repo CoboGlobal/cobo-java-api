@@ -11,7 +11,7 @@ public class TssNodeRequestDetail {
     private Integer status;
     @JsonProperty(value = "failed_reason")
     private String failedReason;
-    private String meta;
+    private TssNodeRequestMeta meta;
 
     public String getCoboId() {
         return coboId;
@@ -45,11 +45,11 @@ public class TssNodeRequestDetail {
         this.failedReason = failedReason;
     }
 
-    public String getMeta() {
+    public TssNodeRequestMeta getMeta() {
         return meta;
     }
 
-    public void setMeta(String meta) {
+    public void setMeta(TssNodeRequestMeta meta) {
         this.meta = meta;
     }
 
