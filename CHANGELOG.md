@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.40] (2022-11-25)
+[v0.40]: https://github.com/CoboCustody/cobo-java-api/compare/v0.39...v0.40
+
+### Changed
+- Update Web3 wallet transaction api . https://github.com/CoboCustody/cobo-java-api/pull/22
+
+
 ## [v0.39] (2022-11-18)
 [v0.39]: https://github.com/CoboCustody/cobo-java-api/compare/v0.38...v0.39
 
