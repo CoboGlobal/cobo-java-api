@@ -4,12 +4,9 @@ import com.cobo.custody.api.client.ApiSigner;
 import com.cobo.custody.api.client.CoboMPCApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
-import com.cobo.custody.api.client.domain.account.MPCAddresses;
-import com.cobo.custody.api.client.domain.account.MPCChains;
-import com.cobo.custody.api.client.domain.account.MPCCoins;
-import com.cobo.custody.api.client.domain.account.OrgInfo;
+import com.cobo.custody.api.client.domain.account.*;
+import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
-import com.cobo.custody.api.client.domain.transaction.MPCTransaction;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfo;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 
@@ -40,8 +37,13 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCAddresses> batchGenerateNewAddresses(String chainCode, int count) {
-        return executeSync(coboMPCApiService.batchGenerateNewAddresses(chainCode, count));
+    public ApiResponse<MPCAddressList> getMainAddress(String chainCode) {
+        return executeSync(coboMPCApiService.getMainAddress(chainCode));
+    }
+
+    @Override
+    public ApiResponse<MPCAddressList> batchGenerateAddresses(String chainCode, int count) {
+        return executeSync(coboMPCApiService.batchGenerateAddresses(chainCode, count));
     }
 
     @Override
@@ -54,23 +56,37 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
         return executeSync(coboMPCApiService.getWalletAssetList(address, chainCode));
     }
 
+
     @Override
-    public ApiResponse<Void> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount) {
-        return executeSync(coboMPCApiService.createTransaction(coin, requestId, fromAddr, toAddr, amount));
+    public ApiResponse<MPCUnspentInputs> getWalletUnspentInputList(String address, String coin) {
+        return executeSync(coboMPCApiService.getWalletUnspentInputList(address, coin));
     }
 
     @Override
-    public ApiResponse<MPCTransactionInfo> getTransaction(String requestId) {
-        return executeSync(coboMPCApiService.getTransaction(requestId));
+    public ApiResponse<Void> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
+                                               String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
+                                               String extraParameters, String replaceTxByHash) {
+        return executeSync(coboMPCApiService.createTransaction(coin, requestId, fromAddr, toAddr, amount,
+                toAddressDetails, fee, gasPrice, gasLimit, extraParameters, replaceTxByHash));
+    }
+    @Override
+    public ApiResponse<MPCTransactions> getTransactionByRequestIds(String requestIds, Integer status) {
+        return executeSync(coboMPCApiService.getTransactionsByRequestIds(requestIds, status));
+    }
+    @Override
+    public ApiResponse<MPCTransactions> getTransactionByCoboIds(String coboIds, Integer status) {
+        return executeSync(coboMPCApiService.getTransactionsByCoboIds(coboIds, status));
+    }
+    @Override
+    public ApiResponse<MPCTransactions> getTransactionByTxHash(String txHash, Integer transactionType) {
+        return executeSync(coboMPCApiService.getTransactionByTxhash(txHash, transactionType));
     }
 
     @Override
-    public ApiResponse<MPCTransactionInfo> getTransactionByTxId(String txId) {
-        return executeSync(coboMPCApiService.getTransactionByTxId(txId));
-    }
-
-    @Override
-    public ApiResponse<MPCTransactions> listWalletTransactions(String address, String coin, String maxId, String minId, Integer limit) {
-        return executeSync(coboMPCApiService.listWalletTransactions(address, coin, maxId, minId, limit));
+    public ApiResponse<MPCTransactions> listWalletTransactions(Integer startTime, Integer endTime, Integer status, String order,
+                                                               Integer transactionType, String coins, String fromAddr, String toAddr,
+                                                               Integer limit) {
+        return executeSync(coboMPCApiService.listWalletTransactions(startTime, endTime, status, order, transactionType,
+                coins, fromAddr, toAddr, limit));
     }
 }

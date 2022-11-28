@@ -12,8 +12,8 @@ public class MPCCoin {
     private boolean canDeposit;
     @JsonProperty(value = "can_withdraw")
     private boolean canWithdraw;
-    @JsonProperty(value = "minimum_deposit_threshold")
-    private String minimumDepositThreshold;
+    @JsonProperty(value = "confirming_threshold")
+    private String confirmingThreshold;
 
     public String getCoin() {
         return coin;
@@ -63,12 +63,12 @@ public class MPCCoin {
         this.canWithdraw = canWithdraw;
     }
 
-    public String getMinimumDepositThreshold() {
-        return minimumDepositThreshold;
+    public String getConfirmingThreshold() {
+        return confirmingThreshold;
     }
 
-    public void setMinimumDepositThreshold(String minimumDepositThreshold) {
-        this.minimumDepositThreshold = minimumDepositThreshold;
+    public void setConfirmingThreshold(String confirmingThreshold) {
+        this.confirmingThreshold = confirmingThreshold;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class MPCCoin {
                 ", decimal=" + decimal +
                 ", canDeposit=" + canDeposit +
                 ", canWithdraw=" + canWithdraw +
-                ", minimumDepositThreshold='" + minimumDepositThreshold + '\'' +
+                ", confirmingThreshold='" + confirmingThreshold + '\'' +
                 '}';
     }
 }

@@ -4,13 +4,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class MPCAssetCoinInfo {
+    private String address;
     private String coin;
     @JsonProperty(value = "chain_code")
     private String chainCode;
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private String amount;
+    private String balance;
+    @JsonProperty(value = "balance_usd")
+    private String balanceUsd;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getCoin() {
         return coin;
@@ -44,22 +55,32 @@ public class MPCAssetCoinInfo {
         this.description = description;
     }
 
-    public String getAmount() {
-        return amount;
+    public String getBalance() {
+        return balance;
     }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
+
+    public String getBalanceUsd() {
+        return balanceUsd;
+    }
+
+    public void setBalanceUsd(String balanceUsd) {
+        this.balanceUsd = balanceUsd;
     }
 
     @Override
     public String toString() {
         return "{" +
-                "coin='" + coin + '\'' +
+                "address='" + address + '\'' +
+                ", coin='" + coin + '\'' +
                 ", chain_code='" + chainCode + '\'' +
                 ", display_code='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
-                ", amount='" + amount + '\'' +
+                ", balance='" + balance + '\'' +
+                ", balanceUsd='" + balanceUsd + '\'' +
                 '}';
     }
 }
