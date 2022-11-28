@@ -4,7 +4,6 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfo;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -68,7 +67,7 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/transactions_by_tx_hash/")
     Call<ApiResponse<MPCTransactions>> getTransactionByTxhash(@Query("tx_hash") String txHash,
-                                                                 @Query("transaction_type") Integer transactionType,);
+                                                                 @Query("transaction_type") Integer transactionType);
 
     @GET("/v1/custody/mpc/list_transactions/")
     Call<ApiResponse<MPCTransactions>> listWalletTransactions(@Query("start_time") Integer startTime,
