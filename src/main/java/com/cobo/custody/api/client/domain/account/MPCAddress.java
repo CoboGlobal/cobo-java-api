@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MPCAddress {
     private String address;
-    private String type;
+    private Integer type;
 
     public String getAddress() {
         return address;
@@ -14,11 +14,11 @@ public class MPCAddress {
         this.address = address;
     }
 
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 

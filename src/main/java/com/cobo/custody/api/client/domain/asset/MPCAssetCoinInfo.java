@@ -12,8 +12,6 @@ public class MPCAssetCoinInfo {
     private String displayCode;
     private String description;
     private String balance;
-    @JsonProperty(value = "balance_usd")
-    private String balanceUsd;
 
     public String getAddress() {
         return address;
@@ -63,14 +61,6 @@ public class MPCAssetCoinInfo {
         this.balance = balance;
     }
 
-    public String getBalanceUsd() {
-        return balanceUsd;
-    }
-
-    public void setBalanceUsd(String balanceUsd) {
-        this.balanceUsd = balanceUsd;
-    }
-
     @Override
     public String toString() {
         return "{" +
@@ -80,7 +70,6 @@ public class MPCAssetCoinInfo {
                 ", display_code='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
                 ", balance='" + balance + '\'' +
-                ", balanceUsd='" + balanceUsd + '\'' +
                 '}';
     }
 }
