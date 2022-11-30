@@ -7,7 +7,7 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
-import com.cobo.custody.api.client.domain.transaction.MPCPostTransactions;
+import com.cobo.custody.api.client.domain.transaction.MPCPostTransaction;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 
@@ -64,15 +64,15 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCPostTransactions> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
-                                               String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
-                                               String extraParameters, String replaceTxByHash) {
+    public ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
+                                                             String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
+                                                             String extraParameters, String replaceTxByHash) {
         return executeSync(coboMPCApiService.createTransaction(coin, requestId, fromAddr, toAddr, amount,
                 toAddressDetails, fee, gasPrice, gasLimit, extraParameters, replaceTxByHash));
     }
 
     @Override
-    public ApiResponse<MPCPostTransactions> dropTransaction(String coboId, BigInteger gasPrice, BigInteger gasLimit) {
+    public ApiResponse<MPCPostTransaction> dropTransaction(String coboId, BigInteger gasPrice, BigInteger gasLimit) {
         return executeSync(coboMPCApiService.dropTransaction(coboId, gasPrice, gasLimit));
     }
 

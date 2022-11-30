@@ -2,7 +2,7 @@ package com.cobo.custody.api.client.domain.transaction;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MPCPostTransactions {
+public class MPCPostTransaction {
     @JsonProperty(value = "cobo_id")
     private String coboId;
     private Integer status;

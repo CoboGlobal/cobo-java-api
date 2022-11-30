@@ -4,7 +4,7 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
-import com.cobo.custody.api.client.domain.transaction.MPCPostTransactions;
+import com.cobo.custody.api.client.domain.transaction.MPCPostTransaction;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 import retrofit2.Call;
@@ -47,23 +47,23 @@ public interface CoboMPCApiService {
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/create_transaction/")
-    Call<ApiResponse<MPCPostTransactions>> createTransaction(@Field("coin") String coin,
-                                              @Field("request_id") String requestId,
-                                              @Field("from_address") String fromAddr,
-                                              @Field("to_address") String toAddr,
-                                              @Field("amount") BigInteger amount,
-                                              @Field("to_address_details") String toAddressDetails,
-                                              @Field("fee") BigInteger fee,
-                                              @Field("gas_price") BigInteger gasPrice,
-                                              @Field("gas_limit") BigInteger gasLimit,
-                                              @Field("extra_parameters") String extraParameters,
-                                              @Field("replace_tx_by_hash") String replaceTxByHash);
+    Call<ApiResponse<MPCPostTransaction>> createTransaction(@Field("coin") String coin,
+                                                            @Field("request_id") String requestId,
+                                                            @Field("from_address") String fromAddr,
+                                                            @Field("to_address") String toAddr,
+                                                            @Field("amount") BigInteger amount,
+                                                            @Field("to_address_details") String toAddressDetails,
+                                                            @Field("fee") BigInteger fee,
+                                                            @Field("gas_price") BigInteger gasPrice,
+                                                            @Field("gas_limit") BigInteger gasLimit,
+                                                            @Field("extra_parameters") String extraParameters,
+                                                            @Field("replace_tx_by_hash") String replaceTxByHash);
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/drop_transaction/")
-    Call<ApiResponse<MPCPostTransactions>> dropTransaction(@Field("cobo_id") String coboId,
-                                                           @Field("gas_price") BigInteger gasPrice,
-                                                           @Field("gas_limit") BigInteger gasLimit);
+    Call<ApiResponse<MPCPostTransaction>> dropTransaction(@Field("cobo_id") String coboId,
+                                                          @Field("gas_price") BigInteger gasPrice,
+                                                          @Field("gas_limit") BigInteger gasLimit);
 
     @GET("/v1/custody/mpc/transactions_by_request_ids/")
     Call<ApiResponse<MPCTransactionInfos>> getTransactionsByRequestIds(@Query("request_ids") String requestIds,
