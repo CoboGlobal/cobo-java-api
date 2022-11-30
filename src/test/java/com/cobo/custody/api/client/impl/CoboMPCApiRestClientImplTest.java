@@ -6,6 +6,7 @@ import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
+import com.cobo.custody.api.client.domain.transaction.MPCPostTransactions;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 import org.junit.jupiter.api.AfterEach;
@@ -17,13 +18,13 @@ import java.math.BigInteger;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoboMPCApiRestClientImplTest {
-    private String MPCAPISecret = "c67224e3f6832af1d28d28283cf6edf992ba592377c1e53a08c65113886e7253";
+    private String MPCAPISecret = "";
     private CoboMPCApiRestClient mpcClient;
     private Env TestEnv= Env.SANDBOX;
 
     @BeforeEach
     public void setUp() throws Exception {
-        //MPCAPISecret = System.getProperty("MPCApiSecret");
+        MPCAPISecret = System.getProperty("MPCApiSecret");
         mpcClient = CoboApiClientFactory.newInstance(
                 new LocalSigner(MPCAPISecret),
                 TestEnv,
@@ -99,9 +100,9 @@ public class CoboMPCApiRestClientImplTest {
         BigInteger gasLimit = null;
         String extraParameters = null;
         String replaceTxByHash = null;
-        ApiResponse<Void> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount,
+        ApiResponse<MPCPostTransactions> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount,
                 toAddressDetails, fee, gasPrice, gasLimit, extraParameters, replaceTxByHash);
-        System.out.println(requestId);
+        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
