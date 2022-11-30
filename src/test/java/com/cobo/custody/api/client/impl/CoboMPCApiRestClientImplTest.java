@@ -6,7 +6,7 @@ import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
-import com.cobo.custody.api.client.domain.transaction.MPCPostTransactions;
+import com.cobo.custody.api.client.domain.transaction.MPCPostTransaction;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 import org.junit.jupiter.api.AfterEach;
@@ -100,7 +100,7 @@ public class CoboMPCApiRestClientImplTest {
         BigInteger gasLimit = null;
         String extraParameters = null;
         String replaceTxByHash = null;
-        ApiResponse<MPCPostTransactions> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount,
+        ApiResponse<MPCPostTransaction> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount,
                 toAddressDetails, fee, gasPrice, gasLimit, extraParameters, replaceTxByHash);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
