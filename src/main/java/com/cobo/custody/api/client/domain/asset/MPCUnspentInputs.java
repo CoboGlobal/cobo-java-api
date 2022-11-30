@@ -5,14 +5,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigInteger;
 
 public class MPCUnspentInputs {
+    private String address;
+    private String coin;
     @JsonProperty(value = "tx_hash")
     private String txHash;
     @JsonProperty(value = "vout_n")
     private Integer voutN;
-    private String address;
+
     private BigInteger amount;
     @JsonProperty(value = "confirmed_num")
     private Integer confirmedNum;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCoin() {
+        return coin;
+    }
+
+    public void setCoin(String coin) {
+        this.coin = coin;
+    }
 
     public String getTxHash() {
         return txHash;
@@ -28,14 +46,6 @@ public class MPCUnspentInputs {
 
     public void setVoutN(Integer voutN) {
         this.voutN = voutN;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public BigInteger getAmount() {
@@ -58,6 +68,7 @@ public class MPCUnspentInputs {
     public String toString() {
         return "{" +
                 "txHash='" + txHash + '\'' +
+                ", coin='" + coin + '\'' +
                 ", voutN='" + voutN + '\'' +
                 ", address='" + address + '\'' +
                 ", amount='" + amount + '\'' +

@@ -4,6 +4,8 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
+import com.cobo.custody.api.client.domain.transaction.MPCPostTransactions;
+import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -45,7 +47,7 @@ public interface CoboMPCApiService {
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/create_transaction/")
-    Call<ApiResponse<Void>> createTransaction(@Field("coin") String coin,
+    Call<ApiResponse<MPCPostTransactions>> createTransaction(@Field("coin") String coin,
                                               @Field("request_id") String requestId,
                                               @Field("from_address") String fromAddr,
                                               @Field("to_address") String toAddr,
@@ -57,17 +59,23 @@ public interface CoboMPCApiService {
                                               @Field("extra_parameters") String extraParameters,
                                               @Field("replace_tx_by_hash") String replaceTxByHash);
 
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/drop_transaction/")
+    Call<ApiResponse<MPCPostTransactions>> dropTransaction(@Field("cobo_id") String coboId,
+                                                           @Field("gas_price") BigInteger gasPrice,
+                                                           @Field("gas_limit") BigInteger gasLimit);
+
     @GET("/v1/custody/mpc/transactions_by_request_ids/")
-    Call<ApiResponse<MPCTransactions>> getTransactionsByRequestIds(@Query("request_ids") String requestIds,
-                                                                      @Query("status") Integer status);
+    Call<ApiResponse<MPCTransactionInfos>> getTransactionsByRequestIds(@Query("request_ids") String requestIds,
+                                                                   @Query("status") Integer status);
 
     @GET("/v1/custody/mpc/transactions_by_cobo_ids/")
-    Call<ApiResponse<MPCTransactions>> getTransactionsByCoboIds(@Query("cobo_ids") String coboIds,
-                                                                      @Query("status") Integer status);
+    Call<ApiResponse<MPCTransactionInfos>> getTransactionsByCoboIds(@Query("cobo_ids") String coboIds,
+                                                                @Query("status") Integer status);
 
     @GET("/v1/custody/mpc/transactions_by_tx_hash/")
-    Call<ApiResponse<MPCTransactions>> getTransactionByTxhash(@Query("tx_hash") String txHash,
-                                                                 @Query("transaction_type") Integer transactionType);
+    Call<ApiResponse<MPCTransactionInfos>> getTransactionByTxhash(@Query("tx_hash") String txHash,
+                                                                  @Query("transaction_type") Integer transactionType);
 
     @GET("/v1/custody/mpc/list_transactions/")
     Call<ApiResponse<MPCTransactions>> listWalletTransactions(@Query("start_time") Integer startTime,

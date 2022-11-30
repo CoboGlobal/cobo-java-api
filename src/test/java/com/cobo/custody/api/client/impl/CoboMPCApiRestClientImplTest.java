@@ -6,6 +6,7 @@ import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
+import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,13 +17,13 @@ import java.math.BigInteger;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoboMPCApiRestClientImplTest {
-    private String MPCAPISecret = "";
+    private String MPCAPISecret = "c67224e3f6832af1d28d28283cf6edf992ba592377c1e53a08c65113886e7253";
     private CoboMPCApiRestClient mpcClient;
     private Env TestEnv= Env.SANDBOX;
 
     @BeforeEach
     public void setUp() throws Exception {
-        MPCAPISecret = System.getProperty("MPCApiSecret");
+        //MPCAPISecret = System.getProperty("MPCApiSecret");
         mpcClient = CoboApiClientFactory.newInstance(
                 new LocalSigner(MPCAPISecret),
                 TestEnv,
@@ -56,10 +57,11 @@ public class CoboMPCApiRestClientImplTest {
     }
 
     @Test
-    public void testBatchNewAddress() {
+    public void testBatchGenerateAddress() {
         String chainCode = "GETH";
         int count = 2;
         ApiResponse<MPCAddressList> res = mpcClient.batchGenerateAddresses(chainCode, count);
+        System.out.println(res);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
@@ -104,17 +106,18 @@ public class CoboMPCApiRestClientImplTest {
     }
 
     @Test
-    public void testGetTransaction() {
+    public void testGetTransactionByRequestIds() {
         String requestIds = "1668678820274";
-        ApiResponse<MPCTransactions> res = mpcClient.getTransactionByRequestIds(requestIds, null);
+        ApiResponse<MPCTransactionInfos> res = mpcClient.getTransactionByRequestIds(requestIds, null);
+        System.out.println(res);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
     @Test
-    public void testGetTransactionByTxId() {
+    public void testGetTransactionByTxHash() {
         String txHash = "0x1e14311142db1f5b02e587f0e00643f7fd460c81e73dffff65cf501123fb99dd";
-        ApiResponse<MPCTransactions> res = mpcClient.getTransactionByTxHash(txHash, null);
+        ApiResponse<MPCTransactionInfos> res = mpcClient.getTransactionByTxHash(txHash, null);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }

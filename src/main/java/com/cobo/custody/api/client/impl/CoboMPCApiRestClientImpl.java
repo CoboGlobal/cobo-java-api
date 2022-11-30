@@ -7,7 +7,8 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfo;
+import com.cobo.custody.api.client.domain.transaction.MPCPostTransactions;
+import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 
 import java.math.BigInteger;
@@ -63,22 +64,30 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<Void> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
+    public ApiResponse<MPCPostTransactions> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
                                                String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
                                                String extraParameters, String replaceTxByHash) {
         return executeSync(coboMPCApiService.createTransaction(coin, requestId, fromAddr, toAddr, amount,
                 toAddressDetails, fee, gasPrice, gasLimit, extraParameters, replaceTxByHash));
     }
+
     @Override
-    public ApiResponse<MPCTransactions> getTransactionByRequestIds(String requestIds, Integer status) {
+    public ApiResponse<MPCPostTransactions> dropTransaction(String coboId, BigInteger gasPrice, BigInteger gasLimit) {
+        return executeSync(coboMPCApiService.dropTransaction(coboId, gasPrice, gasLimit));
+    }
+
+    @Override
+    public ApiResponse<MPCTransactionInfos> getTransactionByRequestIds(String requestIds, Integer status) {
         return executeSync(coboMPCApiService.getTransactionsByRequestIds(requestIds, status));
     }
+
     @Override
-    public ApiResponse<MPCTransactions> getTransactionByCoboIds(String coboIds, Integer status) {
+    public ApiResponse<MPCTransactionInfos> getTransactionByCoboIds(String coboIds, Integer status) {
         return executeSync(coboMPCApiService.getTransactionsByCoboIds(coboIds, status));
     }
+
     @Override
-    public ApiResponse<MPCTransactions> getTransactionByTxHash(String txHash, Integer transactionType) {
+    public ApiResponse<MPCTransactionInfos> getTransactionByTxHash(String txHash, Integer transactionType) {
         return executeSync(coboMPCApiService.getTransactionByTxhash(txHash, transactionType));
     }
 
