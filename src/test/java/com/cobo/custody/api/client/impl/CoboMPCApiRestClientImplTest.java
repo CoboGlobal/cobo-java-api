@@ -124,8 +124,8 @@ public class CoboMPCApiRestClientImplTest {
 
     @Test
     public void testListWalletTransactions() {
-        Integer startTime = null;
-        Integer endTime = null;
+        Long startTime = null;
+        Long endTime = null;
         Integer status = null;
         String order = null;
         Integer transactionType = null;
