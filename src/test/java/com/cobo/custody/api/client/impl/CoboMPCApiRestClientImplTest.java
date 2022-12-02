@@ -36,13 +36,6 @@ public class CoboMPCApiRestClientImplTest {
     }
 
     @Test
-    public void testGetOrgInfo() {
-        ApiResponse<OrgInfo> res = mpcClient.getOrgInfo();
-        System.out.println(res.getResult());
-        assertTrue(res.isSuccess());
-    }
-
-    @Test
     public void testGetSupportedChains() {
         ApiResponse<MPCChains> res = mpcClient.getSupportedChains();
         System.out.println(res.getResult());
