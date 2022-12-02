@@ -99,9 +99,8 @@ public class CoboMPCApiRestClientImplTest {
         BigInteger gasPrice = null;
         BigInteger gasLimit = null;
         String extraParameters = null;
-        String replaceTxByHash = null;
         ApiResponse<MPCPostTransaction> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount,
-                toAddressDetails, fee, gasPrice, gasLimit, extraParameters, replaceTxByHash);
+                toAddressDetails, fee, gasPrice, gasLimit, extraParameters);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }

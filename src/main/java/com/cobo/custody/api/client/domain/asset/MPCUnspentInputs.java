@@ -6,7 +6,6 @@ import java.math.BigInteger;
 
 public class MPCUnspentInputs {
     private String address;
-    private String coin;
     @JsonProperty(value = "tx_hash")
     private String txHash;
     @JsonProperty(value = "vout_n")
@@ -22,14 +21,6 @@ public class MPCUnspentInputs {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getCoin() {
-        return coin;
-    }
-
-    public void setCoin(String coin) {
-        this.coin = coin;
     }
 
     public String getTxHash() {
@@ -68,7 +59,6 @@ public class MPCUnspentInputs {
     public String toString() {
         return "{" +
                 "txHash='" + txHash + '\'' +
-                ", coin='" + coin + '\'' +
                 ", voutN='" + voutN + '\'' +
                 ", address='" + address + '\'' +
                 ", amount='" + amount + '\'' +

@@ -66,9 +66,14 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     @Override
     public ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
                                                              String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
-                                                             String extraParameters, String replaceTxByHash) {
+                                                             String extraParameters) {
         return executeSync(coboMPCApiService.createTransaction(coin, requestId, fromAddr, toAddr, amount,
-                toAddressDetails, fee, gasPrice, gasLimit, extraParameters, replaceTxByHash));
+                toAddressDetails, fee, gasPrice, gasLimit, extraParameters));
+    }
+
+    @Override
+    public ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, BigInteger gasPrice, BigInteger gasLimit) {
+        return executeSync(coboMPCApiService.speedUpTransaction(coboId, gasPrice, gasLimit));
     }
 
     @Override

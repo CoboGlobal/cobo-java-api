@@ -25,7 +25,6 @@ public interface CoboMPCApiService {
     @GET("/v1/custody/mpc/get_main_address/")
     Call<ApiResponse<MPCAddressList>> getMainAddress(@Query("chain_code") String chainCode);
 
-
     @FormUrlEncoded
     @POST("/v1/custody/mpc/generate_addresses/")
     Call<ApiResponse<MPCAddressList>> batchGenerateAddresses(@Field("chain_code") String chainCode,
@@ -56,8 +55,13 @@ public interface CoboMPCApiService {
                                                             @Field("fee") BigInteger fee,
                                                             @Field("gas_price") BigInteger gasPrice,
                                                             @Field("gas_limit") BigInteger gasLimit,
-                                                            @Field("extra_parameters") String extraParameters,
-                                                            @Field("replace_tx_by_hash") String replaceTxByHash);
+                                                            @Field("extra_parameters") String extraParameters);
+
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/speedup_transaction/")
+    Call<ApiResponse<MPCPostTransaction>> speedUpTransaction(@Field("cobo_id") String coboId,
+                                                          @Field("gas_price") BigInteger gasPrice,
+                                                          @Field("gas_limit") BigInteger gasLimit);
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/drop_transaction/")

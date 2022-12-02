@@ -7,13 +7,13 @@ public class MPCCoin {
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
-    private int decimal;
+    private Integer decimal;
     @JsonProperty(value = "can_deposit")
-    private boolean canDeposit;
+    private Boolean canDeposit;
     @JsonProperty(value = "can_withdraw")
-    private boolean canWithdraw;
+    private Boolean canWithdraw;
     @JsonProperty(value = "confirming_threshold")
-    private String confirmingThreshold;
+    private Integer confirmingThreshold;
 
     public String getCoin() {
         return coin;
@@ -39,35 +39,35 @@ public class MPCCoin {
         this.description = description;
     }
 
-    public int getDecimal() {
+    public Integer getDecimal() {
         return decimal;
     }
 
-    public void setDecimal(int decimal) {
+    public void setDecimal(Integer decimal) {
         this.decimal = decimal;
     }
 
-    public boolean isCanDeposit() {
+    public Boolean getCanDeposit() {
         return canDeposit;
     }
 
-    public void setCanDeposit(boolean canDeposit) {
+    public void setCanDeposit(Boolean canDeposit) {
         this.canDeposit = canDeposit;
     }
 
-    public boolean isCanWithdraw() {
+    public Boolean getCanWithdraw() {
         return canWithdraw;
     }
 
-    public void setCanWithdraw(boolean canWithdraw) {
+    public void setCanWithdraw(Boolean canWithdraw) {
         this.canWithdraw = canWithdraw;
     }
 
-    public String getConfirmingThreshold() {
+    public Integer getConfirmingThreshold() {
         return confirmingThreshold;
     }
 
-    public void setConfirmingThreshold(String confirmingThreshold) {
+    public void setConfirmingThreshold(Integer confirmingThreshold) {
         this.confirmingThreshold = confirmingThreshold;
     }
 
@@ -80,7 +80,7 @@ public class MPCCoin {
                 ", decimal=" + decimal +
                 ", canDeposit=" + canDeposit +
                 ", canWithdraw=" + canWithdraw +
-                ", confirmingThreshold='" + confirmingThreshold + '\'' +
+                ", confirmingThreshold=" + confirmingThreshold +
                 '}';
     }
 }

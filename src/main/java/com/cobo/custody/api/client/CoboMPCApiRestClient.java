@@ -23,7 +23,9 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCUnspentInputs> getWalletUnspentInputList(String address, String chainCode);
     ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
                                                       String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
-                                                      String extraParameters, String replaceTxByHash);
+                                                      String extraParameters);
+
+    ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, BigInteger gasPrice, BigInteger gasLimit);
 
     ApiResponse<MPCPostTransaction> dropTransaction(String coboId, BigInteger gasPrice, BigInteger gasLimit);
 
