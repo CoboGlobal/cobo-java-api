@@ -13,9 +13,6 @@ import retrofit2.http.*;
 import java.math.BigInteger;
 
 public interface CoboMPCApiService {
-    @GET("/v1/custody/mpc/org_info/")
-    Call<ApiResponse<OrgInfo>> getOrgInfo();
-
     @GET("/v1/custody/mpc/get_supported_chains/")
     Call<ApiResponse<MPCChains>> getSupportedChains();
 

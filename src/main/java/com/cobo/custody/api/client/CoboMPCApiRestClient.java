@@ -11,7 +11,6 @@ import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
 import java.math.BigInteger;
 
 public interface CoboMPCApiRestClient {
-    ApiResponse<OrgInfo> getOrgInfo();
     ApiResponse<MPCChains> getSupportedChains();
     ApiResponse<MPCCoins> getSupportedCoins(String chainCode);
 

@@ -22,10 +22,6 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public CoboMPCApiRestClientImpl(ApiSigner signer, Env env, boolean debug) {
         this.coboMPCApiService = createService(CoboMPCApiService.class, signer, env, debug);
     }
-    @Override
-    public ApiResponse<OrgInfo> getOrgInfo() {
-        return executeSync(coboMPCApiService.getOrgInfo());
-    }
 
     @Override
     public ApiResponse<MPCChains> getSupportedChains() {
