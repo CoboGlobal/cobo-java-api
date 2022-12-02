@@ -78,8 +78,8 @@ public interface CoboMPCApiService {
                                                                   @Query("transaction_type") Integer transactionType);
 
     @GET("/v1/custody/mpc/list_transactions/")
-    Call<ApiResponse<MPCTransactions>> listWalletTransactions(@Query("start_time") Integer startTime,
-                                                              @Query("end_time") Integer endTime,
+    Call<ApiResponse<MPCTransactions>> listWalletTransactions(@Query("start_time") Long startTime,
+                                                              @Query("end_time") Long endTime,
                                                               @Query("status") Integer status,
                                                               @Query("order") String order,
                                                               @Query("transaction_type") Integer transactionType,

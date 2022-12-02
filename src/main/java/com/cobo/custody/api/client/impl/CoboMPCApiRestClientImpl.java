@@ -95,7 +95,7 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCTransactions> listWalletTransactions(Integer startTime, Integer endTime, Integer status, String order,
+    public ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String order,
                                                                Integer transactionType, String coins, String fromAddr, String toAddr,
                                                                Integer limit) {
         return executeSync(coboMPCApiService.listWalletTransactions(startTime, endTime, status, order, transactionType,

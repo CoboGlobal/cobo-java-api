@@ -6,13 +6,13 @@ import java.util.List;
 
 public class MPCWalletAsset {
     @JsonProperty(value = "coin_data")
-    private List<MPCAssetCoinInfo> coinInfoList;
+    private List<MPCCoinBalanceDetail> coinInfoList;
 
-    public List<MPCAssetCoinInfo> getCoinInfoList() {
+    public List<MPCCoinBalanceDetail> getCoinInfoList() {
         return coinInfoList;
     }
 
-    public void setCoinInfoList(List<MPCAssetCoinInfo> coinInfoList) {
+    public void setCoinInfoList(List<MPCCoinBalanceDetail> coinInfoList) {
         this.coinInfoList = coinInfoList;
     }
 

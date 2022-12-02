@@ -32,7 +32,7 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCTransactionInfos> getTransactionByRequestIds(String requestIds, Integer status);
     ApiResponse<MPCTransactionInfos> getTransactionByCoboIds(String coboIds, Integer status);
     ApiResponse<MPCTransactionInfos> getTransactionByTxHash(String txId, Integer transactionType);
-    ApiResponse<MPCTransactions> listWalletTransactions(Integer startTime, Integer endTime, Integer status, String order,
+    ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String order,
                                                         Integer transactionType, String coins, String fromAddr, String toAddr,
                                                         Integer limit);
 

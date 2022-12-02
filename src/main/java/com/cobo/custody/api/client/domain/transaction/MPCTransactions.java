@@ -6,7 +6,6 @@ import java.util.List;
 
 public class MPCTransactions {
     private List<MPCTransaction> transactions;
-    @JsonProperty(value = "total")
     private Integer total;
 
     public List<MPCTransaction> getTransactions() {
