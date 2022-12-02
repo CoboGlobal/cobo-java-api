@@ -4,13 +4,12 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
-import com.cobo.custody.api.client.domain.transaction.MPCPostTransaction;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
+import com.cobo.custody.api.client.domain.transaction.*;
 import retrofit2.Call;
 import retrofit2.http.*;
 
 import java.math.BigInteger;
+import java.util.List;
 
 public interface CoboMPCApiService {
     @GET("/v1/custody/mpc/get_supported_chains/")
@@ -88,4 +87,13 @@ public interface CoboMPCApiService {
                                                               @Query("from_address") String fromAddress,
                                                               @Query("to_address") String toAddress,
                                                               @Query("limit") Integer limit);
+
+    @GET("/v1/custody/mpc/estimate_fee/")
+    Call<ApiResponse<EstimateFeeDetails>> estimateFee(@Query("coin") String coin,
+                                                      @Query("amount") Integer amount,
+                                                      @Query("address") String address);
+
+    @GET("/v1/custody/mpc/list_requests/")
+    Call<ApiResponse<List<TssNodeRequestDetail>>> listRequests(@Query("request_type") Integer requestType,
+                                                               @Query("status") Integer status);
 }

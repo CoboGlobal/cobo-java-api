@@ -4,11 +4,12 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
-import com.cobo.custody.api.client.domain.transaction.MPCPostTransaction;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
+import com.cobo.custody.api.client.domain.transaction.*;
 
 import java.math.BigInteger;
+import java.util.List;
+
+import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.executeSync;
 
 public interface CoboMPCApiRestClient {
     ApiResponse<MPCChains> getSupportedChains();
@@ -34,4 +35,8 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCTransactions> listWalletTransactions(Integer startTime, Integer endTime, Integer status, String order,
                                                         Integer transactionType, String coins, String fromAddr, String toAddr,
                                                         Integer limit);
+
+    ApiResponse<EstimateFeeDetails> estimateFee(String coin, Integer amount, String address);
+
+    ApiResponse<List<TssNodeRequestDetail>> listRequests(Integer requestType, Integer status);
 }

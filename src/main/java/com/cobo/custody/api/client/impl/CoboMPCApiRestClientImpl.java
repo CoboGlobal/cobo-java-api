@@ -7,11 +7,13 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
-import com.cobo.custody.api.client.domain.transaction.MPCPostTransaction;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
+import com.cobo.custody.api.client.domain.transaction.*;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.createService;
 import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.executeSync;
@@ -98,5 +100,15 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
                                                                Integer limit) {
         return executeSync(coboMPCApiService.listWalletTransactions(startTime, endTime, status, order, transactionType,
                 coins, fromAddr, toAddr, limit));
+    }
+
+    @Override
+    public ApiResponse<EstimateFeeDetails> estimateFee(String coin, Integer amount, String address) {
+        return executeSync(coboMPCApiService.estimateFee(coin, amount, address));
+    }
+
+    @Override
+    public ApiResponse<List<TssNodeRequestDetail>> listRequests(Integer requestType, Integer status) {
+        return executeSync(coboMPCApiService.listRequests(requestType, status));
     }
 }
