@@ -14,7 +14,7 @@ public class TssNodeKeyReShareMeta {
     private List<String> oldNodeIds;
     @JsonProperty(value = "new_threshold")
     private Integer newThreshold;
-    @JacksonInject(value = "new_node_ids")
+    @JsonProperty(value = "new_node_ids")
     private List<String> newNodeIds;
 
     public String getCoboId() {
