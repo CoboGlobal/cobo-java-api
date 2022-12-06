@@ -94,6 +94,6 @@ public interface CoboMPCApiService {
                                                       @Query("address") String address);
 
     @GET("/v1/custody/mpc/list_requests/")
-    Call<ApiResponse<List<TssNodeRequestDetail>>> listRequests(@Query("request_type") Integer requestType,
+    Call<ApiResponse<MPCTssNodeRequests>> listRequests(@Query("request_type") Integer requestType,
                                                                @Query("status") Integer status);
 }

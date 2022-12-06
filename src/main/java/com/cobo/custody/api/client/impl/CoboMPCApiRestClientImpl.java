@@ -108,7 +108,7 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<List<TssNodeRequestDetail>> listRequests(Integer requestType, Integer status) {
+    public ApiResponse<MPCTssNodeRequests> listRequests(Integer requestType, Integer status) {
         return executeSync(coboMPCApiService.listRequests(requestType, status));
     }
 }

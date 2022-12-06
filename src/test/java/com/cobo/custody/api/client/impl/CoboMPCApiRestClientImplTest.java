@@ -6,14 +6,13 @@ import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
-import com.cobo.custody.api.client.domain.transaction.MPCPostTransaction;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
+import com.cobo.custody.api.client.domain.transaction.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -129,6 +128,15 @@ public class CoboMPCApiRestClientImplTest {
 
         ApiResponse<MPCTransactions> res = mpcClient.listWalletTransactions(startTime, endTime, status, order,
                 transactionType, coins, fromAddress, toAddress, limit);
+        System.out.println(res.getResult());
+        assertTrue(res.isSuccess());
+    }
+
+    @Test
+    public void testListRequests() {
+        Integer requestType = null;
+        Integer status = null;
+        ApiResponse<MPCTssNodeRequests> res = mpcClient.listRequests(requestType, status);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }

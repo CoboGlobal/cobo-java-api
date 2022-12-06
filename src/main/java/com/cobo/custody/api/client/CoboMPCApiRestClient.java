@@ -38,5 +38,5 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<EstimateFeeDetails> estimateFee(String coin, Integer amount, String address);
 
-    ApiResponse<List<TssNodeRequestDetail>> listRequests(Integer requestType, Integer status);
+    ApiResponse<MPCTssNodeRequests> listRequests(Integer requestType, Integer status);
 }
