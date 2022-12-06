@@ -137,7 +137,6 @@ public class CoboMPCApiRestClientImplTest {
         Integer requestType = null;
         Integer status = null;
         ApiResponse<MPCTssNodeRequests> res = mpcClient.listRequests(requestType, status);
-        System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 }
