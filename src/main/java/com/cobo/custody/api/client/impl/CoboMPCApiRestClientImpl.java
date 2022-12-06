@@ -9,6 +9,7 @@ import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.*;
 import retrofit2.Call;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -70,13 +71,13 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, BigInteger gasPrice, BigInteger gasLimit) {
-        return executeSync(coboMPCApiService.speedUpTransaction(coboId, gasPrice, gasLimit));
+    public ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit) {
+        return executeSync(coboMPCApiService.speedUpTransaction(coboId, fee, gasPrice, gasLimit));
     }
 
     @Override
-    public ApiResponse<MPCPostTransaction> dropTransaction(String coboId, BigInteger gasPrice, BigInteger gasLimit) {
-        return executeSync(coboMPCApiService.dropTransaction(coboId, gasPrice, gasLimit));
+    public ApiResponse<MPCPostTransaction> dropTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit) {
+        return executeSync(coboMPCApiService.dropTransaction(coboId, fee, gasPrice, gasLimit));
     }
 
     @Override

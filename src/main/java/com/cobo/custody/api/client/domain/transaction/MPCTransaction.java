@@ -23,6 +23,9 @@ public class MPCTransaction {
     @JsonProperty(value = "fee_detail")
     private MPCFee feeDetail;
 
+    @JsonProperty(value = "source_address")
+    private String sourceAddress;
+
     @JsonProperty(value = "from_address")
     private String fromAddress;
 
@@ -34,6 +37,12 @@ public class MPCTransaction {
 
     @JsonProperty(value = "vout_n")
     private Integer voutN;
+
+    @JsonProperty(value = "confirmed_number")
+    private Integer confirmedNumber;
+
+    @JsonProperty(value = "rbf_detail")
+    private RBFDetail rbfDetail;
 
     @JsonProperty(value = "transaction_type")
     private Integer transactionType;
@@ -103,6 +112,14 @@ public class MPCTransaction {
         this.feeDetail = feeDetail;
     }
 
+    public String getSourceAddress() {
+        return sourceAddress;
+    }
+
+    public void setSourceAddress(String sourceAddress) {
+        this.sourceAddress = sourceAddress;
+    }
+
     public String getFromAddress() {
         return fromAddress;
     }
@@ -133,6 +150,22 @@ public class MPCTransaction {
 
     public void setVoutN(Integer voutN) {
         this.voutN = voutN;
+    }
+
+    public Integer getConfirmedNumber() {
+        return confirmedNumber;
+    }
+
+    public void setConfirmedNumber(Integer confirmedNumber) {
+        this.confirmedNumber = confirmedNumber;
+    }
+
+    public RBFDetail getRbfDetail() {
+        return rbfDetail;
+    }
+
+    public void setRbfDetail(RBFDetail rbfDetail) {
+        this.rbfDetail = rbfDetail;
     }
 
     public Integer getTransactionType() {
