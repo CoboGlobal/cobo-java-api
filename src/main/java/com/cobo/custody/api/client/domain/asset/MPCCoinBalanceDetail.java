@@ -2,8 +2,7 @@ package com.cobo.custody.api.client.domain.asset;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-public class MPCAssetCoinInfo {
+public class MPCCoinBalanceDetail {
     private String address;
     private String coin;
     @JsonProperty(value = "chain_code")
@@ -12,6 +11,8 @@ public class MPCAssetCoinInfo {
     private String displayCode;
     private String description;
     private String balance;
+
+    private Integer decimal;
 
     public String getAddress() {
         return address;
@@ -61,6 +62,14 @@ public class MPCAssetCoinInfo {
         this.balance = balance;
     }
 
+    public Integer getDecimal() {
+        return decimal;
+    }
+
+    public void setDecimal(Integer decimal) {
+        this.decimal = decimal;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -70,6 +79,7 @@ public class MPCAssetCoinInfo {
                 ", display_code='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
                 ", balance='" + balance + '\'' +
+                ", decimal='" + decimal + '\'' +
                 '}';
     }
 }

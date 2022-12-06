@@ -76,12 +76,12 @@ public class Web3Transaction {
     public String toString() {
         return "{" +
                 "id='" + id + '\'' +
-                "txid='" + txid + '\'' +
-                "create_time='" + createTime + '\'' +
-                "status='" + status + '\'' +
-                "chain_code='" + chainCode + '\'' +
-                "coin='" + coin + '\'' +
-                "tokens='" + tokens + '\'' +
+                ", txid='" + txid + '\'' +
+                ", create_time='" + createTime + '\'' +
+                ", status='" + status + '\'' +
+                ", chain_code='" + chainCode + '\'' +
+                ", coin='" + coin + '\'' +
+                ", tokens='" + tokens + '\'' +
                 '}';
     }
 }
