@@ -104,7 +104,7 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<EstimateFeeDetails> estimateFee(String coin, Integer amount, String address) {
+    public ApiResponse<EstimateFeeDetails> estimateFee(String coin, BigInteger amount, String address) {
         return executeSync(coboMPCApiService.estimateFee(coin, amount, address));
     }
 
