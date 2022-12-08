@@ -6,33 +6,33 @@ import java.math.BigInteger;
 
 public class EstimateFeeDetail {
     @JsonProperty(value = "fee_per_byte")
-    private BigInteger feePerByte;
+    private String feePerByte;
     @JsonProperty(value = "gas_price")
-    private BigInteger gasPrice;
-    @JsonProperty(value = "gasLimit")
-    private BigInteger gasLimit;
+    private String gasPrice;
+    @JsonProperty(value = "gas_limit")
+    private String gasLimit;
 
-    public BigInteger getFeePerByte() {
+    public String getFeePerByte() {
         return feePerByte;
     }
 
-    public void setFeePerByte(BigInteger feePerByte) {
+    public void setFeePerByte(String feePerByte) {
         this.feePerByte = feePerByte;
     }
 
-    public BigInteger getGasPrice() {
+    public String getGasPrice() {
         return gasPrice;
     }
 
-    public void setGasPrice(BigInteger gasPrice) {
+    public void setGasPrice(String gasPrice) {
         this.gasPrice = gasPrice;
     }
 
-    public BigInteger getGasLimit() {
+    public String getGasLimit() {
         return gasLimit;
     }
 
-    public void setGasLimit(BigInteger gasLimit) {
+    public void setGasLimit(String gasLimit) {
         this.gasLimit = gasLimit;
     }
 
