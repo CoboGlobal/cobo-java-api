@@ -36,7 +36,7 @@ public interface CoboMPCApiRestClient {
                                                         Integer transactionType, String coins, String fromAddr, String toAddr,
                                                         Integer limit);
 
-    ApiResponse<EstimateFeeDetails> estimateFee(String coin, Integer amount, String address);
+    ApiResponse<EstimateFeeDetails> estimateFee(String coin, BigInteger amount, String address);
 
     ApiResponse<MPCTssNodeRequests> listRequests(Integer requestType, Integer status);
 }

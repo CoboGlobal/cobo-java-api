@@ -94,7 +94,7 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/estimate_fee/")
     Call<ApiResponse<EstimateFeeDetails>> estimateFee(@Query("coin") String coin,
-                                                      @Query("amount") Integer amount,
+                                                      @Query("amount") BigInteger amount,
                                                       @Query("address") String address);
 
     @GET("/v1/custody/mpc/list_requests/")
