@@ -11,20 +11,16 @@ public class MPCTransaction {
     private String coboId;
     @JsonProperty(value = "request_id")
     private String requestId;
-
     private Integer status;
-
     @JsonProperty(value = "coin_detail")
     private MPCCoin coinDetail;
-
     @JsonProperty(value = "amount_detail")
     private MPCAmount amountDetail;
-
     @JsonProperty(value = "fee_detail")
     private MPCFee feeDetail;
 
-    @JsonProperty(value = "source_address")
-    private String sourceAddress;
+    @JsonProperty(value = "source_addresses")
+    private List<String> sourceAddresses;
 
     @JsonProperty(value = "from_address")
     private String fromAddress;
@@ -41,8 +37,8 @@ public class MPCTransaction {
     @JsonProperty(value = "confirmed_number")
     private Integer confirmedNumber;
 
-    @JsonProperty(value = "rbf_detail")
-    private RBFDetail rbfDetail;
+    @JsonProperty(value = "replace_cobo_id")
+    private String replaceCoboId;
 
     @JsonProperty(value = "transaction_type")
     private Integer transactionType;
@@ -112,12 +108,12 @@ public class MPCTransaction {
         this.feeDetail = feeDetail;
     }
 
-    public String getSourceAddress() {
-        return sourceAddress;
+    public List<String> getSourceAddresses() {
+        return sourceAddresses;
     }
 
-    public void setSourceAddress(String sourceAddress) {
-        this.sourceAddress = sourceAddress;
+    public void setSourceAddresses(List<String> sourceAddresses) {
+        this.sourceAddresses = sourceAddresses;
     }
 
     public String getFromAddress() {
@@ -160,12 +156,12 @@ public class MPCTransaction {
         this.confirmedNumber = confirmedNumber;
     }
 
-    public RBFDetail getRbfDetail() {
-        return rbfDetail;
+    public String getReplaceCoboId() {
+        return replaceCoboId;
     }
 
-    public void setRbfDetail(RBFDetail rbfDetail) {
-        this.rbfDetail = rbfDetail;
+    public void setReplaceCoboId(String replaceCoboId) {
+        this.replaceCoboId = replaceCoboId;
     }
 
     public Integer getTransactionType() {
@@ -233,10 +229,13 @@ public class MPCTransaction {
                 ", coinDetail='" + coinDetail + '\'' +
                 ", amountDetail='" + amountDetail + '\'' +
                 ", feeDetail='" + feeDetail + '\'' +
+                ", sourceAddresses='" + sourceAddresses + '\'' +
                 ", fromAddress='" + fromAddress + '\'' +
                 ", toAddress='" + toAddress + '\'' +
                 ", txHash='" + txHash + '\'' +
                 ", voutN='" + voutN + '\'' +
+                ", confirmedNumber='" + confirmedNumber + '\'' +
+                ", replaceCoboId='" + replaceCoboId + '\'' +
                 ", transactionType='" + transactionType + '\'' +
                 ", blockDetail='" + blockDetail + '\'' +
                 ", txDetail='" + txDetail + '\'' +

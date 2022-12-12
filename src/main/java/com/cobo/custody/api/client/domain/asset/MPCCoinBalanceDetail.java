@@ -11,7 +11,6 @@ public class MPCCoinBalanceDetail {
     private String displayCode;
     private String description;
     private String balance;
-
     private Integer decimal;
 
     public String getAddress() {

@@ -5,16 +5,12 @@ import com.cobo.custody.api.client.CoboMPCApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
-import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
+import com.cobo.custody.api.client.domain.asset.MPCSpendable;
+import com.cobo.custody.api.client.domain.asset.MPCUtxo;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.*;
-import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 import java.math.BigInteger;
-import java.util.List;
 
 import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.createService;
 import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.executeSync;
@@ -52,14 +48,14 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCWalletAsset> getWalletAssetList(String address, String chainCode) {
-        return executeSync(coboMPCApiService.getWalletAssetList(address, chainCode));
+    public ApiResponse<MPCWalletAsset> getWalletBalance(String address, String chainCode) {
+        return executeSync(coboMPCApiService.getWalletBalance(address, chainCode));
     }
 
 
     @Override
-    public ApiResponse<MPCUnspentInputs> getWalletUnspentInputList(String address, String coin) {
-        return executeSync(coboMPCApiService.getWalletUnspentInputList(address, coin));
+    public ApiResponse<MPCSpendable> getWalletSpendableList(String address, String coin) {
+        return executeSync(coboMPCApiService.getWalletSpendableList(address, coin));
     }
 
     @Override
@@ -71,12 +67,12 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit) {
+    public ApiResponse<MPCRbfTransaction> speedUpTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit) {
         return executeSync(coboMPCApiService.speedUpTransaction(coboId, fee, gasPrice, gasLimit));
     }
 
     @Override
-    public ApiResponse<MPCPostTransaction> dropTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit) {
+    public ApiResponse<MPCRbfTransaction> dropTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit) {
         return executeSync(coboMPCApiService.dropTransaction(coboId, fee, gasPrice, gasLimit));
     }
 
@@ -96,11 +92,11 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String order,
+    public ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String orderBy, String order,
                                                                Integer transactionType, String coins, String fromAddr, String toAddr,
                                                                Integer limit) {
-        return executeSync(coboMPCApiService.listWalletTransactions(startTime, endTime, status, order, transactionType,
-                coins, fromAddr, toAddr, limit));
+        return executeSync(coboMPCApiService.listWalletTransactions(startTime, endTime, status, orderBy, order,
+                transactionType, coins, fromAddr, toAddr, limit));
     }
 
     @Override

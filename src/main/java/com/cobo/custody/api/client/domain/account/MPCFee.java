@@ -8,11 +8,11 @@ public class MPCFee {
     @JsonProperty(value = "fee_coin_detail")
     private MPCCoin feeCoinDetail;
     @JsonProperty(value = "gas_price")
-    private String gasPrice;
+    private BigInteger gasPrice;
     @JsonProperty(value = "gas_limit")
     private BigInteger gasLimit;
     @JsonProperty(value = "fee_used")
-    private String feeUsed;
+    private BigInteger feeUsed;
 
     public MPCCoin getFeeCoinDetail() {
         return feeCoinDetail;
@@ -22,11 +22,11 @@ public class MPCFee {
         this.feeCoinDetail = feeCoinDetail;
     }
 
-    public String getGasPrice() {
+    public BigInteger getGasPrice() {
         return gasPrice;
     }
 
-    public void setGasPrice(String gasPrice) {
+    public void setGasPrice(BigInteger gasPrice) {
         this.gasPrice = gasPrice;
     }
 
@@ -38,11 +38,11 @@ public class MPCFee {
         this.gasLimit = gasLimit;
     }
 
-    public String getFeeUsed() {
+    public BigInteger getFeeUsed() {
         return feeUsed;
     }
 
-    public void setFeeUsed(String feeUsed) {
+    public void setFeeUsed(BigInteger feeUsed) {
         this.feeUsed = feeUsed;
     }
 

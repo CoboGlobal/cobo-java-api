@@ -5,7 +5,8 @@ import com.cobo.custody.api.client.domain.account.MPCAddressList;
 import com.cobo.custody.api.client.domain.account.MPCAddresses;
 import com.cobo.custody.api.client.domain.account.MPCChains;
 import com.cobo.custody.api.client.domain.account.MPCCoins;
-import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
+import com.cobo.custody.api.client.domain.asset.MPCSpendable;
+import com.cobo.custody.api.client.domain.asset.MPCUtxo;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.*;
 
@@ -19,20 +20,20 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCAddressList> batchGenerateAddresses(String chainCode, int count);
     ApiResponse<MPCAddresses> getAddressList(String chainCode, int pageIndex, int pageLength, Integer sortFlag);
-    ApiResponse<MPCWalletAsset> getWalletAssetList(String address, String chainCode);
-    ApiResponse<MPCUnspentInputs> getWalletUnspentInputList(String address, String coin);
+    ApiResponse<MPCWalletAsset> getWalletBalance(String address, String chainCode);
+    ApiResponse<MPCSpendable> getWalletSpendableList(String address, String coin);
     ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
                                                       String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
                                                       String extraParameters);
 
-    ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
+    ApiResponse<MPCRbfTransaction> speedUpTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
 
-    ApiResponse<MPCPostTransaction> dropTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
+    ApiResponse<MPCRbfTransaction> dropTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
 
     ApiResponse<MPCTransactionInfos> getTransactionByRequestIds(String requestIds, Integer status);
     ApiResponse<MPCTransactionInfos> getTransactionByCoboIds(String coboIds, Integer status);
     ApiResponse<MPCTransactionInfos> getTransactionByTxHash(String txId, Integer transactionType);
-    ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String order,
+    ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String orderBy, String order,
                                                         Integer transactionType, String coins, String fromAddr, String toAddr,
                                                         Integer limit);
 
