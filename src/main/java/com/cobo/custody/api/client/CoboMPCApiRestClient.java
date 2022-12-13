@@ -26,9 +26,9 @@ public interface CoboMPCApiRestClient {
                                                       String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
                                                       String extraParameters);
 
-    ApiResponse<MPCRbfTransaction> speedUpTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
+    ApiResponse<MPCRbfTransaction> speedUpTransaction(String coboId, String requestId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
 
-    ApiResponse<MPCRbfTransaction> dropTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
+    ApiResponse<MPCRbfTransaction> dropTransaction(String coboId, String requestId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
 
     ApiResponse<MPCTransactionInfos> getTransactionByRequestIds(String requestIds, Integer status);
     ApiResponse<MPCTransactionInfos> getTransactionByCoboIds(String coboIds, Integer status);

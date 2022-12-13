@@ -4,9 +4,11 @@ import com.cobo.custody.api.client.ApiSigner;
 import com.cobo.custody.api.client.CoboMPCApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
-import com.cobo.custody.api.client.domain.account.*;
+import com.cobo.custody.api.client.domain.account.MPCAddressList;
+import com.cobo.custody.api.client.domain.account.MPCAddresses;
+import com.cobo.custody.api.client.domain.account.MPCChains;
+import com.cobo.custody.api.client.domain.account.MPCCoins;
 import com.cobo.custody.api.client.domain.asset.MPCSpendable;
-import com.cobo.custody.api.client.domain.asset.MPCUtxo;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.*;
 
@@ -67,13 +69,13 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCRbfTransaction> speedUpTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit) {
-        return executeSync(coboMPCApiService.speedUpTransaction(coboId, fee, gasPrice, gasLimit));
+    public ApiResponse<MPCRbfTransaction> speedUpTransaction(String coboId, String requestId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit) {
+        return executeSync(coboMPCApiService.speedUpTransaction(coboId, requestId, fee, gasPrice, gasLimit));
     }
 
     @Override
-    public ApiResponse<MPCRbfTransaction> dropTransaction(String coboId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit) {
-        return executeSync(coboMPCApiService.dropTransaction(coboId, fee, gasPrice, gasLimit));
+    public ApiResponse<MPCRbfTransaction> dropTransaction(String coboId, String requestId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit) {
+        return executeSync(coboMPCApiService.dropTransaction(coboId, requestId, fee, gasPrice, gasLimit));
     }
 
     @Override

@@ -6,7 +6,6 @@ import com.cobo.custody.api.client.domain.account.MPCAddresses;
 import com.cobo.custody.api.client.domain.account.MPCChains;
 import com.cobo.custody.api.client.domain.account.MPCCoins;
 import com.cobo.custody.api.client.domain.asset.MPCSpendable;
-import com.cobo.custody.api.client.domain.asset.MPCUtxo;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.*;
 import retrofit2.Call;
@@ -59,16 +58,18 @@ public interface CoboMPCApiService {
     @FormUrlEncoded
     @POST("/v1/custody/mpc/speedup_transaction/")
     Call<ApiResponse<MPCRbfTransaction>> speedUpTransaction(@Field("cobo_id") String coboId,
-                                                             @Field("fee") BigInteger fee,
-                                                             @Field("gas_price") BigInteger gasPrice,
-                                                             @Field("gas_limit") BigInteger gasLimit);
+                                                            @Field("request_id") String requestId,
+                                                            @Field("fee") BigInteger fee,
+                                                            @Field("gas_price") BigInteger gasPrice,
+                                                            @Field("gas_limit") BigInteger gasLimit);
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/drop_transaction/")
     Call<ApiResponse<MPCRbfTransaction>> dropTransaction(@Field("cobo_id") String coboId,
-                                                          @Field("fee") BigInteger fee,
-                                                          @Field("gas_price") BigInteger gasPrice,
-                                                          @Field("gas_limit") BigInteger gasLimit);
+                                                         @Field("request_id") String requestId,
+                                                         @Field("fee") BigInteger fee,
+                                                         @Field("gas_price") BigInteger gasPrice,
+                                                         @Field("gas_limit") BigInteger gasLimit);
 
     @GET("/v1/custody/mpc/transactions_by_request_ids/")
     Call<ApiResponse<MPCTransactionInfos>> getTransactionsByRequestIds(@Query("request_ids") String requestIds,
