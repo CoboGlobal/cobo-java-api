@@ -1,10 +1,7 @@
 package com.cobo.custody.api.client.impl;
 
 import com.cobo.custody.api.client.domain.ApiResponse;
-import com.cobo.custody.api.client.domain.account.MPCAddressList;
-import com.cobo.custody.api.client.domain.account.MPCAddresses;
-import com.cobo.custody.api.client.domain.account.MPCChains;
-import com.cobo.custody.api.client.domain.account.MPCCoins;
+import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
 import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.*;
@@ -30,13 +27,24 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/list_addresses/")
     Call<ApiResponse<MPCAddresses>> getAddressList(@Query("chain_code") String chainCode,
-                                                   @Query("page_index") int pageIndex,
-                                                   @Query("page_length") int pageLength,
-                                                   @Query("sort_flag") Integer sortFlag);
+                                                   @Query("start_id") String startId,
+                                                   @Query("end_id") String endId,
+                                                   @Query("limit") Integer limit,
+                                                   @Query("sort") Integer sort);
 
-    @GET("/v1/custody/mpc/list_assets/")
-    Call<ApiResponse<MPCWalletAsset>> getWalletAssetList(@Query("address") String address,
-                                                         @Query("chain_code") String chainCode);
+    @GET("/v1/custody/mpc/get_balance/")
+    Call<ApiResponse<MPCBalance>> getBalance(@Query("address") String address,
+                                             @Query("chain_code") String chainCode,
+                                             @Query("coin") String coin);
+
+    @GET("/v1/custody/mpc/list_balances/")
+    Call<ApiResponse<MPCListBalances>> listBalances(@Query("coin") String coin,
+                                                    @Query("page_index") Integer pageIndex,
+                                                    @Query("page_length") Integer pageLength);
+
+    @GET("/v1/custody/mpc/list_spendable/")
+    Call<ApiResponse<MPCListSpendable>> listSpendable(@Query("coin") String coin,
+                                                      @Query("address") String address);
 
     @GET("/v1/custody/mpc/list_unspent_inputs/")
     Call<ApiResponse<MPCUnspentInputs>> getWalletUnspentInputList(@Query("address") String address,
@@ -53,11 +61,13 @@ public interface CoboMPCApiService {
                                                             @Field("fee") BigInteger fee,
                                                             @Field("gas_price") BigInteger gasPrice,
                                                             @Field("gas_limit") BigInteger gasLimit,
+                                                            @Field("operation") Integer operation,
                                                             @Field("extra_parameters") String extraParameters);
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/speedup_transaction/")
     Call<ApiResponse<MPCPostTransaction>> speedUpTransaction(@Field("cobo_id") String coboId,
+                                                             @Field("request_id") String requestId,
                                                              @Field("fee") BigInteger fee,
                                                              @Field("gas_price") BigInteger gasPrice,
                                                              @Field("gas_limit") BigInteger gasLimit);
@@ -65,17 +75,18 @@ public interface CoboMPCApiService {
     @FormUrlEncoded
     @POST("/v1/custody/mpc/drop_transaction/")
     Call<ApiResponse<MPCPostTransaction>> dropTransaction(@Field("cobo_id") String coboId,
+                                                          @Field("request_id") String requestId,
                                                           @Field("fee") BigInteger fee,
                                                           @Field("gas_price") BigInteger gasPrice,
                                                           @Field("gas_limit") BigInteger gasLimit);
 
     @GET("/v1/custody/mpc/transactions_by_request_ids/")
     Call<ApiResponse<MPCTransactionInfos>> getTransactionsByRequestIds(@Query("request_ids") String requestIds,
-                                                                   @Query("status") Integer status);
+                                                                       @Query("status") Integer status);
 
     @GET("/v1/custody/mpc/transactions_by_cobo_ids/")
     Call<ApiResponse<MPCTransactionInfos>> getTransactionsByCoboIds(@Query("cobo_ids") String coboIds,
-                                                                @Query("status") Integer status);
+                                                                    @Query("status") Integer status);
 
     @GET("/v1/custody/mpc/transactions_by_tx_hash/")
     Call<ApiResponse<MPCTransactionInfos>> getTransactionByTxhash(@Query("tx_hash") String txHash,
@@ -97,7 +108,7 @@ public interface CoboMPCApiService {
                                                       @Query("amount") BigInteger amount,
                                                       @Query("address") String address);
 
-    @GET("/v1/custody/mpc/list_requests/")
+    @GET("/v1/custody/mpc/list_tss_node_requests/")
     Call<ApiResponse<MPCTssNodeRequests>> listRequests(@Query("request_type") Integer requestType,
-                                                               @Query("status") Integer status);
+                                                       @Query("status") Integer status);
 }
