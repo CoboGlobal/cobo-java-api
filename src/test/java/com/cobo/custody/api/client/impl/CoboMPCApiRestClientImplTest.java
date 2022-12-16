@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CoboMPCApiRestClientImplTest {
     private String MPCAPISecret = "";
     private CoboMPCApiRestClient mpcClient;
-    private Env TestEnv= Env.SANDBOX;
+    private Env TestEnv = Env.SANDBOX;
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -62,19 +62,31 @@ public class CoboMPCApiRestClientImplTest {
     @Test
     public void testGetAddressList() {
         String chainCode = "GETH";
-        int pageIndex = 1;
-        int pageLength = 10;
-        Integer sortFlag = 0;
-        ApiResponse<MPCAddresses> res = mpcClient.getAddressList(chainCode, pageIndex, pageLength, sortFlag);
+        String startId = "1";
+        String endId = "100000";
+        int limit = 50;
+        int sort = 1;
+        ApiResponse<MPCAddresses> res = mpcClient.getAddressList(chainCode, startId, endId, limit, sort);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
 
     @Test
-    public void testGetWalletAssetList() {
+    public void testGetBalance() {
         String address = "0x4897e732734a7b4265cf48201b0ad2adb06657ba";
-        String chainCode = "GETH";
-        ApiResponse<MPCWalletAsset> res = mpcClient.getWalletAssetList(address, chainCode);
+        String chainCode = null;
+        String coin = "GETH";
+        ApiResponse<MPCBalance> res = mpcClient.getBalance(address, chainCode, coin);
+        System.out.println(res.getResult());
+        assertTrue(res.isSuccess());
+    }
+
+    @Test
+    public void testListBalances() {
+        String coin = "GETH";
+        Integer pageIndex = 1;
+        Integer pageLength = 50;
+        ApiResponse<MPCListBalances> res = mpcClient.listBalances(coin, pageIndex, pageLength);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
@@ -90,9 +102,10 @@ public class CoboMPCApiRestClientImplTest {
         BigInteger fee = null;
         BigInteger gasPrice = null;
         BigInteger gasLimit = null;
+        Integer operation = null;
         String extraParameters = null;
         ApiResponse<MPCPostTransaction> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount,
-                toAddressDetails, fee, gasPrice, gasLimit, extraParameters);
+                toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
@@ -137,6 +150,15 @@ public class CoboMPCApiRestClientImplTest {
         Integer requestType = null;
         Integer status = null;
         ApiResponse<MPCTssNodeRequests> res = mpcClient.listRequests(requestType, status);
+        System.out.println(res.getResult());
+        assertTrue(res.isSuccess());
+    }
+
+    @Test
+    public void listSpendable(){
+        String coin = "BTC";
+        String address = null;
+        ApiResponse<MPCListSpendable> res = mpcClient.listSpendable(coin, address);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
