@@ -2,8 +2,6 @@ package com.cobo.custody.api.client.impl;
 
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
-import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
-import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.*;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -45,10 +43,6 @@ public interface CoboMPCApiService {
     @GET("/v1/custody/mpc/list_spendable/")
     Call<ApiResponse<MPCListSpendable>> listSpendable(@Query("coin") String coin,
                                                       @Query("address") String address);
-
-    @GET("/v1/custody/mpc/list_unspent_inputs/")
-    Call<ApiResponse<MPCUnspentInputs>> getWalletUnspentInputList(@Query("address") String address,
-                                                                  @Query("coin") String coin);
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/create_transaction/")
@@ -96,6 +90,7 @@ public interface CoboMPCApiService {
     Call<ApiResponse<MPCTransactions>> listWalletTransactions(@Query("start_time") Long startTime,
                                                               @Query("end_time") Long endTime,
                                                               @Query("status") Integer status,
+                                                              @Query("order_by") String orderBy,
                                                               @Query("order") String order,
                                                               @Query("transaction_type") Integer transactionType,
                                                               @Query("coins") String coins,

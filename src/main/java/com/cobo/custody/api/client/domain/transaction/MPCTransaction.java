@@ -3,7 +3,6 @@ package com.cobo.custody.api.client.domain.transaction;
 import com.cobo.custody.api.client.domain.account.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.math.BigInteger;
 import java.util.List;
 
 public class MPCTransaction {
@@ -23,8 +22,8 @@ public class MPCTransaction {
     @JsonProperty(value = "fee_detail")
     private MPCFee feeDetail;
 
-    @JsonProperty(value = "source_address")
-    private String sourceAddress;
+    @JsonProperty(value = "source_addresses")
+    private List<String> sourceAddresses;
 
     @JsonProperty(value = "from_address")
     private String fromAddress;
@@ -38,14 +37,18 @@ public class MPCTransaction {
     @JsonProperty(value = "vout_n")
     private Integer voutN;
 
+    private Integer nonce;
+
     @JsonProperty(value = "confirmed_number")
     private Integer confirmedNumber;
 
-    @JsonProperty(value = "rbf_detail")
-    private RBFDetail rbfDetail;
+    @JsonProperty(value = "replace_cobo_id")
+    private String replaceCoboId;
 
     @JsonProperty(value = "transaction_type")
     private Integer transactionType;
+
+    private Integer operation;
 
     @JsonProperty(value = "block_detail")
     private MPCBlock blockDetail;
@@ -112,12 +115,12 @@ public class MPCTransaction {
         this.feeDetail = feeDetail;
     }
 
-    public String getSourceAddress() {
-        return sourceAddress;
+    public List<String> getSourceAddresses() {
+        return sourceAddresses;
     }
 
-    public void setSourceAddress(String sourceAddress) {
-        this.sourceAddress = sourceAddress;
+    public void setSourceAddresses(List<String> sourceAddresses) {
+        this.sourceAddresses = sourceAddresses;
     }
 
     public String getFromAddress() {
@@ -152,6 +155,14 @@ public class MPCTransaction {
         this.voutN = voutN;
     }
 
+    public Integer getNonce() {
+        return nonce;
+    }
+
+    public void setNonce(Integer nonce) {
+        this.nonce = nonce;
+    }
+
     public Integer getConfirmedNumber() {
         return confirmedNumber;
     }
@@ -160,12 +171,12 @@ public class MPCTransaction {
         this.confirmedNumber = confirmedNumber;
     }
 
-    public RBFDetail getRbfDetail() {
-        return rbfDetail;
+    public String getReplaceCoboId() {
+        return replaceCoboId;
     }
 
-    public void setRbfDetail(RBFDetail rbfDetail) {
-        this.rbfDetail = rbfDetail;
+    public void setReplaceCoboId(String replaceCoboId) {
+        this.replaceCoboId = replaceCoboId;
     }
 
     public Integer getTransactionType() {
@@ -174,6 +185,14 @@ public class MPCTransaction {
 
     public void setTransactionType(Integer transactionType) {
         this.transactionType = transactionType;
+    }
+
+    public Integer getOperation() {
+        return operation;
+    }
+
+    public void setOperation(Integer operation) {
+        this.operation = operation;
     }
 
     public MPCBlock getBlockDetail() {
@@ -233,11 +252,16 @@ public class MPCTransaction {
                 ", coinDetail='" + coinDetail + '\'' +
                 ", amountDetail='" + amountDetail + '\'' +
                 ", feeDetail='" + feeDetail + '\'' +
+                ", sourceAddresses='" + sourceAddresses + '\'' +
                 ", fromAddress='" + fromAddress + '\'' +
                 ", toAddress='" + toAddress + '\'' +
                 ", txHash='" + txHash + '\'' +
                 ", voutN='" + voutN + '\'' +
+                ", nonce='" + nonce + '\'' +
+                ", confirmedNumber='" + confirmedNumber + '\'' +
+                ", replaceCoboId='" + replaceCoboId + '\'' +
                 ", transactionType='" + transactionType + '\'' +
+                ", operation='" + operation + '\'' +
                 ", blockDetail='" + blockDetail + '\'' +
                 ", txDetail='" + txDetail + '\'' +
                 ", extraParameters='" + extraParameters + '\'' +

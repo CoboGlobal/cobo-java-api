@@ -9,7 +9,7 @@ public class EstimateFeeDetail {
     private BigInteger feePerByte;
     @JsonProperty(value = "gas_price")
     private BigInteger gasPrice;
-    @JsonProperty(value = "gasLimit")
+    @JsonProperty(value = "gas_limit")
     private BigInteger gasLimit;
 
     public BigInteger getFeePerByte() {

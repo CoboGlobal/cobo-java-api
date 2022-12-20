@@ -132,6 +132,7 @@ public class CoboMPCApiRestClientImplTest {
         Long startTime = null;
         Long endTime = null;
         Integer status = null;
+        String orderBy = null;
         String order = null;
         Integer transactionType = null;
         String coins = null;
@@ -139,7 +140,7 @@ public class CoboMPCApiRestClientImplTest {
         String toAddress = null;
         Integer limit = null;
 
-        ApiResponse<MPCTransactions> res = mpcClient.listWalletTransactions(startTime, endTime, status, order,
+        ApiResponse<MPCTransactions> res = mpcClient.listWalletTransactions(startTime, endTime, status, orderBy, order,
                 transactionType, coins, fromAddress, toAddress, limit);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
