@@ -10,7 +10,6 @@ import com.cobo.custody.api.client.domain.enums.SortFlagEnum;
 import com.cobo.custody.api.client.domain.staking.*;
 import com.cobo.custody.api.client.domain.transaction.Side;
 import com.cobo.custody.api.client.domain.transaction.Transaction;
-import com.fasterxml.jackson.databind.JsonSerializer;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -24,8 +23,6 @@ import java.util.List;
 import java.util.Arrays;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class CoboApiRestClientImplTest{

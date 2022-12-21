@@ -5,14 +5,12 @@ import com.cobo.custody.api.client.CoboMPCApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
-import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -73,10 +71,11 @@ public class CoboMPCApiRestClientImplTest {
 
     @Test
     public void testGetBalance() {
-        String address = "0x4897e732734a7b4265cf48201b0ad2adb06657ba";
+        String address = "0x3ede1e59a3f3a66de4260df7ba3029b515337e5c";
         String chainCode = null;
         String coin = "GETH";
         ApiResponse<MPCBalance> res = mpcClient.getBalance(address, chainCode, coin);
+        System.out.println(res);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
@@ -84,7 +83,7 @@ public class CoboMPCApiRestClientImplTest {
     @Test
     public void testListBalances() {
         String coin = "GETH";
-        Integer pageIndex = 1;
+        Integer pageIndex = 0;
         Integer pageLength = 50;
         ApiResponse<MPCListBalances> res = mpcClient.listBalances(coin, pageIndex, pageLength);
         System.out.println(res.getResult());
@@ -95,7 +94,7 @@ public class CoboMPCApiRestClientImplTest {
     public void testCreateTransaction() {
         String coin = "GETH";
         String requestId = String.valueOf(System.currentTimeMillis());
-        String fromAddr = "0x4897e732734a7b4265cf48201b0ad2adb06657ba";
+        String fromAddr = "0x3ede1e59a3f3a66de4260df7ba3029b515337e5c";
         String toAddr = "0xEEACb7a5e53600c144C0b9839A834bb4b39E540c";
         BigInteger amount = new BigInteger("10");
         String toAddressDetails = null;
@@ -132,6 +131,7 @@ public class CoboMPCApiRestClientImplTest {
         Long startTime = null;
         Long endTime = null;
         Integer status = null;
+        String orderBy = null;
         String order = null;
         Integer transactionType = null;
         String coins = null;
@@ -139,7 +139,7 @@ public class CoboMPCApiRestClientImplTest {
         String toAddress = null;
         Integer limit = null;
 
-        ApiResponse<MPCTransactions> res = mpcClient.listWalletTransactions(startTime, endTime, status, order,
+        ApiResponse<MPCTransactions> res = mpcClient.listWalletTransactions(startTime, endTime, status, orderBy, order,
                 transactionType, coins, fromAddress, toAddress, limit);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());

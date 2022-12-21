@@ -5,16 +5,9 @@ import com.cobo.custody.api.client.CoboMPCApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
-import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
-import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.*;
-import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 import java.math.BigInteger;
-import java.util.List;
 
 import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.createService;
 import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.executeSync;
@@ -64,11 +57,6 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCUnspentInputs> getWalletUnspentInputList(String address, String coin) {
-        return executeSync(coboMPCApiService.getWalletUnspentInputList(address, coin));
-    }
-
-    @Override
     public ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
                                                              String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
                                                              Integer operation, String extraParameters) {
@@ -102,10 +90,10 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String order,
+    public ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String orderBy, String order,
                                                                Integer transactionType, String coins, String fromAddr, String toAddr,
                                                                Integer limit) {
-        return executeSync(coboMPCApiService.listWalletTransactions(startTime, endTime, status, order, transactionType,
+        return executeSync(coboMPCApiService.listWalletTransactions(startTime, endTime, status, orderBy, order, transactionType,
                 coins, fromAddr, toAddr, limit));
     }
 

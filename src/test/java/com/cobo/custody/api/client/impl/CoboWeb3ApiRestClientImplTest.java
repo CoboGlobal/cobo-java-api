@@ -4,7 +4,9 @@ import com.cobo.custody.api.client.CoboApiClientFactory;
 import com.cobo.custody.api.client.CoboWeb3ApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
-import com.cobo.custody.api.client.domain.account.*;
+import com.cobo.custody.api.client.domain.account.Web3Addresses;
+import com.cobo.custody.api.client.domain.account.Web3Chains;
+import com.cobo.custody.api.client.domain.account.Web3Coins;
 import com.cobo.custody.api.client.domain.asset.Web3NftCollections;
 import com.cobo.custody.api.client.domain.asset.Web3WalletAsset;
 import com.cobo.custody.api.client.domain.asset.Web3WalletNftDetail;
@@ -50,7 +52,7 @@ public class CoboWeb3ApiRestClientImplTest {
 
     @Test
     public void testGetSupportedCoins() {
-        String chainCode = "RETH";
+        String chainCode = "GETH";
         ApiResponse<Web3Coins> res = web3Client.getSupportedCoins(chainCode);
         System.out.println(res);
         assertTrue(res.isSuccess());
@@ -65,7 +67,7 @@ public class CoboWeb3ApiRestClientImplTest {
 
     @Test
     public void testGetSupportedContracts() {
-        String chainCode = "RETH";
+        String chainCode = "GETH";
         ApiResponse<Web3Contracts> res = web3Client.getSupportedContracts(chainCode);
         System.out.println(res);
         assertTrue(res.isSuccess());
@@ -73,7 +75,7 @@ public class CoboWeb3ApiRestClientImplTest {
 
     @Test
     public void testGetSupportedContractMethods() {
-        String chainCode = "RETH";
+        String chainCode = "GETH";
         String contractAddress = "0x7851dcc90e79f3f2c59915e7f4d6fabd8d3d305b";
         ApiResponse<Web3ContractMethods> res = web3Client.getSupportedContractMethods(chainCode, contractAddress);
         System.out.println(res);
@@ -103,7 +105,7 @@ public class CoboWeb3ApiRestClientImplTest {
     @Test
     public void testGetWalletAssetList() {
         String address = "0xd387292d5be73c8b9d6d3a4dcdd49e00edf75b6a";
-        String chainCode = "RETH";
+        String chainCode = "GETH";
         ApiResponse<Web3WalletAsset> res = web3Client.getWalletAssetList(address, chainCode);
         System.out.println(res);
         assertTrue(res.isSuccess());

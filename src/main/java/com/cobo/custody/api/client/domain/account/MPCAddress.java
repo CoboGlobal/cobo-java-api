@@ -1,10 +1,22 @@
 package com.cobo.custody.api.client.domain.account;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class MPCAddress {
+    private String id;
     private String address;
-    private Integer type;
+    @JsonProperty(value = "hd_path")
+    private String hdPath;
+    private Integer encoding;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getAddress() {
         return address;
@@ -14,19 +26,29 @@ public class MPCAddress {
         this.address = address;
     }
 
-    public Integer getType() {
-        return type;
+    public String getHdPath() {
+        return hdPath;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setHdPath(String hdPath) {
+        this.hdPath = hdPath;
+    }
+
+    public Integer getEncoding() {
+        return encoding;
+    }
+
+    public void setEncoding(Integer encoding) {
+        this.encoding = encoding;
     }
 
     @Override
     public String toString() {
         return "{" +
-                "address='" + address + '\'' +
-                ", type='" + type + '\'' +
+                "id='" + id + '\'' +
+                ", address='" + address + '\'' +
+                ", hdPath='" + hdPath + '\'' +
+                ", encoding='" + encoding + '\'' +
                 '}';
     }
 }

@@ -2,8 +2,6 @@ package com.cobo.custody.api.client;
 
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
-import com.cobo.custody.api.client.domain.asset.MPCUnspentInputs;
-import com.cobo.custody.api.client.domain.asset.MPCWalletAsset;
 import com.cobo.custody.api.client.domain.transaction.*;
 
 import java.math.BigInteger;
@@ -25,8 +23,6 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCListSpendable> listSpendable(String coin, String address);
 
-    ApiResponse<MPCUnspentInputs> getWalletUnspentInputList(String address, String coin);
-
     ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
                                                       String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
                                                       Integer operation, String extraParameters);
@@ -41,7 +37,7 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCTransactionInfos> getTransactionByTxHash(String txId, Integer transactionType);
 
-    ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String order,
+    ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String orderBy, String order,
                                                         Integer transactionType, String coins, String fromAddr, String toAddr,
                                                         Integer limit);
 
