@@ -31,6 +31,7 @@ public class CoboWeb3ApiRestClientImplTest {
     @BeforeEach
     public void setUp() throws Exception {
         Web3APISecret = System.getProperty("Web3ApiSecret");
+        System.out.println("Web3APISecret: " + Web3APISecret);
         web3Client = CoboApiClientFactory.newInstance(
                 new LocalSigner(Web3APISecret),
                 TestEnv,

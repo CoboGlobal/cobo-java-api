@@ -23,7 +23,7 @@ public class MPCTransaction {
     private MPCFee feeDetail;
 
     @JsonProperty(value = "source_addresses")
-    private List<String> sourceAddresses;
+    private String sourceAddresses;
 
     @JsonProperty(value = "from_address")
     private String fromAddress;
@@ -115,11 +115,11 @@ public class MPCTransaction {
         this.feeDetail = feeDetail;
     }
 
-    public List<String> getSourceAddresses() {
+    public String getSourceAddresses() {
         return sourceAddresses;
     }
 
-    public void setSourceAddresses(List<String> sourceAddresses) {
+    public void setSourceAddresses(String sourceAddresses) {
         this.sourceAddresses = sourceAddresses;
     }
 
