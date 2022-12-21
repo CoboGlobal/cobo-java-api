@@ -45,7 +45,6 @@ public class CoboApiRestClientImplTest{
             TestEnv = Env.SANDBOX;
             TestData = TESTDATA.SANDBOX_TESTDATA;
         }
-        System.out.println("APISecret: " + APISecret);
         client = CoboApiClientFactory.newInstance(
                 new LocalSigner(APISecret),
                 TestEnv,

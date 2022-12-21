@@ -24,7 +24,6 @@ public class CoboMPCApiRestClientImplTest {
     @BeforeEach
     public void setUp() throws Exception {
         MPCAPISecret = System.getProperty("MPCApiSecret");
-        System.out.println("MPCAPISecret: " + MPCAPISecret);
         mpcClient = CoboApiClientFactory.newInstance(
                 new LocalSigner(MPCAPISecret),
                 TestEnv,
