@@ -5,7 +5,10 @@ import com.cobo.custody.api.client.CoboMPCApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
-import com.cobo.custody.api.client.domain.transaction.*;
+import com.cobo.custody.api.client.domain.transaction.MPCPostTransaction;
+import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
+import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
+import com.cobo.custody.api.client.domain.transaction.MPCTssNodeRequests;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,6 +48,15 @@ public class CoboMPCApiRestClientImplTest {
         ApiResponse<MPCCoins> res = mpcClient.getSupportedCoins(chainCode);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
+    }
+
+    @Test
+    public void testIsValidAddress() {
+        String coin = "GETH";
+        String address = "0x3ede1e59a3f3a66de4260df7ba3029b515337e5c";
+        ApiResponse<Boolean> res = mpcClient.isValidAddress(coin, address);
+        assertTrue(res.isSuccess());
+        assertTrue(res.getResult());
     }
 
     @Test

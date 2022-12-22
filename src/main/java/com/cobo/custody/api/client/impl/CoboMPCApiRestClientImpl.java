@@ -30,6 +30,11 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
+    public ApiResponse<Boolean> isValidAddress(String coin, String address) {
+        return executeSync(coboMPCApiService.isValidAddress(coin, address));
+    }
+
+    @Override
     public ApiResponse<MPCAddressList> getMainAddress(String chainCode) {
         return executeSync(coboMPCApiService.getMainAddress(chainCode));
     }
