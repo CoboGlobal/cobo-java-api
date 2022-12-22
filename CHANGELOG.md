@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.41] (2022-12-23)
+[v0.41]: https://github.com/CoboCustody/cobo-java-api/compare/v0.40...v0.41
+
+### Changed
+- Update MPC wallet SaaS api. https://github.com/CoboCustody/cobo-java-api/pull/24, https://github.com/CoboCustody/cobo-java-api/pull/25, https://github.com/CoboCustody/cobo-java-api/pull/26, https://github.com/CoboCustody/cobo-java-api/pull/27, https://github.com/CoboCustody/cobo-java-api/pull/28, https://github.com/CoboCustody/cobo-java-api/pull/29, https://github.com/CoboCustody/cobo-java-api/pull/30, https://github.com/CoboCustody/cobo-java-api/pull/31, https://github.com/CoboCustody/cobo-java-api/pull/32
+
+
 ## [v0.40] (2022-11-25)
 [v0.40]: https://github.com/CoboCustody/cobo-java-api/compare/v0.39...v0.40
 
@@ -15,33 +22,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [v0.39]: https://github.com/CoboCustody/cobo-java-api/compare/v0.38...v0.39
 
 ### Changed
-- Update MPC wallet generate addresses Saas api. https://github.com/CoboCustody/cobo-java-api/pull/18
+- Update MPC wallet generate addresses SaaS api. https://github.com/CoboCustody/cobo-java-api/pull/18
 
 
 ## [v0.38] (2022-11-17)
 [v0.38]: https://github.com/CoboCustody/cobo-java-api/compare/v0.37...v0.38
 
 ### Added
-- Support MPC wallet Saas api. https://github.com/CoboCustody/cobo-java-api/pull/15, https://github.com/CoboCustody/cobo-java-api/pull/16, https://github.com/CoboCustody/cobo-java-api/pull/17
+- Support MPC wallet SaaS api. https://github.com/CoboCustody/cobo-java-api/pull/15, https://github.com/CoboCustody/cobo-java-api/pull/16, https://github.com/CoboCustody/cobo-java-api/pull/17
 
 ## [v0.37] (2022-10-25)
 [v0.37]: https://github.com/CoboCustody/cobo-java-api/compare/v0.36...v0.37
 
 ### Fixed
-- Update Web3 Wallet withdraw and contract amount type.  https://github.com/CoboCustody/cobo-java-api/pull/14
+- Update Web3 wallet withdraw and contract amount type.  https://github.com/CoboCustody/cobo-java-api/pull/14
 
 ## [v0.36] (2022-10-21)
 [v0.36]: https://github.com/CoboCustody/cobo-java-api/compare/v0.33...v0.36
 
 ### Fixed
-- Optimizate Web3 Wallet saas api variable naming.  https://github.com/CoboCustody/cobo-java-api/pull/12, https://github.com/CoboCustody/cobo-java-api/pull/13
+- Optimizate Web3 wallet SaaS api variable naming.  https://github.com/CoboCustody/cobo-java-api/pull/12, https://github.com/CoboCustody/cobo-java-api/pull/13
 
 
 ## [v0.33] (2022-10-17)
 [v0.33]: https://github.com/CoboCustody/cobo-java-api/compare/v0.32...v0.33
 
 ### Added
-- release saas api sdk.  https://github.com/CoboCustody/cobo-java-api/pull/10, https://github.com/CoboCustody/cobo-java-api/pull/11
+- release Web3 wallet SaaS api sdk.  https://github.com/CoboCustody/cobo-java-api/pull/10, https://github.com/CoboCustody/cobo-java-api/pull/11
 
 ## [v0.32] (2022-07-15)
 [v0.32]: https://github.com/CoboCustody/cobo-java-api/compare/v0.31...v0.32
