@@ -11,6 +11,8 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCCoins> getSupportedCoins(String chainCode);
 
+    ApiResponse<Boolean> isValidAddress(String coin, String address);
+
     ApiResponse<MPCAddressList> getMainAddress(String chainCode);
 
     ApiResponse<MPCAddressList> batchGenerateAddresses(String chainCode, int count);
