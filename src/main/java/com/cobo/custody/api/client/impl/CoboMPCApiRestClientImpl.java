@@ -40,13 +40,13 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCAddressList> batchGenerateAddresses(String chainCode, int count) {
-        return executeSync(coboMPCApiService.batchGenerateAddresses(chainCode, count));
+    public ApiResponse<MPCAddressList> generateAddresses(String chainCode, int count) {
+        return executeSync(coboMPCApiService.generateAddresses(chainCode, count));
     }
 
     @Override
-    public ApiResponse<MPCAddresses> getAddressList(String chainCode, String startId, String endId, Integer limit, Integer sort) {
-        return executeSync(coboMPCApiService.getAddressList(chainCode, startId, endId, limit, sort));
+    public ApiResponse<MPCAddresses> listAddresses(String chainCode, String startId, String endId, Integer limit, Integer sort) {
+        return executeSync(coboMPCApiService.listAddresses(chainCode, startId, endId, limit, sort));
     }
 
     public ApiResponse<MPCBalance> getBalance(String address, String chainCode, String coin) {
@@ -80,25 +80,25 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCTransactionInfos> getTransactionByRequestIds(String requestIds, Integer status) {
-        return executeSync(coboMPCApiService.getTransactionsByRequestIds(requestIds, status));
+    public ApiResponse<MPCTransactionInfos> transactionsByRequestIds(String requestIds, Integer status) {
+        return executeSync(coboMPCApiService.transactionsByRequestIds(requestIds, status));
     }
 
     @Override
-    public ApiResponse<MPCTransactionInfos> getTransactionByCoboIds(String coboIds, Integer status) {
-        return executeSync(coboMPCApiService.getTransactionsByCoboIds(coboIds, status));
+    public ApiResponse<MPCTransactionInfos> transactionsByCoboIds(String coboIds, Integer status) {
+        return executeSync(coboMPCApiService.transactionsByCoboIds(coboIds, status));
     }
 
     @Override
-    public ApiResponse<MPCTransactionInfos> getTransactionByTxHash(String txHash, Integer transactionType) {
-        return executeSync(coboMPCApiService.getTransactionByTxhash(txHash, transactionType));
+    public ApiResponse<MPCTransactionInfos> transactionsByTxhash(String txHash, Integer transactionType) {
+        return executeSync(coboMPCApiService.transactionsByTxhash(txHash, transactionType));
     }
 
     @Override
-    public ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String orderBy, String order,
+    public ApiResponse<MPCTransactions> listTransactions(Long startTime, Long endTime, Integer status, String orderBy, String order,
                                                                Integer transactionType, String coins, String fromAddr, String toAddr,
                                                                Integer limit) {
-        return executeSync(coboMPCApiService.listWalletTransactions(startTime, endTime, status, orderBy, order, transactionType,
+        return executeSync(coboMPCApiService.listTransactions(startTime, endTime, status, orderBy, order, transactionType,
                 coins, fromAddr, toAddr, limit));
     }
 
@@ -108,7 +108,7 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCTssNodeRequests> listRequests(Integer requestType, Integer status) {
-        return executeSync(coboMPCApiService.listRequests(requestType, status));
+    public ApiResponse<MPCTssNodeRequests> listTssNodeRequests(Integer requestType, Integer status) {
+        return executeSync(coboMPCApiService.listTssNodeRequests(requestType, status));
     }
 }

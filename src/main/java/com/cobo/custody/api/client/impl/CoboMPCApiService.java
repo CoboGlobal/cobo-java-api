@@ -24,11 +24,11 @@ public interface CoboMPCApiService {
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/generate_addresses/")
-    Call<ApiResponse<MPCAddressList>> batchGenerateAddresses(@Field("chain_code") String chainCode,
+    Call<ApiResponse<MPCAddressList>> generateAddresses(@Field("chain_code") String chainCode,
                                                              @Field("count") int count);
 
     @GET("/v1/custody/mpc/list_addresses/")
-    Call<ApiResponse<MPCAddresses>> getAddressList(@Query("chain_code") String chainCode,
+    Call<ApiResponse<MPCAddresses>> listAddresses(@Query("chain_code") String chainCode,
                                                    @Query("start_id") String startId,
                                                    @Query("end_id") String endId,
                                                    @Query("limit") Integer limit,
@@ -79,19 +79,19 @@ public interface CoboMPCApiService {
                                                           @Field("gas_limit") BigInteger gasLimit);
 
     @GET("/v1/custody/mpc/transactions_by_request_ids/")
-    Call<ApiResponse<MPCTransactionInfos>> getTransactionsByRequestIds(@Query("request_ids") String requestIds,
+    Call<ApiResponse<MPCTransactionInfos>> transactionsByRequestIds(@Query("request_ids") String requestIds,
                                                                        @Query("status") Integer status);
 
     @GET("/v1/custody/mpc/transactions_by_cobo_ids/")
-    Call<ApiResponse<MPCTransactionInfos>> getTransactionsByCoboIds(@Query("cobo_ids") String coboIds,
+    Call<ApiResponse<MPCTransactionInfos>> transactionsByCoboIds(@Query("cobo_ids") String coboIds,
                                                                     @Query("status") Integer status);
 
     @GET("/v1/custody/mpc/transactions_by_tx_hash/")
-    Call<ApiResponse<MPCTransactionInfos>> getTransactionByTxhash(@Query("tx_hash") String txHash,
+    Call<ApiResponse<MPCTransactionInfos>> transactionsByTxhash(@Query("tx_hash") String txHash,
                                                                   @Query("transaction_type") Integer transactionType);
 
     @GET("/v1/custody/mpc/list_transactions/")
-    Call<ApiResponse<MPCTransactions>> listWalletTransactions(@Query("start_time") Long startTime,
+    Call<ApiResponse<MPCTransactions>> listTransactions(@Query("start_time") Long startTime,
                                                               @Query("end_time") Long endTime,
                                                               @Query("status") Integer status,
                                                               @Query("order_by") String orderBy,
@@ -108,6 +108,6 @@ public interface CoboMPCApiService {
                                                       @Query("address") String address);
 
     @GET("/v1/custody/mpc/list_tss_node_requests/")
-    Call<ApiResponse<MPCTssNodeRequests>> listRequests(@Query("request_type") Integer requestType,
+    Call<ApiResponse<MPCTssNodeRequests>> listTssNodeRequests(@Query("request_type") Integer requestType,
                                                        @Query("status") Integer status);
 }

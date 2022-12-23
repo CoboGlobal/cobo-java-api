@@ -15,9 +15,9 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCAddressList> getMainAddress(String chainCode);
 
-    ApiResponse<MPCAddressList> batchGenerateAddresses(String chainCode, int count);
+    ApiResponse<MPCAddressList> generateAddresses(String chainCode, int count);
 
-    ApiResponse<MPCAddresses> getAddressList(String chainCode, String startId, String endId, Integer limit, Integer sort);
+    ApiResponse<MPCAddresses> listAddresses(String chainCode, String startId, String endId, Integer limit, Integer sort);
 
     ApiResponse<MPCBalance> getBalance(String address, String chainCode, String coin);
 
@@ -33,17 +33,17 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCPostTransaction> dropTransaction(String coboId, String requestId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
 
-    ApiResponse<MPCTransactionInfos> getTransactionByRequestIds(String requestIds, Integer status);
+    ApiResponse<MPCTransactionInfos> transactionsByRequestIds(String requestIds, Integer status);
 
-    ApiResponse<MPCTransactionInfos> getTransactionByCoboIds(String coboIds, Integer status);
+    ApiResponse<MPCTransactionInfos> transactionsByCoboIds(String coboIds, Integer status);
 
-    ApiResponse<MPCTransactionInfos> getTransactionByTxHash(String txId, Integer transactionType);
+    ApiResponse<MPCTransactionInfos> transactionsByTxhash(String txId, Integer transactionType);
 
-    ApiResponse<MPCTransactions> listWalletTransactions(Long startTime, Long endTime, Integer status, String orderBy, String order,
+    ApiResponse<MPCTransactions> listTransactions(Long startTime, Long endTime, Integer status, String orderBy, String order,
                                                         Integer transactionType, String coins, String fromAddr, String toAddr,
                                                         Integer limit);
 
     ApiResponse<EstimateFeeDetails> estimateFee(String coin, BigInteger amount, String address);
 
-    ApiResponse<MPCTssNodeRequests> listRequests(Integer requestType, Integer status);
+    ApiResponse<MPCTssNodeRequests> listTssNodeRequests(Integer requestType, Integer status);
 }
