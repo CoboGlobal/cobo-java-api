@@ -5,10 +5,7 @@ import com.cobo.custody.api.client.CoboMPCApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
-import com.cobo.custody.api.client.domain.transaction.MPCPostTransaction;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactions;
-import com.cobo.custody.api.client.domain.transaction.MPCTssNodeRequests;
+import com.cobo.custody.api.client.domain.transaction.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -167,10 +164,20 @@ public class CoboMPCApiRestClientImplTest {
     }
 
     @Test
-    public void listSpendable(){
+    public void listSpendable() {
         String coin = "BTC";
         String address = null;
         ApiResponse<MPCListSpendable> res = mpcClient.listSpendable(coin, address);
+        System.out.println(res.getResult());
+        assertTrue(res.isSuccess());
+    }
+
+    @Test
+    public void testEstimateFee() {
+        String coin = "GETH";
+        BigInteger amount = new BigInteger("10000");
+        String address = "0xEEACb7a5e53600c144C0b9839A834bb4b39E540c";
+        ApiResponse<EstimateFeeDetails> res = mpcClient.estimateFee(coin, amount, address, null);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
