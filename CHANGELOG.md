@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.42] (2022-12-29)
+[v0.42]: https://github.com/CoboCustody/cobo-java-api/compare/v0.41...v0.42
+
+### Changed
+- Update MPC wallet estimateFee api. https://github.com/CoboCustody/cobo-java-api/pull/35, https://github.com/CoboCustody/cobo-java-api/pull/36
+
 ## [v0.41] (2022-12-23)
 [v0.41]: https://github.com/CoboCustody/cobo-java-api/compare/v0.40...v0.41
 
