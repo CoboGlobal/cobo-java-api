@@ -76,7 +76,8 @@ public class CoboWeb3ApiRestClientImplTest {
     @Test
     public void testGetSupportedContractMethods() {
         String chainCode = "GETH";
-        String contractAddress = "0x7851dcc90e79f3f2c59915e7f4d6fabd8d3d305b";
+        String contractAddress = "0x0000000000c2d145a2526bd8c716263bfebe1a72";
+
         ApiResponse<Web3ContractMethods> res = web3Client.getSupportedContractMethods(chainCode, contractAddress);
         System.out.println(res);
         assertTrue(res.isSuccess());
@@ -85,7 +86,7 @@ public class CoboWeb3ApiRestClientImplTest {
     @Test
     public void testBatchNewAddress() {
         String chainCode = "ETH";
-        int count = 10;
+        int count = 2;
         ApiResponse<Web3Addresses> res = web3Client.batchNewAddress(chainCode, count);
         System.out.println(res);
         assertTrue(res.isSuccess());
