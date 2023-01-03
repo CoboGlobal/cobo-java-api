@@ -1,2 +1,3 @@
 rootProject.name = 'cobo-java-api'
+include 'example'
 
