@@ -193,7 +193,7 @@ public class MPCFundCollection {
         }
         if (fromAddrFeeBalanceResponse.getResult().getCoinData().size() == 0) {
             String requestId = String.valueOf(System.currentTimeMillis());
-            ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(coin, requestId, feeAddr, fromAddr, gasFee,
+            ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(estimateFee.getResult().getFeeCoin(), requestId, feeAddr, fromAddr, gasFee,
                     null, null, null, null, null, null);
             if (!transferFeeResponse.isSuccess()) {
                 return new BigInteger("0");
@@ -203,7 +203,7 @@ public class MPCFundCollection {
             BigInteger fromAddrFeeBalance = new BigInteger(fromAddrFeeBalanceDetail.getBalance());
             if (fromAddrFeeBalance.compareTo(gasFee) < 0) {
                 String requestId = String.valueOf(System.currentTimeMillis());
-                ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(coin, requestId, feeAddr, fromAddr, gasFee.subtract(fromAddrFeeBalance),
+                ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(estimateFee.getResult().getFeeCoin(), requestId, feeAddr, fromAddr, gasFee.subtract(fromAddrFeeBalance),
                         null, null, null, null, null, null);
                 if (!transferFeeResponse.isSuccess()) {
                     return new BigInteger("0");
