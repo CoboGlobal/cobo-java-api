@@ -210,6 +210,8 @@ public class MPCFundCollection {
             }
         }
 
+        // 注意：如果需要补充手续费，需要check手续费到账后，再进行转账操作。
+
         // fromAddr转账toAddr
         ApiResponse<MPCPostTransaction> response = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, realToAmount,
                 null, null, null, null, null, null);
