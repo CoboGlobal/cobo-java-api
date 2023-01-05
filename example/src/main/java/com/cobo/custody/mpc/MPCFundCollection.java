@@ -55,8 +55,14 @@ public class MPCFundCollection {
     2. 调用资金归集之前，如果不确定交易手续费币种，可以调用estimateFee查询。确保feeFromAddress有足够的手续费支持资金归集。
      */
     public Boolean fundCollection(String coin, String toAddr, BigInteger toAmount, String feeFromAddress) {
+        if (toAmount.compareTo(new BigInteger("0")) <= 0) {
+            return false;
+        }
         ApiResponse<Boolean> response = mpcClient.isValidAddress(coin, toAddr);
         if (!response.isSuccess()) {
+            return false;
+        }
+        if (!response.getResult()) {
             return false;
         }
         ApiResponse<EstimateFeeDetails> feeResponse = mpcClient.estimateFee(coin, toAmount, toAddr, null);
