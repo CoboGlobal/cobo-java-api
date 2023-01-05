@@ -125,11 +125,7 @@ public class MPCFundCollection {
                 }
             }
 
-            // 归集币种和手续费币种一致时，由于交易费用缺少导致总转账金额小于需要转账金额，直接从feeFromAddress提取到toAddr
-            if (feeResponse.getResult().getFeeCoin().equals(coin) && transferAllAmount.compareTo(toAmount) < 0) {
-                BigInteger transferAmount = transfer(coin, feeFromAddress, toAddr, toAmount.subtract(transferAllAmount));
-                transferAllAmount = transferAllAmount.add(transferAmount);
-            }
+            // 归集币种和手续费币种一致时，由于交易费用缺少导致总转账金额小于需要转账金额，直接从其他地址提取到toAddr
 
             return transferAllAmount.compareTo(toAmount) >= 0;
         } else {
