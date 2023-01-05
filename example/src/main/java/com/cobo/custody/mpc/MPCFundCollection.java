@@ -146,7 +146,6 @@ public class MPCFundCollection {
     4. fromAddr向toAddr转账，转账受理成功后，即可认为归集受理成功，最终金额以custody回调为准。
      */
     public BigInteger tokenTransfer(String coin, String fromAddr, String toAddr, String feeAddr, BigInteger toAmount) {
-        String requestId = String.valueOf(System.currentTimeMillis());
         // 校验地址和apikey(mpc钱包)
         ApiResponse<MPCBalance> mpcBalance = mpcClient.getBalance(fromAddr, null, coin);
         if (!mpcBalance.isSuccess()) {
@@ -193,6 +192,7 @@ public class MPCFundCollection {
             return new BigInteger("0");
         }
         if (fromAddrFeeBalanceResponse.getResult().getCoinData().size() == 0) {
+            String requestId = String.valueOf(System.currentTimeMillis());
             ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(coin, requestId, feeAddr, fromAddr, gasFee,
                     null, null, null, null, null, null);
             if (!transferFeeResponse.isSuccess()) {
@@ -202,6 +202,7 @@ public class MPCFundCollection {
             MPCCoinBalanceDetail fromAddrFeeBalanceDetail = fromAddrFeeBalanceResponse.getResult().getCoinData().get(0);
             BigInteger fromAddrFeeBalance = new BigInteger(fromAddrFeeBalanceDetail.getBalance());
             if (fromAddrFeeBalance.compareTo(gasFee) < 0) {
+                String requestId = String.valueOf(System.currentTimeMillis());
                 ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(coin, requestId, feeAddr, fromAddr, gasFee.subtract(fromAddrFeeBalance),
                         null, null, null, null, null, null);
                 if (!transferFeeResponse.isSuccess()) {
@@ -213,6 +214,7 @@ public class MPCFundCollection {
         // 注意：如果需要补充手续费，需要check手续费到账后，再进行转账操作。
 
         // fromAddr转账toAddr
+        String requestId = String.valueOf(System.currentTimeMillis());
         ApiResponse<MPCPostTransaction> response = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, realToAmount,
                 null, null, null, null, null, null);
         if (response.isSuccess()) {
