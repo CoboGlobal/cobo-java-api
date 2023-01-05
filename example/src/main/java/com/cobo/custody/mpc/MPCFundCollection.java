@@ -58,6 +58,7 @@ public class MPCFundCollection {
         if (toAmount.compareTo(new BigInteger("0")) <= 0) {
             return false;
         }
+
         ApiResponse<Boolean> response = mpcClient.isValidAddress(coin, toAddr);
         if (!response.isSuccess()) {
             return false;
@@ -65,6 +66,7 @@ public class MPCFundCollection {
         if (!response.getResult()) {
             return false;
         }
+
         ApiResponse<EstimateFeeDetails> feeResponse = mpcClient.estimateFee(coin, toAmount, toAddr, null);
         if (!feeResponse.isSuccess()) {
             return false;
