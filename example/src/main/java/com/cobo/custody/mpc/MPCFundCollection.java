@@ -55,10 +55,18 @@ public class MPCFundCollection {
     2. 调用资金归集之前，如果不确定交易手续费币种，可以调用estimateFee查询。确保feeFromAddress有足够的手续费支持资金归集。
      */
     public Boolean fundCollection(String coin, String toAddr, BigInteger toAmount, String feeFromAddress) {
+        if (toAmount.compareTo(new BigInteger("0")) <= 0) {
+            return false;
+        }
+
         ApiResponse<Boolean> response = mpcClient.isValidAddress(coin, toAddr);
         if (!response.isSuccess()) {
             return false;
         }
+        if (!response.getResult()) {
+            return false;
+        }
+
         ApiResponse<EstimateFeeDetails> feeResponse = mpcClient.estimateFee(coin, toAmount, toAddr, null);
         if (!feeResponse.isSuccess()) {
             return false;
@@ -117,11 +125,7 @@ public class MPCFundCollection {
                 }
             }
 
-            // 归集币种和手续费币种一致时，由于交易费用缺少导致总转账金额小于需要转账金额，直接从feeFromAddress提取到toAddr
-            if (feeResponse.getResult().getFeeCoin().equals(coin) && transferAllAmount.compareTo(toAmount) < 0) {
-                BigInteger transferAmount = transfer(coin, feeFromAddress, toAddr, toAmount.subtract(transferAllAmount));
-                transferAllAmount = transferAllAmount.add(transferAmount);
-            }
+            // 归集币种和手续费币种一致时，由于交易费用缺少导致总转账金额小于需要转账金额，直接从其他地址提取到toAddr
 
             return transferAllAmount.compareTo(toAmount) >= 0;
         } else {
@@ -138,7 +142,6 @@ public class MPCFundCollection {
     4. fromAddr向toAddr转账，转账受理成功后，即可认为归集受理成功，最终金额以custody回调为准。
      */
     public BigInteger tokenTransfer(String coin, String fromAddr, String toAddr, String feeAddr, BigInteger toAmount) {
-        String requestId = String.valueOf(System.currentTimeMillis());
         // 校验地址和apikey(mpc钱包)
         ApiResponse<MPCBalance> mpcBalance = mpcClient.getBalance(fromAddr, null, coin);
         if (!mpcBalance.isSuccess()) {
@@ -185,7 +188,8 @@ public class MPCFundCollection {
             return new BigInteger("0");
         }
         if (fromAddrFeeBalanceResponse.getResult().getCoinData().size() == 0) {
-            ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(coin, requestId, feeAddr, toAddr, gasFee,
+            String requestId = String.valueOf(System.currentTimeMillis());
+            ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(estimateFee.getResult().getFeeCoin(), requestId, feeAddr, fromAddr, gasFee,
                     null, null, null, null, null, null);
             if (!transferFeeResponse.isSuccess()) {
                 return new BigInteger("0");
@@ -194,7 +198,8 @@ public class MPCFundCollection {
             MPCCoinBalanceDetail fromAddrFeeBalanceDetail = fromAddrFeeBalanceResponse.getResult().getCoinData().get(0);
             BigInteger fromAddrFeeBalance = new BigInteger(fromAddrFeeBalanceDetail.getBalance());
             if (fromAddrFeeBalance.compareTo(gasFee) < 0) {
-                ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(coin, requestId, feeAddr, toAddr, gasFee.subtract(fromAddrFeeBalance),
+                String requestId = String.valueOf(System.currentTimeMillis());
+                ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(estimateFee.getResult().getFeeCoin(), requestId, feeAddr, fromAddr, gasFee.subtract(fromAddrFeeBalance),
                         null, null, null, null, null, null);
                 if (!transferFeeResponse.isSuccess()) {
                     return new BigInteger("0");
@@ -202,7 +207,10 @@ public class MPCFundCollection {
             }
         }
 
+        // 注意：如果需要补充手续费，需要check手续费到账后，再进行转账操作。
+
         // fromAddr转账toAddr
+        String requestId = String.valueOf(System.currentTimeMillis());
         ApiResponse<MPCPostTransaction> response = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, realToAmount,
                 null, null, null, null, null, null);
         if (response.isSuccess()) {
