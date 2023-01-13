@@ -37,6 +37,9 @@ public class CoboApiServiceGenerator {
         dispatcher.setMaxRequestsPerHost(500);
         dispatcher.setMaxRequests(500);
         sharedClient = new OkHttpClient.Builder()
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
                 .dispatcher(dispatcher)
                 .pingInterval(20, TimeUnit.SECONDS)
                 .build();
