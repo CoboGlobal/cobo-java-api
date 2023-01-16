@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.43] (2023-01-16)
+[v0.43]: https://github.com/CoboCustody/cobo-java-api/compare/v0.42...v0.43
+
+### Changed
+- Mpc release fund collection demo. https://github.com/CoboCustody/cobo-java-api/pull/37
+- Add http timeout config. https://github.com/CoboCustody/cobo-java-api/pull/40
+- Add callback demo testdata. https://github.com/CoboCustody/cobo-java-api/pull/41
+
 ## [v0.42] (2022-12-29)
 [v0.42]: https://github.com/CoboCustody/cobo-java-api/compare/v0.41...v0.42
 
