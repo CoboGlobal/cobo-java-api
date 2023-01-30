@@ -76,6 +76,14 @@ public class Web3Transaction {
         this.tokens = tokens;
     }
 
+    public Web3Fee getFeeDetail() {
+        return feeDetail;
+    }
+
+    public void setFeeDetail(Web3Fee feeDetail) {
+        this.feeDetail = feeDetail;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -86,6 +94,7 @@ public class Web3Transaction {
                 ", chain_code='" + chainCode + '\'' +
                 ", coin='" + coin + '\'' +
                 ", tokens='" + tokens + '\'' +
+                ", feeDetail='" + feeDetail + '\'' +
                 '}';
     }
 }
