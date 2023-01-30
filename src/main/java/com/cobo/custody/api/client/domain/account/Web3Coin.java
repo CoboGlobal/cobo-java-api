@@ -15,6 +15,9 @@ public class Web3Coin {
     @JsonProperty(value = "minimum_deposit_threshold")
     private String minimumDepositThreshold;
 
+    @JsonProperty(value = "confirming_threshold")
+    private Integer confirmingThreshold;
+
     public String getCoin() {
         return coin;
     }
@@ -71,6 +74,14 @@ public class Web3Coin {
         this.minimumDepositThreshold = minimumDepositThreshold;
     }
 
+    public Integer getConfirmingThreshold() {
+        return confirmingThreshold;
+    }
+
+    public void setConfirmingThreshold(Integer confirmingThreshold) {
+        this.confirmingThreshold = confirmingThreshold;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -81,6 +92,7 @@ public class Web3Coin {
                 ", canDeposit=" + canDeposit +
                 ", canWithdraw=" + canWithdraw +
                 ", minimumDepositThreshold='" + minimumDepositThreshold + '\'' +
+                ", confirmingThreshold='" + confirmingThreshold + '\'' +
                 '}';
     }
 }

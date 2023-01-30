@@ -1,5 +1,6 @@
 package com.cobo.custody.api.client.domain.transaction;
 
+import com.cobo.custody.api.client.domain.account.Web3Fee;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public class Web3Transaction {
     private String chainCode;
     private String coin;
     private List<Web3Token> tokens;
+
+    @JsonProperty(value = "fee_detail")
+    private Web3Fee feeDetail;
 
     public String getId() {
         return id;
