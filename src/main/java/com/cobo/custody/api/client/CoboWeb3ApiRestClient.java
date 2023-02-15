@@ -40,7 +40,7 @@ public interface CoboWeb3ApiRestClient {
 
     ApiResponse<Void> contract(String chainCode, String requestId, String walletAddr,
                                String contractAddr, String methodId, String methodName,
-                               String args, BigInteger amount);
+                               String args, BigInteger amount, BigInteger gasLimit);
 
     ApiResponse<Web3TransactionInfo> getContractTransaction(String requestId);
 
