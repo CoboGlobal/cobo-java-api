@@ -4,7 +4,9 @@ import com.cobo.custody.api.client.ApiSigner;
 import com.cobo.custody.api.client.CoboWeb3ApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
-import com.cobo.custody.api.client.domain.account.*;
+import com.cobo.custody.api.client.domain.account.Web3Addresses;
+import com.cobo.custody.api.client.domain.account.Web3Chains;
+import com.cobo.custody.api.client.domain.account.Web3Coins;
 import com.cobo.custody.api.client.domain.asset.Web3NftCollections;
 import com.cobo.custody.api.client.domain.asset.Web3WalletAsset;
 import com.cobo.custody.api.client.domain.asset.Web3WalletNftDetail;
@@ -89,9 +91,9 @@ public class CoboWeb3ApiRestClientImpl implements CoboWeb3ApiRestClient {
     @Override
     public ApiResponse<Void> contract(String chainCode, String requestId, String walletAddr,
                                       String contractAddr, String methodId, String methodName,
-                                      String args, BigInteger amount) {
+                                      String args, BigInteger amount, BigInteger gasLimit) {
         return executeSync(coboWeb3ApiService.web3Contract(chainCode, requestId, walletAddr, contractAddr,
-                methodId, methodName, args, amount));
+                methodId, methodName, args, amount, gasLimit));
     }
 
     @Override

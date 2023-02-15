@@ -111,8 +111,8 @@ maven:
 import com.cobo.custody.api.client.impl.LocalSigner;
 
 String[] key = LocalSigner.generateKeyPair();
-Stirng secretKey = key[0];
-Stirng apiKey = key[1];
+String secretKey = key[0];
+String apiKey = key[1];
 ```
 Please refer to the link [link](https://doc.custody.cobo.com/en.html#api-authentication) for how to use apiKey
 

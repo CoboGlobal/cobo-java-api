@@ -3,8 +3,6 @@ package com.cobo.custody.api.client.domain.transaction;
 import com.cobo.custody.api.client.domain.account.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
-
 public class MPCTransaction {
     @JsonProperty(value = "cobo_id")
     private String coboId;
@@ -66,6 +64,9 @@ public class MPCTransaction {
     private Long updatedTime;
     @JsonProperty(value = "failed_reason")
     private String failedReason;
+
+    @JsonProperty(value = "to_address_details")
+    private String toAddressDetails;
 
     public String getCoboId() {
         return coboId;
@@ -243,6 +244,14 @@ public class MPCTransaction {
         this.failedReason = failedReason;
     }
 
+    public String getToAddressDetails() {
+        return toAddressDetails;
+    }
+
+    public void setToAddressDetails(String toAddressDetails) {
+        this.toAddressDetails = toAddressDetails;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -268,6 +277,7 @@ public class MPCTransaction {
                 ", createdTime='" + createdTime + '\'' +
                 ", updatedTime='" + updatedTime + '\'' +
                 ", failedReason='" + failedReason + '\'' +
+                ", toAddressDetails='" + toAddressDetails + '\'' +
                 '}';
     }
 }
