@@ -161,7 +161,7 @@ public class CoboWeb3ApiRestClientImplTest {
         String args = "[\"0x040149e133077aebcfe4594e00638135eb4bc77f\", 1]";
         BigInteger amount = new BigInteger("1");
         ApiResponse<Void> res = web3Client.contract(chainCode, requestId, walletAddr,
-                contractAddr, methodId, methodName, args, amount);
+                contractAddr, methodId, methodName, args, amount, null);
         System.out.println(res);
         assertTrue(res.isSuccess());
     }
