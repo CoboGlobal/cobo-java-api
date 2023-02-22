@@ -85,7 +85,7 @@ public interface CoboWeb3ApiService {
 
     @GET("/v1/custody/web3_list_wallet_transactions/")
     Call<ApiResponse<Web3Transactions>> listWeb3WalletTransactions(@Query("address") String address,
-                                                                   @Query("coin") String coin,
+                                                                   @Query("chain_code") String chainCode,
                                                                    @Query("max_id") String max_id,
                                                                    @Query("min_id") String min_id,
                                                                    @Query("limit") int limit);

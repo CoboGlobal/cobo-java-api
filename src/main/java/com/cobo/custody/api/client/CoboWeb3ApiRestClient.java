@@ -44,7 +44,7 @@ public interface CoboWeb3ApiRestClient {
 
     ApiResponse<Web3TransactionInfo> getContractTransaction(String requestId);
 
-    ApiResponse<Web3Transactions> listWalletTransactions(String address, String coin,
+    ApiResponse<Web3Transactions> listWalletTransactions(String address, String chainCode,
                                                          String max_id, String min_id,
                                                          Integer limit);
 }
