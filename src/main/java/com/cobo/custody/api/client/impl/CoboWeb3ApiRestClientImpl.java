@@ -102,8 +102,8 @@ public class CoboWeb3ApiRestClientImpl implements CoboWeb3ApiRestClient {
     }
 
     @Override
-    public ApiResponse<Web3Transactions> listWalletTransactions(String address, String coin, String max_id,
+    public ApiResponse<Web3Transactions> listWalletTransactions(String address, String chainCode, String max_id,
                                                                 String min_id, Integer limit) {
-        return executeSync(coboWeb3ApiService.listWeb3WalletTransactions(address, coin, max_id, min_id, limit));
+        return executeSync(coboWeb3ApiService.listWeb3WalletTransactions(address, chainCode, max_id, min_id, limit));
     }
 }

@@ -14,7 +14,6 @@ public class Web3Transaction {
     private Integer status;
     @JsonProperty(value = "chain_code")
     private String chainCode;
-    private String coin;
     private List<Web3Token> tokens;
 
     @JsonProperty(value = "fee_detail")
@@ -60,14 +59,6 @@ public class Web3Transaction {
         this.chainCode = chainCode;
     }
 
-    public String getCoin() {
-        return coin;
-    }
-
-    public void setCoin(String coin) {
-        this.coin = coin;
-    }
-
     public List<Web3Token> getTokens() {
         return tokens;
     }
@@ -92,7 +83,6 @@ public class Web3Transaction {
                 ", create_time='" + createTime + '\'' +
                 ", status='" + status + '\'' +
                 ", chain_code='" + chainCode + '\'' +
-                ", coin='" + coin + '\'' +
                 ", tokens='" + tokens + '\'' +
                 ", feeDetail='" + feeDetail + '\'' +
                 '}';
