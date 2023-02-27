@@ -90,7 +90,7 @@ maven:
 <dependency>
     <groupId>com.github.CoboCustody</groupId>
     <artifactId>cobo-java-api</artifactId>
-    <version>v0.44</version>
+    <version>v0.45</version>
 </dependency>
 ```
 
