@@ -40,9 +40,16 @@ public class CoboMPCApiRestClientImplTest {
     }
 
     @Test
-    public void testgetSupportedCoins() {
+    public void testGetSupportedCoins() {
         String chainCode = "GETH";
         ApiResponse<MPCCoins> res = mpcClient.getSupportedCoins(chainCode);
+        System.out.println(res.getResult());
+        assertTrue(res.isSuccess());
+    }
+
+    @Test
+    public void testGetWalletSupportedCoins() {
+        ApiResponse<MPCWalletCoins> res = mpcClient.getWalletSupportedCoins();
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
