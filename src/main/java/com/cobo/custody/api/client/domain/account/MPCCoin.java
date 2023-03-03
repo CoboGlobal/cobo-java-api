@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MPCCoin {
     private String coin;
+
+    @JsonProperty(value = "chain_code")
+    private String chainCode;
     @JsonProperty(value = "display_code")
     private String displayCode;
     private String description;
@@ -21,6 +24,14 @@ public class MPCCoin {
 
     public void setCoin(String coin) {
         this.coin = coin;
+    }
+
+    public String getChainCode() {
+        return chainCode;
+    }
+
+    public void setChainCode(String chainCode) {
+        this.chainCode = chainCode;
     }
 
     public String getDisplayCode() {
@@ -75,6 +86,7 @@ public class MPCCoin {
     public String toString() {
         return "{" +
                 "coin='" + coin + '\'' +
+                "chainCode='" + chainCode + '\'' +
                 ", displayCode='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
                 ", decimal=" + decimal +
