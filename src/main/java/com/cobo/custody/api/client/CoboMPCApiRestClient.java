@@ -29,12 +29,12 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCListSpendable> listSpendable(String coin, String address);
 
     ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
-                                                      String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
+                                                      String toAddressDetails, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
                                                       Integer operation, String extraParameters);
 
-    ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, String requestId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
+    ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, String requestId, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit);
 
-    ApiResponse<MPCPostTransaction> dropTransaction(String coboId, String requestId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
+    ApiResponse<MPCPostTransaction> dropTransaction(String coboId, String requestId, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit);
 
     ApiResponse<MPCTransactionInfos> transactionsByRequestIds(String requestIds, Integer status);
 

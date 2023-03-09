@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -114,7 +115,7 @@ public class CoboMPCApiRestClientImplTest {
         String toAddr = "0xEEACb7a5e53600c144C0b9839A834bb4b39E540c";
         BigInteger amount = new BigInteger("10");
         String toAddressDetails = null;
-        BigInteger fee = null;
+        BigDecimal fee = null;
         BigInteger gasPrice = null;
         BigInteger gasLimit = null;
         Integer operation = null;

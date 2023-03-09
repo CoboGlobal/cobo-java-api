@@ -60,7 +60,7 @@ public interface CoboMPCApiService {
                                                             @Field("to_address") String toAddr,
                                                             @Field("amount") BigInteger amount,
                                                             @Field("to_address_details") String toAddressDetails,
-                                                            @Field("fee") BigInteger fee,
+                                                            @Field("fee") BigDecimal fee,
                                                             @Field("gas_price") BigInteger gasPrice,
                                                             @Field("gas_limit") BigInteger gasLimit,
                                                             @Field("operation") Integer operation,
@@ -70,7 +70,7 @@ public interface CoboMPCApiService {
     @POST("/v1/custody/mpc/speedup_transaction/")
     Call<ApiResponse<MPCPostTransaction>> speedUpTransaction(@Field("cobo_id") String coboId,
                                                              @Field("request_id") String requestId,
-                                                             @Field("fee") BigInteger fee,
+                                                             @Field("fee") BigDecimal fee,
                                                              @Field("gas_price") BigInteger gasPrice,
                                                              @Field("gas_limit") BigInteger gasLimit);
 
@@ -78,7 +78,7 @@ public interface CoboMPCApiService {
     @POST("/v1/custody/mpc/drop_transaction/")
     Call<ApiResponse<MPCPostTransaction>> dropTransaction(@Field("cobo_id") String coboId,
                                                           @Field("request_id") String requestId,
-                                                          @Field("fee") BigInteger fee,
+                                                          @Field("fee") BigDecimal fee,
                                                           @Field("gas_price") BigInteger gasPrice,
                                                           @Field("gas_limit") BigInteger gasLimit);
 
