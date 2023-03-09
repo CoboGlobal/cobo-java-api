@@ -7,6 +7,7 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.transaction.*;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.createService;
@@ -108,8 +109,12 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<EstimateFeeDetails> estimateFee(String coin, BigInteger amount, String address, String replaceCoboId) {
-        return executeSync(coboMPCApiService.estimateFee(coin, amount, address, replaceCoboId));
+    public ApiResponse<EstimateFeeDetails> estimateFee(String coin, BigInteger amount, String address, String replaceCoboId,
+                                                       String fromAddress, String toAddressDetails,
+                                                       BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
+                                                       String extraParameters) {
+        return executeSync(coboMPCApiService.estimateFee(coin, amount, address, replaceCoboId, fromAddress, toAddressDetails,
+                fee, gasPrice, gasLimit, extraParameters));
     }
 
     @Override

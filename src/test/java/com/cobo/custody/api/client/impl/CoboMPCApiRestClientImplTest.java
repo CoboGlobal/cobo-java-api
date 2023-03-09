@@ -184,7 +184,8 @@ public class CoboMPCApiRestClientImplTest {
         String coin = "GETH";
         BigInteger amount = new BigInteger("10000");
         String address = "0xEEACb7a5e53600c144C0b9839A834bb4b39E540c";
-        ApiResponse<EstimateFeeDetails> res = mpcClient.estimateFee(coin, amount, address, null);
+        ApiResponse<EstimateFeeDetails> res = mpcClient.estimateFee(coin, amount, address, null,
+                null, null, null, null, null, null);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
