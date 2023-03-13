@@ -4,6 +4,7 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.transaction.*;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public interface CoboMPCApiRestClient {
@@ -28,12 +29,12 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCListSpendable> listSpendable(String coin, String address);
 
     ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
-                                                      String toAddressDetails, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit,
+                                                      String toAddressDetails, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
                                                       Integer operation, String extraParameters);
 
-    ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, String requestId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
+    ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, String requestId, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit);
 
-    ApiResponse<MPCPostTransaction> dropTransaction(String coboId, String requestId, BigInteger fee, BigInteger gasPrice, BigInteger gasLimit);
+    ApiResponse<MPCPostTransaction> dropTransaction(String coboId, String requestId, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit);
 
     ApiResponse<MPCTransactionInfos> transactionsByRequestIds(String requestIds, Integer status);
 
@@ -42,10 +43,13 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCTransactionInfos> transactionsByTxhash(String txId, Integer transactionType);
 
     ApiResponse<MPCTransactions> listTransactions(Long startTime, Long endTime, Integer status, String orderBy, String order,
-                                                        Integer transactionType, String coins, String fromAddr, String toAddr,
-                                                        Integer limit);
+                                                  Integer transactionType, String coins, String fromAddr, String toAddr,
+                                                  Integer limit);
 
-    ApiResponse<EstimateFeeDetails> estimateFee(String coin, BigInteger amount, String address, String replaceCoboId);
+    ApiResponse<EstimateFeeDetails> estimateFee(String coin, BigInteger amount, String address, String replaceCoboId,
+                                                String fromAddress, String toAddressDetails,
+                                                BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
+                                                String extraParameters);
 
     ApiResponse<MPCTssNodeRequests> listTssNodeRequests(Integer requestType, Integer status);
 }
