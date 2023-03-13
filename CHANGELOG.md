@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.47] (2023-03-13)
+[v0.47]: https://github.com/CoboCustody/cobo-java-api/compare/v0.46...v0.47
+
+### Changed
+- Update MPC wallet SaaS api. https://github.com/CoboCustody/cobo-java-api/pull/51
+
 ## [v0.46] (2023-03-03)
 [v0.46]: https://github.com/CoboCustody/cobo-java-api/compare/v0.45...v0.46
 
