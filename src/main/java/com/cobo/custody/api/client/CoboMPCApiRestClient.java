@@ -2,6 +2,7 @@ package com.cobo.custody.api.client;
 
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
+import com.cobo.custody.api.client.domain.asset.MPCNftCollections;
 import com.cobo.custody.api.client.domain.transaction.*;
 
 import java.math.BigDecimal;
@@ -11,6 +12,8 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCChains> getSupportedChains();
 
     ApiResponse<MPCCoins> getSupportedCoins(String chainCode);
+
+    ApiResponse<MPCNftCollections> getSupportedNftCollections(String chainCode);
 
     ApiResponse<MPCWalletCoins> getWalletSupportedCoins();
 
@@ -30,7 +33,10 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
                                                       String toAddressDetails, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
-                                                      Integer operation, String extraParameters);
+                                                      Integer operation, String extraParameters, BigInteger maxFee, BigInteger maxPriorityFee);
+
+    ApiResponse<MPCPostTransaction> signMessage(String chainCode, String requestId, String fromAddr, Integer signVersion,
+                                                String extraParameters);
 
     ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, String requestId, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit);
 

@@ -16,13 +16,13 @@ import java.math.BigInteger;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoboMPCApiRestClientImplTest {
-    private String MPCAPISecret = "";
+    private String MPCAPISecret = "5291672a72524a72e3f46c7fe63085f024109563383d2a4b5a627d465eae0d01";
     private CoboMPCApiRestClient mpcClient;
     private Env TestEnv = Env.SANDBOX;
 
     @BeforeEach
     public void setUp() throws Exception {
-        MPCAPISecret = System.getProperty("MPCApiSecret");
+        //MPCAPISecret = System.getProperty("MPCApiSecret");
         mpcClient = CoboApiClientFactory.newInstance(
                 new LocalSigner(MPCAPISecret),
                 TestEnv,
@@ -121,7 +121,7 @@ public class CoboMPCApiRestClientImplTest {
         Integer operation = null;
         String extraParameters = null;
         ApiResponse<MPCPostTransaction> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount,
-                toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters);
+                toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters, null, null);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
