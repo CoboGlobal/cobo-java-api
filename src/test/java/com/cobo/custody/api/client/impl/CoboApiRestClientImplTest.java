@@ -25,14 +25,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CoboApiRestClientImplTest{
     //refer README "Generate Key Pair"
-    private String APISecret = "";
+    private String APISecret = "1b6f48a8e37553a984ef0acfe067683cfc89047c4beb8b71cb98cbc91d83775e";
     private CoboApiRestClient client;
     private Env TestEnv= Env.SANDBOX;
     private TESTDATA TestData = TESTDATA.SANDBOX_TESTDATA;
 
     @BeforeEach
     public void setUp() throws Exception {
-        APISecret = System.getProperty("ApiSecret");
+        //APISecret = System.getProperty("ApiSecret");
         if(System.getProperty("Env") == "prod"){
             TestEnv = Env.PROD;
             TestData = TESTDATA.PROD_TESTDATA;}
