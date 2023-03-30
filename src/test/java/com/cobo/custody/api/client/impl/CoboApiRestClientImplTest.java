@@ -10,31 +10,29 @@ import com.cobo.custody.api.client.domain.enums.SortFlagEnum;
 import com.cobo.custody.api.client.domain.staking.*;
 import com.cobo.custody.api.client.domain.transaction.Side;
 import com.cobo.custody.api.client.domain.transaction.Transaction;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CoboApiRestClientImplTest{
     //refer README "Generate Key Pair"
-    private String APISecret = "";
+    private String APISecret = "1b6f48a8e37553a984ef0acfe067683cfc89047c4beb8b71cb98cbc91d83775e";
     private CoboApiRestClient client;
     private Env TestEnv= Env.SANDBOX;
     private TESTDATA TestData = TESTDATA.SANDBOX_TESTDATA;
 
     @BeforeEach
     public void setUp() throws Exception {
-        APISecret = System.getProperty("ApiSecret");
+        //APISecret = System.getProperty("ApiSecret");
         if(System.getProperty("Env") == "prod"){
             TestEnv = Env.PROD;
             TestData = TESTDATA.PROD_TESTDATA;}
@@ -274,6 +272,14 @@ public class CoboApiRestClientImplTest{
             ApiResponse<Transaction> res = client.getPendingTransaction(pendingId);
             assertTrue(res.isSuccess());
         }
+    }
+
+    @Test
+    public void testGetTransactionsByRequestIds() {
+        String request_ids = "web_send_by_user_1049_1677469364250,slp_uc_1559_1675822822477,web_send_by_user_1212_1678330749364";
+        ApiResponse<List<Transaction>> res = client.getTransactionsByRequestIds(request_ids);
+        System.out.println(res);
+        assertTrue(res.isSuccess());
     }
 
     @ParameterizedTest(name="testGetTransactionHistory({0})_{index}")
