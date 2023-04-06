@@ -65,8 +65,8 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
         return executeSync(coboMPCApiService.getBalance(address, chainCode, coin));
     }
 
-    public ApiResponse<MPCListBalances> listBalances(String coin, Integer pageIndex, Integer pageLength) {
-        return executeSync(coboMPCApiService.listBalances(coin, pageIndex, pageLength));
+    public ApiResponse<MPCListBalances> listBalances(String coin, Integer pageIndex, Integer pageLength, String chainCode) {
+        return executeSync(coboMPCApiService.listBalances(coin, pageIndex, pageLength, chainCode));
     }
 
     public ApiResponse<MPCListSpendable> listSpendable(String coin, String address) {

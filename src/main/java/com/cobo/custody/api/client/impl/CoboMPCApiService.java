@@ -50,7 +50,8 @@ public interface CoboMPCApiService {
     @GET("/v1/custody/mpc/list_balances/")
     Call<ApiResponse<MPCListBalances>> listBalances(@Query("coin") String coin,
                                                     @Query("page_index") Integer pageIndex,
-                                                    @Query("page_length") Integer pageLength);
+                                                    @Query("page_length") Integer pageLength,
+                                                    @Query("chain_code") String chainCode);
 
     @GET("/v1/custody/mpc/list_spendable/")
     Call<ApiResponse<MPCListSpendable>> listSpendable(@Query("coin") String coin,

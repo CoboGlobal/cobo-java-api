@@ -7,6 +7,8 @@ public class MPCNftBalanceDetail {
     private String nftCode;
     @JsonProperty(value = "token_id")
     private String tokenId;
+    @JsonProperty(value = "address")
+    private String address;
     @JsonProperty(value = "chain_code")
     private String chainCode;
     @JsonProperty(value = "contract_address")
@@ -27,6 +29,14 @@ public class MPCNftBalanceDetail {
 
     public void setTokenId(String tokenId) {
         this.tokenId = tokenId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getChainCode() {
@@ -58,6 +68,7 @@ public class MPCNftBalanceDetail {
         return "{" +
                 "nftCode=" + nftCode +
                 ", tokenId=" + tokenId +
+                ", address=" + address +
                 ", chainCode=" + chainCode +
                 ", contractAddress=" + contractAddress +
                 ", balance=" + balance +

@@ -27,7 +27,7 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCBalance> getBalance(String address, String chainCode, String coin);
 
-    ApiResponse<MPCListBalances> listBalances(String coin, Integer pageIndex, Integer pageLength);
+    ApiResponse<MPCListBalances> listBalances(String coin, Integer pageIndex, Integer pageLength, String chainCode);
 
     ApiResponse<MPCListSpendable> listSpendable(String coin, String address);
 
