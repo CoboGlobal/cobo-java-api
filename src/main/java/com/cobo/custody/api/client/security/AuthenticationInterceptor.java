@@ -113,8 +113,7 @@ public class AuthenticationInterceptor implements Interceptor {
             throw new RuntimeException("not supported http method");
         }
         long currentTime = System.currentTimeMillis() * 1000;
-        long nanoTime = System.nanoTime();
-        String nonce = String.valueOf(currentTime + (nanoTime - nanoTime / 1000000 * 1000000) / 1000);
+        String nonce = String.valueOf(currentTime + (System.nanoTime() / 1000 % 1000));
         String content = method + "|" + path + "|" + nonce + "|" + body;
         String sig = signer.sign(content.getBytes());
 
