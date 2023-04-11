@@ -86,7 +86,7 @@ public class MPCCoin {
     public String toString() {
         return "{" +
                 "coin='" + coin + '\'' +
-                "chainCode='" + chainCode + '\'' +
+                ", chainCode='" + chainCode + '\'' +
                 ", displayCode='" + displayCode + '\'' +
                 ", description='" + description + '\'' +
                 ", decimal=" + decimal +
