@@ -91,6 +91,9 @@ public interface CoboApiService {
     @GET("/v1/custody/pending_transaction/")
     Call<ApiResponse<Transaction>> getPendingTransaction(@Query("id") String id);
 
+    @GET("/v1/custody/transactions_by_request_ids/")
+    Call<ApiResponse<List<Transaction>>> getTransactionsByRequestIds(@Query("request_ids") String requestIds);
+
     @GET("/v1/custody/transaction_history/")
     Call<ApiResponse<List<Transaction>>> getTransactionHistory(@Query("coin") String coin, @Query("side") String side,
                                                                @Query("address") String address, @Query("max_id") String maxId,

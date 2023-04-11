@@ -10,20 +10,18 @@ import com.cobo.custody.api.client.domain.enums.SortFlagEnum;
 import com.cobo.custody.api.client.domain.staking.*;
 import com.cobo.custody.api.client.domain.transaction.Side;
 import com.cobo.custody.api.client.domain.transaction.Transaction;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CoboApiRestClientImplTest{
     //refer README "Generate Key Pair"
@@ -274,6 +272,14 @@ public class CoboApiRestClientImplTest{
             ApiResponse<Transaction> res = client.getPendingTransaction(pendingId);
             assertTrue(res.isSuccess());
         }
+    }
+
+    @Test
+    public void testGetTransactionsByRequestIds() {
+        String request_ids = "web_send_by_user_1049_1677469364250,slp_uc_1559_1675822822477,web_send_by_user_1212_1678330749364";
+        ApiResponse<List<Transaction>> res = client.getTransactionsByRequestIds(request_ids);
+        System.out.println(res);
+        assertTrue(res.isSuccess());
     }
 
     @ParameterizedTest(name="testGetTransactionHistory({0})_{index}")
