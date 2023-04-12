@@ -3,6 +3,7 @@ package com.cobo.custody.api.client;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.impl.CoboApiRestClientImpl;
 import com.cobo.custody.api.client.impl.CoboMPCApiRestClientImpl;
+import com.cobo.custody.api.client.impl.CoboMPCPrimeBrokerRestClientImpl;
 import com.cobo.custody.api.client.impl.CoboWeb3ApiRestClientImpl;
 
 public class CoboApiClientFactory {
@@ -32,5 +33,9 @@ public class CoboApiClientFactory {
 
     public CoboMPCApiRestClient newMPCRestClient() {
         return new CoboMPCApiRestClientImpl(signer, env, debug);
+    }
+
+    public CoboMPCPrimeBrokerRestClient newMPCPrimeBrokerRestClient() {
+        return new CoboMPCPrimeBrokerRestClientImpl(signer, env, debug);
     }
 }
