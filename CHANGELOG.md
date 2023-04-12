@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.49] (2023-04-12)
+[v0.49]: https://github.com/CoboCustody/cobo-java-api/compare/v0.48...v0.49
+
+### Added
+- Add Get standard tx by request_ids https://github.com/CoboCustody/cobo-java-api/pull/54
+
 ## [v0.48] (2023-04-10)
 [v0.48]: https://github.com/CoboCustody/cobo-java-api/compare/v0.47...v0.48
 
