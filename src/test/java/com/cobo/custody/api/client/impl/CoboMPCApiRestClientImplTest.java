@@ -100,9 +100,10 @@ public class CoboMPCApiRestClientImplTest {
     @Test
     public void testListBalances() {
         String coin = "GETH";
+        String chainCode = "GETH";
         Integer pageIndex = 0;
         Integer pageLength = 50;
-        ApiResponse<MPCListBalances> res = mpcClient.listBalances(coin, pageIndex, pageLength);
+        ApiResponse<MPCListBalances> res = mpcClient.listBalances(coin, pageIndex, pageLength, chainCode);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
@@ -121,7 +122,7 @@ public class CoboMPCApiRestClientImplTest {
         Integer operation = null;
         String extraParameters = null;
         ApiResponse<MPCPostTransaction> res = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, amount,
-                toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters);
+                toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters, null, null);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }

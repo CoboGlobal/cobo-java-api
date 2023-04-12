@@ -2,6 +2,7 @@ package com.cobo.custody.api.client.impl;
 
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
+import com.cobo.custody.api.client.domain.asset.MPCNftCollections;
 import com.cobo.custody.api.client.domain.transaction.*;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -15,6 +16,9 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/get_supported_coins/")
     Call<ApiResponse<MPCCoins>> getSupportedCoins(@Query("chain_code") String chainCode);
+
+    @GET("/v1/custody/mpc/get_supported_nft_collections/")
+    Call<ApiResponse<MPCNftCollections>> getSupportedNftCollections(@Query("chain_code") String chainCode);
 
     @GET("/v1/custody/mpc/get_wallet_supported_coins/")
     Call<ApiResponse<MPCWalletCoins>> getWalletSupportedCoins();
@@ -46,7 +50,8 @@ public interface CoboMPCApiService {
     @GET("/v1/custody/mpc/list_balances/")
     Call<ApiResponse<MPCListBalances>> listBalances(@Query("coin") String coin,
                                                     @Query("page_index") Integer pageIndex,
-                                                    @Query("page_length") Integer pageLength);
+                                                    @Query("page_length") Integer pageLength,
+                                                    @Query("chain_code") String chainCode);
 
     @GET("/v1/custody/mpc/list_spendable/")
     Call<ApiResponse<MPCListSpendable>> listSpendable(@Query("coin") String coin,
@@ -64,7 +69,17 @@ public interface CoboMPCApiService {
                                                             @Field("gas_price") BigInteger gasPrice,
                                                             @Field("gas_limit") BigInteger gasLimit,
                                                             @Field("operation") Integer operation,
-                                                            @Field("extra_parameters") String extraParameters);
+                                                            @Field("extra_parameters") String extraParameters,
+                                                            @Field("max_fee") BigInteger maxFee,
+                                                            @Field("max_priority_fee") BigInteger maxPriorityFee);
+
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/sign_message/")
+    Call<ApiResponse<MPCPostTransaction>> signMessage(@Field("chain_code") String chainCode,
+                                                       @Field("request_id") String requestId,
+                                                       @Field("from_address") String fromAddr,
+                                                       @Field("sign_version") Integer signVersion,
+                                                       @Field("extra_parameters") String extraParameters);
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/speedup_transaction/")
