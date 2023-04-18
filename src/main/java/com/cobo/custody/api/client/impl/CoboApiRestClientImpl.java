@@ -220,6 +220,11 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
         return executeSync(coboApiService.getTradingTransfer(requestId));
     }
 
+    @Override
+    public ApiResponse<List<StandardCoin>> getSupportedCoins() {
+        return executeSync(coboApiService.getSupportedCoins());
+    }
+
     private String intToString(int num) {
         if (num == 0) return null;
         return String.valueOf(num);

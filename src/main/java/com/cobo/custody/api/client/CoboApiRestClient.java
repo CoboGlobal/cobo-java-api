@@ -303,5 +303,9 @@ public interface CoboApiRestClient {
 
     ApiResponse<TradingTransfer> getTradingTransferInfo(String requestId);
 
-
+    /***
+     * Check account details
+     * @return account details
+     */
+    ApiResponse<List<StandardCoin>> getSupportedCoins();
 }
