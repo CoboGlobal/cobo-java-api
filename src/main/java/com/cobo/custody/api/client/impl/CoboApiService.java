@@ -166,4 +166,6 @@ public interface CoboApiService {
     @GET("/v1/custody/trading_transfer_info/")
     Call<ApiResponse<TradingTransfer>> getTradingTransfer(@Query("request_id") String requestId);
 
+    @GET("/v1/custody/get_supported_coins/")
+    Call<ApiResponse<List<StandardCoin>>> getSupportedCoins();
 }

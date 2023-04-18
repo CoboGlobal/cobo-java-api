@@ -358,21 +358,10 @@ public class CoboApiRestClientImplTest{
 
     }
 
-    public void testTradingWithdraw() {
-    }
-
-    public void testGetTradingWithdrawInfo() {
-    }
-
-    public void testTradingDeposit() {
-    }
-
-    public void testGetTradingDepositInfo() {
-    }
-
-    public void testTradingTransfer() {
-    }
-
-    public void testGetTradingTransferInfo() {
+    @Test
+    public void testGetSupportedCoins() {
+        ApiResponse<List<StandardCoin>> resp =  client.getSupportedCoins();
+        assertTrue(resp.isSuccess());
+        assertNotNull(resp.getResult());
     }
 }
