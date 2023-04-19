@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.51] (2023-04-19)
+[v0.51]: https://github.com/CoboCustody/cobo-java-api/compare/v0.50...v0.51
+
+### Changed
+- Add Callback retry API. https://github.com/CoboCustody/cobo-java-api/pull/62
+
 ## [v0.50] (2023-04-18)
 [v0.50]: https://github.com/CoboCustody/cobo-java-api/compare/v0.49...v0.50
 
