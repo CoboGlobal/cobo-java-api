@@ -61,9 +61,9 @@ public interface CoboMPCApiService {
     @POST("/v1/custody/mpc/create_transaction/")
     Call<ApiResponse<MPCPostTransaction>> createTransaction(@Field("coin") String coin,
                                                             @Field("request_id") String requestId,
+                                                            @Field("amount") BigInteger amount,
                                                             @Field("from_address") String fromAddr,
                                                             @Field("to_address") String toAddr,
-                                                            @Field("amount") BigInteger amount,
                                                             @Field("to_address_details") String toAddressDetails,
                                                             @Field("fee") BigDecimal fee,
                                                             @Field("gas_price") BigInteger gasPrice,

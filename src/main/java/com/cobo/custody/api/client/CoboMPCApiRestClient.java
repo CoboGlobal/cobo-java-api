@@ -31,7 +31,7 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCListSpendable> listSpendable(String coin, String address);
 
-    ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, String fromAddr, String toAddr, BigInteger amount,
+    ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, BigInteger amount, String fromAddr, String toAddr,
                                                       String toAddressDetails, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
                                                       Integer operation, String extraParameters, BigInteger maxFee, BigInteger maxPriorityFee);
 
