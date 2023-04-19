@@ -133,4 +133,9 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public ApiResponse<MPCTssNodeRequests> listTssNodeRequests(Integer requestType, Integer status) {
         return executeSync(coboMPCApiService.listTssNodeRequests(requestType, status));
     }
+
+    @Override
+    public ApiResponse<Void> retryDoubleCheck(String requestId) {
+        return executeSync(coboMPCApiService.retryDoubleCheck(requestId));
+    }
 }

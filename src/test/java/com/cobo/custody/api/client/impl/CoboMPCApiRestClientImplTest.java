@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoboMPCApiRestClientImplTest {
@@ -190,5 +191,13 @@ public class CoboMPCApiRestClientImplTest {
                 null, null, null, null, null, null);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
+    }
+
+    @Test
+    public void testRetryDoubleCheck() {
+        String requestId = "123";
+        ApiResponse<Void> res = mpcClient.retryDoubleCheck(requestId);
+        System.out.println(res);
+        assertFalse(res.isSuccess());
     }
 }
