@@ -58,4 +58,6 @@ public interface CoboMPCApiRestClient {
                                                 String extraParameters);
 
     ApiResponse<MPCTssNodeRequests> listTssNodeRequests(Integer requestType, Integer status);
+
+    ApiResponse<Void> retryDoubleCheck(String requestId);
 }
