@@ -68,6 +68,47 @@ public class MPCTransaction {
     @JsonProperty(value = "to_address_details")
     private String toAddressDetails;
 
+    @JsonProperty(value = "approval_process")
+    private String approvalProcess;
+
+    @Override
+    public String toString() {
+        return "MPCTransaction{" +
+                "coboId='" + coboId + '\'' +
+                ", requestId='" + requestId + '\'' +
+                ", status=" + status +
+                ", coinDetail=" + coinDetail +
+                ", amountDetail=" + amountDetail +
+                ", feeDetail=" + feeDetail +
+                ", sourceAddresses='" + sourceAddresses + '\'' +
+                ", fromAddress='" + fromAddress + '\'' +
+                ", toAddress='" + toAddress + '\'' +
+                ", txHash='" + txHash + '\'' +
+                ", voutN=" + voutN +
+                ", nonce=" + nonce +
+                ", confirmedNumber=" + confirmedNumber +
+                ", replaceCoboId='" + replaceCoboId + '\'' +
+                ", transactionType=" + transactionType +
+                ", operation=" + operation +
+                ", blockDetail=" + blockDetail +
+                ", txDetail=" + txDetail +
+                ", extraParameters='" + extraParameters + '\'' +
+                ", createdTime=" + createdTime +
+                ", updatedTime=" + updatedTime +
+                ", failedReason='" + failedReason + '\'' +
+                ", toAddressDetails='" + toAddressDetails + '\'' +
+                ", approvalProcess='" + approvalProcess + '\'' +
+                '}';
+    }
+
+    public String getApprovalProcess() {
+        return approvalProcess;
+    }
+
+    public void setApprovalProcess(String approvalProcess) {
+        this.approvalProcess = approvalProcess;
+    }
+
     public String getCoboId() {
         return coboId;
     }
@@ -252,32 +293,4 @@ public class MPCTransaction {
         this.toAddressDetails = toAddressDetails;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "coboId='" + coboId + '\'' +
-                ", requestId='" + requestId + '\'' +
-                ", status='" + status + '\'' +
-                ", coinDetail='" + coinDetail + '\'' +
-                ", amountDetail='" + amountDetail + '\'' +
-                ", feeDetail='" + feeDetail + '\'' +
-                ", sourceAddresses='" + sourceAddresses + '\'' +
-                ", fromAddress='" + fromAddress + '\'' +
-                ", toAddress='" + toAddress + '\'' +
-                ", txHash='" + txHash + '\'' +
-                ", voutN='" + voutN + '\'' +
-                ", nonce='" + nonce + '\'' +
-                ", confirmedNumber='" + confirmedNumber + '\'' +
-                ", replaceCoboId='" + replaceCoboId + '\'' +
-                ", transactionType='" + transactionType + '\'' +
-                ", operation='" + operation + '\'' +
-                ", blockDetail='" + blockDetail + '\'' +
-                ", txDetail='" + txDetail + '\'' +
-                ", extraParameters='" + extraParameters + '\'' +
-                ", createdTime='" + createdTime + '\'' +
-                ", updatedTime='" + updatedTime + '\'' +
-                ", failedReason='" + failedReason + '\'' +
-                ", toAddressDetails='" + toAddressDetails + '\'' +
-                '}';
-    }
 }
