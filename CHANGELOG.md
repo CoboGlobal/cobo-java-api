@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [v0.52]: https://github.com/CoboCustody/cobo-java-api/compare/v0.51...v0.52
 
 ### Changed
-- Add approval_process in mpc transaction info. https://github.com/CoboCustody/cobo-java-api/pull/61
+- Add approval process in mpc transaction info. https://github.com/CoboCustody/cobo-java-api/pull/61
 - Adjust parameter order of MPCClient.create_transaction(). https://github.com/CoboCustody/cobo-java-api/pull/63
 
 ## [v0.51] (2023-04-19)
