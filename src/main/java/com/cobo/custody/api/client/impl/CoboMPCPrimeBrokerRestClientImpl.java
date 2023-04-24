@@ -4,10 +4,7 @@ import com.cobo.custody.api.client.ApiSigner;
 import com.cobo.custody.api.client.CoboMPCPrimeBrokerRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerAddress;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerBinderInfo;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerUserAuthInfo;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerUserBindInfo;
+import com.cobo.custody.api.client.domain.account.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -49,7 +46,12 @@ public class CoboMPCPrimeBrokerRestClientImpl implements CoboMPCPrimeBrokerRestC
     }
 
     @Override
-    public ApiResponse<Void> unbindBinding(String userId) {
+    public ApiResponse<StatementId> unbindBinding(String userId) {
         return executeSync(coboMPCPrimeBrokerService.unbindBinding(userId));
+    }
+
+    @Override
+    public ApiResponse<Statement> queryStatement(String statementId) {
+        return executeSync(coboMPCPrimeBrokerService.queryStatement(statementId));
     }
 }

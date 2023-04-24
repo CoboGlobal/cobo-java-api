@@ -1,10 +1,7 @@
 package com.cobo.custody.api.client;
 
 import com.cobo.custody.api.client.domain.ApiResponse;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerAddress;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerBinderInfo;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerUserAuthInfo;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerUserBindInfo;
+import com.cobo.custody.api.client.domain.account.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.List;
@@ -21,5 +18,7 @@ public interface CoboMPCPrimeBrokerRestClient {
 
     ApiResponse<PrimeBrokerBinderInfo> changeBinding(String userId);
 
-    ApiResponse<Void> unbindBinding(String userId);
+    ApiResponse<StatementId> unbindBinding(String userId);
+
+    ApiResponse<Statement> queryStatement(String statementId);
 }

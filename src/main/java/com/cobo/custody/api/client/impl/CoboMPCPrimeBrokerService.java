@@ -1,9 +1,7 @@
 package com.cobo.custody.api.client.impl;
 
 import com.cobo.custody.api.client.domain.ApiResponse;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerBinderInfo;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerUserAuthInfo;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerUserBindInfo;
+import com.cobo.custody.api.client.domain.account.*;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -28,5 +26,8 @@ public interface CoboMPCPrimeBrokerService {
 
     @FormUrlEncoded
     @POST("/v1/custody/auth/unbind_binding/")
-    Call<ApiResponse<Void>> unbindBinding(@Field("user_id") String userId);
+    Call<ApiResponse<StatementId>> unbindBinding(@Field("user_id") String userId);
+
+    @GET("/v1/custody/auth/query_statement/")
+    Call<ApiResponse<Statement>> queryStatement(@Query("statement_id") String statementId);
 }
