@@ -4,10 +4,7 @@ import com.cobo.custody.api.client.CoboApiClientFactory;
 import com.cobo.custody.api.client.CoboMPCPrimeBrokerRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerAddress;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerBinderInfo;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerUserAuthInfo;
-import com.cobo.custody.api.client.domain.account.PrimeBrokerUserBindInfo;
+import com.cobo.custody.api.client.domain.account.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -81,7 +78,15 @@ public class CoboMPCPrimeBrokerRestClientImplTest {
     @Test
     public void testUnbindBinding() throws JsonProcessingException {
         String userId = "yangming0407";
-        ApiResponse<Void> res = primeBrokerClient.unbindBinding(userId);
+        ApiResponse<StatementId> res = primeBrokerClient.unbindBinding(userId);
         assertTrue(res.isSuccess());
+    }
+
+    @Test
+    public void testQueryStatement() {
+        String statementId = "";
+        ApiResponse<Statement> res = primeBrokerClient.queryStatement(statementId);
+        assertTrue(res.isSuccess());
+        System.out.println(res);
     }
 }
