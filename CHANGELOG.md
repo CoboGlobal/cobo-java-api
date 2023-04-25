@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.53] (2023-04-25)
+[v0.53]: https://github.com/CoboCustody/cobo-java-api/compare/v0.52...v0.53
+
+### Changed
+- Add query auth statement status API. https://github.com/CoboCustody/cobo-java-api/pull/66
+
 ## [v0.52] (2023-04-20)
 [v0.52]: https://github.com/CoboCustody/cobo-java-api/compare/v0.51...v0.52
 
