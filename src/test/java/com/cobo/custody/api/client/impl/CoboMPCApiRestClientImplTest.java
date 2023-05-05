@@ -17,13 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoboMPCApiRestClientImplTest {
-    private String MPCAPISecret = "ff6c4225b825f463352e452dcb086361920641f9d343349d2befc535fe7b0012";
+    private String MPCAPISecret = "";
     private CoboMPCApiRestClient mpcClient;
     private Env TestEnv = Env.SANDBOX;
 
     @BeforeEach
     public void setUp() throws Exception {
-        //MPCAPISecret = System.getProperty("MPCApiSecret");
+        MPCAPISecret = System.getProperty("MPCApiSecret");
         mpcClient = CoboApiClientFactory.newInstance(
                 new LocalSigner(MPCAPISecret),
                 TestEnv,
@@ -130,7 +130,7 @@ public class CoboMPCApiRestClientImplTest {
 
     @Test
     public void testGetTransactionByRequestIds() {
-        String requestIds = "web_send_by_user_1475_1682589444070";
+        String requestIds = "1668678820274";
         ApiResponse<MPCTransactionInfos> res = mpcClient.transactionsByRequestIds(requestIds, null);
         System.out.println(res);
         System.out.println(res.getResult());
