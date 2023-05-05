@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.54] (2023-05-05)
+[v0.54]: https://github.com/CoboCustody/cobo-java-api/compare/v0.53...v0.54
+
+### Changed
+- Add request created time in transaction detail. https://github.com/CoboCustody/cobo-java-api/pull/68
+
 ## [v0.53] (2023-04-25)
 [v0.53]: https://github.com/CoboCustody/cobo-java-api/compare/v0.52...v0.53
 
