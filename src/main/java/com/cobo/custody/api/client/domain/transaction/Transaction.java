@@ -48,6 +48,9 @@ public class Transaction {
     @JsonProperty(value = "waiting_audit")
     private boolean waitingAudit;
 
+    @JsonProperty(value = "request_created_time")
+    private long requestCreatedTime;
+
     public String getId() {
         return id;
     }
@@ -264,6 +267,14 @@ public class Transaction {
         this.waitingAudit = waitingAudit;
     }
 
+    public long getRequestCreatedTime() {
+        return requestCreatedTime;
+    }
+
+    public void setRequestCreatedTime(long requestCreatedTime) {
+        this.requestCreatedTime = requestCreatedTime;
+    }
+
     @Override
     public String toString() {
         return "Transaction{" +
@@ -293,7 +304,8 @@ public class Transaction {
                 ", fee_amount='" + feeAmount + '\'' +
                 ", fee_decimal=" + feeDecimal +
                 ", type='" + type + '\'' +
-                ", waiting_audit=" + waitingAudit +
+                ", waiting_audit=" + waitingAudit + '\'' +
+                ", request_created_time=" + requestCreatedTime +
                 '}';
     }
 
