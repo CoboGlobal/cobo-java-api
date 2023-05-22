@@ -123,7 +123,7 @@ public class CoboMPCApiRestClientImplTest {
         Integer operation = null;
         String extraParameters = null;
         ApiResponse<MPCPostTransaction> res = mpcClient.createTransaction(coin, requestId, amount, fromAddr, toAddr,
-                toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters, null, null);
+                toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters, null, null, null);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }

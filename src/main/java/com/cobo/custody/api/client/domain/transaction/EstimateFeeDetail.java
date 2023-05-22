@@ -12,6 +12,9 @@ public class EstimateFeeDetail {
     @JsonProperty(value = "gas_limit")
     private BigInteger gasLimit;
 
+    @JsonProperty(value = "fee_amount")
+    private BigInteger feeAmount;
+
     public BigInteger getFeePerByte() {
         return feePerByte;
     }
@@ -36,12 +39,21 @@ public class EstimateFeeDetail {
         this.gasLimit = gasLimit;
     }
 
+    public BigInteger getFeeAmount() {
+        return feeAmount;
+    }
+
+    public void setFeeAmount(BigInteger feeAmount) {
+        this.feeAmount = feeAmount;
+    }
+
     @Override
     public String toString() {
         return "{" +
                 "feePerByte='" + feePerByte + '\'' +
                 ", gasPrice='" + gasPrice + '\'' +
                 ", gasLimit='" + gasLimit + '\'' +
+                ", feeAmount='" + feeAmount + '\'' +
                 '}';
     }
 }
