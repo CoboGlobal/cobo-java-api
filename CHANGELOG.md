@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.55] (2023-05-23)
+[v0.55]: https://github.com/CoboCustody/cobo-java-api/compare/v0.54...v0.55
+
+### Changed
+- Support fee amount for MPC UTXO model. https://github.com/CoboCustody/cobo-java-api/pull/70
+
 ## [v0.54] (2023-05-05)
 [v0.54]: https://github.com/CoboCustody/cobo-java-api/compare/v0.53...v0.54
 
