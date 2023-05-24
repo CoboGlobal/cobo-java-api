@@ -88,7 +88,8 @@ public interface CoboMPCApiService {
                                                              @Field("request_id") String requestId,
                                                              @Field("fee") BigDecimal fee,
                                                              @Field("gas_price") BigInteger gasPrice,
-                                                             @Field("gas_limit") BigInteger gasLimit);
+                                                             @Field("gas_limit") BigInteger gasLimit,
+                                                             @Field("fee_amount") BigInteger feeAmount);
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/drop_transaction/")
@@ -96,7 +97,8 @@ public interface CoboMPCApiService {
                                                           @Field("request_id") String requestId,
                                                           @Field("fee") BigDecimal fee,
                                                           @Field("gas_price") BigInteger gasPrice,
-                                                          @Field("gas_limit") BigInteger gasLimit);
+                                                          @Field("gas_limit") BigInteger gasLimit,
+                                                          @Field("fee_amount") BigInteger feeAmount);
 
     @GET("/v1/custody/mpc/transactions_by_request_ids/")
     Call<ApiResponse<MPCTransactionInfos>> transactionsByRequestIds(@Query("request_ids") String requestIds,
