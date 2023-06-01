@@ -153,11 +153,6 @@ public class CoinInfo {
     public void setTokenAddress(String tokenAddress) {
         this.tokenAddress = tokenAddress;
     }
-
-    public void setDustThreshold(long dustThreshold) {
-        this.dustThreshold = dustThreshold;
-    }
-
     public BigDecimal getAbsEstimateFeeUsd() {
         return absEstimateFeeUsd;
     }
