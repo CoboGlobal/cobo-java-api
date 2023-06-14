@@ -2,6 +2,8 @@ package com.cobo.custody.api.client.domain.account;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.math.BigDecimal;
+
 public class CoinInfo {
     private String coin;
     @JsonProperty(value = "display_code")
@@ -29,6 +31,8 @@ public class CoinInfo {
     private long dustThreshold;
     @JsonProperty(value = "token_address")
     private String tokenAddress;
+    @JsonProperty(value = "abs_estimate_fee_usd")
+    private BigDecimal absEstimateFeeUsd;
 
     public String getCoin() {
         return coin;
@@ -149,6 +153,13 @@ public class CoinInfo {
     public void setTokenAddress(String tokenAddress) {
         this.tokenAddress = tokenAddress;
     }
+    public BigDecimal getAbsEstimateFeeUsd() {
+        return absEstimateFeeUsd;
+    }
+
+    public void setAbsEstimateFeeUsd(BigDecimal absEstimateFeeUsd) {
+        this.absEstimateFeeUsd = absEstimateFeeUsd;
+    }
 
     @Override
     public String toString() {
@@ -166,8 +177,9 @@ public class CoinInfo {
                 ", feeCoin='" + feeCoin + '\'' +
                 ", absEstimateFee='" + absEstimateFee + '\'' +
                 ", confirmingThreshold=" + confirmingThreshold +
-                ", dustThreshold=" + dustThreshold +
+                ", dustThreshold=" + dustThreshold + '\'' +
                 ", tokenAddress='" + tokenAddress + '\'' +
+                ", absEstimateFeeUsd='" + absEstimateFeeUsd + '\'' +
                 '}';
     }
 }
