@@ -13,14 +13,14 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom 'com.github.CoboCustody:cobo-java-api:v0.42'
+        mavenBom 'com.github.CoboGlobal:cobo-java-api:v0.42'
     }
 }
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    implementation 'com.github.CoboCustody:cobo-java-api:v0.42'
+    implementation 'com.github.CoboGlobal:cobo-java-api:v0.42'
 }
 
 test {
