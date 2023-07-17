@@ -141,4 +141,9 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public ApiResponse<Void> retryDoubleCheck(String requestId) {
         return executeSync(coboMPCApiService.retryDoubleCheck(requestId));
     }
+
+    @Override
+    public ApiResponse<TssNodes> listTssNodes() {
+        return executeSync(coboMPCApiService.listTssNodes());
+    }
 }
