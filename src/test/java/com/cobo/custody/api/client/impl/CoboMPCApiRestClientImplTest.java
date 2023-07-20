@@ -174,6 +174,13 @@ public class CoboMPCApiRestClientImplTest {
     }
 
     @Test
+    public void testListTssNodes() {
+        ApiResponse<TssNodes> res = mpcClient.listTssNodes();
+        System.out.println(res.getResult());
+        assertTrue(res.isSuccess());
+    }
+
+    @Test
     public void listSpendable() {
         String coin = "BTC";
         String address = null;

@@ -143,4 +143,7 @@ public interface CoboMPCApiService {
     @FormUrlEncoded
     @POST("/v1/custody/mpc/retry_double_check/")
     Call<ApiResponse<Void>> retryDoubleCheck(@Field("request_id") String requestId);
+
+    @GET("/v1/custody/mpc/list_tss_node/")
+    Call<ApiResponse<TssNodes>> listTssNodes();
 }
