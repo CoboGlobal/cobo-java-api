@@ -4,11 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.57] (2023-07-20)
+[v0.57]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.56...v0.57
+
+### Changed
+- Add API to list MPC TSS Node info. https://github.com/CoboGlobal/cobo-java-api/pull/78
+
 ## [v0.56] (2023-06-01)
 [v0.56]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.55...v0.56
 
 ### Changed
-- Standard Wallet GetOrgInfo release absEstimateFeeUsd.https://github.com/CoboGlobal/cobo-java-api/pull/74
+- Standard Wallet GetOrgInfo release absEstimateFeeUsd. https://github.com/CoboGlobal/cobo-java-api/pull/74
 
 ## [v0.55] (2023-05-23)
 [v0.55]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.54...v0.55
