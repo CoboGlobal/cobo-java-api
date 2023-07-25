@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.58] (2023-07-25)
+[v0.58]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.57...v0.58
+
+### Changed
+- Add signature field in the response of get transactions API. https://github.com/CoboGlobal/cobo-java-api/pull/80
+
 ## [v0.57] (2023-07-20)
 [v0.57]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.56...v0.57
 
