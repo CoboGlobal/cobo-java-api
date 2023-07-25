@@ -70,6 +70,8 @@ public class MPCTransaction {
 
     @JsonProperty(value = "approval_process")
     private String approvalProcess;
+    
+    private String signature;
 
     @Override
     public String toString() {
@@ -98,6 +100,7 @@ public class MPCTransaction {
                 ", failedReason='" + failedReason + '\'' +
                 ", toAddressDetails='" + toAddressDetails + '\'' +
                 ", approvalProcess='" + approvalProcess + '\'' +
+                ", signature='" + signature + '\'' +
                 '}';
     }
 
@@ -293,4 +296,11 @@ public class MPCTransaction {
         this.toAddressDetails = toAddressDetails;
     }
 
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
 }
