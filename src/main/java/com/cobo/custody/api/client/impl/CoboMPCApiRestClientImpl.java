@@ -146,4 +146,13 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public ApiResponse<TssNodes> listTssNodes() {
         return executeSync(coboMPCApiService.listTssNodes());
     }
+    @Override
+    public ApiResponse<SignMessages> signMessageByRequestIds(String requestIds) {
+        return executeSync(coboMPCApiService.signMessageByRequestIds(requestIds));
+    }
+
+    @Override
+    public ApiResponse<SignMessages> signMessageByCoboIds(String coboIds) {
+        return executeSync(coboMPCApiService.signMessageByCoboIds(coboIds));
+    }
 }

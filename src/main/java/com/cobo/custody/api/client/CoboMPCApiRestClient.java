@@ -65,4 +65,7 @@ public interface CoboMPCApiRestClient {
     ApiResponse<Void> retryDoubleCheck(String requestId);
 
     ApiResponse<TssNodes> listTssNodes();
+
+    ApiResponse<SignMessages> signMessageByRequestIds(String requestIds);
+    ApiResponse<SignMessages> signMessageByCoboIds(String coboIds);
 }
