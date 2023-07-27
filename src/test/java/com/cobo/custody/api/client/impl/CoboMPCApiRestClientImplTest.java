@@ -207,4 +207,18 @@ public class CoboMPCApiRestClientImplTest {
         System.out.println(res);
         assertFalse(res.isSuccess());
     }
+
+    @Test
+    public void testsignMessageByRequestIds() {
+        String requestIds = "1690349242683,1690268795963,1690187858862";
+        ApiResponse<SignMessages> res = mpcClient.signMessageByRequestIds(requestIds);
+        System.out.println(res);
+    }
+
+    @Test
+    public void testsignMessageByCoboIds() {
+        String coboIds = "20230726132723000341052000008222,20230725150636000308867000003494,20230725135301000361318000002480";
+        ApiResponse<SignMessages> res = mpcClient.signMessageByCoboIds(coboIds);
+        System.out.println(res);
+    }
 }

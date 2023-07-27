@@ -146,4 +146,10 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/list_tss_node/")
     Call<ApiResponse<TssNodes>> listTssNodes();
+
+    @GET("/v1/custody/mpc/sign_messages_by_request_ids/")
+    Call<ApiResponse<SignMessages>> signMessageByRequestIds(@Query("request_ids") String requestIds);
+
+    @GET("/v1/custody/mpc/sign_messages_by_cobo_ids/")
+    Call<ApiResponse<SignMessages>> signMessageByCoboIds(@Query("cobo_ids") String coboIds);
 }
