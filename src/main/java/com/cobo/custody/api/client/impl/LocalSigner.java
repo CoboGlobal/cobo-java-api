@@ -1,6 +1,8 @@
 package com.cobo.custody.api.client.impl;
 
 import com.cobo.custody.api.client.ApiSigner;
+import org.bitcoinj.core.ECKey;
+import org.bitcoinj.core.Sha256Hash;
 import org.bouncycastle.asn1.ASN1InputStream;
 import org.bouncycastle.asn1.ASN1Integer;
 import org.bouncycastle.asn1.ASN1Primitive;
@@ -35,17 +37,12 @@ public class LocalSigner implements ApiSigner {
     private static final X9ECParameters CURVE_PARAMS = CustomNamedCurves.getByName("secp256k1");
     public static final ECDomainParameters CURVE = new ECDomainParameters(CURVE_PARAMS.getCurve(),
             CURVE_PARAMS.getG(), CURVE_PARAMS.getN(), CURVE_PARAMS.getH());
-    private final ECPrivateKey eckey;
+    private final ECKey eckey;
     private final String secret;
 
     public LocalSigner(String privKey) {
-        try {
-            eckey = generatePrivateKey(hexToBytes(privKey));
-            secret = privKey;
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+        eckey = ECKey.fromPrivate(hexToBytes(privKey));
+        secret = privKey;
     }
 
     /***
@@ -114,15 +111,7 @@ public class LocalSigner implements ApiSigner {
 
     @Override
     public String sign(byte[] message) {
-        try {
-            Signature dsa = Signature.getInstance("SHA256withECDSA");
-            dsa.initSign(eckey);
-            dsa.update(Utils.sha256(message));
-            return bytesToHex(dsa.sign());
-        } catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+        return bytesToHex(eckey.sign(Sha256Hash.wrap(Sha256Hash.hashTwice(message))).encodeToDER());
     }
 
     @Override
