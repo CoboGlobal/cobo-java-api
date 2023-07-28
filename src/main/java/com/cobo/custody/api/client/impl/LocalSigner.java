@@ -37,11 +37,20 @@ public class LocalSigner implements ApiSigner {
     private static final X9ECParameters CURVE_PARAMS = CustomNamedCurves.getByName("secp256k1");
     public static final ECDomainParameters CURVE = new ECDomainParameters(CURVE_PARAMS.getCurve(),
             CURVE_PARAMS.getG(), CURVE_PARAMS.getN(), CURVE_PARAMS.getH());
-    private final ECKey eckey;
+
+    private final ECKey newEckey;
+    private final ECPrivateKey oldEckey;
     private final String secret;
 
     public LocalSigner(String privKey) {
-        eckey = ECKey.fromPrivate(hexToBytes(privKey));
+        newEckey = ECKey.fromPrivate(hexToBytes(privKey));
+        try {
+            oldEckey = generatePrivateKey(hexToBytes(privKey));
+        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
         secret = privKey;
     }
 
@@ -111,7 +120,19 @@ public class LocalSigner implements ApiSigner {
 
     @Override
     public String sign(byte[] message) {
-        return bytesToHex(eckey.sign(Sha256Hash.wrap(Sha256Hash.hashTwice(message))).encodeToDER());
+        try {
+            return bytesToHex(newEckey.sign(Sha256Hash.wrap(Sha256Hash.hashTwice(message))).encodeToDER());
+        } catch (Exception oldError) {
+            try {
+                Signature dsa = Signature.getInstance("SHA256withECDSA");
+                dsa.initSign(oldEckey);
+                dsa.update(Utils.sha256(message));
+                return bytesToHex(dsa.sign());
+            } catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
@@ -121,5 +142,4 @@ public class LocalSigner implements ApiSigner {
         byte[] publickKeyByte = pointQ.getEncoded(true);
         return bytesToHex(publickKeyByte);
     }
-
 }
