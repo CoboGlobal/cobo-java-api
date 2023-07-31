@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.60] (2023-07-31)
+[v0.60]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.59...v0.60
+
+### Changed
+- Fix signature issue on JDK 17. https://github.com/CoboGlobal/cobo-java-api/pull/85
+
 ## [v0.59] (2023-07-27)
 [v0.59]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.58...v0.59
 
