@@ -39,7 +39,7 @@ public class LocalSigner implements ApiSigner {
             CURVE_PARAMS.getG(), CURVE_PARAMS.getN(), CURVE_PARAMS.getH());
 
     private ECKey newEckey;
-    private final ECPrivateKey oldEckey;
+    private ECPrivateKey oldEckey;
     private final String secret;
 
     public LocalSigner(String privKey) {
@@ -51,9 +51,12 @@ public class LocalSigner implements ApiSigner {
 
         try {
             oldEckey = generatePrivateKey(hexToBytes(privKey));
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+        } catch (Exception ignored) {
+            oldEckey = null;
+        }
+
+        if (newEckey == null && oldEckey == null) {
+            throw new RuntimeException();
         }
 
         secret = privKey;
