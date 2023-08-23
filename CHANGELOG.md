@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.61] (2023-08-03)
+[v0.61]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.60...v0.61
+
+### Changed
+- Fix old eckey may init fail. https://github.com/CoboGlobal/cobo-java-api/pull/87
+
 ## [v0.60] (2023-07-31)
 [v0.60]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.59...v0.60
 
