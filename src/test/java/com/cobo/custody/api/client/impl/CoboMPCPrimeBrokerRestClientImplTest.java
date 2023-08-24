@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CoboMPCPrimeBrokerRestClientImplTest {
     private String MPCAPISecret = "";
     private CoboMPCPrimeBrokerRestClient primeBrokerClient;
-    private Env TestEnv = Env.SANDBOX;
+    private Env TestEnv = Env.DEVELOP;
 
     @BeforeEach
     public void setUp() throws Exception {

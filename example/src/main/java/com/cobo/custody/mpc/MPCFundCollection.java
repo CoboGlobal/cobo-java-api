@@ -20,7 +20,7 @@ import java.util.Objects;
 public class MPCFundCollection {
     private String MPCAPISecret = "";
     private CoboMPCApiRestClient mpcClient;
-    private Env TestEnv = Env.SANDBOX;
+    private Env TestEnv = Env.DEVELOP;
 
     public MPCFundCollection() throws Exception {
         MPCAPISecret = System.getProperty("MPCApiSecret");

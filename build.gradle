@@ -24,7 +24,7 @@ dependencies {
 }
 
 test {
-    systemProperty "Env", "sandbox"
+    systemProperty "Env", "develop"
     systemProperty "ApiSecret", ""
     systemProperty "Web3ApiSecret", ""
     systemProperty "MPCApiSecret", ""
