@@ -27,8 +27,8 @@ public class CoboApiRestClientImplTest{
     //refer README "Generate Key Pair"
     private String APISecret = "";
     private CoboApiRestClient client;
-    private Env TestEnv= Env.SANDBOX;
-    private TESTDATA TestData = TESTDATA.SANDBOX_TESTDATA;
+    private Env TestEnv= Env.DEVELOP;
+    private TESTDATA TestData = TESTDATA.DEVELOP_TESTDATA;
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -37,8 +37,8 @@ public class CoboApiRestClientImplTest{
             TestEnv = Env.PROD;
             TestData = TESTDATA.PROD_TESTDATA;}
         else{
-            TestEnv = Env.SANDBOX;
-            TestData = TESTDATA.SANDBOX_TESTDATA;
+            TestEnv = Env.DEVELOP;
+            TestData = TESTDATA.DEVELOP_TESTDATA;
         }
         client = CoboApiClientFactory.newInstance(
                 new LocalSigner(APISecret),

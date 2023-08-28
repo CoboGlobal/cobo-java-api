@@ -99,7 +99,7 @@ maven:
 ## Test
 
 ```
- ./gradlew test -DEnv=sandbox/prod -DApiSecret=<yourApiSecret>
+ ./gradlew test -DEnv=develop/prod -DApiSecret=<yourApiSecret>
 ```
 
 ## Usage
@@ -128,7 +128,7 @@ import com.cobo.custody.api.client.impl.LocalSigner;
 
 CoboApiRestClient client = CoboApiClientFactory.newInstance(
                 new LocalSigner(apiSecret),
-                Env.SANDBOX,
+                Env.DEVELOP,
                 false).newRestClient();
 ```
 

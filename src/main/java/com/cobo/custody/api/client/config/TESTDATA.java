@@ -41,41 +41,41 @@ public class TESTDATA {
             prodDepositAddresses,
             prodLoopAddress,
             prodLoopAddresses);
-    static Map<String, String> sandbox_depositAddress =  new HashMap<String, String>(){{
+    static Map<String, String> develop_depositAddress =  new HashMap<String, String>(){{
             put("BTC", "3JBYNrbB4bHtGWHTEa3ZPuRK9kwTiEUo4D");
             put("XRP", "rfKyCMyoV6Ln2GZ7YDbrBrnXCbAyBbxRqB|2047482901");
         }};
-    static List<String> sandboxBTCDepositAddresse = new ArrayList<String>(){{
+    static List<String> developBTCDepositAddresse = new ArrayList<String>(){{
             add("3JBYNrbB4bHtGWHTEa3ZPuRK9kwTiEUo4D");
             add("bc1qf22hpu33u2tkyy528mdvpnre45n8lu5s3ycatu");
         }};
 
-    static List<String> sandboxXRPDepositAddresse = new ArrayList<String>(){{
+    static List<String> developXRPDepositAddresse = new ArrayList<String>(){{
             add("rfKyCMyoV6Ln2GZ7YDbrBrnXCbAyBbxRqB|20474829019");
             add("rfKyCMyoV6Ln2GZ7YDbrBrnXCbAyBbxRqB|3752417374");
         }};
-    static Map<String, List> sandbox_depositAddresses = new HashMap<String, List>(){{
-            put("BTC", sandboxBTCDepositAddresse);
-            put("XRP", sandboxXRPDepositAddresse);
+    static Map<String, List> develop_depositAddresses = new HashMap<String, List>(){{
+            put("BTC", developBTCDepositAddresse);
+            put("XRP", developXRPDepositAddresse);
         }};
 
-    static Map<String, String> sandbox_loopAddress = new HashMap<String, String>(){{
+    static Map<String, String> develop_loopAddress = new HashMap<String, String>(){{
             put("BTC", "35eXJPLRTSp4Wn8n2f6pkQF4t3KdU2cuhz");
             put("XRP", "rfKyCMyoV6Ln2GZ7YDbrBrnXCbAyBbxRqB|477817505");
         }};
-    static Map<String, String> sandbox_loopAddresses =  new HashMap<String, String>(){{
+    static Map<String, String> develop_loopAddresses =  new HashMap<String, String>(){{
             put("BTC", "35eXJPLRTSp4Wn8n2f6pkQF4t3KdU2cuhz,34R4JHecUwGNEFVGKz1vR8R6BHGi5FUqPt");
             put("XRP", "rfKyCMyoV6Ln2GZ7YDbrBrnXCbAyBbxRqB|477817505,rfKyCMyoV6Ln2GZ7YDbrBrnXCbAyBbxRqB|2874421071");
         }};
 
-    public static TESTDATA SANDBOX_TESTDATA = new TESTDATA(
+    public static TESTDATA DEVELOP_TESTDATA = new TESTDATA(
             "20220314181458000331767000003732",
             "0x1c4d137bc2a2ee8f22cbdf9e90405974e72e65d922f42eb81d9f7a05d0f64fc6",
             "web_send_by_user_915_1647252768642",
-            sandbox_depositAddress,
-            sandbox_depositAddresses,
-            sandbox_loopAddress,
-            sandbox_loopAddresses);
+            develop_depositAddress,
+            develop_depositAddresses,
+            develop_loopAddress,
+            develop_loopAddresses);
 
     public String coboId;
     public String txId;
