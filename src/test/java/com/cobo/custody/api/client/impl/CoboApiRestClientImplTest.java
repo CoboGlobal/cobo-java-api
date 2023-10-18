@@ -296,7 +296,7 @@ public class CoboApiRestClientImplTest{
         ApiResponse<String> res = client.withdraw(coin,
                 UUID.randomUUID().toString(),
                 recriveAddress,
-                new BigInteger(amount), memo, null, null);
+                new BigInteger(amount), memo, null, null, null);
         assertTrue(res.isSuccess());
     }
 
