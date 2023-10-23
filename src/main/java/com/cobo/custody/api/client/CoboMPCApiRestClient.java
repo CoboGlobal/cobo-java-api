@@ -34,7 +34,7 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, BigInteger amount, String fromAddr, String toAddr,
                                                       String toAddressDetails, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
                                                       Integer operation, String extraParameters, BigInteger maxFee, BigInteger maxPriorityFee,
-                                                      BigInteger feeAmount);
+                                                      BigInteger feeAmount, String remark);
 
     ApiResponse<MPCPostTransaction> signMessage(String chainCode, String requestId, String fromAddr, Integer signVersion,
                                                 String extraParameters);

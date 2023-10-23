@@ -72,7 +72,8 @@ public interface CoboMPCApiService {
                                                             @Field("extra_parameters") String extraParameters,
                                                             @Field("max_fee") BigInteger maxFee,
                                                             @Field("max_priority_fee") BigInteger maxPriorityFee,
-                                                            @Field("fee_amount") BigInteger feeAmount);
+                                                            @Field("fee_amount") BigInteger feeAmount,
+                                                            @Field("remark") String remark);
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/sign_message/")

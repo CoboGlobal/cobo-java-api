@@ -105,7 +105,7 @@ public interface CoboApiService {
     Call<ApiResponse<String>> withdraw(@Field("coin") String coin,
                                        @Field("request_id") String requestId, @Field("address") String address,
                                        @Field("amount") String amount, @Field("memo") String memo,
-                                       @Field("force_external") String forceExternal, @Field("force_internal") String forceInternal);
+                                       @Field("force_external") String forceExternal, @Field("force_internal") String forceInternal, @Field("remark") String remark);
 
     @GET("/v1/custody/withdraw_info_by_request_id/")
     Call<ApiResponse<Transaction>> queryWithdrawInfo(@Query("request_id") String requestId);
