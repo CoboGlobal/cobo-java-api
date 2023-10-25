@@ -57,6 +57,11 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
+    public ApiResponse<MPCAddresses> updateAddressDescription(String coin, String address, String description) {
+        return executeSync(coboMPCApiService.updateAddressDescription(coin, address, description));
+    }
+
+    @Override
     public ApiResponse<MPCAddresses> listAddresses(String chainCode, String startId, String endId, Integer limit, Integer sort) {
         return executeSync(coboMPCApiService.listAddresses(chainCode, startId, endId, limit, sort));
     }

@@ -35,6 +35,12 @@ public interface CoboMPCApiService {
     Call<ApiResponse<MPCAddressList>> generateAddresses(@Field("chain_code") String chainCode,
                                                              @Field("count") int count);
 
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/update_address_description/")
+    Call<ApiResponse<MPCAddresses>> updateAddressDescription(@Field("coin") String coin,
+                                                        @Field("address") String address,
+                                                        @Field("description") String description);
+
     @GET("/v1/custody/mpc/list_addresses/")
     Call<ApiResponse<MPCAddresses>> listAddresses(@Query("chain_code") String chainCode,
                                                    @Query("start_id") String startId,

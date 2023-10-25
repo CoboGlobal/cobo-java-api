@@ -76,10 +76,21 @@ public class CoboMPCApiRestClientImplTest {
     }
 
     @Test
+    public void testUpdateAddressDescription() {
+        String coin = "GETH";
+        String address = "0x3d514c74ac0747eb5b3f7c73459365ad4880f69a";
+        String description = "test";
+        ApiResponse<MPCAddresses> res = mpcClient.updateAddressDescription(coin, address, description);
+        System.out.println(res);
+        System.out.println(res.getResult());
+        assertTrue(res.isSuccess());
+    }
+
+    @Test
     public void testListAddresses() {
         String chainCode = "GETH";
-        String startId = "1";
-        String endId = "100000";
+        String startId = "831317442287190282";
+        String endId = "831317442287190284";
         int limit = 50;
         int sort = 1;
         ApiResponse<MPCAddresses> res = mpcClient.listAddresses(chainCode, startId, endId, limit, sort);

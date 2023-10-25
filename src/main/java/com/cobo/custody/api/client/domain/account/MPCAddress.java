@@ -10,6 +10,8 @@ public class MPCAddress {
     private String hdPath;
     private Integer encoding;
 
+    private String description;
+
     public String getId() {
         return id;
     }
@@ -42,6 +44,14 @@ public class MPCAddress {
         this.encoding = encoding;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -49,6 +59,7 @@ public class MPCAddress {
                 ", address='" + address + '\'' +
                 ", hdPath='" + hdPath + '\'' +
                 ", encoding='" + encoding + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
