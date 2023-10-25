@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.62] (2023-09-05)
+[v0.62]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.61...v0.62
+
 ## [v0.61] (2023-08-03)
 [v0.61]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.60...v0.61
 

@@ -211,7 +211,7 @@ public interface CoboApiRestClient {
      * @return ""
      */
     ApiResponse<String> withdraw(String coin, String requestId, String address, BigInteger amount, String memo,
-                                 String forceExternal, String forceInternal);
+                                 String forceExternal, String forceInternal, String remark);
 
     /***
      * Get Withdrawal Information
