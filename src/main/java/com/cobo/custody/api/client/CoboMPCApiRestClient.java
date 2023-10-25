@@ -23,7 +23,7 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCAddressList> generateAddresses(String chainCode, int count);
 
-    ApiResponse<MPCAddresses> updateAddressDescription(String coin, String address, String description);
+    ApiResponse<MPCAddress> updateAddressDescription(String coin, String address, String description);
 
     ApiResponse<MPCAddresses> listAddresses(String chainCode, String startId, String endId, Integer limit, Integer sort);
 

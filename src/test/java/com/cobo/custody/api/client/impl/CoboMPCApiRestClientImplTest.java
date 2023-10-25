@@ -80,7 +80,7 @@ public class CoboMPCApiRestClientImplTest {
         String coin = "GETH";
         String address = "0x3d514c74ac0747eb5b3f7c73459365ad4880f69a";
         String description = "test";
-        ApiResponse<MPCAddresses> res = mpcClient.updateAddressDescription(coin, address, description);
+        ApiResponse<MPCAddress> res = mpcClient.updateAddressDescription(coin, address, description);
         System.out.println(res);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());

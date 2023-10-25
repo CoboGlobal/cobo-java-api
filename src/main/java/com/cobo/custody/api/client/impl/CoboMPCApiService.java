@@ -37,7 +37,7 @@ public interface CoboMPCApiService {
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/update_address_description/")
-    Call<ApiResponse<MPCAddresses>> updateAddressDescription(@Field("coin") String coin,
+    Call<ApiResponse<MPCAddress>> updateAddressDescription(@Field("coin") String coin,
                                                         @Field("address") String address,
                                                         @Field("description") String description);
 
