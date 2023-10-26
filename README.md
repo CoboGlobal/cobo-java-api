@@ -128,7 +128,7 @@ import com.cobo.custody.api.client.impl.LocalSigner;
 
 CoboApiRestClient client = CoboApiClientFactory.newInstance(
                 new LocalSigner(apiSecret),
-                Env.DEVELOP,
+                Env.DEV,
                 false).newRestClient();
 ```
 

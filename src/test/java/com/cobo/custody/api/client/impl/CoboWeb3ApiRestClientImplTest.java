@@ -28,7 +28,7 @@ public class CoboWeb3ApiRestClientImplTest {
     // refer README "Generate Key Pair"
     private String Web3APISecret = "";
     private CoboWeb3ApiRestClient web3Client;
-    private Env TestEnv= Env.DEVELOP;
+    private Env TestEnv= Env.DEV;
 
     @BeforeEach
     public void setUp() throws Exception {

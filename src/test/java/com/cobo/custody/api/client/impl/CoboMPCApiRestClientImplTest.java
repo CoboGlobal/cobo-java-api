@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CoboMPCApiRestClientImplTest {
     private String MPCAPISecret = "";
     private CoboMPCApiRestClient mpcClient;
-    private Env TestEnv = Env.DEVELOP;
+    private Env TestEnv = Env.DEV;
 
     @BeforeEach
     public void setUp() throws Exception {
