@@ -68,7 +68,7 @@ public class TESTDATA {
             put("XRP", "rfKyCMyoV6Ln2GZ7YDbrBrnXCbAyBbxRqB|477817505,rfKyCMyoV6Ln2GZ7YDbrBrnXCbAyBbxRqB|2874421071");
         }};
 
-    public static TESTDATA DEVELOP_TESTDATA = new TESTDATA(
+    public static TESTDATA DEV_TESTDATA = new TESTDATA(
             "20220314181458000331767000003732",
             "0x1c4d137bc2a2ee8f22cbdf9e90405974e72e65d922f42eb81d9f7a05d0f64fc6",
             "web_send_by_user_915_1647252768642",
