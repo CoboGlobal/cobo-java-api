@@ -259,6 +259,13 @@ public class CoboApiRestClientImplTest{
     }
 
     @Test
+    public void testGetTransactionsByTimeEx() {
+        ApiResponse<List<Transaction>> res = client.getTransactionsByTimeEx(null, null, null, null, null, null, null, null, null, null);
+        assertTrue(res.isSuccess());
+        assertTrue(res.getResult().size() > 0);
+    }
+
+    @Test
     public void testGetPendingTransactions() {
         ApiResponse<List<Transaction>> pendingTransactions = client.getPendingTransactions(null, Side.Any, null, null, 50);
         assertTrue(pendingTransactions.isSuccess());
