@@ -20,7 +20,7 @@ import java.util.Objects;
 public class MPCFundCollection {
     private String MPCAPISecret = "";
     private CoboMPCApiRestClient mpcClient;
-    private Env TestEnv = Env.DEV;
+    private Env TestEnv = Env.DEVELOP;
 
     public MPCFundCollection() throws Exception {
         MPCAPISecret = System.getProperty("MPCApiSecret");
@@ -125,8 +125,7 @@ public class MPCFundCollection {
                 }
             }
 
-            // 归集币种和手续费币种一致时，由于交易费用缺少导致总转账金额小于需要转账金额，直接从其他地址提取到toAddr
-
+            // 归集币种和手续费币种一致时，若由于交易费用缺少导致总转账金额小于需要转账金额，直接从其他地址提取到toAddr
             return transferAllAmount.compareTo(toAmount) >= 0;
         } else {
             return false;
