@@ -20,7 +20,7 @@ import java.util.Objects;
 public class MPCFundCollection {
     private String MPCAPISecret = "";
     private CoboMPCApiRestClient mpcClient;
-    private Env TestEnv = Env.DEV;
+    private Env TestEnv = Env.DEVELOP;
 
     public MPCFundCollection() throws Exception {
         MPCAPISecret = System.getProperty("MPCApiSecret");
@@ -67,7 +67,7 @@ public class MPCFundCollection {
             return false;
         }
 
-        ApiResponse<EstimateFeeDetails> feeResponse = mpcClient.estimateFee(coin, toAmount, toAddr, null);
+        ApiResponse<EstimateFeeDetails> feeResponse = mpcClient.estimateFee(coin, toAmount, toAddr, null, null, null, null, null, null, null);
         if (!feeResponse.isSuccess()) {
             return false;
         }
@@ -75,7 +75,7 @@ public class MPCFundCollection {
         // 获取余额总数
         Integer pageIndex = 0;
         Integer pageLength = 50;
-        ApiResponse<MPCListBalances> balances = mpcClient.listBalances(coin, pageIndex, pageLength);
+        ApiResponse<MPCListBalances> balances = mpcClient.listBalances(coin, pageIndex, pageLength, null);
         if (!balances.isSuccess()) {
             return false;
         }
@@ -87,7 +87,7 @@ public class MPCFundCollection {
         // 获取所有余额数据
         List<MPCCoinBalanceDetail> allBalances = new ArrayList<>();
         while (pageIndex * pageLength < total) {
-            balances = mpcClient.listBalances(coin, pageIndex, pageLength);
+            balances = mpcClient.listBalances(coin, pageIndex, pageLength, null);
             allBalances.addAll(balances.getResult().getCoinData());
             pageIndex += pageLength;
         }
@@ -125,8 +125,7 @@ public class MPCFundCollection {
                 }
             }
 
-            // 归集币种和手续费币种一致时，由于交易费用缺少导致总转账金额小于需要转账金额，直接从其他地址提取到toAddr
-
+            // 归集币种和手续费币种一致时，若由于交易费用缺少导致总转账金额小于需要转账金额，直接从其他地址提取到toAddr
             return transferAllAmount.compareTo(toAmount) >= 0;
         } else {
             return false;
@@ -158,7 +157,7 @@ public class MPCFundCollection {
         BigInteger realToAmount = toAmount.compareTo(balance) > 0 ? balance : toAmount;
 
         // 预估交易手续费
-        ApiResponse<EstimateFeeDetails> estimateFee = mpcClient.estimateFee(coin, realToAmount, toAddr, null);
+        ApiResponse<EstimateFeeDetails> estimateFee = mpcClient.estimateFee(coin, realToAmount, toAddr, null, null, null, null, null, null, null);
         if (!estimateFee.isSuccess()) {
             return new BigInteger("0");
         }
@@ -189,8 +188,8 @@ public class MPCFundCollection {
         }
         if (fromAddrFeeBalanceResponse.getResult().getCoinData().size() == 0) {
             String requestId = String.valueOf(System.currentTimeMillis());
-            ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(estimateFee.getResult().getFeeCoin(), requestId, feeAddr, fromAddr, gasFee,
-                    null, null, null, null, null, null);
+            ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(estimateFee.getResult().getFeeCoin(), requestId, gasFee, feeAddr, fromAddr, null,
+                    null, null, null, null, null, null, null, null);
             if (!transferFeeResponse.isSuccess()) {
                 return new BigInteger("0");
             }
@@ -199,8 +198,8 @@ public class MPCFundCollection {
             BigInteger fromAddrFeeBalance = new BigInteger(fromAddrFeeBalanceDetail.getBalance());
             if (fromAddrFeeBalance.compareTo(gasFee) < 0) {
                 String requestId = String.valueOf(System.currentTimeMillis());
-                ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(estimateFee.getResult().getFeeCoin(), requestId, feeAddr, fromAddr, gasFee.subtract(fromAddrFeeBalance),
-                        null, null, null, null, null, null);
+                ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(estimateFee.getResult().getFeeCoin(), requestId, gasFee.subtract(fromAddrFeeBalance), feeAddr, fromAddr,
+                        null, null, null, null, null, null, null, null, null);
                 if (!transferFeeResponse.isSuccess()) {
                     return new BigInteger("0");
                 }
@@ -211,8 +210,8 @@ public class MPCFundCollection {
 
         // fromAddr转账toAddr
         String requestId = String.valueOf(System.currentTimeMillis());
-        ApiResponse<MPCPostTransaction> response = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, realToAmount,
-                null, null, null, null, null, null);
+        ApiResponse<MPCPostTransaction> response = mpcClient.createTransaction(coin, requestId, realToAmount, fromAddr, toAddr,
+                null, null, null, null, null, null, null, null, null);
         if (response.isSuccess()) {
             return realToAmount;
         } else {
@@ -244,7 +243,7 @@ public class MPCFundCollection {
         }
 
         // 预估手续费
-        ApiResponse<EstimateFeeDetails> estimateFee = mpcClient.estimateFee(coin, new BigInteger(balanceDetail.getBalance()), toAddr, null);
+        ApiResponse<EstimateFeeDetails> estimateFee = mpcClient.estimateFee(coin, new BigInteger(balanceDetail.getBalance()), toAddr, null, null, null, null, null, null, null);
         if (!estimateFee.isSuccess()) {
             return new BigInteger("0");
         }
@@ -257,8 +256,8 @@ public class MPCFundCollection {
         }
 
         BigInteger realToAmount = toAmount.compareTo(balance.subtract(gasFee)) > 0 ? balance.subtract(gasFee) : toAmount;
-        ApiResponse<MPCPostTransaction> response = mpcClient.createTransaction(coin, requestId, fromAddr, toAddr, realToAmount,
-                null, null, null, null, null, null);
+        ApiResponse<MPCPostTransaction> response = mpcClient.createTransaction(coin, requestId, realToAmount, fromAddr, toAddr,
+                null, null, null, null, null, null, null, null, null);
         if (response.isSuccess()) {
             return realToAmount;
         } else {
