@@ -83,6 +83,12 @@ public interface CoboApiService {
                                                                @Query("end_time") String endTime, @Query("limit") String limit,
                                                                @Query("include_financial") String includeFinancial);
 
+    @GET("/v1/custody/transactions_by_time_ex/")
+    Call<ApiResponse<List<Transaction>>> getTransactionsByTimeEx(@Query("coins") String coins, @Query("side") String side,
+                                                                 @Query("address") String address, @Query("status")String status, @Query("begin_time") String beginTime,
+                                                                 @Query("end_time") String endTime, @Query("limit") String limit, @Query("offset") String offset,
+                                                                 @Query("orderBy") String orderBy, @Query("order") String order);
+
     @GET("/v1/custody/pending_transactions/")
     Call<ApiResponse<List<Transaction>>> getPendingTransactions(@Query("coin") String coin, @Query("side") String side,
                                                                 @Query("max_id") String maxId,

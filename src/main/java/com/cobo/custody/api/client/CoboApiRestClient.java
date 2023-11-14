@@ -154,6 +154,11 @@ public interface CoboApiRestClient {
                                                          String address, long beginTime,
                                                          long endTime, int limit, String includeFinancial);
 
+
+    ApiResponse<List<Transaction>> getTransactionsByTimeEx(String coins, Integer side, Integer status,
+                                                           String address, Long beginTime,
+                                                           Long endTime, Integer limit, Integer offset, String orderBy, String order);
+
     /***
      * Get pending transaction list (before confirmingThreshold reached)
      * @param coin Coin code (Does not return all currencies)

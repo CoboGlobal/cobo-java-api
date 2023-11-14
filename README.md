@@ -80,7 +80,7 @@ gradle:
 
 ```
 dependencies {
-    implementation 'com.github.CoboGlobal:cobo-java-api:v0.62'
+    implementation 'com.github.CoboGlobal:cobo-java-api:v0.64'
 }
 ```
 
@@ -128,7 +128,7 @@ import com.cobo.custody.api.client.impl.LocalSigner;
 
 CoboApiRestClient client = CoboApiClientFactory.newInstance(
                 new LocalSigner(apiSecret),
-                Env.DEVELOP,
+                Env.DEV,
                 false).newRestClient();
 ```
 

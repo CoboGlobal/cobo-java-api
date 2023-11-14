@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.64] (2023-11-08)
+[v0.64]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.63...v0.64
+### Added
+- Add New API: Add transactions_by_time_ex API for Custody Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/97
+
+## [v0.63] (2023-10-26)
+[v0.63]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.62...v0.63
+### Added
+- Add New API: MPC Wallet add Update Address Description API. https://github.com/CoboGlobal/cobo-java-api/pull/95
+### Changed
+- Add New Params: Custodial Wallet New Withdraw Request and MPC Wallet Create Transaction API add remark param. https://github.com/CoboGlobal/cobo-java-api/pull/93
+
 ## [v0.62] (2023-09-05)
 [v0.62]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.61...v0.62
 
