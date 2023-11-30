@@ -10,7 +10,7 @@ This repository contains the official Java SDK for Cobo WaaS API, enabling devel
 ## Documentation
 To access the API documentation, navigate to the [API references](https://www.cobo.com/developers/api-references/overview/).
 
-For more information on Cobo's Java SDK, refer to the [Java SDK Guide](https://www.cobo.com/developers/get-started/sdks/waas/java).
+For more information on Cobo's Java SDK, refer to the [Java SDK Guide](https://www.cobo.com/developers/sdks-and-tools/sdks/waas/java).
 
 ## Usage
 

@@ -154,8 +154,6 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
         if (requestId == null || requestId.length() == 0) {
             requestId = String.format("sdk_request_id_%s_%s", Hex.toHexString(Utils.sha256(address.getBytes())).substring(0, 8), System.currentTimeMillis());
         }
-
-        System.out.println(requestId);
         return executeSync(coboApiService.withdraw(coin, requestId, address, amount.toString(), memo, forceExternal, forceInternal, remark));
     }
 
