@@ -159,4 +159,7 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/sign_messages_by_cobo_ids/")
     Call<ApiResponse<SignMessages>> signMessageByCoboIds(@Query("cobo_ids") String coboIds);
+
+    @GET("/v1/custody/mpc/get_max_send_amount/")
+    Call<ApiResponse<GetSendMaxDetail>> getMaxSendAmount(@Query("coin") String coin, @Query("fee_rate") BigDecimal feeRate, @Query("to_address") String to_address, @Query("from_address") String from_address);
 }

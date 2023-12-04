@@ -232,4 +232,10 @@ public class CoboMPCApiRestClientImplTest {
         ApiResponse<SignMessages> res = mpcClient.signMessageByCoboIds(coboIds);
         System.out.println(res);
     }
+
+    @Test
+    public void testGetMaxSendAmount() {
+        ApiResponse<GetSendMaxDetail> res = mpcClient.getMaxSendAmount("", null, "", "");
+        System.out.println(res);
+    }
 }

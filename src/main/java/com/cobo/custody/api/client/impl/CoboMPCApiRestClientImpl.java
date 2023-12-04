@@ -160,4 +160,9 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public ApiResponse<SignMessages> signMessageByCoboIds(String coboIds) {
         return executeSync(coboMPCApiService.signMessageByCoboIds(coboIds));
     }
+
+    @Override
+    public ApiResponse<GetSendMaxDetail> getMaxSendAmount(String coin, BigDecimal feeRate, String toAddr, String fromAddr) {
+        return executeSync(coboMPCApiService.getMaxSendAmount(coin, feeRate, toAddr, fromAddr));
+    }
 }
