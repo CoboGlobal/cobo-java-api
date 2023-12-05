@@ -70,4 +70,6 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<SignMessages> signMessageByRequestIds(String requestIds);
     ApiResponse<SignMessages> signMessageByCoboIds(String coboIds);
+
+    ApiResponse<GetSendMaxDetail> getMaxSendAmount(String coin, BigDecimal feeRate, String toAddr, String fromAddr);
 }
