@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.65] (2023-12-07)
+[v0.65]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.64...v0.65
+### Added
+- Add New API: Add get_max_send_amount API for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/103
+
 ## [v0.64] (2023-11-08)
 [v0.64]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.63...v0.64
 ### Added
