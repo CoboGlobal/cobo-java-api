@@ -14,6 +14,9 @@ public class MPCTransaction {
     @JsonProperty(value = "coin_detail")
     private MPCCoin coinDetail;
 
+    @JsonProperty(value = "nft_detail")
+    private MPCNft nftDetail;
+
     @JsonProperty(value = "amount_detail")
     private MPCAmount amountDetail;
 
@@ -81,6 +84,7 @@ public class MPCTransaction {
                 ", status=" + status +
                 ", coinDetail=" + coinDetail +
                 ", amountDetail=" + amountDetail +
+                ", nftDetail=" + nftDetail +
                 ", feeDetail=" + feeDetail +
                 ", sourceAddresses='" + sourceAddresses + '\'' +
                 ", fromAddress='" + fromAddress + '\'' +
@@ -302,5 +306,13 @@ public class MPCTransaction {
 
     public void setSignature(String signature) {
         this.signature = signature;
+    }
+
+    public MPCNft getNftDetail() {
+        return nftDetail;
+    }
+
+    public void setNftDetail(MPCNft nftDetail) {
+        this.nftDetail = nftDetail;
     }
 }

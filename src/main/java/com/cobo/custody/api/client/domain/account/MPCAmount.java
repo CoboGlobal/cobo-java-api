@@ -7,6 +7,9 @@ public class MPCAmount {
     @JsonProperty(value = "abs_amount")
     private String absAmount;
 
+    @JsonProperty(value = "nft_amount")
+    private String nftAmount;
+
     public String getAmount() {
         return amount;
     }
@@ -23,11 +26,20 @@ public class MPCAmount {
         this.absAmount = absAmount;
     }
 
+    public String getNftAmount() {
+        return nftAmount;
+    }
+
+    public void setNftAmount(String nftAmount) {
+        this.nftAmount = nftAmount;
+    }
+
     @Override
     public String toString() {
         return "{" +
                 "amount='" + amount + '\'' +
                 ", absAmount='" + absAmount + '\'' +
+                ", nftAmount='" + nftAmount + '\'' +
                 '}';
     }
 }
