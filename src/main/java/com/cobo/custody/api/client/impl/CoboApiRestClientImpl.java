@@ -121,12 +121,12 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
     }
 
     @Override
-    public ApiResponse<List<Transaction>> getTransactionsByTimeEx(String coins, Integer side, Integer status, String address, Long beginTime, Long endTime, Integer limit, Integer offset, String orderBy, String order) {
+    public ApiResponse<List<Transaction>> getTransactionsByTimeEx(String coins, Integer side, Integer status, String address, Long beginTime, Long endTime, Integer limit, Integer offset, String orderBy, String order, String txid) {
         return executeSync(coboApiService.getTransactionsByTimeEx(coins,
                 intToString(side), address, intToString(status),
                 longToString(beginTime),
                 longToString(endTime),
-                intToString(limit), intToString(offset), orderBy, order));
+                intToString(limit), intToString(offset), orderBy, order, txid));
     }
 
     @Override

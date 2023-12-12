@@ -87,7 +87,7 @@ public interface CoboApiService {
     Call<ApiResponse<List<Transaction>>> getTransactionsByTimeEx(@Query("coins") String coins, @Query("side") String side,
                                                                  @Query("address") String address, @Query("status")String status, @Query("begin_time") String beginTime,
                                                                  @Query("end_time") String endTime, @Query("limit") String limit, @Query("offset") String offset,
-                                                                 @Query("orderBy") String orderBy, @Query("order") String order);
+                                                                 @Query("orderBy") String orderBy, @Query("order") String order, @Query("txid") String txid);
 
     @GET("/v1/custody/pending_transactions/")
     Call<ApiResponse<List<Transaction>>> getPendingTransactions(@Query("coin") String coin, @Query("side") String side,
