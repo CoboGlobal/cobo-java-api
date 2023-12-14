@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.66] (2023-12-13)
+[v0.66]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.65...v0.66
+### Added
+- Add New Params: Add parameter `txid` for API transactions_by_time_ex. https://github.com/CoboGlobal/cobo-java-api/pull/106
+
 ## [v0.65] (2023-12-07)
 [v0.65]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.64...v0.65
 ### Added
