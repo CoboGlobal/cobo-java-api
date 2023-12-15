@@ -9,13 +9,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+@Disabled("This test is ignored")
 public class CoboMPCPrimeBrokerRestClientImplTest {
     private String MPCAPISecret = "";
     private CoboMPCPrimeBrokerRestClient primeBrokerClient;

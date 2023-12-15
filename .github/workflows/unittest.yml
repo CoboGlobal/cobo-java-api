@@ -8,10 +8,10 @@ on:
     inputs:
       environment:
         description: 'Environment to run tests against'
-        default: sandbox
+        default: develop
         type: choice
         options:
-          - sandbox
+          - develop
           - prod
   push:
     branches: [ main ]
@@ -23,6 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+              ref: ${{ github.event.pull_request.head.sha }}
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
@@ -35,10 +37,8 @@ jobs:
 
       - name: run testcase
         env:
-          ENV: "${{ github.event.inputs.environment == 'prod' && 'prod' || 'sandbox'}}"
-          SECRET: "${{ github.event.inputs.environment == 'prod' && secrets.PRODSECRET || secrets.SANDBOXSECRET}}"
-          Web3SECRET: "${{secrets.SANDBOXWEB3SECRET}}"
-          MPCSECRET: "${{secrets.SANDBOXMPCSECRET}}"
-        run: ./gradlew cleanTest test -DEnv=$ENV -DApiSecret=$SECRET -DWeb3ApiSecret=$Web3SECRET -DMPCApiSecret=$MPCSECRET
-
-
+          ENV: "${{ github.event.inputs.environment == 'prod' && 'prod' || 'develop'}}"
+          SECRET: "${{ github.event.inputs.environment == 'prod' && secrets.PRODSECRET || secrets.DEVELOPSECRET}}"
+          Web3SECRET: "${{secrets.DEVELOPWEB3SECRET}}"
+          MPCSECRET: "${{secrets.DEVELOPMPCSECRET}}"
+        run: ./gradlew cleanTest test -DEnv=$ENV -DApiSecret=$SECRET -DMPCApiSecret=$MPCSECRET
