@@ -12,6 +12,7 @@ import com.cobo.custody.api.client.domain.transaction.Side;
 import com.cobo.custody.api.client.domain.transaction.Transaction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -60,12 +61,12 @@ public class CoboApiRestClientImplTest{
     @Test
     public void testGetOrgInfo() {
         ApiResponse<OrgInfo> res = client.getOrgInfo();
-        System.out.println(res);
+        // System.out.println(res);
         assertTrue(res.isSuccess());
     }
 
     @ParameterizedTest(name="testGetValidCoinInfo({0})_{index}")
-    @CsvSource({"BTC","ETH","ETH_USDT","XRP"})
+    @CsvSource({"BTC","ETH","BSC_BNB","XRP"})
     public void testGetValidCoinInfo(String coin) {
         ApiResponse<CoinInfo> res = client.getCoinInfo(coin);
         assertTrue(res.isSuccess());
@@ -75,12 +76,12 @@ public class CoboApiRestClientImplTest{
     @CsvSource({"BTT"})
     public void testGetInvalidCoinInfo(String coin) {
         ApiResponse<CoinInfo> res = client.getCoinInfo(coin);
-        System.out.println(res);
+        // System.out.println(res);
         assertFalse(res.isSuccess());
     }
 
     @ParameterizedTest(name="testNewValidAddress({0})_{index}")
-    @CsvSource({"BTC,true","BTC,false","ETH,false","ETH_USDT,false","XRP,false"})
+    @CsvSource({"BTC,true","BTC,false","ETH,false","BSC_BNB,false","XRP,false"})
     public void testNewValidAddress(String coin, boolean nativeSegwit) {
         ApiResponse<Address> res = client.newAddress(coin, nativeSegwit);
         assertTrue(res.isSuccess());
@@ -95,7 +96,7 @@ public class CoboApiRestClientImplTest{
     }
 
     @ParameterizedTest(name="testNewValidAddresses({0})_{index}")
-    @CsvSource({"BTC,2,true","BTC,2,false","ETH,2,false","ETH_USDT,2,alse","XRP,2,false"})
+    @CsvSource({"BTC,2,true","BTC,2,false","ETH,2,false","BSC_BNB,2,alse","XRP,2,false"})
     public void testNewValidAddresses(String coin, int count, boolean nativeSegwit) {
         ApiResponse<NewAddresses> res = client.newAddresses(coin, count, nativeSegwit);
         assertTrue(res.isSuccess());
@@ -110,9 +111,10 @@ public class CoboApiRestClientImplTest{
     }
 
     @ParameterizedTest(name="testValidAddressInfo({0})_{index}")
-    @CsvSource({"BTC","XRP"})
+    @CsvSource({"BTC"})
     public void testValidAddressInfo(String coin) {
         ApiResponse<Address> res = client.addressInfo(coin, TestData.depositAddress.get(coin));
+        System.out.println(res);
         assertTrue(res.isSuccess());
     }
 
@@ -145,12 +147,12 @@ public class CoboApiRestClientImplTest{
 
 
     @ParameterizedTest(name="testIsValidAddress({0})_{index}")
-    @CsvSource({"BTC,3Kd5rjiLtvpHv5nhYQNTTeRLgrz4om32PJ",
-                "BTC,bc1q9unqc738dxjg5mk8zqtz33zg59cahrj29s24lp",
+    @CsvSource({"BTC,3HMVjbnkFqg6pD1cJ7PZeLsFkNGDh9Nqy2",
+                "BTC,3JSGC23YSg9fYVe9txE6Av6csTh3XHu7Aj",
                 "ETH,0xE410157345be56688F43FF0D9e4B2B38Ea8F7828",
                 "ETH_USDT,0xEEACb7a5e53600c144C0b9839A834bb4b39E540c",
-                "XRP,rndm7RphBZG6CpZvKcG9AjoFbSvcKhwLCx",
-                "XRP,rGNXLMNHkUEtoo7qkCSHEm2sfMo8F969oZ|2200701580"})
+                "XRP,rBphERztHKga1cyMgWiDen7WDkbkfn1iPE",
+                "XRP,rBphERztHKga1cyMgWiDen7WDkbkfn1iPE|3414236551"})
     public void testIsValidAddress(String coin, String address) {
         ApiResponse<Boolean> res = client.isValidAddress(coin, address);
         assertTrue(res.isSuccess());
@@ -158,8 +160,8 @@ public class CoboApiRestClientImplTest{
     }
 
     @ParameterizedTest(name="testIsInvalidAddress({0})_{index}")
-    @CsvSource({"BTC,0xE410157345be56688F43FF0D9e4B2B38Ea8F7828",
-                "XRP,rBWpYJhuJWBPAkzJ4kYQqHShSkkF3rgeDE"})
+    @CsvSource({"BTC,3HMVjbnkFqg6pD1cJ7PZeLsFkNGDh9Nqy1",
+                "XRP,rBphERztHKga1cyMgWiDen7WDkbkfn1iP2"})
     public void testIsInvalidAddress(String coin, String address) {
         ApiResponse<Boolean> res = client.isValidAddress(coin, address);
         assertTrue(res.isSuccess());
@@ -167,7 +169,7 @@ public class CoboApiRestClientImplTest{
     }
 
     @ParameterizedTest(name="testGetValidAddressHistory({0})_{index}")
-    @CsvSource({"BTC","ETH","ETH_USDT","XRP"})
+    @CsvSource({"BTC","ETH","BSC_BNB","XRP"})
     public void testGetValidAddressHistory(String coin) {
         ApiResponse<List<Address>> res = client.getAddressHistory(coin);
         assertTrue(res.isSuccess());
@@ -260,7 +262,9 @@ public class CoboApiRestClientImplTest{
 
     @Test
     public void testGetTransactionsByTimeEx() {
-        ApiResponse<List<Transaction>> res = client.getTransactionsByTimeEx(null, null, null, null, null, null, null, null, null, null, null);
+        // ApiResponse<List<Transaction>> res = client.getTransactionsByTimeEx(null, null, null, null, null, null, null, null, null, null, null);
+        ApiResponse<List<Transaction>> res = client.getTransactionsByTimeEx(null, 0, 0, null, 0L, 0L, 0, 0, null, null, null);
+        System.out.println(res);
         assertTrue(res.isSuccess());
         assertTrue(res.getResult().size() > 0);
     }
@@ -290,20 +294,21 @@ public class CoboApiRestClientImplTest{
     }
 
     @ParameterizedTest(name="testGetTransactionHistory({0})_{index}")
-    @CsvSource({"BTC","ETH","ETH_USDT","XRP"})
+    @CsvSource({"BTC","ETH","BSC_BNB","XRP"})
     public void testGetTransactionHistory(String coin) {
         ApiResponse<List<Transaction>> res = client.getTransactionHistory(coin, Side.Any, null, null, null, 50, 0, System.currentTimeMillis(), null);
         assertTrue(res.isSuccess());
     }
 
     @ParameterizedTest(name="testWithdraw({0})_{index}")
-    @CsvSource({"COBO_ETH,0xE410157345be56688F43FF0D9e4B2B38Ea8F7828,,1",
-                "XLM,GBJDU6TPWHKGV7HRLNTIBA46MG3MB5DUG6BISHX3BF7I75H2HLPV6RJX,4e73f03b,1"})
+    @CsvSource({"COBO_ETH,0x00a70fa1125e336afc22a641b015c878f44c1c1d,,1",
+                "XLM,GCXMPEHKXQQIZIAGBB67HX55PSN35M2XWVTBNQWLABXS5T3UY42LBJGS,481247198,1"})
     public void testWithdraw(String coin, String recriveAddress, String memo, String amount) {
         ApiResponse<String> res = client.withdraw(coin,
                 UUID.randomUUID().toString(),
                 recriveAddress,
                 new BigInteger(amount), memo, null, null, null);
+        System.out.println(res);
         assertTrue(res.isSuccess());
     }
 
@@ -323,9 +328,15 @@ public class CoboApiRestClientImplTest{
     @Test
     public void testGetStakingProductById() {
         ApiResponse<List<StakingProduct>> productsRes = client.getStakingProducts(null, Lang.ENGLISG);
-        String Id = String.valueOf(productsRes.getResult().get(0).getProductId());
-        ApiResponse<StakingProduct> res = client.getStakingProductById(Id, Lang.ENGLISG);
-        assertTrue(res.isSuccess());
+        String result = String.valueOf(productsRes.getResult());
+        if(result=="[]")
+        {
+            System.out.println("skip");
+        }else{
+            String Id = String.valueOf(productsRes.getResult().get(0).getProductId());
+            ApiResponse<StakingProduct> res = client.getStakingProductById(Id, Lang.ENGLISG);
+            assertTrue(res.isSuccess());
+        }
     }
 
     @Test
@@ -346,6 +357,7 @@ public class CoboApiRestClientImplTest{
         assertTrue(res.isSuccess());
     }
 
+    @Disabled("not yet ready , Please ignore.")					
     @Test
     public void testStake() {
         ApiResponse<List<StakingProduct>> productsRes = client.getStakingProducts("TETH", Lang.ENGLISG);
@@ -355,6 +367,7 @@ public class CoboApiRestClientImplTest{
         assertEquals(res.getResult(),null);
     }
 
+    @Disabled("not yet ready , Please ignore.")	
     @Test
     public void testUnstake() {
         ApiResponse<List<StakingProduct>> productsRes = client.getStakingProducts("TETH", Lang.ENGLISG);

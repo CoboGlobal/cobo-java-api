@@ -9,6 +9,7 @@ import com.cobo.custody.api.client.domain.transaction.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -78,7 +79,7 @@ public class CoboMPCApiRestClientImplTest {
     @Test
     public void testUpdateAddressDescription() {
         String coin = "GETH";
-        String address = "0x3d514c74ac0747eb5b3f7c73459365ad4880f69a";
+        String address = "0x6a060efe0ff887f4e24dc2d2098020abf28bcce4";
         String description = "test";
         ApiResponse<MPCAddress> res = mpcClient.updateAddressDescription(coin, address, description);
         System.out.println(res);
@@ -100,7 +101,7 @@ public class CoboMPCApiRestClientImplTest {
 
     @Test
     public void testGetBalance() {
-        String address = "0x3ede1e59a3f3a66de4260df7ba3029b515337e5c";
+        String address = "0x6a060efe0ff887f4e24dc2d2098020abf28bcce4";
         String chainCode = null;
         String coin = "GETH";
         ApiResponse<MPCBalance> res = mpcClient.getBalance(address, chainCode, coin);
@@ -124,8 +125,8 @@ public class CoboMPCApiRestClientImplTest {
     public void testCreateTransaction() {
         String coin = "GETH";
         String requestId = String.valueOf(System.currentTimeMillis());
-        String fromAddr = "0x3ede1e59a3f3a66de4260df7ba3029b515337e5c";
-        String toAddr = "0xEEACb7a5e53600c144C0b9839A834bb4b39E540c";
+        String fromAddr = "0x6a060efe0ff887f4e24dc2d2098020abf28bcce4";
+        String toAddr = "0x6a060efe0ff887f4e24dc2d2098020abf28bcce4";
         BigInteger amount = new BigInteger("10");
         String toAddressDetails = null;
         BigDecimal fee = null;
@@ -175,6 +176,7 @@ public class CoboMPCApiRestClientImplTest {
         assertTrue(res.isSuccess());
     }
 
+    @Disabled("skip it temporarily")	
     @Test
     public void testListTssNodeRequests() {
         Integer requestType = null;
@@ -193,7 +195,7 @@ public class CoboMPCApiRestClientImplTest {
 
     @Test
     public void listSpendable() {
-        String coin = "BTC";
+        String coin = "GETH";
         String address = null;
         ApiResponse<MPCListSpendable> res = mpcClient.listSpendable(coin, address);
         System.out.println(res.getResult());

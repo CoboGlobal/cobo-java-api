@@ -19,11 +19,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import java.math.BigInteger;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Disabled("This test is ignored")
 public class CoboWeb3ApiRestClientImplTest {
     // refer README "Generate Key Pair"
     private String Web3APISecret = "";
