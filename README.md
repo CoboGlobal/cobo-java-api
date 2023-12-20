@@ -63,7 +63,7 @@ maven:
 <dependency>
     <groupId>com.github.CoboGlobal</groupId>
     <artifactId>cobo-java-api</artifactId>
-    <version>v0.62</version>
+    <version>v0.63</version>
 </dependency>
 ```
 
