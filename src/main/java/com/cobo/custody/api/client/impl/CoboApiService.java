@@ -21,7 +21,7 @@ public interface CoboApiService {
     Call<ApiResponse<OrgInfo>> getOrgInfo();
 
     @GET("/v1/custody/coin_info/")
-    Call<ApiResponse<CoinInfo>> getCoinInfo(@Query("coin") String coin, @Field("amount") String amount);
+    Call<ApiResponse<CoinInfo>> getCoinInfo(@Query("coin") String coin, @Query("amount") BigInteger amount);
 
     @FormUrlEncoded
     @POST("/v1/custody/new_address/")

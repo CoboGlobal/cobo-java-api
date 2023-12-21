@@ -34,7 +34,7 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
 
     @Override
     public ApiResponse<CoinInfo> getCoinInfo(String coin, BigInteger amount) {
-        return executeSync(coboApiService.getCoinInfo(coin, amount.toString()));
+        return executeSync(coboApiService.getCoinInfo(coin, amount));
     }
 
     @Override
