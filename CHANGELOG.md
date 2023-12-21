@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.68] (2023-12-21)
+[v0.68]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.67...v0.68
+### Changed
+- Add New Params: Add parameter `amount` for API coin_info for Custodial Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/109
+
 ## [v0.67] (2023-12-15)
 [v0.67]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.66...v0.67
 ### Changed
@@ -22,7 +27,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v0.64] (2023-11-08)
 [v0.64]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.63...v0.64
 ### Added
-- Add New API: Add transactions_by_time_ex API for Custody Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/97
+- Add New API: Add transactions_by_time_ex API for Custodial Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/97
 
 ## [v0.63] (2023-10-26)
 [v0.63]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.62...v0.63
