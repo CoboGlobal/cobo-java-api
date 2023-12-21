@@ -25,7 +25,7 @@ public interface CoboApiRestClient {
      * @param coin coin code
      * @return coinInfo
      */
-    ApiResponse<CoinInfo> getCoinInfo(String coin);
+    ApiResponse<CoinInfo> getCoinInfo(String coin, BigInteger amount);
 
     /***
      * Get new deposit address

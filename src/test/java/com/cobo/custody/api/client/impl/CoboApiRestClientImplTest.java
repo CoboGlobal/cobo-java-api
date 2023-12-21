@@ -68,14 +68,14 @@ public class CoboApiRestClientImplTest{
     @ParameterizedTest(name="testGetValidCoinInfo({0})_{index}")
     @CsvSource({"BTC","ETH","BSC_BNB","XRP"})
     public void testGetValidCoinInfo(String coin) {
-        ApiResponse<CoinInfo> res = client.getCoinInfo(coin);
+        ApiResponse<CoinInfo> res = client.getCoinInfo(coin, null);
         assertTrue(res.isSuccess());
     }
 
     @ParameterizedTest(name="testGetInvalidCoinInfo({0})_{index}")
     @CsvSource({"BTT"})
     public void testGetInvalidCoinInfo(String coin) {
-        ApiResponse<CoinInfo> res = client.getCoinInfo(coin);
+        ApiResponse<CoinInfo> res = client.getCoinInfo(coin, null);
         // System.out.println(res);
         assertFalse(res.isSuccess());
     }

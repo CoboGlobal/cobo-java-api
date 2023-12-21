@@ -13,6 +13,7 @@ import com.cobo.custody.api.client.domain.transaction.Transaction;
 import retrofit2.Call;
 import retrofit2.http.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public interface CoboApiService {
@@ -20,7 +21,7 @@ public interface CoboApiService {
     Call<ApiResponse<OrgInfo>> getOrgInfo();
 
     @GET("/v1/custody/coin_info/")
-    Call<ApiResponse<CoinInfo>> getCoinInfo(@Query("coin") String coin);
+    Call<ApiResponse<CoinInfo>> getCoinInfo(@Query("coin") String coin, @Query("amount") BigInteger amount);
 
     @FormUrlEncoded
     @POST("/v1/custody/new_address/")
