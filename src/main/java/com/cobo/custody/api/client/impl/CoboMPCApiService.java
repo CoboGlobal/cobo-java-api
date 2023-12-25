@@ -97,7 +97,7 @@ public interface CoboMPCApiService {
                                                              @Field("fee") BigDecimal fee,
                                                              @Field("gas_price") BigInteger gasPrice,
                                                              @Field("gas_limit") BigInteger gasLimit,
-                                                             @Field("fee_amount") BigInteger feeAmount
+                                                             @Field("fee_amount") BigInteger feeAmount,
                                                              @Field("auto_fuel") int autoFuel);
 
     @FormUrlEncoded
@@ -107,7 +107,7 @@ public interface CoboMPCApiService {
                                                           @Field("fee") BigDecimal fee,
                                                           @Field("gas_price") BigInteger gasPrice,
                                                           @Field("gas_limit") BigInteger gasLimit,
-                                                          @Field("fee_amount") BigInteger feeAmount
+                                                          @Field("fee_amount") BigInteger feeAmount,
                                                           @Field("auto_fuel") int autoFuel);
 
     @GET("/v1/custody/mpc/transactions_by_request_ids/")

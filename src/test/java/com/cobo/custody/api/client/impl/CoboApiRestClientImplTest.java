@@ -386,7 +386,7 @@ public class CoboApiRestClientImplTest{
     }
 
     @Test
-    public void testGetSupportedCoins() {
+    public void testGetGasStationBalance() {
         ApiResponse<GasStationBalance> resp =  client.getGasStationBalance();
         assertTrue(resp.isSuccess());
         assertNotNull(resp.getResult());
