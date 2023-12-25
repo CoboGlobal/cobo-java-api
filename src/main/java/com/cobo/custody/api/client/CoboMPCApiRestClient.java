@@ -36,16 +36,18 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, BigInteger amount, String fromAddr, String toAddr,
                                                       String toAddressDetails, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
                                                       Integer operation, String extraParameters, BigInteger maxFee, BigInteger maxPriorityFee,
-                                                      BigInteger feeAmount, String remark);
+                                                      BigInteger feeAmount, String remark, int autoFuel);
 
     ApiResponse<MPCPostTransaction> signMessage(String chainCode, String requestId, String fromAddr, Integer signVersion,
                                                 String extraParameters);
 
     ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, String requestId, BigDecimal fee, BigInteger gasPrice,
-                                                       BigInteger gasLimit, BigInteger feeAmount);
+                                                       BigInteger gasLimit, BigInteger feeAmount,
+                                                       int autoFuel);
 
     ApiResponse<MPCPostTransaction> dropTransaction(String coboId, String requestId, BigDecimal fee, BigInteger gasPrice,
-                                                    BigInteger gasLimit, BigInteger feeAmount);
+                                                    BigInteger gasLimit, BigInteger feeAmount,
+                                                    int autoFuel);
 
     ApiResponse<MPCTransactionInfos> transactionsByRequestIds(String requestIds, Integer status);
 

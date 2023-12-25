@@ -82,9 +82,10 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, BigInteger amount, String fromAddr, String toAddr,
                                                              String toAddressDetails, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
                                                              Integer operation, String extraParameters, BigInteger maxFee, BigInteger maxPriorityFee,
-                                                             BigInteger feeAmount, String remark) {
+                                                             BigInteger feeAmount, String remark, int autoFuel) {
         return executeSync(coboMPCApiService.createTransaction(coin, requestId, amount, fromAddr, toAddr,
-                toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters, maxFee, maxPriorityFee, feeAmount, remark));
+                toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters, maxFee, maxPriorityFee, 
+                feeAmount, remark, autoFuel));
     }
 
     @Override
@@ -95,14 +96,18 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
 
     @Override
     public ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, String requestId, BigDecimal fee,
-                                                              BigInteger gasPrice, BigInteger gasLimit, BigInteger feeAmount) {
-        return executeSync(coboMPCApiService.speedUpTransaction(coboId, requestId, fee, gasPrice, gasLimit, feeAmount));
+                                                              BigInteger gasPrice, BigInteger gasLimit, 
+                                                              BigInteger feeAmount, int autoFuel) {
+        return executeSync(coboMPCApiService.speedUpTransaction(coboId, requestId, fee, 
+            gasPrice, gasLimit, feeAmount, autoFuel));
     }
 
     @Override
     public ApiResponse<MPCPostTransaction> dropTransaction(String coboId, String requestId, BigDecimal fee,
-                                                           BigInteger gasPrice, BigInteger gasLimit, BigInteger feeAmount) {
-        return executeSync(coboMPCApiService.dropTransaction(coboId, requestId, fee, gasPrice, gasLimit, feeAmount));
+                                                           BigInteger gasPrice, BigInteger gasLimit, 
+                                                           BigInteger feeAmount, int autoFuel) {
+        return executeSync(coboMPCApiService.dropTransaction(coboId, requestId, fee, 
+            gasPrice, gasLimit, feeAmount, autoFuel));
     }
 
     @Override

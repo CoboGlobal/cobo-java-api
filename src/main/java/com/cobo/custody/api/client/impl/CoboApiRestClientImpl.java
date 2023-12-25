@@ -232,6 +232,11 @@ public class CoboApiRestClientImpl implements CoboApiRestClient {
         return executeSync(coboApiService.getSupportedCoins());
     }
 
+    @Override
+    public ApiResponse<GasStationBalance> getGasStationBalance() {
+        return executeSync(coboApiService.getGasStationBalance());
+    }
+
     private String intToString(int num) {
         if (num == 0) return null;
         return String.valueOf(num);
