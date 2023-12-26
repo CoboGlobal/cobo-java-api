@@ -107,6 +107,7 @@ public class MPCTransaction {
                 ", failedReason='" + failedReason + '\'' +
                 ", toAddressDetails='" + toAddressDetails + '\'' +
                 ", approvalProcess='" + approvalProcess + '\'' +
+                ", gasStationChildID='" + gasStationChildID + '\'' +
                 ", signature='" + signature + '\'' +
                 '}';
     }
