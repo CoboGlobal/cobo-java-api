@@ -51,6 +51,11 @@ public class Transaction {
     @JsonProperty(value = "request_created_time")
     private long requestCreatedTime;
 
+    @JsonProperty(value = "tx_request_type")
+    private int txRequestType;
+    @JsonProperty(value = "remark")
+    private String remark;
+
     public String getId() {
         return id;
     }
@@ -273,6 +278,22 @@ public class Transaction {
 
     public void setRequestCreatedTime(long requestCreatedTime) {
         this.requestCreatedTime = requestCreatedTime;
+    }
+
+    public int getTxRequestType() {
+        return txRequestType;
+    }
+
+    public void setTxRequestType(int txRequestType) {
+        this.txRequestType = txRequestType;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     @Override
