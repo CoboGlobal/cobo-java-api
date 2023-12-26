@@ -313,4 +313,10 @@ public interface CoboApiRestClient {
      * @return account details
      */
     ApiResponse<List<StandardCoin>> getSupportedCoins();
+
+    /***
+     * Get gas station balance
+     * @return balance of gas station
+     */
+    ApiResponse<GasStationBalance> getGasStationBalance();
 }

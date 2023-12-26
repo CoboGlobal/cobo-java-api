@@ -175,4 +175,7 @@ public interface CoboApiService {
 
     @GET("/v1/custody/get_supported_coins/")
     Call<ApiResponse<List<StandardCoin>>> getSupportedCoins();
+
+    @GET("/v1/custody/get_gas_station_balance/")
+    Call<ApiResponse<GasStationBalance>> getGasStationBalance();
 }
