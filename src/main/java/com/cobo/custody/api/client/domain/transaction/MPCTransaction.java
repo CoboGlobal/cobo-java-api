@@ -74,6 +74,9 @@ public class MPCTransaction {
     @JsonProperty(value = "approval_process")
     private String approvalProcess;
     
+    @JsonProperty(value = "gas_station_child_id")
+    private String gasStationChildID;
+
     private String signature;
 
     @Override
@@ -104,6 +107,7 @@ public class MPCTransaction {
                 ", failedReason='" + failedReason + '\'' +
                 ", toAddressDetails='" + toAddressDetails + '\'' +
                 ", approvalProcess='" + approvalProcess + '\'' +
+                ", gasStationChildID='" + gasStationChildID + '\'' +
                 ", signature='" + signature + '\'' +
                 '}';
     }
@@ -314,5 +318,13 @@ public class MPCTransaction {
 
     public void setNftDetail(MPCNft nftDetail) {
         this.nftDetail = nftDetail;
+    }
+
+    public String getGasStationChildID() {
+        return gasStationChildID;
+    }
+
+    public void setGasStationChildID(String gasStationChildID) {
+        this.gasStationChildID = gasStationChildID;
     }
 }

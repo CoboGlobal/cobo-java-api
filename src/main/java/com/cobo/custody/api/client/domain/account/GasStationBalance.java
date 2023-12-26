@@ -1,5 +1,9 @@
 package com.cobo.custody.api.client.domain.account;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+
 public class GasStationBalance {
     private List<Asset> assets;
 
