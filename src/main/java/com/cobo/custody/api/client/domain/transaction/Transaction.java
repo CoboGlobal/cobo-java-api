@@ -320,11 +320,13 @@ public class Transaction {
                 ", tx_detail=" + txDetail +
                 ", source_address_detail='" + sourceAddressDetail + '\'' +
                 ", memo='" + memo + '\'' +
+                ", remark='" + remark + '\'' +
                 ", confirming_threshold=" + confirmingThreshold +
                 ", fee_coin='" + feeCoin + '\'' +
                 ", fee_amount='" + feeAmount + '\'' +
                 ", fee_decimal=" + feeDecimal +
                 ", type='" + type + '\'' +
+                ", tx_request_type='" + txRequestType + '\'' +
                 ", waiting_audit=" + waitingAudit + '\'' +
                 ", request_created_time=" + requestCreatedTime +
                 '}';
