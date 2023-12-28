@@ -7,7 +7,6 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCNftCollections;
 import com.cobo.custody.api.client.domain.transaction.*;
-import retrofit2.http.Query;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -58,6 +57,11 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
+    public ApiResponse<MPCMemoAddressList> generateAddressMemo(String chainCode, String address, int count) {
+        return executeSync(coboMPCApiService.generateAddressMemo(chainCode, address, count));
+    }
+
+    @Override
     public ApiResponse<MPCAddress> updateAddressDescription(String coin, String address, String description) {
         return executeSync(coboMPCApiService.updateAddressDescription(coin, address, description));
     }
@@ -83,10 +87,10 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, BigInteger amount, String fromAddr, String toAddr,
                                                              String toAddressDetails, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
                                                              Integer operation, String extraParameters, BigInteger maxFee, BigInteger maxPriorityFee,
-                                                             BigInteger feeAmount, String remark, int autoFuel) {
+                                                             BigInteger feeAmount, String remark, int autoFuel, String memo) {
         return executeSync(coboMPCApiService.createTransaction(coin, requestId, amount, fromAddr, toAddr,
                 toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters, maxFee, maxPriorityFee, 
-                feeAmount, remark, autoFuel));
+                feeAmount, remark, autoFuel, memo));
     }
 
     @Override

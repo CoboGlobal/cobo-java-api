@@ -23,6 +23,8 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCAddressList> generateAddresses(String chainCode, int count);
 
+    ApiResponse<MPCMemoAddressList> generateAddressMemo(String chainCode, String address, int count);
+
     ApiResponse<MPCAddress> updateAddressDescription(String coin, String address, String description);
 
     ApiResponse<MPCAddresses> listAddresses(String chainCode, String startId, String endId, Integer limit, Integer sort);
@@ -36,7 +38,7 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, BigInteger amount, String fromAddr, String toAddr,
                                                       String toAddressDetails, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
                                                       Integer operation, String extraParameters, BigInteger maxFee, BigInteger maxPriorityFee,
-                                                      BigInteger feeAmount, String remark, int autoFuel);
+                                                      BigInteger feeAmount, String remark, int autoFuel, String memo);
 
     ApiResponse<MPCPostTransaction> signMessage(String chainCode, String requestId, String fromAddr, Integer signVersion,
                                                 String extraParameters);
