@@ -36,6 +36,12 @@ public interface CoboMPCApiService {
                                                              @Field("count") int count);
 
     @FormUrlEncoded
+    @POST("/v1/custody/mpc/generate_address_memo/")
+    Call<ApiResponse<MPCMemoAddressList>> generateAddressMemo(@Field("chain_code") String chainCode,
+                                                        @Field("address") String address,
+                                                        @Field("count") int count);
+
+    @FormUrlEncoded
     @POST("/v1/custody/mpc/update_address_description/")
     Call<ApiResponse<MPCAddress>> updateAddressDescription(@Field("coin") String coin,
                                                         @Field("address") String address,
@@ -80,7 +86,8 @@ public interface CoboMPCApiService {
                                                             @Field("max_priority_fee") BigInteger maxPriorityFee,
                                                             @Field("fee_amount") BigInteger feeAmount,
                                                             @Field("remark") String remark,
-                                                            @Field("auto_fuel") int autoFuel);
+                                                            @Field("auto_fuel") int autoFuel,
+                                                            @Field("memo") String memo);
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/sign_message/")
@@ -165,4 +172,16 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/get_max_send_amount/")
     Call<ApiResponse<GetSendMaxDetail>> getMaxSendAmount(@Query("coin") String coin, @Query("fee_rate") BigDecimal feeRate, @Query("to_address") String to_address, @Query("from_address") String from_address);
+
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/lock_spendable/")
+    Call<ApiResponse<Void>> lockSpendable(@Field("coin") String coin, @Field("tx_hash") String txHash, @Field("vout_n") Integer voutN);
+
+
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/unlock_spendable/")
+    Call<ApiResponse<Void>> unlockSpendable(@Field("coin") String coin, @Field("tx_hash") String txHash, @Field("vout_n") Integer voutN);
+
+    @GET("/v1/custody/mpc/get_rare_satoshis/")
+    Call<ApiResponse<GetSatoshisDetails>> getRareSatoshis(@Query("coin") String coin, @Query("tx_hash") String txHash, @Query("vout_n") Integer voutN);
 }

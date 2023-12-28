@@ -57,6 +57,11 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
+    public ApiResponse<MPCMemoAddressList> generateAddressMemo(String chainCode, String address, int count) {
+        return executeSync(coboMPCApiService.generateAddressMemo(chainCode, address, count));
+    }
+
+    @Override
     public ApiResponse<MPCAddress> updateAddressDescription(String coin, String address, String description) {
         return executeSync(coboMPCApiService.updateAddressDescription(coin, address, description));
     }
@@ -82,10 +87,10 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public ApiResponse<MPCPostTransaction> createTransaction(String coin, String requestId, BigInteger amount, String fromAddr, String toAddr,
                                                              String toAddressDetails, BigDecimal fee, BigInteger gasPrice, BigInteger gasLimit,
                                                              Integer operation, String extraParameters, BigInteger maxFee, BigInteger maxPriorityFee,
-                                                             BigInteger feeAmount, String remark, int autoFuel) {
+                                                             BigInteger feeAmount, String remark, int autoFuel, String memo) {
         return executeSync(coboMPCApiService.createTransaction(coin, requestId, amount, fromAddr, toAddr,
                 toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters, maxFee, maxPriorityFee, 
-                feeAmount, remark, autoFuel));
+                feeAmount, remark, autoFuel, memo));
     }
 
     @Override
@@ -169,5 +174,20 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     @Override
     public ApiResponse<GetSendMaxDetail> getMaxSendAmount(String coin, BigDecimal feeRate, String toAddr, String fromAddr) {
         return executeSync(coboMPCApiService.getMaxSendAmount(coin, feeRate, toAddr, fromAddr));
+    }
+
+    @Override
+    public ApiResponse<Void> lockSpendable(String coin, String txHash, Integer voutN) {
+        return executeSync(coboMPCApiService.lockSpendable(coin, txHash, voutN));
+    }
+
+    @Override
+    public ApiResponse<Void> unlockSpendable(String coin, String txHash, Integer voutN) {
+        return executeSync(coboMPCApiService.unlockSpendable(coin, txHash, voutN));
+    }
+
+    @Override
+    public ApiResponse<GetSatoshisDetails> getRareSatoshis(String coin, String txHash, Integer voutN) {
+        return executeSync(coboMPCApiService.getRareSatoshis(coin, txHash, voutN));
     }
 }

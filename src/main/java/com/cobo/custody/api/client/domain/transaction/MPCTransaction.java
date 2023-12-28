@@ -79,6 +79,8 @@ public class MPCTransaction {
 
     private String signature;
 
+    private String memo;
+
     @Override
     public String toString() {
         return "MPCTransaction{" +
@@ -109,6 +111,7 @@ public class MPCTransaction {
                 ", approvalProcess='" + approvalProcess + '\'' +
                 ", gasStationChildID='" + gasStationChildID + '\'' +
                 ", signature='" + signature + '\'' +
+                ", memo='" + memo + '\'' +
                 '}';
     }
 
@@ -326,5 +329,13 @@ public class MPCTransaction {
 
     public void setGasStationChildID(String gasStationChildID) {
         this.gasStationChildID = gasStationChildID;
+    }
+
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
     }
 }
