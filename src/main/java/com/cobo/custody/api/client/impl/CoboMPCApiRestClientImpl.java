@@ -7,6 +7,7 @@ import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.*;
 import com.cobo.custody.api.client.domain.asset.MPCNftCollections;
 import com.cobo.custody.api.client.domain.transaction.*;
+import retrofit2.http.Query;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -169,5 +170,20 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     @Override
     public ApiResponse<GetSendMaxDetail> getMaxSendAmount(String coin, BigDecimal feeRate, String toAddr, String fromAddr) {
         return executeSync(coboMPCApiService.getMaxSendAmount(coin, feeRate, toAddr, fromAddr));
+    }
+
+    @Override
+    public ApiResponse<Void> lockSpendable(String coin, String txHash, Integer voutN) {
+        return executeSync(coboMPCApiService.lockSpendable(coin, txHash, voutN));
+    }
+
+    @Override
+    public ApiResponse<Void> unlockSpendable(String coin, String txHash, Integer voutN) {
+        return executeSync(coboMPCApiService.unlockSpendable(coin, txHash, voutN));
+    }
+
+    @Override
+    public ApiResponse<GetSatoshisDetails> getRareSatoshis(String coin, String txHash, Integer voutN) {
+        return executeSync(coboMPCApiService.getRareSatoshis(coin, txHash, voutN));
     }
 }

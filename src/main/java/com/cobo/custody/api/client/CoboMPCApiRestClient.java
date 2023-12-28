@@ -71,7 +71,14 @@ public interface CoboMPCApiRestClient {
     ApiResponse<TssNodes> listTssNodes();
 
     ApiResponse<SignMessages> signMessageByRequestIds(String requestIds);
+
     ApiResponse<SignMessages> signMessageByCoboIds(String coboIds);
 
     ApiResponse<GetSendMaxDetail> getMaxSendAmount(String coin, BigDecimal feeRate, String toAddr, String fromAddr);
+
+    ApiResponse<Void> lockSpendable(String coin, String txHash, Integer voutN);
+
+    ApiResponse<Void> unlockSpendable(String coin, String txHash, Integer voutN);
+
+    ApiResponse<GetSatoshisDetails> getRareSatoshis(String coin, String txHash, Integer voutN);
 }

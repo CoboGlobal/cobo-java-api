@@ -165,4 +165,16 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/get_max_send_amount/")
     Call<ApiResponse<GetSendMaxDetail>> getMaxSendAmount(@Query("coin") String coin, @Query("fee_rate") BigDecimal feeRate, @Query("to_address") String to_address, @Query("from_address") String from_address);
+
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/lock_spendable/")
+    Call<ApiResponse<Void>> lockSpendable(@Field("coin") String coin, @Field("tx_hash") String txHash, @Field("vout_n") Integer voutN);
+
+
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/unlock_spendable/")
+    Call<ApiResponse<Void>> unlockSpendable(@Field("coin") String coin, @Field("tx_hash") String txHash, @Field("vout_n") Integer voutN);
+
+    @GET("/v1/custody/mpc/get_rare_satoshis/")
+    Call<ApiResponse<GetSatoshisDetails>> getRareSatoshis(@Query("coin") String coin, @Query("tx_hash") String txHash, @Query("vout_n") Integer voutN);
 }
