@@ -18,13 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoboMPCApiRestClientImplTest {
-    private String MPCAPISecret = "";
+    private String MPCAPISecret = "5c15bb5bf484e0225d867955f75d38f44dc407d2ed20f14db9abc6c2da3152c8";
     private CoboMPCApiRestClient mpcClient;
-    private Env TestEnv = Env.DEV;
+    private Env TestEnv = Env.SANDBOX;
 
     @BeforeEach
     public void setUp() throws Exception {
-        MPCAPISecret = System.getProperty("MPCApiSecret");
+        //MPCAPISecret = System.getProperty("MPCApiSecret");
         mpcClient = CoboApiClientFactory.newInstance(
                 new LocalSigner(MPCAPISecret),
                 TestEnv,
@@ -42,6 +42,12 @@ public class CoboMPCApiRestClientImplTest {
         assertTrue(res.isSuccess());
     }
 
+    @Test
+    public void TestLock() {
+        ApiResponse<Void> res = mpcClient.lockSpendable("XT", "cea94c7f3ca1569fa20345938377f2ee30c6c7e1b05fcf83a7042be7e78dfddc", 0);
+        System.out.println(res);
+        System.out.println(res.getResult());
+    }
     @Test
     public void testGetSupportedCoins() {
         String chainCode = "GETH";
@@ -135,7 +141,8 @@ public class CoboMPCApiRestClientImplTest {
         Integer operation = null;
         String extraParameters = null;
         ApiResponse<MPCPostTransaction> res = mpcClient.createTransaction(coin, requestId, amount, fromAddr, toAddr,
-                toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters, null, null, null, null, 0);
+                toAddressDetails, fee, gasPrice, gasLimit, operation, extraParameters, null, null,
+                null, null, 0, null);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());
     }
