@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+## [v0.72] (2023-12-29)
+[v0.72]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.71...v0.72
+### Added
+- Add New API: Add coin_info API for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/119
+
 ## [v0.71] (2023-12-29)
 [v0.71]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.70...v0.71
 ### Added
