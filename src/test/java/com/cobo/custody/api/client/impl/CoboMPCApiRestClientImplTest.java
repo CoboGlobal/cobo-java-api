@@ -18,13 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CoboMPCApiRestClientImplTest {
-    private String MPCAPISecret = "5c15bb5bf484e0225d867955f75d38f44dc407d2ed20f14db9abc6c2da3152c8";
+    private String MPCAPISecret = "";
     private CoboMPCApiRestClient mpcClient;
-    private Env TestEnv = Env.SANDBOX;
+    private Env TestEnv = Env.DEV;
 
     @BeforeEach
     public void setUp() throws Exception {
-        //MPCAPISecret = System.getProperty("MPCApiSecret");
+        MPCAPISecret = System.getProperty("MPCApiSecret");
         mpcClient = CoboApiClientFactory.newInstance(
                 new LocalSigner(MPCAPISecret),
                 TestEnv,
