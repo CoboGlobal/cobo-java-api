@@ -20,7 +20,7 @@ import java.util.Objects;
 public class MPCFundCollection {
     private String MPCAPISecret = "";
     private CoboMPCApiRestClient mpcClient;
-    private Env TestEnv = Env.DEVELOP;
+    private Env TestEnv = Env.DEV;
 
     public MPCFundCollection() throws Exception {
         MPCAPISecret = System.getProperty("MPCApiSecret");
@@ -188,8 +188,10 @@ public class MPCFundCollection {
         }
         if (fromAddrFeeBalanceResponse.getResult().getCoinData().size() == 0) {
             String requestId = String.valueOf(System.currentTimeMillis());
-            ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(estimateFee.getResult().getFeeCoin(), requestId, gasFee, feeAddr, fromAddr, null,
-                    null, null, null, null, null, null, null, null);
+            ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(
+                    estimateFee.getResult().getFeeCoin(), requestId, gasFee, feeAddr, fromAddr, null,
+                    null, null, null, null, null, null,
+                    null, null, null);
             if (!transferFeeResponse.isSuccess()) {
                 return new BigInteger("0");
             }
@@ -199,7 +201,7 @@ public class MPCFundCollection {
             if (fromAddrFeeBalance.compareTo(gasFee) < 0) {
                 String requestId = String.valueOf(System.currentTimeMillis());
                 ApiResponse<MPCPostTransaction> transferFeeResponse = mpcClient.createTransaction(estimateFee.getResult().getFeeCoin(), requestId, gasFee.subtract(fromAddrFeeBalance), feeAddr, fromAddr,
-                        null, null, null, null, null, null, null, null, null);
+                        null, null, null, null, null, null, null, null, null, null);
                 if (!transferFeeResponse.isSuccess()) {
                     return new BigInteger("0");
                 }
@@ -211,7 +213,7 @@ public class MPCFundCollection {
         // fromAddr转账toAddr
         String requestId = String.valueOf(System.currentTimeMillis());
         ApiResponse<MPCPostTransaction> response = mpcClient.createTransaction(coin, requestId, realToAmount, fromAddr, toAddr,
-                null, null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null, null);
         if (response.isSuccess()) {
             return realToAmount;
         } else {
@@ -257,7 +259,7 @@ public class MPCFundCollection {
 
         BigInteger realToAmount = toAmount.compareTo(balance.subtract(gasFee)) > 0 ? balance.subtract(gasFee) : toAmount;
         ApiResponse<MPCPostTransaction> response = mpcClient.createTransaction(coin, requestId, realToAmount, fromAddr, toAddr,
-                null, null, null, null, null, null, null, null, null);
+                null, null, null, null, null, null, null, null, null, null);
         if (response.isSuccess()) {
             return realToAmount;
         } else {
