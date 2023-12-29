@@ -23,6 +23,9 @@ public interface CoboMPCApiService {
     @GET("/v1/custody/mpc/get_wallet_supported_coins/")
     Call<ApiResponse<MPCWalletCoins>> getWalletSupportedCoins();
 
+    @GET("/v1/custody/mpc/coin_info/")
+    Call<ApiResponse<CoinInfo>> getCoinInfo(@Query("coin") String coin);
+
     @GET("/v1/custody/mpc/is_valid_address/")
     Call<ApiResponse<Boolean>> isValidAddress(@Query("coin") String coin,
                                               @Query("address") String address);

@@ -17,6 +17,8 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCWalletCoins> getWalletSupportedCoins();
 
+    ApiResponse<CoinInfo> getCoinInfo(String coin);
+
     ApiResponse<Boolean> isValidAddress(String coin, String address);
 
     ApiResponse<MPCAddressList> getMainAddress(String chainCode);
