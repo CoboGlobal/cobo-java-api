@@ -1,5 +1,6 @@
 package com.cobo.custody.mpc;
 
+import com.alibaba.fastjson2.JSON;
 import com.cobo.custody.api.client.CoboApiClientFactory;
 import com.cobo.custody.api.client.CoboMPCApiRestClient;
 import com.cobo.custody.api.client.config.Env;
@@ -95,7 +96,7 @@ public class SplitSatoshis {
         // 转账
         String requestId = String.valueOf(System.currentTimeMillis());
         ApiResponse<MPCPostTransaction> transferFeeResponse = splitSatoshis.mpcClient.createTransaction(coin, requestId,
-                null, toAddress, toAddressDetails.toString(), null, null, null,
+                null, toAddress, JSON.toJSONString(toAddressDetails), null, null, null,
                 null, null, null, null, null, null, null,
                 0, null);
         if (!transferFeeResponse.isSuccess()) {
