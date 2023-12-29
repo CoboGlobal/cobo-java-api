@@ -100,7 +100,7 @@ public class SplitSatoshis {
         // 转账
         String requestId = String.valueOf(System.currentTimeMillis());
         ApiResponse<MPCPostTransaction> transferFeeResponse = splitSatoshis.mpcClient.createTransaction(coin, requestId,
-                null, toAddress, JSON.toJSONString(toAddressDetails), null, null, null,
+                null, toAddress, null, JSON.toJSONString(toAddressDetails), null, null,
                 null, null, null, null, null, null, null,
                 0, null);
         if (!transferFeeResponse.isSuccess()) {
