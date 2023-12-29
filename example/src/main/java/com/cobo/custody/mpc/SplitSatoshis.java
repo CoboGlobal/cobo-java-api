@@ -88,9 +88,13 @@ public class SplitSatoshis {
         if (addresses.size() < output_values.size()) {
             return;
         }
-        HashMap<String, BigInteger> toAddressDetails = new HashMap<>();
+        ArrayList<HashMap<String, String>> toAddressDetails = new ArrayList<>();
         for (int index = 0; index < output_values.size(); index++) {
-            toAddressDetails.put(addresses.get(index), output_values.get(index));
+            HashMap<String, String> toAddressDetail = new HashMap<>();
+            toAddressDetail.put("to_address", addresses.get(index));
+            toAddressDetail.put("amount", output_values.get(index).toString());
+
+            toAddressDetails.add(toAddressDetail);
         }
 
         // 转账
