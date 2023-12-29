@@ -178,12 +178,12 @@ public interface CoboMPCApiService {
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/lock_spendable/")
-    Call<ApiResponse<Void>> lockSpendable(@Field("coin") String coin, @Field("tx_hash") String txHash, @Field("vout_n") Integer voutN);
+    Call<ApiResponse<LockSpendableDetail>> lockSpendable(@Field("coin") String coin, @Field("tx_hash") String txHash, @Field("vout_n") Integer voutN);
 
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/unlock_spendable/")
-    Call<ApiResponse<Void>> unlockSpendable(@Field("coin") String coin, @Field("tx_hash") String txHash, @Field("vout_n") Integer voutN);
+    Call<ApiResponse<LockSpendableDetail>> unlockSpendable(@Field("coin") String coin, @Field("tx_hash") String txHash, @Field("vout_n") Integer voutN);
 
     @GET("/v1/custody/mpc/get_rare_satoshis/")
     Call<ApiResponse<GetSatoshisDetails>> getRareSatoshis(@Query("coin") String coin, @Query("tx_hash") String txHash, @Query("vout_n") Integer voutN);

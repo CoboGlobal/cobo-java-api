@@ -182,12 +182,12 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<Void> lockSpendable(String coin, String txHash, Integer voutN) {
+    public ApiResponse<LockSpendableDetail> lockSpendable(String coin, String txHash, Integer voutN) {
         return executeSync(coboMPCApiService.lockSpendable(coin, txHash, voutN));
     }
 
     @Override
-    public ApiResponse<Void> unlockSpendable(String coin, String txHash, Integer voutN) {
+    public ApiResponse<LockSpendableDetail> unlockSpendable(String coin, String txHash, Integer voutN) {
         return executeSync(coboMPCApiService.unlockSpendable(coin, txHash, voutN));
     }
 
