@@ -78,9 +78,9 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<GetSendMaxDetail> getMaxSendAmount(String coin, BigDecimal feeRate, String toAddr, String fromAddr);
 
-    ApiResponse<Void> lockSpendable(String coin, String txHash, Integer voutN);
+    ApiResponse<LockSpendableDetail> lockSpendable(String coin, String txHash, Integer voutN);
 
-    ApiResponse<Void> unlockSpendable(String coin, String txHash, Integer voutN);
+    ApiResponse<LockSpendableDetail> unlockSpendable(String coin, String txHash, Integer voutN);
 
     ApiResponse<GetSatoshisDetails> getRareSatoshis(String coin, String txHash, Integer voutN);
 }
