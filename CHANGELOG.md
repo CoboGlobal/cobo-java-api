@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+
+## [v0.73] (2023-12-29)
+[v0.73]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.72...v0.73
+### Added
+- Add code example for splitting satoshis. https://github.com/CoboGlobal/cobo-java-api/pull/118
+
 ## [v0.72] (2023-12-29)
 [v0.72]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.71...v0.72
 ### Added
