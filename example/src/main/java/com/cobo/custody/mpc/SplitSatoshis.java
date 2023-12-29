@@ -6,6 +6,8 @@ import com.cobo.custody.api.client.CoboMPCApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.CoinInfo;
+import com.cobo.custody.api.client.domain.transaction.GetSatoshisDetail;
+import com.cobo.custody.api.client.domain.transaction.GetSatoshisDetails;
 import com.cobo.custody.api.client.domain.transaction.MPCPostTransaction;
 import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
 import com.cobo.custody.api.client.impl.LocalSigner;
@@ -99,11 +101,11 @@ public class SplitSatoshis {
         // 转账
         String requestId = String.valueOf(System.currentTimeMillis());
         ApiResponse<MPCPostTransaction> transferFeeResponse = splitSatoshis.mpcClient.createTransaction(coin, requestId, null, toAddress, toAddressDetails.toString(),
-                    null, null, null, null, null, null, null, null, null, null);
+                    null, null, null, null, null, null, null, null, null, null, 0, null);
         if (!transferFeeResponse.isSuccess()) {
                 return ;
         }
-        // 当拆分稀有聪的交易上链后，将拆分出稀有聪的utxo，调用lock_spendable api锁定
+        // 当拆分稀有聪的交易上链后(对应transferFeeResponse)，将拆分出稀有聪的utxo，调用lock_spendable api锁定
         // 根据回调获取稀有聪交易。并拿到相应的txHash, voutN
         String satoshisTxHash = "";
         Integer satoshisVoutN = 0;
