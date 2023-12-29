@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v0.71] (2023-12-29)
-[v0.71]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.69...v0.71
+[v0.71]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.70...v0.71
 ### Added
 - Add New API: Add release satoshis API for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/115
 
