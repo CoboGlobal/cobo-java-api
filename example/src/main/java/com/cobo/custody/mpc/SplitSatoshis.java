@@ -34,9 +34,8 @@ public class SplitSatoshis {
         String coin = "BTC";
         String txHash = "xxxx";
         Integer voutN = 0;
-        // 提供相应的地址，尽量多
-        ArrayList<String> addresses = new ArrayList<>();
-        addresses.add("xxxx");
+        // 为了构造交易中的to_address_details，提供相应的地址
+        String satoshisAddress = "xxxx";
 
         ApiResponse<CoinInfo> coinInfo = splitSatoshis.mpcClient.getCoinInfo(coin);
         if (!coinInfo.isSuccess()) {
@@ -63,7 +62,7 @@ public class SplitSatoshis {
 
         // 拆分稀有聪
         BigInteger lastOffset = new BigInteger("0");
-        ArrayList<BigInteger> output_values = new ArrayList<>();
+        ArrayList<BigInteger> outputValues = new ArrayList<>();
         boolean includeSatoshi = false;
         BigInteger dustThreshold = new BigInteger(String.valueOf(coinInfo.getResult().getDustThreshold()));
         for (GetSatoshisDetail detail : rareSatoshiList.getResult().getSatoshis()) {
@@ -74,25 +73,21 @@ public class SplitSatoshis {
             }
 
             if (!includeSatoshi) {
-                output_values.add(delta);
+                outputValues.add(delta);
             } else {
-                output_values.add(dustThreshold);
-                output_values.add(delta.subtract(dustThreshold));
+                outputValues.add(dustThreshold);
+                outputValues.add(delta.subtract(dustThreshold));
             }
 
             includeSatoshi = false;
             lastOffset = lastOffset.add(delta);
         }
 
-        // 地址数不够直接返回
-        if (addresses.size() < output_values.size()) {
-            return;
-        }
         ArrayList<HashMap<String, String>> toAddressDetails = new ArrayList<>();
-        for (int index = 0; index < output_values.size(); index++) {
+        for (BigInteger outputValue : outputValues) {
             HashMap<String, String> toAddressDetail = new HashMap<>();
-            toAddressDetail.put("to_address", addresses.get(index));
-            toAddressDetail.put("amount", output_values.get(index).toString());
+            toAddressDetail.put("to_address", satoshisAddress);
+            toAddressDetail.put("amount", outputValue.toString());
 
             toAddressDetails.add(toAddressDetail);
         }
