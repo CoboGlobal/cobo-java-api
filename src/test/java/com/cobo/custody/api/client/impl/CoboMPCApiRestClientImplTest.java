@@ -43,12 +43,6 @@ public class CoboMPCApiRestClientImplTest {
     }
 
     @Test
-    public void TestLock() {
-        ApiResponse<Void> res = mpcClient.lockSpendable("XT", "cea94c7f3ca1569fa20345938377f2ee30c6c7e1b05fcf83a7042be7e78dfddc", 0);
-        System.out.println(res);
-        System.out.println(res.getResult());
-    }
-    @Test
     public void testGetSupportedCoins() {
         String chainCode = "GETH";
         ApiResponse<MPCCoins> res = mpcClient.getSupportedCoins(chainCode);
