@@ -1,8 +1,12 @@
 package com.cobo.custody.api.client.domain.transaction;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class LockSpendableDetail {
     private String coin;
+    @JsonProperty(value = "tx_hash")
     private String txHash;
+    @JsonProperty(value = "vout_n")
     private Integer voutN;
 
     public String getCoin() {
