@@ -18,6 +18,9 @@ public class MPCCoin {
     @JsonProperty(value = "confirming_threshold")
     private Integer confirmingThreshold;
 
+    @JsonProperty(value = "dust_threshold")
+    private long dustThreshold;
+
     public String getCoin() {
         return coin;
     }
@@ -82,6 +85,14 @@ public class MPCCoin {
         this.confirmingThreshold = confirmingThreshold;
     }
 
+    public long getDustThreshold() {
+        return dustThreshold;
+    }
+
+    public void setDustThreshold(long dustThreshold) {
+        this.dustThreshold = dustThreshold;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -93,6 +104,7 @@ public class MPCCoin {
                 ", canDeposit=" + canDeposit +
                 ", canWithdraw=" + canWithdraw +
                 ", confirmingThreshold=" + confirmingThreshold +
+                ", dustThreshold=" + dustThreshold +
                 '}';
     }
 }
