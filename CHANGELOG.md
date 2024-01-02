@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.74] (2024-01-02)
+[v0.74]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.73...v0.74
+### Changed
+- Add New Params: Add return value parameter `dustThreshold` for API getSupportedCoins and getWalletSupportedCoins for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/122
+
 ## [v0.73] (2023-12-29)
 [v0.73]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.72...v0.73
 ### Added
