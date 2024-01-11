@@ -57,10 +57,10 @@ public class SplitSatoshis {
 
 
     public static void main(String[] args) throws Exception {
-        // 单个txHash+voutN
+        // 单个txHash+voutN.
         splitSatoshis();
 
-        // 多个txHash+voutN
+        // 多个txHash+voutN.
         splitSatoshisV2();
     }
 
