@@ -114,7 +114,7 @@ public class SplitSatoshis {
                 outputValues.add(delta.subtract(dustThreshold));
             }
 
-            includeSatoshi = false;
+            includeSatoshi = true;
             lastOffset = lastOffset.add(delta);
         }
 
@@ -211,7 +211,7 @@ public class SplitSatoshis {
                     outputValues.add(delta.subtract(dustThreshold));
                 }
 
-                includeSatoshi = false;
+                includeSatoshi = true;
                 lastOffset = lastOffset.add(delta);
             }
         }
