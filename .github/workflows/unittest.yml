@@ -15,7 +15,7 @@ on:
           - prod
   push:
     branches: [ main ]
-  pull_request_target:
+  pull_request:
     branches: [ main ]
 
 jobs:
