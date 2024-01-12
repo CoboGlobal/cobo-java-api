@@ -6,10 +6,7 @@ import com.cobo.custody.api.client.CoboMPCApiRestClient;
 import com.cobo.custody.api.client.config.Env;
 import com.cobo.custody.api.client.domain.ApiResponse;
 import com.cobo.custody.api.client.domain.account.CoinInfo;
-import com.cobo.custody.api.client.domain.transaction.GetSatoshisDetail;
-import com.cobo.custody.api.client.domain.transaction.GetSatoshisDetails;
-import com.cobo.custody.api.client.domain.transaction.MPCPostTransaction;
-import com.cobo.custody.api.client.domain.transaction.MPCTransactionInfos;
+import com.cobo.custody.api.client.domain.transaction.*;
 import com.cobo.custody.api.client.impl.LocalSigner;
 
 import java.math.BigInteger;
@@ -82,6 +79,16 @@ public class SplitSatoshis {
         if (!transactions.isSuccess()) {
             return;
         }
+        MPCTransaction transaction = null;
+        for (MPCTransaction tr : transactions.getResult().getTransactions()) {
+            if (tr.getVoutN().equals(voutN)) {
+                transaction = tr;
+            }
+        }
+        if (transaction == null) {
+            return;
+        }
+
         String toAddress = transactions.getResult().getTransactions().get(0).getToAddress();
 
         // 获取稀有聪
@@ -116,6 +123,16 @@ public class SplitSatoshis {
 
             includeSatoshi = true;
             lastOffset = lastOffset.add(delta);
+        }
+
+        BigInteger amount = new BigInteger(transaction.getAmountDetail().getAmount());
+        if (amount.compareTo(lastOffset) > 0) {
+            if (amount.compareTo(lastOffset.add(dustThreshold)) > 0) {
+                outputValues.add(dustThreshold);
+                outputValues.add(amount.subtract(lastOffset).subtract(dustThreshold));
+            } else {
+                outputValues.add(amount.subtract(lastOffset));
+            }
         }
 
         ArrayList<HashMap<String, Object>> toAddressDetails = new ArrayList<>();
@@ -177,6 +194,16 @@ public class SplitSatoshis {
                 return;
             }
 
+            MPCTransaction transaction = null;
+            for (MPCTransaction tr : transactions.getResult().getTransactions()) {
+                if (tr.getVoutN().equals(txHashAndVoutN.voutN)) {
+                    transaction = tr;
+                }
+            }
+            if (transaction == null) {
+                return;
+            }
+
             // 填充到inputsToSpend
             HashMap<String, Object> mpcTxInput = new HashMap<>();
             mpcTxInput.put("tx_hash", txHashAndVoutN.txHash);
@@ -214,6 +241,16 @@ public class SplitSatoshis {
 
                 includeSatoshi = true;
                 lastOffset = lastOffset.add(delta);
+            }
+
+            BigInteger amount = new BigInteger(transaction.getAmountDetail().getAmount());
+            if (amount.compareTo(lastOffset) > 0) {
+                if (amount.compareTo(lastOffset.add(dustThreshold)) > 0) {
+                    outputValues.add(dustThreshold);
+                    outputValues.add(amount.subtract(lastOffset).subtract(dustThreshold));
+                } else {
+                    outputValues.add(amount.subtract(lastOffset));
+                }
             }
         }
 
