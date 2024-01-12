@@ -136,6 +136,7 @@ public class SplitSatoshis {
         if (!transferFeeResponse.isSuccess()) {
             return;
         }
+
         // 当拆分稀有聪的交易上链后(对应transferFeeResponse)，将拆分出稀有聪的utxo，调用lock_spendable api锁定
         // 根据回调获取稀有聪交易。并拿到相应的txHash, voutN
         String satoshisTxHash = "";
