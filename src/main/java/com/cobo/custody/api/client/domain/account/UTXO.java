@@ -16,6 +16,9 @@ public class UTXO {
     @JsonProperty(value = "confirmed_number")
     private Integer confirmedNumber;
 
+    @JsonProperty(value = "locked")
+    private Boolean locked;
+
     public String getTxHash() {
         return txHash;
     }
@@ -64,6 +67,14 @@ public class UTXO {
         this.confirmedNumber = confirmedNumber;
     }
 
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -73,6 +84,7 @@ public class UTXO {
                 ", amount=" + amount +
                 ", isCoinbase=" + isCoinbase +
                 ", confirmedNumber=" + confirmedNumber +
+                ", locked=" + locked +
                 '}';
     }
 }
