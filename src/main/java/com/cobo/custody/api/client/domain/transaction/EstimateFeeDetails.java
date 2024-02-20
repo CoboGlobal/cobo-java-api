@@ -7,6 +7,8 @@ public class EstimateFeeDetails {
     private EstimateFeeDetail average;
     private EstimateFeeDetail fast;
 
+    private EstimateFeeDetail custom;
+
     @JsonProperty(value = "fee_coin")
     private String feeCoin;
 
@@ -38,6 +40,14 @@ public class EstimateFeeDetails {
         this.fast = fast;
     }
 
+    public EstimateFeeDetail getCustom() {
+        return custom;
+    }
+
+    public void setCustom(EstimateFeeDetail custom) {
+        this.custom = custom;
+    }
+
     public String getFeeCoin() {
         return feeCoin;
     }
@@ -60,6 +70,7 @@ public class EstimateFeeDetails {
                 "slow='" + slow + '\'' +
                 ", average='" + average + '\'' +
                 ", fast='" + fast + '\'' +
+                ", custom='" + custom + '\'' +
                 ", feeCoin='" + feeCoin + '\'' +
                 ", feeDecimal='" + feeDecimal + '\'' +
                 '}';
