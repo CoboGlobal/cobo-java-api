@@ -15,6 +15,8 @@ public class EstimateFeeDetails {
     @JsonProperty(value = "fee_decimal")
     private Integer feeDecimal;
 
+    @JsonProperty(value = "rbf_minimum_limit")
+    private Integer rbfMinimumLimit;
 
     public EstimateFeeDetail getSlow() {
         return slow;
@@ -64,6 +66,14 @@ public class EstimateFeeDetails {
         this.feeDecimal = feeDecimal;
     }
 
+    public Integer getRbfMinimumLimit() {
+        return rbfMinimumLimit;
+    }
+
+    public void setRbfMinimumLimit(Integer rbfMinimumLimit) {
+        this.rbfMinimumLimit = rbfMinimumLimit;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -73,6 +83,7 @@ public class EstimateFeeDetails {
                 ", custom='" + custom + '\'' +
                 ", feeCoin='" + feeCoin + '\'' +
                 ", feeDecimal='" + feeDecimal + '\'' +
+                ", rbfMinimumLimit='" + rbfMinimumLimit + '\'' +
                 '}';
     }
 }
