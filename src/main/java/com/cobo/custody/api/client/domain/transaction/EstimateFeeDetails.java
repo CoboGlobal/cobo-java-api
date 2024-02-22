@@ -82,8 +82,8 @@ public class EstimateFeeDetails {
                 ", fast='" + fast + '\'' +
                 ", custom='" + custom + '\'' +
                 ", feeCoin='" + feeCoin + '\'' +
-                ", feeDecimal='" + feeDecimal + '\'' +
-                ", rbfMinimumFee='" + rbfMinimumFee + '\'' +
+                ", feeDecimal=" + feeDecimal +
+                ", rbfMinimumFee=" + rbfMinimumFee +
                 '}';
     }
 }
