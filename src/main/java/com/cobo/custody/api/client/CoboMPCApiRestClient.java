@@ -47,11 +47,11 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCPostTransaction> speedUpTransaction(String coboId, String requestId, BigDecimal fee, BigInteger gasPrice,
                                                        BigInteger gasLimit, BigInteger feeAmount,
-                                                       int autoFuel, String extraParameters, );
+                                                       int autoFuel, String extraParameters);
 
     ApiResponse<MPCPostTransaction> dropTransaction(String coboId, String requestId, BigDecimal fee, BigInteger gasPrice,
                                                     BigInteger gasLimit, BigInteger feeAmount,
-                                                    int autoFuel, String extraParameters, );
+                                                    int autoFuel, String extraParameters);
 
     ApiResponse<MPCTransactionInfos> transactionsByRequestIds(String requestIds, Integer status);
 
