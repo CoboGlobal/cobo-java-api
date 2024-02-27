@@ -7,12 +7,16 @@ public class EstimateFeeDetails {
     private EstimateFeeDetail average;
     private EstimateFeeDetail fast;
 
+    private EstimateFeeDetail custom;
+
     @JsonProperty(value = "fee_coin")
     private String feeCoin;
 
     @JsonProperty(value = "fee_decimal")
     private Integer feeDecimal;
 
+    @JsonProperty(value = "rbf_minimum_fee")
+    private Integer rbfMinimumFee;
 
     public EstimateFeeDetail getSlow() {
         return slow;
@@ -38,6 +42,14 @@ public class EstimateFeeDetails {
         this.fast = fast;
     }
 
+    public EstimateFeeDetail getCustom() {
+        return custom;
+    }
+
+    public void setCustom(EstimateFeeDetail custom) {
+        this.custom = custom;
+    }
+
     public String getFeeCoin() {
         return feeCoin;
     }
@@ -54,14 +66,24 @@ public class EstimateFeeDetails {
         this.feeDecimal = feeDecimal;
     }
 
+    public Integer getRbfMinimumFee() {
+        return rbfMinimumFee;
+    }
+
+    public void setRbfMinimumFee(Integer rbfMinimumFee) {
+        this.rbfMinimumFee = rbfMinimumFee;
+    }
+
     @Override
     public String toString() {
         return "{" +
                 "slow='" + slow + '\'' +
                 ", average='" + average + '\'' +
                 ", fast='" + fast + '\'' +
+                ", custom='" + custom + '\'' +
                 ", feeCoin='" + feeCoin + '\'' +
-                ", feeDecimal='" + feeDecimal + '\'' +
+                ", feeDecimal=" + feeDecimal +
+                ", rbfMinimumFee=" + rbfMinimumFee +
                 '}';
     }
 }
