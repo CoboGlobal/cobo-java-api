@@ -142,7 +142,7 @@ public class CoinInfo {
         return dustThreshold;
     }
 
-    public void setDustThreshold(int dustThreshold) {
+    public void setDustThreshold(long dustThreshold) {
         this.dustThreshold = dustThreshold;
     }
 

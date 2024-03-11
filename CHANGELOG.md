@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.77] (2024-03-11)
+[v0.77]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.76...v0.77
+### Changed
+- Fix the error output when the dustThreshold is too large in the API coin_info for Custodial Wallet . https://github.com/CoboGlobal/cobo-java-api/pull/133
+
 ## [v0.76] (2024-02-28)
 [v0.76]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.75...v0.76
 ### Changed
