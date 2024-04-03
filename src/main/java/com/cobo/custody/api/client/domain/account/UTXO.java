@@ -2,6 +2,8 @@ package com.cobo.custody.api.client.domain.account;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.math.BigInteger;
+
 public class UTXO {
     @JsonProperty(value = "tx_hash")
     private String txHash;
@@ -10,7 +12,7 @@ public class UTXO {
     @JsonProperty(value = "address")
     private String address;
     @JsonProperty(value = "amount")
-    private Integer amount;
+    private BigInteger amount;
     @JsonProperty(value = "is_coinbase")
     private Boolean isCoinbase;
     @JsonProperty(value = "confirmed_number")
@@ -43,11 +45,11 @@ public class UTXO {
         this.address = address;
     }
 
-    public Integer getAmount() {
+    public BigInteger getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(BigInteger amount) {
         this.amount = amount;
     }
 
