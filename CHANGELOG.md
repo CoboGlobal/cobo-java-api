@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.78] (2024-04-03)
+[v0.78]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.77...v0.78
+### Changed
+- Resolve the precision issue with the `amount` field in the API list_spendable for the MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/134
+
 ## [v0.77] (2024-03-11)
 [v0.77]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.76...v0.77
 ### Changed
@@ -12,7 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v0.76] (2024-02-28)
 [v0.76]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.75...v0.76
 ### Changed
-- Add New Params: Add new parameter 'extra_parameters' for API mpc_speedup_transaction and mpc_drop_transaction. https://github.com/CoboGlobal/cobo-java-api/pull/131
+- Add New Params: Add new parameter `extra_parameters` for API mpc_speedup_transaction and mpc_drop_transaction. https://github.com/CoboGlobal/cobo-java-api/pull/131
 
 ## [v0.75] (2024-01-12)
 [v0.75]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.74...v0.75
