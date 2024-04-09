@@ -195,4 +195,14 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public ApiResponse<GetSatoshisDetails> getRareSatoshis(String coin, String txHash, Integer voutN) {
         return executeSync(coboMPCApiService.getRareSatoshis(coin, txHash, voutN));
     }
+
+    @Override
+    public ApiResponse<MPCUTXOAssetInfo> getUTXOAssets(String coin, String txHash, Integer voutN) {
+        return executeSync(coboMPCApiService.getUTXOAssets(coin, txHash, voutN));
+    }
+
+    @Override
+    public ApiResponse<OrdinalsInscriptionContent> getOrdinalsInscription(String inscriptionId) {
+        return executeSync(coboMPCApiService.getOrdinalsInscription(inscriptionId));
+    }
 }

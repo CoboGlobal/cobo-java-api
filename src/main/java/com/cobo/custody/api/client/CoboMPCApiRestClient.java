@@ -85,4 +85,9 @@ public interface CoboMPCApiRestClient {
     ApiResponse<LockSpendableDetail> unlockSpendable(String coin, String txHash, Integer voutN);
 
     ApiResponse<GetSatoshisDetails> getRareSatoshis(String coin, String txHash, Integer voutN);
+
+    ApiResponse<MPCUTXOAssetInfo> getUTXOAssets(String coin, String txHash, Integer voutN);
+
+    ApiResponse<OrdinalsInscriptionContent> getOrdinalsInscription(String inscriptionId);
+
 }

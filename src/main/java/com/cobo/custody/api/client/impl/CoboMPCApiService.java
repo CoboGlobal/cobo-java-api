@@ -189,4 +189,10 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/get_rare_satoshis/")
     Call<ApiResponse<GetSatoshisDetails>> getRareSatoshis(@Query("coin") String coin, @Query("tx_hash") String txHash, @Query("vout_n") Integer voutN);
+
+    @GET("/v1/custody/mpc/get_utxo_assets/")
+    Call<ApiResponse<MPCUTXOAssetInfo>> getUTXOAssets(@Query("coin") String coin, @Query("tx_hash") String txHash, @Query("vout_n") Integer voutN);
+
+    @GET("/v1/custody/mpc/get_ordinals_inscription/")
+    Call<ApiResponse<OrdinalsInscriptionContent>> getOrdinalsInscription(@Query("inscription_id") String inscriptionId);
 }
