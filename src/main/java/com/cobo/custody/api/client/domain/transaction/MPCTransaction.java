@@ -81,6 +81,9 @@ public class MPCTransaction {
 
     private String memo;
 
+    @JsonProperty(value = "is_gas_station_tx")
+    private Boolean isGasStationTx;
+
     @Override
     public String toString() {
         return "MPCTransaction{" +
@@ -88,8 +91,8 @@ public class MPCTransaction {
                 ", requestId='" + requestId + '\'' +
                 ", status=" + status +
                 ", coinDetail=" + coinDetail +
-                ", amountDetail=" + amountDetail +
                 ", nftDetail=" + nftDetail +
+                ", amountDetail=" + amountDetail +
                 ", feeDetail=" + feeDetail +
                 ", sourceAddresses='" + sourceAddresses + '\'' +
                 ", fromAddress='" + fromAddress + '\'' +
@@ -112,6 +115,7 @@ public class MPCTransaction {
                 ", gasStationChildID='" + gasStationChildID + '\'' +
                 ", signature='" + signature + '\'' +
                 ", memo='" + memo + '\'' +
+                ", isGasStationTx=" + isGasStationTx +
                 '}';
     }
 
@@ -325,6 +329,14 @@ public class MPCTransaction {
 
     public String getGasStationChildID() {
         return gasStationChildID;
+    }
+
+    public Boolean getIsGasStationTx() {
+        return isGasStationTx;
+    }
+
+    public void setIsGasStationTx(Boolean isGasStationTx) {
+        this.isGasStationTx = isGasStationTx;
     }
 
     public void setGasStationChildID(String gasStationChildID) {
