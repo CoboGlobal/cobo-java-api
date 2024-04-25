@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.80] (2024-04-25)
+[v0.80]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.79...v0.80
+### Changed
+- Add field `is_gas_station_tx` in the response of get transactions API for the MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/138
+
 ## [v0.79] (2024-04-09)
 [v0.79]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.78...v0.79
 ### Changed
