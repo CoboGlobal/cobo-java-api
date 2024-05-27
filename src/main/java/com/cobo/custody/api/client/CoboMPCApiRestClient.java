@@ -7,6 +7,7 @@ import com.cobo.custody.api.client.domain.transaction.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
 public interface CoboMPCApiRestClient {
     ApiResponse<MPCChains> getSupportedChains();
@@ -89,5 +90,15 @@ public interface CoboMPCApiRestClient {
     ApiResponse<MPCUTXOAssetInfo> getUTXOAssets(String coin, String txHash, Integer voutN);
 
     ApiResponse<OrdinalsInscriptionContent> getOrdinalsInscription(String inscriptionId);
+
+    ApiResponse<Void> babylonPrepareStaking(String requestId, String stakeInfo, BigDecimal feeRate, BigInteger maxStakingFee);
+
+    ApiResponse<Void> babylonUpdateStakingFee(String requestId, String relatedRequestId, BigDecimal feeRate, BigInteger maxStakingFee);
+
+    ApiResponse<Void> babylonBroadcastStakingTransaction(String requestId);
+
+    ApiResponse<BabylonStakingTransaction> babylonGetStakingInfo(String requestId);
+
+    ApiResponse<List<BabylonStakingTransaction>> babylonListWaitingBroadcastTransactions(String coin, String address);
 
 }
