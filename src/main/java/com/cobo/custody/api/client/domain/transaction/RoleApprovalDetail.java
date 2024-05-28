@@ -14,12 +14,12 @@ public class RoleApprovalDetail {
     @JsonProperty(value = "user_details")
     private Map<String, UserApprovalResult> userDetails;
 
-    public Integer getResult() {
-        return result;
+    public Integer getRoleResult() {
+        return roleResult;
     }
 
-    public void setResult(Integer result) {
-        this.result = result;
+    public void setRoleResult(Integer roleResult) {
+        this.roleResult = roleResult;
     }
 
     public Integer getReviewThreshold() {
@@ -41,7 +41,7 @@ public class RoleApprovalDetail {
     @Override
     public String toString() {
         return "RoleApprovalDetail{" +
-                "result=" + result +
+                "roleResult=" + roleResult +
                 ", reviewThreshold=" + reviewThreshold +
                 ", userDetails=" + userDetails +
                 '}';
