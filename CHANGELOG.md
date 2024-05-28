@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.81] (2024-05-28)
+[v0.81]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.80...v0.81
+### Changed
+- dd New API: Add getApprovalDetails API for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/141
+
 ## [v0.80] (2024-04-25)
 [v0.80]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.79...v0.80
 ### Changed
