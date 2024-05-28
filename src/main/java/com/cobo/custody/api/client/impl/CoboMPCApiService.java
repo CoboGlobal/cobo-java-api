@@ -195,4 +195,7 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/get_ordinals_inscription/")
     Call<ApiResponse<OrdinalsInscriptionContent>> getOrdinalsInscription(@Query("inscription_id") String inscriptionId);
+
+    @GET("/v1/custody/mpc/get_approval_details/")
+    Call<ApiResponse<ApprovalDetails>> getApprovalDetails(@Query("request_id") String requestId);
 }

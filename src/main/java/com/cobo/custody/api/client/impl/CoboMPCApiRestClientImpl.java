@@ -205,4 +205,9 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public ApiResponse<OrdinalsInscriptionContent> getOrdinalsInscription(String inscriptionId) {
         return executeSync(coboMPCApiService.getOrdinalsInscription(inscriptionId));
     }
+
+    @Override
+    public ApiResponse<ApprovalDetails> getApprovalDetails(String requestId) {
+        return executeSync(coboMPCApiService.getApprovalDetails(requestId));
+    }
 }

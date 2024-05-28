@@ -90,4 +90,6 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<OrdinalsInscriptionContent> getOrdinalsInscription(String inscriptionId);
 
+    ApiResponse<ApprovalDetails> getApprovalDetails(String requestId);
+
 }
