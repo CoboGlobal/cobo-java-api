@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 public class RoleApprovalDetail {
-    private Integer result;
+    @JsonProperty(value = "role_result")
+    private Integer roleResult;
 
     @JsonProperty(value = "review_threshold")
     private Integer reviewThreshold;
