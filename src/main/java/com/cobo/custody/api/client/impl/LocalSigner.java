@@ -3,10 +3,7 @@ package com.cobo.custody.api.client.impl;
 import com.cobo.custody.api.client.ApiSigner;
 import org.bitcoinj.core.ECKey;
 import org.bitcoinj.core.Sha256Hash;
-import org.bouncycastle.asn1.ASN1InputStream;
-import org.bouncycastle.asn1.ASN1Integer;
-import org.bouncycastle.asn1.ASN1Primitive;
-import org.bouncycastle.asn1.DLSequence;
+import org.bouncycastle.asn1.*;
 import org.bouncycastle.asn1.x9.X9ECParameters;
 import org.bouncycastle.crypto.AsymmetricCipherKeyPair;
 import org.bouncycastle.crypto.ec.CustomNamedCurves;
@@ -29,6 +26,7 @@ import java.security.*;
 import java.security.interfaces.ECPrivateKey;
 import java.security.spec.ECPrivateKeySpec;
 import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
 
 import static com.cobo.custody.api.client.impl.Utils.*;
 
@@ -88,6 +86,21 @@ public class LocalSigner implements ApiSigner {
         return signer.verifySignature(sha256(sha256(content.getBytes(StandardCharsets.UTF_8))), rs[0], rs[1]);
     }
 
+    public static boolean verifyEcdsaSignatureForSecp256r1(String content, String signature, String pub) {
+        X9ECParameters curveParams = CustomNamedCurves.getByName("secp256r1");
+        ECDomainParameters curve = new ECDomainParameters(curveParams.getCurve(),
+                curveParams.getG(), curveParams.getN(), curveParams.getH());
+        ECDSASigner signer = new ECDSASigner();
+        byte[] hexPub = hexToBytes(pub);
+        byte[] newHexPub = new byte[hexPub.length + 1];
+        newHexPub[0] = 4;
+        System.arraycopy(hexPub, 0, newHexPub, 1, hexPub.length);
+        ECPublicKeyParameters params = new ECPublicKeyParameters(curve.getCurve().decodePoint(newHexPub), curve);
+        signer.init(false, params);
+        BigInteger[] rs = decodeFromDERForSecp256r1(hexToBytes(signature));
+        return signer.verifySignature(sha256(content.getBytes(StandardCharsets.UTF_8)), rs[0], rs[1]);
+    }
+
     public static BigInteger[] decodeFromDER(byte[] bytes) {
         ASN1InputStream decoder = null;
         try {
@@ -116,6 +129,15 @@ public class LocalSigner implements ApiSigner {
                 }
             Properties.removeThreadOverride("org.bouncycastle.asn1.allow_unsafe_integer");
         }
+    }
+
+    public static BigInteger[] decodeFromDERForSecp256r1(byte[] bytes) {
+        if (bytes.length != 64) {
+            throw new RuntimeException("Invalid signature length");
+        }
+        BigInteger r = new BigInteger(1, Arrays.copyOfRange(bytes, 0, 32));
+        BigInteger s = new BigInteger(1, Arrays.copyOfRange(bytes, 32, 64));
+        return new BigInteger[]{r, s};
     }
 
     public ECPrivateKey generatePrivateKey(byte[] keyBin) throws InvalidKeySpecException, NoSuchAlgorithmException {
