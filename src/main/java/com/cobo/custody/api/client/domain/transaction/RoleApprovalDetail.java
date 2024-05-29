@@ -14,6 +14,16 @@ public class RoleApprovalDetail {
     @JsonProperty(value = "user_details")
     private Map<String, UserApprovalResult> userDetails;
 
+    private String initiator;
+
+    public String getInitiator() {
+        return initiator;
+    }
+
+    public void setInitiator(String initiator) {
+        this.initiator = initiator;
+    }
+
     public Integer getRoleResult() {
         return roleResult;
     }
@@ -44,6 +54,7 @@ public class RoleApprovalDetail {
                 "roleResult=" + roleResult +
                 ", reviewThreshold=" + reviewThreshold +
                 ", userDetails=" + userDetails +
+                ", initiator='" + initiator + '\'' +
                 '}';
     }
 }
