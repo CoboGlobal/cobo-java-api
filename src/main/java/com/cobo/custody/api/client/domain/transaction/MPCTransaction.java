@@ -84,6 +84,8 @@ public class MPCTransaction {
     @JsonProperty(value = "is_gas_station_tx")
     private Boolean isGasStationTx;
 
+    private String remark;
+
     @Override
     public String toString() {
         return "MPCTransaction{" +
@@ -116,7 +118,24 @@ public class MPCTransaction {
                 ", signature='" + signature + '\'' +
                 ", memo='" + memo + '\'' +
                 ", isGasStationTx=" + isGasStationTx +
+                ", remark='" + remark + '\'' +
                 '}';
+    }
+
+    public Boolean getGasStationTx() {
+        return isGasStationTx;
+    }
+
+    public void setGasStationTx(Boolean gasStationTx) {
+        isGasStationTx = gasStationTx;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public String getApprovalProcess() {
