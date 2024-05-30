@@ -9,6 +9,7 @@ import retrofit2.http.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
 public interface CoboMPCApiService {
     @GET("/v1/custody/mpc/get_supported_chains/")
@@ -196,6 +197,21 @@ public interface CoboMPCApiService {
     @GET("/v1/custody/mpc/get_ordinals_inscription/")
     Call<ApiResponse<OrdinalsInscriptionContent>> getOrdinalsInscription(@Query("inscription_id") String inscriptionId);
 
-    @GET("/v1/custody/mpc/get_approval_details/")
-    Call<ApiResponse<ApprovalDetails>> getApprovalDetails(@Query("request_id") String requestId);
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/babylon/prepare_staking")
+    Call<ApiResponse<Void>> babylonPrepareStaking(@Field("request_id") String requestId, @Field("stake_info") String stakeInfo, @Field("fee_rate") BigDecimal feeRate, @Field("max_staking_fee") BigInteger maxStakingFee);
+
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/babylon/update_staking_fee")
+    Call<ApiResponse<Void>> babylonUpdateStakingFee(@Field("request_id") String requestId, @Field("related_request_id") String relatedRequestId, @Field("fee_rate") BigDecimal feeRate, @Field("max_staking_fee") BigInteger maxStakingFee);
+
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/babylon/broadcast_staking_transaction")
+    Call<ApiResponse<Void>> babylonBroadcastStakingTransaction(@Field("request_id") String requestId);
+
+    @GET("/v1/custody/mpc/babylon/get_staking_info")
+    Call<ApiResponse<BabylonStakingTransaction>> babylonGetStakingInfo(@Query("request_id") String requestId);
+
+    @GET("/v1/custody/mpc/babylon/list_waiting_broadcast_transactions")
+    Call<ApiResponse<List<BabylonStakingTransaction>>> babylonListWaitingBroadcastTransactions(@Query("asset_coin") String coin, @Query("address") String address);
 }
