@@ -13,6 +13,17 @@ public class UserApprovalResult {
     @JsonProperty(value = "extra_message")
     private String extraMessage;
 
+    @JsonProperty(value = "transaction_type")
+    private String transactionType;
+
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
+    }
+
     public Integer getResult() {
         return result;
     }
@@ -64,12 +75,13 @@ public class UserApprovalResult {
     @Override
     public String toString() {
         return "UserApprovalResult{" +
-                "result='" + result + '\'' +
+                "result=" + result +
                 ", signature='" + signature + '\'' +
                 ", lastTime='" + lastTime + '\'' +
                 ", language='" + language + '\'' +
                 ", messageVersion='" + messageVersion + '\'' +
                 ", extraMessage='" + extraMessage + '\'' +
+                ", transactionType='" + transactionType + '\'' +
                 '}';
     }
 }

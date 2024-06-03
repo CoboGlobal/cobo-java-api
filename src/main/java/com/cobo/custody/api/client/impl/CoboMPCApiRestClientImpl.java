@@ -10,6 +10,7 @@ import com.cobo.custody.api.client.domain.transaction.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
 import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.createService;
 import static com.cobo.custody.api.client.impl.CoboApiServiceGenerator.executeSync;
@@ -209,5 +210,30 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     @Override
     public ApiResponse<ApprovalDetails> getApprovalDetails(String requestId) {
         return executeSync(coboMPCApiService.getApprovalDetails(requestId));
+    }
+
+    @Override
+    public ApiResponse<Void> babylonPrepareStaking(String requestId, String stakeInfo, BigDecimal feeRate, BigInteger maxStakingFee) {
+        return executeSync(coboMPCApiService.babylonPrepareStaking(requestId, stakeInfo, feeRate, maxStakingFee));
+    }
+
+    @Override
+    public ApiResponse<Void> babylonReplaceStakingFee(String requestId, String relatedRequestId, BigDecimal feeRate, BigInteger maxStakingFee) {
+        return executeSync(coboMPCApiService.babylonReplaceStakingFee(requestId, relatedRequestId, feeRate, maxStakingFee));
+    }
+
+    @Override
+    public ApiResponse<Void> babylonBroadcastStakingTransaction(String requestId) {
+        return executeSync(coboMPCApiService.babylonBroadcastStakingTransaction(requestId));
+    }
+
+    @Override
+    public ApiResponse<BabylonStakingTransaction> babylonGetStakingInfo(String requestId) {
+        return executeSync(coboMPCApiService.babylonGetStakingInfo(requestId));
+    }
+
+    @Override
+    public ApiResponse<List<BabylonStakingTransaction>> babylonListWaitingBroadcastTransactions(String coin, String address) {
+        return executeSync(coboMPCApiService.babylonListWaitingBroadcastTransactions(coin, address));
     }
 }
