@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.83] (2024-06-03)
+[v0.83]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.82...v0.83
+### Changed
+- Add APIs for the Babylon Staking of Co-managed Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/147
+
 ## [v0.82] (2024-05-29)
 [v0.82]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.81...v0.82
 ### Changed
