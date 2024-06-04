@@ -4,73 +4,78 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.84] (2024-06-04)
+[v0.84]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.83...v0.84
+### Changed
+- Add New Params: Add new parameter `encoding` for API mpc_generate_addresses. https://github.com/CoboGlobal/cobo-java-api/pull/149
+
 ## [v0.83] (2024-06-03)
-[v0.83]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.82...v0.83
+[v0.83]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.82...v0.83
 ### Changed
 - Add APIs for the Babylon Staking of Co-managed Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/147
 
 ## [v0.82] (2024-05-29)
-[v0.82]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.81...v0.82
+[v0.82]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.81...v0.82
 ### Changed
 - Add field `initiator` in the response of getApprovalDetails API for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/144
 
 ## [v0.81] (2024-05-28)
-[v0.81]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.80...v0.81
+[v0.81]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.80...v0.81
 ### Changed
 - Add New API: Add getApprovalDetails API for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/141
 
 ## [v0.80] (2024-04-25)
-[v0.80]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.79...v0.80
+[v0.80]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.79...v0.80
 ### Changed
 - Add field `is_gas_station_tx` in the response of get transactions API for the MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/138
 
 ## [v0.79] (2024-04-09)
-[v0.79]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.78...v0.79
+[v0.79]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.78...v0.79
 ### Changed
 - Add New API: Add getUTXOAssets and getOrdinalsInscription API for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/136
 
 ## [v0.78] (2024-04-03)
-[v0.78]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.77...v0.78
+[v0.78]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.77...v0.78
 ### Changed
 - Resolve the precision issue with the `amount` field in the API list_spendable for the MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/134
 
 ## [v0.77] (2024-03-11)
-[v0.77]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.76...v0.77
+[v0.77]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.76...v0.77
 ### Changed
 - Fix the error output when the dustThreshold is too large in the API coin_info for Custodial Wallet . https://github.com/CoboGlobal/cobo-java-api/pull/133
 
 ## [v0.76] (2024-02-28)
-[v0.76]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.75...v0.76
+[v0.76]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.75...v0.76
 ### Changed
 - Add New Params: Add new parameter `extra_parameters` for API mpc_speedup_transaction and mpc_drop_transaction. https://github.com/CoboGlobal/cobo-java-api/pull/131
 
 ## [v0.75] (2024-01-12)
-[v0.75]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.74...v0.75
+[v0.75]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.74...v0.75
 ### Changed
 - Add New Params: Add return value parameter `locked` in API listSpendable for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/127
 
 ## [v0.74] (2024-01-02)
-[v0.74]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.73...v0.74
+[v0.74]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.73...v0.74
 ### Changed
 - Add New Params: Add return value parameter `dustThreshold` for API getSupportedCoins and getWalletSupportedCoins for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/122
 
 ## [v0.73] (2023-12-29)
-[v0.73]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.72...v0.73
+[v0.73]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.72...v0.73
 ### Added
 - Add code example for splitting satoshis. https://github.com/CoboGlobal/cobo-java-api/pull/118
 
 ## [v0.72] (2023-12-29)
-[v0.72]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.71...v0.72
+[v0.72]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.71...v0.72
 ### Added
 - Add New API: Add coin_info API for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/119
 
 ## [v0.71] (2023-12-29)
-[v0.71]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.70...v0.71
+[v0.71]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.70...v0.71
 ### Added
 - Add New API: Add release satoshis API for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/115
 
 ## [v0.70] (2023-12-28)
-[v0.70]:  https://github.com/CoboGlobal/cobo-java-api/compare/v0.69...v0.70
+[v0.70]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.69...v0.70
 ### Added
 - Add New API: Add release satoshis API for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/115
 
