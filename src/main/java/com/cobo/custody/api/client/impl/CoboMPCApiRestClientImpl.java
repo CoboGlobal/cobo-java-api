@@ -58,8 +58,8 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
-    public ApiResponse<MPCAddressList> generateAddresses(String chainCode, int count) {
-        return executeSync(coboMPCApiService.generateAddresses(chainCode, count));
+    public ApiResponse<MPCAddressList> generateAddresses(String chainCode, int count, Integer encoding) {
+        return executeSync(coboMPCApiService.generateAddresses(chainCode, count, encoding));
     }
 
     @Override

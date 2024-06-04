@@ -24,7 +24,7 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<MPCAddressList> getMainAddress(String chainCode);
 
-    ApiResponse<MPCAddressList> generateAddresses(String chainCode, int count);
+    ApiResponse<MPCAddressList> generateAddresses(String chainCode, int count, Integer encoding);
 
     ApiResponse<MPCMemoAddressList> generateAddressMemo(String chainCode, String address, int count);
 
