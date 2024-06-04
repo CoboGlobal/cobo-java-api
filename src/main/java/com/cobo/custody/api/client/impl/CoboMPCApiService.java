@@ -37,7 +37,7 @@ public interface CoboMPCApiService {
     @FormUrlEncoded
     @POST("/v1/custody/mpc/generate_addresses/")
     Call<ApiResponse<MPCAddressList>> generateAddresses(@Field("chain_code") String chainCode,
-                                                             @Field("count") int count);
+                                                             @Field("count") int count, @Field("encoding") Integer encoding);
 
     @FormUrlEncoded
     @POST("/v1/custody/mpc/generate_address_memo/")
