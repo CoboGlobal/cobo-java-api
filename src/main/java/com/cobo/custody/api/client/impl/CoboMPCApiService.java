@@ -212,6 +212,10 @@ public interface CoboMPCApiService {
     @POST("/v1/custody/mpc/babylon/broadcast_staking_transaction/")
     Call<ApiResponse<Void>> babylonBroadcastStakingTransaction(@Field("request_id") String requestId);
 
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/babylon/batch_broadcast_staking_transaction/")
+    Call<ApiResponse<Void>> babylonBatchBroadcastStakingTransaction(@Field("request_ids") String requestIds);
+
     @GET("/v1/custody/mpc/babylon/get_staking_info/")
     Call<ApiResponse<BabylonStakingTransaction>> babylonGetStakingInfo(@Query("request_id") String requestId);
 
