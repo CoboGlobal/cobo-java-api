@@ -99,6 +99,8 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<Void> babylonBroadcastStakingTransaction(String requestId);
 
+    ApiResponse<Void> babylonBatchBroadcastStakingTransaction(List<String> requestIds);
+
     ApiResponse<BabylonStakingTransaction> babylonGetStakingInfo(String requestId);
 
     ApiResponse<List<BabylonStakingTransaction>> babylonListWaitingBroadcastTransactions(String coin, String address);

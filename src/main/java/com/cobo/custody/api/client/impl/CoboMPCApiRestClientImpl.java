@@ -228,6 +228,12 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
+    public ApiResponse<Void> babylonBatchBroadcastStakingTransaction(List<String> requestIds) {
+        return executeSync(coboMPCApiService.babylonBatchBroadcastStakingTransaction(String.join(",", requestIds)));
+    }
+
+
+    @Override
     public ApiResponse<BabylonStakingTransaction> babylonGetStakingInfo(String requestId) {
         return executeSync(coboMPCApiService.babylonGetStakingInfo(requestId));
     }

@@ -16,6 +16,8 @@ public class BabylonStakingTransaction {
     private BigDecimal feeRate;
     @JsonProperty(value = "max_staking_fee")
     private BigInteger maxStakingFee;
+    @JsonProperty(value = "sign_result")
+    private String signResult;
 
     public String getRequestId() {
         return requestId;
@@ -57,6 +59,14 @@ public class BabylonStakingTransaction {
         this.maxStakingFee = maxStakingFee;
     }
 
+    public String getSignResult() {
+        return signResult;
+    }
+
+    public void setSignResult(String signResult) {
+        this.signResult = signResult;
+    }
+
     @Override
     public String toString() {
         return "BabylonStakingTransaction{" +
@@ -65,6 +75,7 @@ public class BabylonStakingTransaction {
                 ", stakingInfo='" + stakingInfo + '\'' +
                 ", feeRate=" + feeRate +
                 ", maxStakingFee=" + maxStakingFee +
+                ", signResult='" + signResult + '\'' +
                 '}';
     }
 }
