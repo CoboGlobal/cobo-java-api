@@ -70,7 +70,7 @@ public class CoboMPCApiRestClientImplTest {
     public void testGenerateAddresses() {
         String chainCode = "GETH";
         int count = 2;
-        ApiResponse<MPCAddressList> res = mpcClient.generateAddresses(chainCode, count);
+        ApiResponse<MPCAddressList> res = mpcClient.generateAddresses(chainCode, count, 2);
         System.out.println(res);
         System.out.println(res.getResult());
         assertTrue(res.isSuccess());

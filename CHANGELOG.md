@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.85] (2024-06-18)
+[v0.85]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.84...v0.85
+### Changed
+- Add New API: Add babylonBatchBroadcastStakingTransaction API for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/151
+
 ## [v0.84] (2024-06-04)
 [v0.84]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.83...v0.84
 ### Changed
