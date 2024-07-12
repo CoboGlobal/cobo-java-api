@@ -242,4 +242,9 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     public ApiResponse<List<BabylonStakingTransaction>> babylonListWaitingBroadcastTransactions(String coin, String address) {
         return executeSync(coboMPCApiService.babylonListWaitingBroadcastTransactions(coin, address));
     }
+
+    @Override
+    public ApiResponse<List<BabylonStakingTransaction>> babylonListTransactionsByStatus(Integer status, String address, String minCoboId, Integer limit) {
+        return executeSync(coboMPCApiService.babylonListTransactionsByStatus(status, address, minCoboId, limit));
+    }
 }

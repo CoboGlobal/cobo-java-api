@@ -221,4 +221,7 @@ public interface CoboMPCApiService {
 
     @GET("/v1/custody/mpc/babylon/list_waiting_broadcast_transactions/")
     Call<ApiResponse<List<BabylonStakingTransaction>>> babylonListWaitingBroadcastTransactions(@Query("asset_coin") String coin, @Query("address") String address);
+
+    @GET("/v1/custody/mpc/babylon/list_transactions_by_status/")
+    Call<ApiResponse<List<BabylonStakingTransaction>>> babylonListTransactionsByStatus(@Query("status") Integer status, @Query("address") String address, @Query("min_cobo_id") String minCoboId, @Query("limit") Integer limit);
 }

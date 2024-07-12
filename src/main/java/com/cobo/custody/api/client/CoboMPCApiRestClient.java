@@ -105,4 +105,6 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<List<BabylonStakingTransaction>> babylonListWaitingBroadcastTransactions(String coin, String address);
 
+    ApiResponse<List<BabylonStakingTransaction>> babylonListTransactionsByStatus(Integer status, String address, String minCoboId, Integer limit);
+
 }
