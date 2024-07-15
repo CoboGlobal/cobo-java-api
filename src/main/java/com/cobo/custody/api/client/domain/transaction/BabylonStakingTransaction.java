@@ -18,6 +18,9 @@ public class BabylonStakingTransaction {
     private BigInteger maxStakingFee;
     @JsonProperty(value = "sign_result")
     private String signResult;
+    @JsonProperty(value = "tx_hash")
+    private String txHash;
+    private Integer status;
 
     public String getRequestId() {
         return requestId;
@@ -67,6 +70,22 @@ public class BabylonStakingTransaction {
         this.signResult = signResult;
     }
 
+    public String getTxHash() {
+        return txHash;
+    }
+
+    public void setTxHash(String txHash) {
+        this.txHash = txHash;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "BabylonStakingTransaction{" +
@@ -76,6 +95,8 @@ public class BabylonStakingTransaction {
                 ", feeRate=" + feeRate +
                 ", maxStakingFee=" + maxStakingFee +
                 ", signResult='" + signResult + '\'' +
+                ", txHash='" + txHash + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
