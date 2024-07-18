@@ -17,6 +17,8 @@ public class MPCFee {
 
     @JsonProperty(value = "fee")
     private BigDecimal fee;
+    @JsonProperty(value = "max_fee_amount")
+    private String maxFeeAmount;
 
     public MPCCoin getFeeCoinDetail() {
         return feeCoinDetail;
@@ -58,6 +60,14 @@ public class MPCFee {
         this.fee = fee;
     }
 
+    public String getMaxFeeAmount() {
+        return maxFeeAmount;
+    }
+
+    public void setMaxFeeAmount(String maxFeeAmount) {
+        this.maxFeeAmount = maxFeeAmount;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -66,6 +76,7 @@ public class MPCFee {
                 ", gasLimit='" + gasLimit + '\'' +
                 ", feeUsed='" + feeUsed + '\'' +
                 ", fee='" + fee + '\'' +
+                ", maxFeeAmount='" + maxFeeAmount + '\'' +
                 '}';
     }
 }
