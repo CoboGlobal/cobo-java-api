@@ -4,8 +4,8 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [v0.87] (2024-07-18)
-[v0.87]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.86...v0.87
+## [v0.88] (2024-07-19)
+[v0.88]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.86...v0.88
 ### Changed
 - Add field `maxFeeAmount` in the response of get transaction APIs for the MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/155
 
