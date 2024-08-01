@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.89] (2024-08-01)
+[v0.89]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.88...v0.89
+### Changed
+- Add field `assetModelType` in the response of coin_info API for the MPC Wallet.
+- Add field `SelectedUTXO` and `targetDestinations` in the response of get transaction APIs for the MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/158
+
 ## [v0.88] (2024-07-19)
 [v0.88]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.86...v0.88
 ### Changed
