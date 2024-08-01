@@ -33,6 +33,8 @@ public class CoinInfo {
     private String tokenAddress;
     @JsonProperty(value = "abs_estimate_fee_usd")
     private BigDecimal absEstimateFeeUsd;
+    @JsonProperty(value = "asset_model_type")
+    private int assetModelType;
 
     public String getCoin() {
         return coin;
@@ -161,6 +163,14 @@ public class CoinInfo {
         this.absEstimateFeeUsd = absEstimateFeeUsd;
     }
 
+    public int getAssetModelType() {
+        return assetModelType;
+    }
+
+    public void setAssetModelType(int assetModelType) {
+        this.assetModelType = assetModelType;
+    }
+
     @Override
     public String toString() {
         return "CoinInfo{" +
@@ -177,9 +187,10 @@ public class CoinInfo {
                 ", feeCoin='" + feeCoin + '\'' +
                 ", absEstimateFee='" + absEstimateFee + '\'' +
                 ", confirmingThreshold=" + confirmingThreshold +
-                ", dustThreshold=" + dustThreshold + '\'' +
+                ", dustThreshold=" + dustThreshold +
                 ", tokenAddress='" + tokenAddress + '\'' +
-                ", absEstimateFeeUsd='" + absEstimateFeeUsd + '\'' +
+                ", absEstimateFeeUsd=" + absEstimateFeeUsd +
+                ", assetModelType=" + assetModelType +
                 '}';
     }
 }
