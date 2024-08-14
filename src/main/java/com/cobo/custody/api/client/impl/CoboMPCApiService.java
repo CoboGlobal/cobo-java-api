@@ -209,6 +209,10 @@ public interface CoboMPCApiService {
     Call<ApiResponse<Void>> babylonReplaceStakingFee(@Field("request_id") String requestId, @Field("related_request_id") String relatedRequestId, @Field("fee_rate") BigDecimal feeRate, @Field("max_staking_fee") BigInteger maxStakingFee);
 
     @FormUrlEncoded
+    @POST("/v1/custody/mpc/babylon/drop_staking/")
+    Call<ApiResponse<Void>> babylonDropStaking(@Field("request_id") String requestId, @Field("related_request_id") String relatedRequestId, @Field("fee_rate") BigDecimal feeRate, @Field("max_staking_fee") BigInteger maxStakingFee);
+
+    @FormUrlEncoded
     @POST("/v1/custody/mpc/babylon/broadcast_staking_transaction/")
     Call<ApiResponse<Void>> babylonBroadcastStakingTransaction(@Field("request_id") String requestId);
 

@@ -97,6 +97,8 @@ public interface CoboMPCApiRestClient {
 
     ApiResponse<Void> babylonReplaceStakingFee(String requestId, String relatedRequestId, BigDecimal feeRate, BigInteger maxStakingFee);
 
+    ApiResponse<Void> babylonDropStaking(String requestId, String relatedRequestId, BigDecimal feeRate, BigInteger maxStakingFee);
+
     ApiResponse<Void> babylonBroadcastStakingTransaction(String requestId);
 
     ApiResponse<Void> babylonBatchBroadcastStakingTransaction(List<String> requestIds);
