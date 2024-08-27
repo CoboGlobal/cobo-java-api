@@ -228,6 +228,16 @@ public class CoboMPCApiRestClientImpl implements CoboMPCApiRestClient {
     }
 
     @Override
+    public ApiResponse<Void> babylonUnbonding(String requestId, String stakingRequestId) {
+        return executeSync(coboMPCApiService.babylonUnbonding(requestId, stakingRequestId));
+    }
+
+    @Override
+    public ApiResponse<Void> babylonWithdraw(String requestId, BigDecimal feeRate, BigInteger maxFeeAmount, String unbondingRequestId, String stakingRequestId) {
+        return executeSync(coboMPCApiService.babylonWithdraw(requestId, feeRate, maxFeeAmount, unbondingRequestId, stakingRequestId))
+    }
+
+    @Override
     public ApiResponse<Void> babylonBroadcastStakingTransaction(String requestId) {
         return executeSync(coboMPCApiService.babylonBroadcastStakingTransaction(requestId));
     }
