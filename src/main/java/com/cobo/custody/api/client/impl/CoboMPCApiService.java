@@ -146,18 +146,18 @@ public interface CoboMPCApiService {
                                                               @Query("from_address") String fromAddress,
                                                               @Query("to_address") String toAddress,
                                                               @Query("limit") Integer limit);
-
-    @GET("/v1/custody/mpc/estimate_fee/")
-    Call<ApiResponse<EstimateFeeDetails>> estimateFee(@Query("coin") String coin,
-                                                      @Query("amount") BigInteger amount,
-                                                      @Query("address") String address,
-                                                      @Query("replace_cobo_id") String replaceCoboId,
-                                                      @Query("from_address") String fromAddress,
-                                                      @Query("to_address_details") String toAddressDetails,
-                                                      @Query("fee") BigDecimal fee,
-                                                      @Query("gas_price") BigInteger gasPrice,
-                                                      @Query("gas_limit") BigInteger gasLimit,
-                                                      @Query("extra_parameters") String extraParameters);
+    @FormUrlEncoded
+    @POST("/v1/custody/mpc/estimate_fee/")
+    Call<ApiResponse<EstimateFeeDetails>> estimateFee(@Field("coin") String coin,
+                                                      @Field("amount") BigInteger amount,
+                                                      @Field("address") String address,
+                                                      @Field("replace_cobo_id") String replaceCoboId,
+                                                      @Field("from_address") String fromAddress,
+                                                      @Field("to_address_details") String toAddressDetails,
+                                                      @Field("fee") BigDecimal fee,
+                                                      @Field("gas_price") BigInteger gasPrice,
+                                                      @Field("gas_limit") BigInteger gasLimit,
+                                                      @Field("extra_parameters") String extraParameters);
 
     @GET("/v1/custody/mpc/list_tss_node_requests/")
     Call<ApiResponse<MPCTssNodeRequests>> listTssNodeRequests(@Query("request_type") Integer requestType,
