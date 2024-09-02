@@ -4,8 +4,8 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [v0.91] (2024-09-02)
-[v0.91]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.90...v0.91
+## [v0.92] (2024-09-02)
+[v0.92]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.90...v0.92
 ### Changed
 - Add New API `babylonUnbonding` and `babylonWithdraw` for MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/161
 - The method of the `estimateFee` API for the MPC wallet has been changed from GET to POST. https://github.com/CoboGlobal/cobo-java-api/pull/162
