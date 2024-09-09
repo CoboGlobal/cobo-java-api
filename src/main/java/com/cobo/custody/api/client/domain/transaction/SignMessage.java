@@ -1,5 +1,6 @@
 package com.cobo.custody.api.client.domain.transaction;
 
+import com.cobo.custody.api.client.domain.account.MPCCoin;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SignMessage {
@@ -16,6 +17,12 @@ public class SignMessage {
     private int signVersion;
     @JsonProperty(value = "extra_parameters")
     private String extraParameters;
+
+    @JsonProperty(value = "coin_detail")
+    private MPCCoin coinDetail;
+
+    @JsonProperty(value = "created_time")
+    private Long createdTime;
 
     public String getRequestId() {
         return requestId;
@@ -73,16 +80,34 @@ public class SignMessage {
         this.extraParameters = extraParameters;
     }
 
+    public MPCCoin getCoinDetail() {
+        return coinDetail;
+    }
+
+    public void setCoinDetail(MPCCoin coinDetail) {
+        this.coinDetail = coinDetail;
+    }
+
+    public Long getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Long createdTime) {
+        this.createdTime = createdTime;
+    }
+
     @Override
     public String toString() {
         return "SignMessage{" +
-                "coboId='" + coboId + '\'' +
-                ", requestId='" + requestId + '\'' +
-                ", signature=" + signature +
-                ", chainCode=" + chainCode +
+                "requestId='" + requestId + '\'' +
+                ", coboId='" + coboId + '\'' +
+                ", signature='" + signature + '\'' +
+                ", chainCode='" + chainCode + '\'' +
                 ", fromAddress='" + fromAddress + '\'' +
-                ", signVersion='" + signVersion + '\'' +
+                ", signVersion=" + signVersion +
                 ", extraParameters='" + extraParameters + '\'' +
+                ", coinDetail=" + coinDetail +
+                ", createdTime=" + createdTime +
                 '}';
     }
 }
