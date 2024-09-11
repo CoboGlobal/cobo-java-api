@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.93] (2024-09-11)
+[v0.93]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.92...v0.93
+### Changed
+- Add field `coin_detail` and `created_time` in the response of `signMessageByRequestIds` and `signMessageByCoboIds` API for the MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/166
+
 ## [v0.92] (2024-09-02)
 [v0.92]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.90...v0.92
 ### Changed
