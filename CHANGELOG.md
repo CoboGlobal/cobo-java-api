@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.94] (2024-09-25)
+[v0.94]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.93...v0.94
+### Changed
+- Add field `walletName` in the response of `getSupportedChains` API for the MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/168
+
 ## [v0.93] (2024-09-11)
 [v0.93]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.92...v0.93
 ### Changed
