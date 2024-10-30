@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.95] (2024-10-30)
+[v0.95]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.94...v0.95
+### Changed
+- Add field `feeReserved` in the response of `estimateFee` API for the MPC Wallet. https://github.com/CoboGlobal/cobo-java-api/pull/170
+
 ## [v0.94] (2024-09-25)
 [v0.94]: https://github.com/CoboGlobal/cobo-java-api/compare/v0.93...v0.94
 ### Changed
