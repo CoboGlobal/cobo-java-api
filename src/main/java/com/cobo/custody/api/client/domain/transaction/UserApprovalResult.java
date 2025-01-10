@@ -8,6 +8,7 @@ public class UserApprovalResult {
     @JsonProperty(value = "last_time")
     private String lastTime;
     private String language;
+    private String message;
     @JsonProperty(value = "message_version")
     private String messageVersion;
     @JsonProperty(value = "extra_message")
@@ -72,6 +73,14 @@ public class UserApprovalResult {
         this.extraMessage = extraMessage;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     @Override
     public String toString() {
         return "UserApprovalResult{" +
@@ -79,6 +88,7 @@ public class UserApprovalResult {
                 ", signature='" + signature + '\'' +
                 ", lastTime='" + lastTime + '\'' +
                 ", language='" + language + '\'' +
+                ", message='" + message + '\'' +
                 ", messageVersion='" + messageVersion + '\'' +
                 ", extraMessage='" + extraMessage + '\'' +
                 ", transactionType='" + transactionType + '\'' +
